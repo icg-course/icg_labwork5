@@ -1,13 +1,110 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>  
+  <head>
     <meta charset="utf-8" />
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
     <title>Лабораторная работа 6</title>
     <link rel="stylesheet" href="http://www.x3dom.org/download/x3dom.css" />
     <script src="http://www.x3dom.org/download/x3dom.js"></script>
+    <script>
+      document.onload = function() {
+        yellow=false;
+        red=false;
+        green=false;
+      }
+      function select(item2) {
+        item = item2;
+
+        if(item=='Yellow' && yellow==false){
+          yellow=true;
+          document.getElementById('yellow_material').setAttribute('diffuseColor',
+          '1 1 0');
+        }else if(item=="Yellow" && yellow==true ){
+          yellow=false;
+         document.getElementById('yellow_material').setAttribute('diffuseColor',
+          '0 0 0');
+        }
+        if(item=='Red' && green==false && red==false)
+        {
+          red=true;
+          document.getElementById('red_material').setAttribute('diffuseColor',
+           '1 0 0');
+        }else if(item=="Red" && red==true ){
+          red=false;
+         document.getElementById('red_material').setAttribute('diffuseColor',
+          '0 0 0');
+        }
+
+         if (item=='Green' && green==false && red==false && yellow==false){
+           green=true;
+          document.getElementById('green_material').setAttribute('diffuseColor',
+           '0 1 0');
+         }else if(item=="Green" && green==true ){
+           green=false;
+          document.getElementById('green_material').setAttribute('diffuseColor',
+           '0 0 0');
+         }
+         function clear(){
+           document.getElementById('green_material').setAttribute('diffuseColor',
+            '0 0 0');
+            document.getElementById('red_material').setAttribute('diffuseColor',
+             '0 0 0');
+             document.getElementById('yellow_material').setAttribute('diffuseColor',
+              '0 0 0');
+         }
+      }
+
+    </script>
   </head>
   <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+    <x3d  width='1300px' height='580px'  >
+      <scene>
+        <Group DEF='threecolor'>
+            <transform>
+              <!-- Коробка сфетофора -->
+              <shape>
+                <appearance>
+                <material diffuseColor='#C0C0C0'> </material>
+                </appearance>
+                <box size='2 6 1'></box>
+              </shape>
+            </transform>
+
+            <transform  onclick='select("Red")'
+                        scale='0.7 0.7 0.1' translation='0 2 0.5'>
+              <shape>
+                <!-- Красный сигнал -->
+                <appearance>
+                  <material id='red_material' diffuseColor="#000000"/>
+                </appearance>
+                <sphere/>
+              </shape>
+            </transform>
+
+            <transform onclick='select("Yellow")' scale='0.7 0.7 0.1' translation='0 0 0.5'>
+              <!-- Желтый сигнал -->
+              <shape>
+                <appearance>
+                  <material id='yellow_material' diffuseColor="#000000"/>
+                </appearance>
+                <sphere/>
+              </shape>
+            </transform>
+
+            <transform onclick='select("Green")' scale='0.7 0.7 0.1' translation='0 -2 0.5'>
+              <!-- Зеленый сигнал -->
+              <shape>
+                <appearance>
+                  <material id='green_material' diffuseColor="#000000"/>
+                </appearance>
+                <sphere/>
+              </shape>
+            </transform>
+          </Group>
+          <button onclick='clear()'>Сбросить</button>
+
+
+      </scene>
+    </x3d>
+  </body>
 </html>
