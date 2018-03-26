@@ -1,0 +1,259 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <link rel="stylesheet" type="text/css" href="x3d/x3dom.css" />
+  <script type="text/javascript" src="x3d/x3dom.js"></script>
+ </head>
+       
+<body>
+ <X3D style="left:0px; top:0px; width:100%; height:100%; border: none;">
+  <Scene>	
+   <TimeSensor def='Time' cycleInterval='10' loop='true' enabled='true'/>
+			
+   <Background backUrl="Textures/StarsTexture.jpg" />
+			
+   <Viewpoint description='FrontView' position='0 0 30'/>
+		
+	<transform def="Head" translation="0 0 0" scale="0.5 0.5 0.5">
+     <transform rotation="1 0 0 0.22">
+      <Group>
+       <Shape>
+        <Appearance def="ElephTexture">
+         <Material/>
+         <imagetexture url="Textures/ElephantSkin.jpg" repeats="true" repeatt="true" scale="true" hidechildren="true"/>
+         <TextureTransform scale="2 2"/>
+        </Appearance>
+       <box size="5 5 5"/>
+       </Shape>
+					
+       <transform translation="0 -2 3">
+        <Shape>
+         <Appearance use="ElephTexture"/>
+         <box size="2 5 2"/>
+        </Shape>
+       </transform>
+					
+       <transform translation="0 -4 2.5">
+        <Shape>
+         <Appearance use="ElephTexture"/>
+         <box size="2 2 2.5"/>
+        </Shape>
+       </transform>
+					
+       <transform translation="-3 1.5 1">
+        <Shape def="ear">
+         <Appearance use="ElephTexture"/>
+         <box size="3 4 1"/>
+        </Shape>
+       </transform>
+					
+       <transform translation="3 1.5 1">
+        <Shape use="ear"/>
+       </transform>
+					
+       <transform translation="1 1.2 2.001">
+        <Shape def="eye">
+         <Appearance>
+          <Material diffusecolor="0.8 0.1 0.1"/>
+         </Appearance>
+         <box size="1 0.5 1"/>
+        </Shape>
+       </transform>
+
+       <transform translation="-1 1.2 2.001">
+        <Shape use="eye"/>
+       </transform>
+      </Group>
+     </transform>
+    </transform>
+			
+    <transform def="Body" translation="0 -2.7 -1.4" scale="0.5 0.5 0.5">
+     <Group>
+      <Shape>
+       <Appearance use="ElephTexture"/>
+        <box size="7 7 5"/>
+      </Shape>
+					
+      <transform translation="0 -0.25 0.5">
+       <Shape def="Arm">
+         <Appearance use="ElephTexture"/>
+         <box size="9 5 2"/>
+       </Shape>
+      </transform>
+					
+      <transform translation="0 -1.75 2">
+       <Shape def="BotArm">
+        <Appearance use="ElephTexture"/>
+         <box size="9 2 3"/>
+       </Shape>
+      </transform>
+					
+      <transform translation="0 -1.75 2">
+       <Shape def="Hoof">
+        <Appearance>
+         <Material diffusecolor="0.59 0.59 0.59"/>
+        </Appearance>
+        <box size="1 2.01 3.01"/>
+       </Shape>
+      </transform>
+					
+      <transform translation="0 -6.5 0">
+       <Shape def="Hoof">
+        <Appearance def="ElephTexture">
+         <Material/>
+         <imagetexture url="Textures/DarkStoneTexture.jpg" repeats="true" repeatt="true" scale="true" hidechildren="true"/>
+         <TextureTransform scale="3 3"/>
+        </Appearance>
+        <box size="8.5 6 8.5"/>
+       </Shape>
+      </transform>
+     </Group>
+    </transform>
+			
+	    <transform def="Earth">
+     <PositionInterpolator def='EarthTranslationInterp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='-4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2,  6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2'/>
+     <Shape>
+      <Appearance>
+       <imagetexture url="Textures/EarthTexture.jpg" repeats="true" repeatt="true" scale="true"></imagetexture>
+      </Appearance> 
+      <Sphere radius="1"/>
+     </Shape>
+    </transform>
+			
+    <transform def="Moon">
+     <PositionInterpolator def='MoonTranslationInterp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='0 -2 -5.4, -4.2 -2 -4.2, -5.4 -2 0, -4.2 -2 4.2, 0 -2 5.4, 4.2 -2 4.2,  5.4 -2 0, 4.2 -2 -4.2, 0 -2 -5.4'/>
+     <Shape>
+      <Appearance>
+       <imagetexture url="Textures/MoonTexture.jpg" repeats="true" repeatt="true" scale="true"></imagetexture>
+      </Appearance> 
+      <Sphere radius="0.26"/>
+     </Shape>
+    </transform>
+				
+    <transform def="Mars">
+     <PositionInterpolator def='MarsTranslationInterp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='0 -2 4.8, 3.36 -2 3.36,  4.8 -2 0, 3.36 -2 -3.36, 0 -2 -4.8, -3.36 -2 -3.36, -4.8 -2 0, -3.36 -2 4.2, 0 -2 4.8'/>
+     <Shape>
+      <Appearance>
+       <imagetexture url="Textures/MarsTexture.jpg" repeats="true" repeatt="true" scale="true"></imagetexture>
+      </Appearance> 
+      <Sphere radius="0.5"/>
+     </Shape>
+    </transform>
+				
+    <transform def="Sun">
+     <PositionInterpolator def='SunTranslationInterp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='12 -2 0, 8.4 -2 -8.4, 0 -2 -12, -8.4 -2 -8.4, -12 -2 0, -8.4 -2 8.4, 0 -2 12, 8.4 -2 8.4, 12 -2 0'/>
+     <Shape>
+      <Appearance>
+       <imagetexture url="Textures/SunTexture.jpg" repeats="true" repeatt="true" scale="true"></imagetexture>
+      </Appearance> 
+      <Sphere radius="2.2"/>
+     </Shape>
+    </transform>	
+			
+    <transform rotation="1 0 0 0.1">
+     <transform scale="0.5 0.5 0.5" rotation="0 -1 0 0.28" translation="9 5 -0.5" >
+      <transform rotation="1 0 0 -0.71">        
+       <shape def="UP" onmousemove="document.getElementById('OrientChaser').setAttribute('set_destination', '1 0 0 -0.4');">
+        <appearance def="StickColor">
+         <material diffuseColor="0.8 0.8 0.8" transparency="0.65" ></material>
+        </appearance>
+        <indexedFaceSet def='plane' solid='true' coordIndex='2 0 3 -1 3 0 1 -1'>
+         <coordinate point='-1 -1 0 1 -1 0 -1 1 0 1 1 0'></coordinate>
+         <normal vector='0 0 1 0 0 1 0 0 1 0 0 1'></normal>
+        </indexedFaceSet>
+       </shape>
+      </transform>
+					
+      <transform translation="0 -3.6 0" rotation="1 0 0 0.71">        
+       <shape def="DOWN" onmousemove="document.getElementById('OrientChaser').setAttribute('set_destination', '1 0 0 0.3');">
+        <appearance use="StickColor"/>
+        <indexedFaceSet use='plane'/>
+       </shape>
+      </transform>
+					
+      <transform translation="0 -1.8 0.65">        
+       <shape def="FRONT" onmousemove="document.getElementById('OrientChaser').setAttribute('set_destination', '0 0 0 0');">
+        <appearance use="StickColor"/>
+        <indexedFaceSet use='plane'/>
+       </shape>
+      </transform>
+					
+      <transform translation="1.8 -1.8 0"  rotation="0 1 0 0.71">        
+       <shape def="RIGHT" onmousemove="document.getElementById('OrientChaser').setAttribute('set_destination', '0 1 0 0.4');">
+        <appearance use="StickColor"/>
+        <indexedFaceSet use='plane'/>
+       </shape>
+      </transform>
+				
+      <transform translation="-1.8 -1.8 0"  rotation="0 1 0 -0.71">        
+       <shape def="LEFT" onmousemove="document.getElementById('OrientChaser').setAttribute('set_destination', '0 1 0 -0.4');">
+        <appearance use="StickColor"/>
+        <indexedFaceSet use='plane'/>
+       </shape>
+      </transform>
+					
+      <transform translation="1.8 0 0"> 
+       <shape def="UPRIGHT" onmousemove="document.getElementById('OrientChaser').setAttribute('set_destination', '1 -1 0 -0.4');">
+        <appearance use="StickColor"/>
+        <indexedFaceSet def='plane' solid='true' coordIndex='0 1 2 -1'>
+         <coordinate point='-0.75 -0.75 0.65, 0.75 -0.75 -0.65, -0.75 0.75 -0.65,'></coordinate>
+        </indexedFaceSet>
+       </shape>
+      </transform>
+					
+      <transform translation="-1.8 0 0"> 
+       <shape def="UPLEFT" onmousemove="document.getElementById('OrientChaser').setAttribute('set_destination', '1 1 0 -0.4');">
+        <appearance use="StickColor"/>
+        <indexedFaceSet def='plane' solid='true' coordIndex='0 1 2 -1'>
+          <coordinate point='-0.75 -0.75 -0.65, 0.75 -0.75 0.65, 0.75 0.75 -0.65,'></coordinate>
+        </indexedFaceSet>
+       </shape>
+      </transform>
+				
+      <transform translation="-1.8 -3.59 0"> 
+       <shape def="DOWNLEFT" onmousemove="document.getElementById('OrientChaser').setAttribute('set_destination', '-1 1 0 -0.4');">
+        <appearance use="StickColor"/>
+        <indexedFaceSet def='plane' solid='true' coordIndex='0 1 2 -1'>
+         <coordinate point='-0.75 0.75 -0.65, 0.75 -0.75 -0.65, 0.75 0.75 0.65,'></coordinate>
+        </indexedFaceSet>
+       </shape>
+      </transform>
+					
+      <transform translation="1.8 -3.59 0"> 
+       <shape def="DOWNRIGHT" onmousemove="document.getElementById('OrientChaser').setAttribute('set_destination', '-1 -1 0 -0.4');">
+        <appearance use="StickColor"/>
+        <indexedFaceSet def='plane' solid='true' coordIndex='0 1 2 -1'>
+         <coordinate point='-0.75 0.75 0.65, -0.75 -0.75 -0.65, 0.75 0.75 -0.65,'></coordinate>
+        </indexedFaceSet>
+       </shape>
+      </transform>
+     </transform>
+    </transform>
+			
+    <OrientationChaser id='OrientChaser'  initialDestination="0 0 0 0" initialValue="0 0 0 0"/>
+        
+    <route fromNode='OrientChaser' fromField='value_changed' toNode='Head' toField='rotation'/>
+		
+    <PositionDamper def='PositionDamperEarth'/>
+    <PositionDamper def='PositionDamperMoon'/>
+    <PositionDamper def='PositionDamperMars'/>
+    <PositionDamper def='PositionDamperSun'/>
+			
+    <route fromField='fraction_changed' fromNode='Time' toField='set_fraction' toNode='EarthTranslationInterp'/>			
+    <route fromField='value_changed' fromNode='EarthTranslationInterp' toField='set_destination' toNode='PositionDamperEarth'/>
+    <route fromField='value_changed' fromNode='PositionDamperEarth' toField='translation' toNode='Earth'/>
+		
+    <route fromField='fraction_changed' fromNode='Time' toField='set_fraction' toNode='MoonTranslationInterp'/>			
+    <route fromField='value_changed' fromNode='MoonTranslationInterp' toField='set_destination' toNode='PositionDamperMoon'/>
+    <route fromField='value_changed' fromNode='PositionDamperMoon' toField='translation' toNode='Moon'/>
+			
+    <route fromField='fraction_changed' fromNode='Time' toField='set_fraction' toNode='MarsTranslationInterp'/>			
+    <route fromField='value_changed' fromNode='MarsTranslationInterp' toField='set_destination' toNode='PositionDamperMars'/>
+    <route fromField='value_changed' fromNode='PositionDamperMars' toField='translation' toNode='Mars'/>
+		
+    <route fromField='fraction_changed' fromNode='Time' toField='set_fraction' toNode='SunTranslationInterp'/>			
+    <route fromField='value_changed' fromNode='SunTranslationInterp' toField='set_destination' toNode='PositionDamperSun'/>
+    <route fromField='value_changed' fromNode='PositionDamperSun' toField='translation' toNode='Sun'/>			
+   </Scene>
+  </X3D>
+ </body>
+</html>
