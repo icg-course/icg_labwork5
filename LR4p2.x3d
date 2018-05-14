@@ -1,7 +1,7 @@
-<html xmlns="https://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
  <head>
-  <link rel="stylesheet" type="text/css" href="x3dom.css" />
-  <script type="text/javascript" src="x3dom.js"></script>
+  <link rel="stylesheet" type="text/css" href="x3d/x3dom.css" />
+  <script type="text/javascript" src="x3d/x3dom.js"></script>
  
 	<script>
 	
@@ -15,21 +15,21 @@
       }
 	  
 	  function toggle(){
+alert('ok');
 var w=true;
-	document.getElementById('but_e').onclick = function() {
  document.getElementById('Time').setAttribute('enabled',w? 'false':'true');
- document.getElementById('but_e').setAttribute('value',w? 'Запустить Donuts':'Остановить Donuts');
+ document.getElementById('but_e').setAttribute('value',w? 'Остановить Donats':'Запустить Donats');
  w = !w;
-}
 }
     </script>
  </head>
        
  <body>
  <input type="button" id="but_e" value="Остановить Donuts" onClick="toggle()" ></input>
-  <X3D style="left:0px; top:0px; width:50%; height:50%; border: none;">
+  <X3D style="left:0px; top:0px; width:100%; height:100%; border: none;">
    <Scene>	
-
+    <TimeSensor id='Time' cycleInterval='10' loop='true' enabled='true'></TimeSensor>
+	<TimeSensor id='Time3' cycleInterval='10' loop='true' enabled='false'></TimeSensor>
 		
 
 <transform DEF='Group' id='Don'>
@@ -55,15 +55,18 @@ var w=true;
       </shape>
      </transform>
 	 </transform>		
-
-	 <Background skyColor="1 1 1"></Background>
 			
-    <Viewpoint description='FrontView' position='0 0 30'></Viewpoint>
+    <Background skyColor="0 0 0.1"></Background>
+			
+    <Viewpoint description='FrontView' position='0 0 30'/>
 	
 	<TimeSensor DEF='Time2' cycleInterval='5' loop='true'> </TimeSensor>
-	 <TimeSensor id='Time' cycleInterval='10' loop='true' enabled='true'></TimeSensor>
-	<TimeSensor id='Time3' cycleInterval='10' loop='true' enabled='false'></TimeSensor>
-	<ColorInterpolator DEF='ColInt' key='0 0.33 0.66 1' keyValue='1 0 0, 0 1 0, 0 0 1, 1 0 0'></ColorInterpolator>
+
+<ColorInterpolator DEF='ColInt' key='0 0.33 0.66 1'
+
+keyValue='1 0 0, 0 1 0, 0 0 1, 1 0 0'>
+
+</ColorInterpolator>
 
 <transform translation="0 -2 0">
 
@@ -83,54 +86,56 @@ var w=true;
 <ROUTE fromNode='Time2' fromField='fraction_changed' toNode='ColInt' toField='set_fraction'></ROUTE>
 
 <ROUTE fromNode='ColInt' fromField='value_changed' toNode='Mat' toField='set_diffuseColor'></ROUTE>
-
 		
    	
     <transform def="Donut" translation="-4.2 -2 -4.2" rotation='1 0 0 -1.5708'>
-     <PositionInterpolator def='DonutInterp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='-4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2,  6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2'></PositionInterpolator>
+     <PositionInterpolator def='DonutInterp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='-4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2,  6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2'/>
 		<Shape USE='Group'></Shape>
     </transform>
 	
 	<transform def="Donut2" translation="-6 -2 0" rotation='1 0 0 -1.5708'>
-     <PositionInterpolator def='Donut2Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='-6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2,  6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0'></PositionInterpolator>>
+     <PositionInterpolator def='Donut2Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='-6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2,  6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0'/>
 		<Shape USE='Group'></Shape>
     </transform>
 	
 	<transform def="Donut3" translation="-4.2 -2 4.2" rotation='1 0 0 -1.5708'>
-     <PositionInterpolator def='Donut3Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue=' -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2,  6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2'></PositionInterpolator>
+     <PositionInterpolator def='Donut3Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue=' -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2,  6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2'/>
 		<Shape USE='Group'></Shape>
     </transform>
 	
 	<transform def="Donut4" translation="-4.2 -2 4.2" rotation='1 0 0 -1.5708'>
-     <PositionInterpolator def='Donut4Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue=' 0 -2 6, 4.2 -2 4.2,  6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6'></PositionInterpolator>
+     <PositionInterpolator def='Donut4Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue=' 0 -2 6, 4.2 -2 4.2,  6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6'/>
 		<Shape USE='Group'></Shape>
     </transform>
 	
 	<transform def="Donut5" translation="-4.2 -2 4.2" rotation='1 0 0 -1.5708'>
-     <PositionInterpolator def='Donut5Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='4.2 -2 4.2,  6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2'></PositionInterpolator>
+     <PositionInterpolator def='Donut5Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='4.2 -2 4.2,  6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2'/>
 		<Shape USE='Group'></Shape>
     </transform>
 	
 	<transform def="Donut6" translation="-4.2 -2 4.2" rotation='1 0 0 -1.5708'>
-     <PositionInterpolator def='Donut6Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2, 6 -2 0'></PositionInterpolator>
+     <PositionInterpolator def='Donut6Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='6 -2 0, 4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2, 6 -2 0'/>
 		<Shape USE='Group'></Shape>
     </transform>
 	
 	<transform def="Donut7" translation="-4.2 -2 4.2" rotation='1 0 0 -1.5708'>
-     <PositionInterpolator def='Donut7Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2, 6 -2 0, 4.2 -2 -4.2'></PositionInterpolator>
+     <PositionInterpolator def='Donut7Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='4.2 -2 -4.2, 0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2, 6 -2 0, 4.2 -2 -4.2'/>
 		<Shape USE='Group'></Shape>
     </transform>
 	
 	<transform def="Donut8" translation="-4.2 -2 4.2" rotation='1 0 0 -1.5708'>
-     <PositionInterpolator def='Donut8Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2, 6 -2 0, 4.2 -2 -4.2, 0 -2 -6'></PositionInterpolator>
+     <PositionInterpolator def='Donut8Interp' key='0 0.125 0.25 0.375 0.5 0.675 0.75 0.875 1' keyValue='0 -2 -6, -4.2 -2 -4.2, -6 -2 0, -4.2 -2 4.2, 0 -2 6, 4.2 -2 4.2, 6 -2 0, 4.2 -2 -4.2, 0 -2 -6'/>
 		<Shape USE='Group'></Shape>
     </transform>
 	
 	<transform id = "Donut9" translation="0 4 0" scale="3 3 3">
-     <OrientationInterpolator def='Donut9Interp' key='0 0.5 1' keyValue='0 1 0 0, 0 1 0 -3.14, 0 1 0 -6.28'></OrientationInterpolator>
-	 <PositionInterpolator id='Donut91Interp' key='0 0.5 1' keyValue='0 4 0, 5 5 5, 0 4 0'></PositionInterpolator>
+     <OrientationInterpolator def='Donut9Interp' key='0 0.5 1' keyValue='0 1 0 0, 0 1 0 -3.14, 0 1 0 -6.28'/>
+	 <PositionInterpolator id='Donut91Interp' key='0 0.5 1' keyValue='0 4 0, 5 5 5, 0 4 0'/>
 		<Shape USE='Group'></Shape>
     </transform>
+	
+	
+	
 	
 	<PositionChaser DEF='PosCh' duration='1'></PositionChaser>
 	<PositionChaser DEF='PosCh2' duration='1'></PositionChaser>
@@ -143,47 +148,47 @@ var w=true;
 	<PositionChaser DEF='PosCh9' duration='1'></PositionChaser>
 	<PositionChaser DEF='PosCh10' duration='1'></PositionChaser>
 			
-	<route fromNode='Time' fromField='fraction_changed' toNode='DonutInterp' toField='set_fraction'></ROUTE>
+	<route fromNode='Time' fromField='fraction_changed' toNode='DonutInterp' toField='set_fraction'/>
 	<ROUTE fromNode='DonutInterp' fromField='value_changed' toNode='PosCh' toField='set_destination'></ROUTE>
     <ROUTE fromNode='PosCh' fromField='value_changed' toNode='Donut' toField='set_translation'></ROUTE>
 	
-	<route fromNode='Time' fromField='fraction_changed' toNode='Donut2Interp' toField='set_fraction'></ROUTE>
+	<route fromNode='Time' fromField='fraction_changed' toNode='Donut2Interp' toField='set_fraction'/>
 	<ROUTE fromNode='Donut2Interp' fromField='value_changed' toNode='PosCh2' toField='set_destination'></ROUTE>
     <ROUTE fromNode='PosCh2' fromField='value_changed' toNode='Donut2' toField='set_translation'></ROUTE>
 	
-	<route fromNode='Time' fromField='fraction_changed' toNode='Donut3Interp' toField='set_fraction'></ROUTE>
+	<route fromNode='Time' fromField='fraction_changed' toNode='Donut3Interp' toField='set_fraction'/>
 	<ROUTE fromNode='Donut3Interp' fromField='value_changed' toNode='PosCh3' toField='set_destination'></ROUTE>
     <ROUTE fromNode='PosCh3' fromField='value_changed' toNode='Donut3' toField='set_translation'></ROUTE>
 	
-	<route fromNode='Time' fromField='fraction_changed' toNode='Donut4Interp' toField='set_fraction'></ROUTE>
+	<route fromNode='Time' fromField='fraction_changed' toNode='Donut4Interp' toField='set_fraction'/>
 	<ROUTE fromNode='Donut4Interp' fromField='value_changed' toNode='PosCh4' toField='set_destination'></ROUTE>
     <ROUTE fromNode='PosCh4' fromField='value_changed' toNode='Donut4' toField='set_translation'></ROUTE>
 	
-	<route fromNode='Time' fromField='fraction_changed' toNode='Donut5Interp' toField='set_fraction'></ROUTE>
+	<route fromNode='Time' fromField='fraction_changed' toNode='Donut5Interp' toField='set_fraction'/>
 	<ROUTE fromNode='Donut5Interp' fromField='value_changed' toNode='PosCh5' toField='set_destination'></ROUTE>
     <ROUTE fromNode='PosCh5' fromField='value_changed' toNode='Donut5' toField='set_translation'></ROUTE>
 	
-	<route fromNode='Time' fromField='fraction_changed' toNode='Donut6Interp' toField='set_fraction'></ROUTE>
+	<route fromNode='Time' fromField='fraction_changed' toNode='Donut6Interp' toField='set_fraction'/>
 	<ROUTE fromNode='Donut6Interp' fromField='value_changed' toNode='PosCh6' toField='set_destination'></ROUTE>
     <ROUTE fromNode='PosCh6' fromField='value_changed' toNode='Donut6' toField='set_translation'></ROUTE>
 	
-	<route fromNode='Time' fromField='fraction_changed' toNode='Donut7Interp' toField='set_fraction'></ROUTE>
+	<route fromNode='Time' fromField='fraction_changed' toNode='Donut7Interp' toField='set_fraction'/>
 	<ROUTE fromNode='Donut7Interp' fromField='value_changed' toNode='PosCh7' toField='set_destination'></ROUTE>
     <ROUTE fromNode='PosCh7' fromField='value_changed' toNode='Donut7' toField='set_translation'></ROUTE>
 	
-	<route fromNode='Time' fromField='fraction_changed' toNode='Donut8Interp' toField='set_fraction'></ROUTE>
+	<route fromNode='Time' fromField='fraction_changed' toNode='Donut8Interp' toField='set_fraction'/>
 	<ROUTE fromNode='Donut8Interp' fromField='value_changed' toNode='PosCh8' toField='set_destination'></ROUTE>
     <ROUTE fromNode='PosCh8' fromField='value_changed' toNode='Donut8' toField='set_translation'></ROUTE>
 	
-	<route fromNode='Time3' fromField='fraction_changed' toNode='Donut91Interp' toField='set_fraction'></ROUTE>
+	<route fromNode='Time3' fromField='fraction_changed' toNode='Donut91Interp' toField='set_fraction'/>
 	<ROUTE fromNode='Donut91Interp' fromField='value_changed' toNode='PosCh10' toField='set_destination'></ROUTE>
 	<ROUTE fromNode='PosCh10' fromField='value_changed' toNode='Donut9' toField='set_translation'></ROUTE>
 	
-	<route fromNode='Time' fromField='fraction_changed' toNode='Donut9Interp' toField='set_fraction'></ROUTE>
-    <route fromNode='Donut9Interp' fromField='value_changed' toNode='Donut9' toField='set_destination'></ROUTE>
+	<route fromNode='Time' fromField='fraction_changed' toNode='Donut9Interp' toField='set_fraction'/>
+    <route fromNode='Donut9Interp' fromField='value_changed' toNode='Donut9' toField='set_destination'/>
 	
-	<ROUTE fromNode='Time' fromField='fraction_changed' toNode='ColInt' toField='set_fraction'></ROUTE>
-	<ROUTE fromNode='ColInt' fromField='value_changed' toNode='Mat' toField='set_diffuseColor'></ROUTE>
+	<ROUTE fromNode='Time' fromField='fraction_changed' toNode='ColInt' toField='set_fraction'/>
+	<ROUTE fromNode='ColInt' fromField='value_changed' toNode='Mat' toField='set_diffuseColor'/>
 
    </Scene>
   </X3D>
