@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
   <head>  
     <meta charset="utf-8" />
@@ -8,6 +8,194 @@
     <script src="https://www.x3dom.org/download/x3dom.js"></script>
   </head>
   <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
+    <div>Бей крота</div>
+    <div id="scope"></div>
+    <script>
+        var GameScope = 0;
+
+        document.onload = function ()
+        {
+            document.getElementById('scope').innerHTML = 'Счет: '+ GameScope;
+        };
+
+        function StopGame()//Отсановка игры
+        {
+            var seconds = new Date().getTime() / 1000;//Текущее время
+            document.getElementById("MoveTime0").setAttribute("stopTime", seconds);//Устанавливаю время остановки анимации
+            document.getElementById("MoveTime1").setAttribute("stopTime", seconds);
+            document.getElementById("MoveTime2").setAttribute("stopTime", seconds);
+            document.getElementById("MoveTime3").setAttribute("stopTime", seconds);
+            document.getElementById("MoveTime4").setAttribute("stopTime", seconds);
+            document.getElementById("MoveTime0").setAttribute('enabled', 'false');//Выключаю таймеры кротов
+            document.getElementById("MoveTime1").setAttribute('enabled', 'false');
+            document.getElementById("MoveTime2").setAttribute('enabled', 'false');
+            document.getElementById("MoveTime3").setAttribute('enabled', 'false');
+            document.getElementById("MoveTime4").setAttribute('enabled', 'false');
+        };
+
+        function StartGame()//Начало игры
+        {
+            document.getElementById("MoveTime0").setAttribute('enabled', 'true');//Включаю таймеры кротов
+            document.getElementById("MoveTime1").setAttribute('enabled', 'true');
+            document.getElementById("MoveTime2").setAttribute('enabled', 'true');
+            document.getElementById("MoveTime3").setAttribute('enabled', 'true');
+            document.getElementById("MoveTime4").setAttribute('enabled', 'true');
+            document.getElementById("MoveTime0").setAttribute('time', 0);//Выставляю таймеры кротов в 0
+            document.getElementById("MoveTime1").setAttribute('time', 0);
+            document.getElementById("MoveTime2").setAttribute('time', 0);
+            document.getElementById("MoveTime3").setAttribute('time', 0);
+            document.getElementById("MoveTime4").setAttribute('time', 0);
+
+            GameScope = 0;
+            document.getElementById('scope').innerHTML = 'Счет: ' + GameScope;
+            KrotSpawn();//Первый вызов кротов
+            setTimeout(KrotSpawn(), (10 * 1000));//Второй вызов кротов
+            setTimeout(KrotSpawn(), (10 * 1000));//Третий взов кротов
+        };
+
+        function KrotSpawn()//Задаю значение появления кротов в течении 10 секунд
+        {
+            var seconds = new Date().getTime() / 1000 + Math.random() * 10;//Текущее время + сл число [0:10]
+            document.getElementById("MoveTime0").setAttribute("startTime", seconds);//Устанавливаю время начала анимации
+            document.getElementById("MoveTime0").setAttribute("stopTime", seconds + 2);//Устанавливаю время конца анимации
+            var seconds = new Date().getTime() / 1000 + Math.random() * 10;
+            document.getElementById("MoveTime1").setAttribute("startTime", seconds);
+            document.getElementById("MoveTime1").setAttribute("stopTime", seconds + 2);
+            var seconds = new Date().getTime() / 1000 + Math.random() * 10;
+            document.getElementById("MoveTime2").setAttribute("startTime", seconds);
+            document.getElementById("MoveTime2").setAttribute("stopTime", seconds + 2);
+            var seconds = new Date().getTime() / 1000 + Math.random() * 10;
+            document.getElementById("MoveTime3").setAttribute("startTime", seconds);
+            document.getElementById("MoveTime3").setAttribute("stopTime", seconds + 2);
+            var seconds = new Date().getTime() / 1000 + Math.random() * 10;
+            document.getElementById("MoveTime4").setAttribute("startTime", seconds);
+            document.getElementById("MoveTime4").setAttribute("stopTime", seconds + 2);
+        }
+        
+
+
+        function ScopeIncrement()//Увеличение счета за попадание по кроту
+        {
+            GameScope ++;
+            document.getElementById('scope').innerHTML = 'Счет: ' + GameScope;
+        };
+
+    </script>
+    <div>
+        <x3d width="1100px" height="650px">
+            <h1></h1>
+            <scene>
+                <!--Куб (Земля)-->
+                <Transform translation="0 -1 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 0"></material>
+                            <ImageTexture url='textures/trava_s_grazyu.png'></ImageTexture>
+                            <TextureTransform translation="1 1" rotation="0" scale="1 1"></TextureTransform>
+                        </appearance>
+                        <box size="30 0.01 30"></box>
+                    </shape>
+                </Transform>
+
+                <!--Cфера (Крот 0)-->
+                <Transform id='krot_0' DEF="krot_0" translation="-6.5 -3 -5" rotation="0 -0.5 0.5 -7.14" onClick="ScopeIncrement();">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 0"></material>
+                            <ImageTexture url='textures/krot.png'></ImageTexture>
+                        </appearance>
+                        <sphere radius="1.5"></sphere>
+                    </shape>
+                </Transform>
+
+                <!--Cфера (Крот 1)-->
+                <Transform id="krot_1" DEF="krot_1" translation="6.5 -3 -5" rotation="1 1 0 -6.14" onClick="ScopeIncrement();">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 0"></material>
+                            <ImageTexture url='textures/krot.png'></ImageTexture>
+                        </appearance>
+                        <sphere radius="1.5"></sphere>
+                    </shape>
+                </Transform>
+
+                <!--Cфера (Крот 2)-->
+                <Transform id="krot_2" DEF="krot_2" translation="0 -3 1" rotation="1 1 0 -6.32" onClick="ScopeIncrement();">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 0"></material>
+                            <ImageTexture url='textures/krot.png'></ImageTexture>
+                        </appearance>
+                        <sphere radius="1.4"></sphere>
+                    </shape>
+                </Transform>
+
+                <!--Cфера (Крот 3)-->
+                <Transform id="krot_3" DEF="krot_3" translation="-7 -3 7" rotation="0.6 -0.3 0.8 -7.64" onClick="ScopeIncrement();">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 0"></material>
+                            <ImageTexture url='textures/krot.png'></ImageTexture>
+                        </appearance>
+                        <sphere radius="1.3"></sphere>
+                    </shape>
+                </Transform>
+
+                <!--Cфера (Крот 4)-->
+                <Transform id="krot_4" DEF="krot_4" translation="7 -3 7" rotation="1 1 0 -6.64" onClick="ScopeIncrement();">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 0"></material>
+                            <ImageTexture url='textures/krot.png'></ImageTexture>
+                        </appearance>
+                        <sphere radius="1.3"></sphere>
+                    </shape>
+                </Transform>
+
+                <!--Фон-->
+                <Background groundAngle='0.9 1.5 1.57' groundColor='0.6 0.7 0.1 0.4 0.7 0.2 0.1 0.6 0.1 0 0.3 0.1' skyAngle='0.9 1.5 1.57' skyColor='0.21 0.18 0.66 0.2 0.44 0.85 0.51 0.81 0.95 0.77 0.8 0.82'></Background>
+
+                <!--Настройка точек наблюдения-->
+                <Viewpoint fieldOfView="1.39" position='0 8 10' orientation="1 0 0 -1.1"></Viewpoint>
+
+                <!--Настрока навигации по сцене-->
+                <NavigationInfo headlight="false" type="NONE"></NavigationInfo>
+
+
+                <!--Анимация появления кротов-->
+                <timeSensor DEF="MoveTime0" id="MoveTime0" cycleInterval="2" loop="true" enabled='false'></timeSensor>
+                <PositionInterpolator DEF="Move0" key="0  0.5  1" keyValue="-6.5 -3 -5  -6.5 -1.2 -5  -6.5 -3 -5"></PositionInterpolator>
+                <Route fromNode="MoveTime0" fromField="fraction_changed" toNode="Move0" toField="set_fraction"></Route>
+                <Route fromNode="Move0" fromField="value_changed" toNode="krot_0" toField="translation"></Route>
+
+                <timeSensor DEF="MoveTime1" id="MoveTime1" cycleInterval="2" loop="true" enabled='false'></timeSensor>
+                <PositionInterpolator DEF="Move1" key="0  0.5  1" keyValue="6.5 -3 -5  6.5 -1.2 -5  6.5 -3 -5"></PositionInterpolator>
+                <Route fromNode="MoveTime1" fromField="fraction_changed" toNode="Move1" toField="set_fraction"></Route>
+                <Route fromNode="Move1" fromField="value_changed" toNode="krot_1" toField="translation"></Route>
+
+                <timeSensor DEF="MoveTime2" id="MoveTime2" cycleInterval="2" loop="true" enabled='false'></timeSensor>
+                <PositionInterpolator DEF="Move2" key="0  0.5  1" keyValue="0 -3 1  0 -1.2 1  -0 -3 1"></PositionInterpolator>
+                <Route fromNode="MoveTime2" fromField="fraction_changed" toNode="Move2" toField="set_fraction"></Route>
+                <Route fromNode="Move2" fromField="value_changed" toNode="krot_2" toField="translation"></Route>
+
+                <timeSensor DEF="MoveTime3" id="MoveTime3" cycleInterval="2" loop="true" enabled='false'></timeSensor>
+                <PositionInterpolator DEF="Move3" key="0  0.5  1" keyValue="-7 -3 7  -7 -1.2 7  -7 -3 7"></PositionInterpolator>
+                <Route fromNode="MoveTime3" fromField="fraction_changed" toNode="Move3" toField="set_fraction"></Route>
+                <Route fromNode="Move3" fromField="value_changed" toNode="krot_3" toField="translation"></Route>
+
+                <timeSensor DEF="MoveTime4" id="MoveTime4" cycleInterval="2" loop="true" enabled='false'></timeSensor>
+                <PositionInterpolator DEF="Move4" key="0  0.5  1" keyValue="7 -3 7  7 -1.2 7  7 -3 7"></PositionInterpolator>
+                <Route fromNode="MoveTime4" fromField="fraction_changed" toNode="Move4" toField="set_fraction"></Route>
+                <Route fromNode="Move4" fromField="value_changed" toNode="krot_4" toField="translation"></Route>
+
+            </scene>
+        </x3d>
+    </div>
+
+    <div>
+        <input type="button" style="height: 2em; width: 4em" id="but_stone" value="Стоп" onClick="StopGame()" />
+        <input type="button" style="height: 2em; width: 4em" id="but_dirt" value="Старт" onClick="StartGame()" />
+    </div>
+
   </body> 
 </html>
