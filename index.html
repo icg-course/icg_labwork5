@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
   <head>  
     <meta charset="utf-8" />
@@ -8,6 +8,142 @@
     <script src="https://www.x3dom.org/download/x3dom.js"></script>
   </head>
   <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
+    < <h1>Лабораторная № 6</h1>
+	<X3D width="1400px" height="700px">
+		<scene>
+			<Fog visibilityRange='40'></Fog>
+ 			<TimeSensor DEF='Time' id='Time' cycleInterval='15' loop='true' enabled='false'> </TimeSensor> 
+			<TimeSensor DEF='Time2' id='Time2' cycleInterval='15' loop='true' enabled='false'> </TimeSensor> 	 
+			<TimeSensor DEF='Time3' id='Time3' cycleInterval='15' loop='true' enabled='false'> </TimeSensor> 	  
+			<PositionInterpolator DEF='PosInt'id='PosInt' key='0 0.3 0.45 0.7 1'                          
+				keyValue='10 1.7 -9.5, 8 1.7 -8, 6 1.7 -8, 4 1.7 -9, 2 1.7 -11 '>   
+			</PositionInterpolator> 
+			<PositionInterpolator DEF='PosInt2'id='PosInt2' key='0 0.2 0.3 0.6 1'                          
+				keyValue='10 1.7 -5, 8 1.7 -5, 6 1.7 -5, 4 1.7 -4, -2 1.7 -4.5 '>   
+			</PositionInterpolator> 
+			<PositionInterpolator DEF='PosInt3'id='PosInt3' key='0 0.25 0.5 0.75 1'                          
+				keyValue='-1 1.7 -15, -1 1.7 -13, -1 1.7 -11, -1 1.7 -13, -1 1.7 -15 '>   
+			</PositionInterpolator> 
+			<Viewpoint position='-10 2 -10' orientation ='0 1 0 -1.8'></Viewpoint>
+			<NavigationInfo  headlight='false' type='["NONE"]' ></NavigationInfo>
+			<transform DEF='Zom1' id='Zom1' translation='10 1.7 -8' scale='1 2' rotation ='0 1 0 1.57' render="false">
+				<shape>
+					<box></box>
+						<appearance>
+							<ImageTexture url='zombie.png'></ImageTexture>
+						</appearance>
+				</shape>
+			</transform>
+			<transform DEF='Zom3' id='Zom3' translation='10 1.7 -8' scale='1 2' rotation ='0 1 0 1.57' render="false">
+				<shape>
+					<box></box>
+						<appearance>
+							<ImageTexture url='zombie3.png'></ImageTexture>
+						</appearance>
+				</shape>
+			</transform>
+			<transform DEF='Zom2' id='Zom2'  scale='1 2' rotation ='0 1 0 1.57' render="false">
+				<shape>
+					<box></box>
+						<appearance>
+							<ImageTexture url='zombie2.png'></ImageTexture>
+						</appearance>
+				</shape>
+			</transform>
+			 <PositionChaser  DEF='Zom2Chaser' id='Zom2Chaser'                    
+							duration='15' initialValue='10,1.7 ,-5' initialDestination='10, 1.7 ,-5'>     
+			</PositionChaser> 
+			 <PositionChaser  DEF='ZomChaser' id='ZomChaser'                    
+							duration='15' initialValue='10 1.7 -9.5' initialDestination='10 1.7 -9.5' >     
+			</PositionChaser> 
+			<PositionChaser DEF ='Zom3Chaser' id='Zom3Chaser' duration='15' initialValue='-1 1.7 -15' initialDestination='-1 1.7 -15'  >
+			</PositionChaser>
+			<ROUTE fromNode='Time' fromField='fraction_changed'           
+				toNode='PosInt' toField='set_fraction'></ROUTE>   
+			<ROUTE fromNode='PosInt' fromField='value_changed'           
+				toNode='Zom1' toField='set_translation'></ROUTE> 
+			 <ROUTE fromNode='ZomChaser' fromField='value_changed'             
+					toNode='Zom1' toField='set_translation'>     
+			</ROUTE> 
+			<ROUTE fromNode='Zom2Chaser' fromField='value_changed'             
+					toNode='Zom2' toField='set_translation'>     
+			</ROUTE> 
+			<ROUTE fromNode='Zom3Chaser' fromField='value_changed'             
+					toNode='Zom3' toField='set_translation'>     
+			</ROUTE> 
+			<ROUTE fromNode='Time2' fromField='fraction_changed'           
+				toNode='PosInt2' toField='set_fraction'></ROUTE>   
+			<ROUTE fromNode='PosInt2' fromField='value_changed'           
+				toNode='Zom2' toField='set_translation'></ROUTE> 
+			<ROUTE fromNode='Time3' fromField='fraction_changed'           
+				toNode='PosInt3' toField='set_fraction'></ROUTE>   
+			<ROUTE fromNode='PosInt3' fromField='value_changed'           
+				toNode='Zom3' toField='set_translation'></ROUTE> 
+			<transform translation ='0 0 0' scale='50 50 50' rotation='1 0 0 -1.57'>
+				<shape>
+					<appearance>
+					 	<texturetransform scale='40 40' ></texturetransform>
+						<ImageTexture url='grass3.jpg'></ImageTexture>
+					</appearance>
+					<plane ></plane>
+				</shape>
+			</transform>
+			<transform translation ='17 1 -7' rotation='0 1 0 1.57'>
+				<shape>
+					<appearance>
+						<ImageTexture url='maya.jpg'></ImageTexture>
+					</appearance>
+					<torus></torus>
+				</shape>
+			</transform>			
+			<transform translation ='1 5.4 1' scale='1 1.5 1'>
+				 <Inline url="tree.x3d"></Inline>	
+			</transform>
+			<transform translation='-5 5.4 -3' rotation='0 1 0 0.7' scale='1 1.5 1'>
+				 <Inline url='tree.x3d'></Inline>	
+			</transform>
+			<transform translation='0.5 5.4 -6' rotation='0 1 0 0.8' scale='1 1.5 1'>
+				 <Inline url='tree.x3d'></Inline>	
+			</transform>
+			<transform translation='6 5.4 0' rotation='0 1 0 1.4' scale='1 1.5 1'>
+				 <Inline url='tree.x3d'></Inline>	
+			</transform>
+			<transform translation='-3 5.4 -13' rotation='0 1 0 1.4' scale='1 1.5 1'>
+				 <Inline url='tree.x3d'></Inline>	
+			</transform>
+			<transform translation='5 5.4 -12' rotation='0 1 0 1.4' scale='1 1.5 1'>
+				 <Inline url='tree.x3d'></Inline>	
+			</transform>
+			<transform translation='13 5.4 -15' rotation='0 1 0 1.4' scale='1 1.5 1'>
+				 <Inline url='tree.x3d'></Inline>	
+			</transform>
+			<directionalLight id="directional" direction='0 0 1' on ="TRUE" intensity='1.0' shadowIntensity='0.0'> </directionalLight> 		
+		</scene>			
+	</X3D>
+	<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		function showZombie()
+		{ 	document.getElementById("Zom1").setAttribute("render","true" );
+			document.getElementById("Time").setAttribute("enabled","true" );
+			document.getElementById("Zom2").setAttribute("render","true" );
+			document.getElementById("Time2").setAttribute("enabled","true" );
+			document.getElementById("Zom3").setAttribute("render","true" );
+			document.getElementById("Time3").setAttribute("enabled","true" );
+
+		}
+		function IMH(){
+			var val = document.getElementById("PosInt").getAttribute("value_changed" );
+			var val2 = document.getElementById("PosInt2").getAttribute("value_changed" );
+			var val3 = document.getElementById("PosInt3").getAttribute("value_changed" );
+			document.getElementById("ZomChaser").setAttribute("set_value",val );
+			document.getElementById("ZomChaser").setAttribute("set_destination","-10 1.7 -9.5" );
+			document.getElementById("Zom2Chaser").setAttribute("set_value",val2 );
+			document.getElementById("Zom2Chaser").setAttribute("set_destination","-10,1.7,-9.5" );
+			document.getElementById("Zom3Chaser").setAttribute("set_value",val3 );
+			document.getElementById("Zom3Chaser").setAttribute("set_destination","-10 1.7 -9.5" );
+		}
+	</script>
+	<input type="button" value="Zombie!" onclick="showZombie();"></input>
+	<input type="button" value="I'm here!" onclick="IMH();"></input>
   </body> 
 </html>
