@@ -1,13 +1,301 @@
-<!DOCTYPE html>
 <html lang="ru">
-  <head>  
-    <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 6</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+<head>
+<meta charset='utf-8'/>
+    <title>Лабораторная №6</title>
+    <link rel="stylesheet" type="text/css" href="https://x3dom.org/download/dev/x3dom.css"></link>
+    <script type="text/javascript" src="https://x3dom.org/download/dev/x3dom-full.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<style type="text/css">
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    X3D {
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+</style>
+<X3D onkeypress="key_press(event)">
+    <Scene>
+
+        <Transform scale='2 2 2'>
+
+            <Transform translation='-1 -1 0' DEF='work_area'>
+
+                <Transform class='block' translation='0 0 0' DEF='point_work_0_0' data-x='0' data-y='0'>
+                    <Shape>
+                        <Appearance>
+                            <material diffuseColor='#fff' DEF='work_color_0_0'></material>
+                        </Appearance>
+                        <box size='1 1 0.2'></box>
+                    </Shape>
+                </Transform>
+                <Transform onClick='block_click(this)' class='symb' onmouseover='block_hover(this)'
+                           onmouseout='block_out(this)' translation='0 0 0.11' DEF='point_0_0' data-x='0' data-y='0'>
+                    <Shape>
+                        <Appearance>
+                            <ImageTexture url='o.png'></ImageTexture>
+                        </Appearance>
+                        <box size='1 1 0'></box>
+                    </Shape>
+                </Transform>
+                <ColorChaser DEF='BoxChaser_0_0' id='BoxChaser_0_0' duration='1'
+                             initialDestination='0 1 0'></ColorChaser>
+                <ROUTE fromNode='BoxChaser_0_0' fromField='value_changed' toNode='work_color_0_0'
+                       toField='set_diffuseColor'></ROUTE>
+
+
+                <Transform class='block' translation='1 0 0' DEF='point_work_1_0' data-x='1' data-y='0'>
+                    <Shape>
+                        <Appearance>
+                            <material diffuseColor='#fff' DEF='work_color_1_0'></material>
+                        </Appearance>
+                        <box size='1 1 0.2'></box>
+                    </Shape>
+                </Transform>
+                <Transform onClick='block_click(this)' class='symb' onmouseover='block_hover(this)'
+                           onmouseout='block_out(this)' translation='1 0 0.11' DEF='point_1_0' data-x='1' data-y='0'>
+                    <Shape>
+                        <Appearance>
+                            <ImageTexture url='x.png'></ImageTexture>
+                        </Appearance>
+                        <box size='1 1 0'></box>
+                    </Shape>
+                </Transform>
+                <ColorChaser DEF='BoxChaser_1_0' id='BoxChaser_1_0' duration='1'
+                             initialDestination='1 0 0'></ColorChaser>
+                <ROUTE fromNode='BoxChaser_1_0' fromField='value_changed' toNode='work_color_1_0'
+                       toField='set_diffuseColor'></ROUTE>
+
+
+                <Transform class='block' translation='2 0 0' DEF='point_work_2_0' data-x='2' data-y='0'>
+                    <Shape>
+                        <Appearance>
+                            <material diffuseColor='#fff' DEF='work_color_2_0'></material>
+                        </Appearance>
+                        <box size='1 1 0.2'></box>
+                    </Shape>
+                </Transform>
+                <Transform onClick='block_click(this)' class='symb' onmouseover='block_hover(this)'
+                           onmouseout='block_out(this)' translation='2 0 0.11' DEF='point_2_0' data-x='2' data-y='0'>
+                    <Shape>
+                        <Appearance>
+                            <ImageTexture url='o.png'></ImageTexture>
+                        </Appearance>
+                        <box size='1 1 0'></box>
+                    </Shape>
+                </Transform>
+                <ColorChaser DEF='BoxChaser_2_0' id='BoxChaser_2_0' duration='1'
+                             initialDestination='0 1 0'></ColorChaser>
+                <ROUTE fromNode='BoxChaser_2_0' fromField='value_changed' toNode='work_color_2_0'
+                       toField='set_diffuseColor'></ROUTE>
+
+
+                <Transform class='block' translation='0 1 0' DEF='point_work_0_1' data-x='0' data-y='1'>
+                    <Shape>
+                        <Appearance>
+                            <material diffuseColor='#fff' DEF='work_color_0_1'></material>
+                        </Appearance>
+                        <box size='1 1 0.2'></box>
+                    </Shape>
+                </Transform>
+                <Transform onClick='block_click(this)' class='symb' onmouseover='block_hover(this)'
+                           onmouseout='block_out(this)' translation='0 1 0.11' DEF='point_0_1' data-x='0' data-y='1'>
+                    <Shape>
+                        <Appearance>
+                            <ImageTexture url='x.png'></ImageTexture>
+                        </Appearance>
+                        <box size='1 1 0'></box>
+                    </Shape>
+                </Transform>
+                <ColorChaser DEF='BoxChaser_0_1' id='BoxChaser_0_1' duration='1'
+                             initialDestination='1 0 0'></ColorChaser>
+                <ROUTE fromNode='BoxChaser_0_1' fromField='value_changed' toNode='work_color_0_1'
+                       toField='set_diffuseColor'></ROUTE>
+
+
+                <Transform class='block' translation='1 1 0' DEF='point_work_1_1' data-x='1' data-y='1'>
+                    <Shape>
+                        <Appearance>
+                            <material diffuseColor='#fff' DEF='work_color_1_1'></material>
+                        </Appearance>
+                        <box size='1 1 0.2'></box>
+                    </Shape>
+                </Transform>
+                <Transform onClick='block_click(this)' class='symb' onmouseover='block_hover(this)'
+                           onmouseout='block_out(this)' translation='1 1 0.11' DEF='point_1_1' data-x='1' data-y='1'>
+                    <Shape>
+                        <Appearance>
+                            <ImageTexture url='o.png'></ImageTexture>
+                        </Appearance>
+                        <box size='1 1 0'></box>
+                    </Shape>
+                </Transform>
+                <ColorChaser DEF='BoxChaser_1_1' id='BoxChaser_1_1' duration='1'
+                             initialDestination='0 1 0'></ColorChaser>
+                <ROUTE fromNode='BoxChaser_1_1' fromField='value_changed' toNode='work_color_1_1'
+                       toField='set_diffuseColor'></ROUTE>
+
+
+                <Transform class='block' translation='2 1 0' DEF='point_work_2_1' data-x='2' data-y='1'>
+                    <Shape>
+                        <Appearance>
+                            <material diffuseColor='#fff' DEF='work_color_2_1'></material>
+                        </Appearance>
+                        <box size='1 1 0.2'></box>
+                    </Shape>
+                </Transform>
+                <Transform onClick='block_click(this)' class='symb' onmouseover='block_hover(this)'
+                           onmouseout='block_out(this)' translation='2 1 0.11' DEF='point_2_1' data-x='2' data-y='1'>
+                    <Shape>
+                        <Appearance>
+                            <ImageTexture url='x.png'></ImageTexture>
+                        </Appearance>
+                        <box size='1 1 0'></box>
+                    </Shape>
+                </Transform>
+                <ColorChaser DEF='BoxChaser_2_1' id='BoxChaser_2_1' duration='1'
+                             initialDestination='1 0 0'></ColorChaser>
+                <ROUTE fromNode='BoxChaser_2_1' fromField='value_changed' toNode='work_color_2_1'
+                       toField='set_diffuseColor'></ROUTE>
+
+
+                <Transform class='block' translation='0 2 0' DEF='point_work_0_2' data-x='0' data-y='2'>
+                    <Shape>
+                        <Appearance>
+                            <material diffuseColor='#fff' DEF='work_color_0_2'></material>
+                        </Appearance>
+                        <box size='1 1 0.2'></box>
+                    </Shape>
+                </Transform>
+                <Transform onClick='block_click(this)' class='symb' onmouseover='block_hover(this)'
+                           onmouseout='block_out(this)' translation='0 2 0.11' DEF='point_0_2' data-x='0' data-y='2'>
+                    <Shape>
+                        <Appearance>
+                            <ImageTexture url='o.png'></ImageTexture>
+                        </Appearance>
+                        <box size='1 1 0'></box>
+                    </Shape>
+                </Transform>
+                <ColorChaser DEF='BoxChaser_0_2' id='BoxChaser_0_2' duration='1'
+                             initialDestination='0 1 0'></ColorChaser>
+                <ROUTE fromNode='BoxChaser_0_2' fromField='value_changed' toNode='work_color_0_2'
+                       toField='set_diffuseColor'></ROUTE>
+
+
+                <Transform class='block' translation='1 2 0' DEF='point_work_1_2' data-x='1' data-y='2'>
+                    <Shape>
+                        <Appearance>
+                            <material diffuseColor='#fff' DEF='work_color_1_2'></material>
+                        </Appearance>
+                        <box size='1 1 0.2'></box>
+                    </Shape>
+                </Transform>
+                <Transform onClick='block_click(this)' class='symb' onmouseover='block_hover(this)'
+                           onmouseout='block_out(this)' translation='1 2 0.11' DEF='point_1_2' data-x='1' data-y='2'>
+                    <Shape>
+                        <Appearance>
+                            <ImageTexture url='x.png'></ImageTexture>
+                        </Appearance>
+                        <box size='1 1 0'></box>
+                    </Shape>
+                </Transform>
+                <ColorChaser DEF='BoxChaser_1_2' id='BoxChaser_1_2' duration='1'
+                             initialDestination='1 0 0'></ColorChaser>
+                <ROUTE fromNode='BoxChaser_1_2' fromField='value_changed' toNode='work_color_1_2'
+                       toField='set_diffuseColor'></ROUTE>
+
+
+                <Transform class='block' translation='2 2 0' DEF='point_work_2_2' data-x='2' data-y='2'>
+                    <Shape>
+                        <Appearance>
+                            <material diffuseColor='#fff' DEF='work_color_2_2'></material>
+                        </Appearance>
+                        <box size='1 1 0.2'></box>
+                    </Shape>
+                </Transform>
+                <Transform onClick='block_click(this)' class='symb' onmouseover='block_hover(this)'
+                           onmouseout='block_out(this)' translation='2 2 0.11' DEF='point_2_2' data-x='2' data-y='2'>
+                    <Shape>
+                        <Appearance>
+                            <ImageTexture url='o.png'></ImageTexture>
+                        </Appearance>
+                        <box size='1 1 0'></box>
+                    </Shape>
+                </Transform>
+                <ColorChaser DEF='BoxChaser_2_2' id='BoxChaser_2_2' duration='1'
+                             initialDestination='0 1 0'></ColorChaser>
+                <ROUTE fromNode='BoxChaser_2_2' fromField='value_changed' toNode='work_color_2_2'
+                       toField='set_diffuseColor'></ROUTE>
+            </Transform>
+
+
+            <Transform rotation='0 0 0 0' scale='0.3 0.3 1' translation='0 2 0'>
+                <Shape onClick="restart()">
+                    <Appearance>
+                        <material diffuseColor='#0f0'></material>
+                    </Appearance>
+                    <Text string='new game'></Text>
+                </Shape>
+            </Transform>
+
+
+            <Transform rotation='0 1 0 3.14' scale='1 1 1' translation='0 2 0'>
+                <Shape>
+                    <Appearance>
+                        <material diffuseColor='#f00'></material>
+                    </Appearance>
+                    <Text string='rotate)'></Text>
+                </Shape>
+            </Transform>
+
+            <Transform rotation='0 0 0 0' scale='0.2 0.2 1' translation='0 -1.7 0'>
+                <Shape>
+                    <Appearance>
+                        <material diffuseColor='#222'></material>
+                    </Appearance>
+                    <Text string='gl' id="status"></Text>
+			
+                </Shape>
+		</Transform>
+
+	<Transform rotation='0 0 0 0' scale='0.2 0.2 1' translation='0 -2 0'>
+            
+<Shape>
+                    <Appearance>
+                        <material diffuseColor='#ff0'></material>
+                    </Appearance>
+                    <Text string='побед - 0 поражений - 0' id="status2"></Text>
+			
+                </Shape>
+	</Transform>
+
+
+        </Transform>
+
+        <Viewpoint id="front" position="0 0 11" orientation="0 0 0 0" centerOfRotation="0 0 0"
+                   description="front camera"></Viewpoint>
+
+    </Scene>
+</X3D>
+<script type="text/javascript" src="script.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+    var game = false;
+    var def_game = {
+        'win': false,
+        'size_x': 3,
+        'size_y': 3,
+        'pole': [['', '', ''], ['', '', ''], ['', '', ''] ]
+    }
+
+</script>
+</body>
 </html>
