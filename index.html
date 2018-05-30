@@ -1,13 +1,244 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>  
-    <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 6</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type='text/javascript' src='https://x3dom.org/download/1.7.2/x3dom-full.js'> </script>
+		 <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" /> 
+		<script type="text/javascript">
+ 
+			function toggle(what)
+				{
+					var button =(what=="oko")?document.getElementById("but_y"):(what=="zemlya")?
+					document.getElementById("but_a"):document.getElementById("but_i");
+					var TS =(what=="zemlya")?document.getElementById("TimerY"):(what=="oko")?
+					document.getElementById("TimerA"):document.getElementById("TimerI");
+					var TS_enabled = TS.getAttribute("enabled");
+					if (TS_enabled == "true") {
+						TS.setAttribute("enabled", "false");
+						button.value = (what=="zemlya")?"Запустить Око":(what=="oko")?
+						"Запустить Землю.":"";
+					}
+					else {
+						TS.setAttribute("enabled", "true");
+						button.value = (what=="zemlya")?"Остановить Око":(what=="oko")?
+						"Остановить Землю.":"";
+					}
+				} 
+ 
+			function toggle_all()
+				{
+					var button = document.getElementById("but_s");
+					var TS_Y_enabled = document.getElementById("TimerY").getAttribute("enabled");
+					var TS_A_enabled = document.getElementById("TimerA").getAttribute("enabled");
+					var TS_I_enabled = document.getElementById("TimerI").getAttribute("enabled");
+					if ((TS_Y_enabled == "false")&&(TS_A_enabled == "false")&&(TS_I_enabled == "false")){ 
+						toggle("oko");
+						toggle("zemlya");
+						toggle("internet");
+						button.value="Остановить";
+						}
+					else {
+						if (TS_Y_enabled == "true") toggle("oko");
+						if (TS_A_enabled == "true") toggle("zemlya");
+						if (TS_I_enabled == "true") toggle("internet");
+						button.value="Запустить";
+					}
+				}
+ 		
+			function change()
+				{
+					var col = document.getElementById("inp").value;
+					document.getElementById("TextMat").setAttribute("diffuseColor", col);
+				}
+ 
+			function tgl_col()
+				{
+					var button = document.getElementById("but_ctgl");
+					var TS = document.getElementById("TimerColor");
+					var TS_enabled= TS.getAttribute("enabled");
+					if (TS_enabled == "true") {
+						TS.setAttribute("enabled", "false");
+						button.value = "запустить";
+					}
+					else {
+						TS.setAttribute("enabled", "true");
+						button.value = "остановить";
+					}
+				}
+		</script>
+	</head>
+	<body>
+		<x3d width='800px' height='600px'>
+			<Scene>
+		
+
+				<Viewpoint fieldOfView=".78" position="0 2 15" orientation="1 0 0 -.1"> </Viewpoint>
+				 
+				 
+<!--око-->
+				<TimeSensor id="TimerY" DEF="TimerY" cycleInterval="3" loop="true" enabled="true"> </TimeSensor>
+				<PositionInterpolator DEF="PosIntY" key="0, .125, .25, .375, .5, .625, .75, .875, 1"
+													keyValue="-7.5 0 2, -3.5 4 1, 0 6 0 , 3.5 4 -1, 7.5 0 -2, 
+															  3.5 -4 -1, 0 -6 0, -3.5 -4 1 , -7.5 0 2">
+				</PositionInterpolator>
+				<PositionChaser id="PosChY" duration="1.5" initialValue="-3 0 0">
+				</PositionChaser>
+				<OrientationInterpolator DEF="OrIntY" key="0, .5, 1" 
+													  keyValue="1 1 0 0, 1 1 0 3.14, 1 1 0 6.28">
+				</OrientationInterpolator>
+				<OrientationDamper DEF="OrDpY"  tau=".5"> </OrientationDamper>
+<!--земля--> 
+				<TimeSensor id="TimerA" DEF="TimerA" cycleInterval="4" loop="true" enabled="true"> </TimeSensor>
+				<PositionInterpolator DEF="PosIntA" key="0, .125, .25, .375, .5, .625, .75, .875, 1"
+													keyValue="5 0 2, 3 2 1, 0 3 0 , -3 2 -1, -5 0 -2, 
+															  -3 -2 -1, 0 -3 0, 3 -2 1 , 5 0 2">
+				</PositionInterpolator>
+				<PositionChaser id="PosChA" duration="2" initialValue="2 0 0">
+				</PositionChaser>
+				<OrientationInterpolator DEF="OrIntA" key="0, .5, 1" 
+													  keyValue="1 0 1 0, 1 0 1 3.14, 1 0 1 6.28">
+				</OrientationInterpolator>
+				<OrientationDamper DEF="OrDpA"  tau=".375"> </OrientationDamper>
+<!--голова-->
+				<TimeSensor id="TimerI" DEF="TimerI" cycleInterval="6" loop="true" enabled="true"> </TimeSensor>
+				<PositionInterpolator DEF="PosIntI" key="0, .25, .5, .75, 1"
+													keyValue="-3 0 0, 0 1.5 0, 3 0 0, 0 -1.5 0, -3 0 0">
+				</PositionInterpolator>
+				<PositionChaser id="PosChI" duration=".8" initialValue="0 0 0">
+				</PositionChaser>
+				<OrientationInterpolator DEF="OrIntI" key="0, .5, 1" 
+													  keyValue="-1 0 1 0, -1 0 1 3.14, -1 0 1 6.28">
+				</OrientationInterpolator>
+				<OrientationDamper DEF="OrDpI"  tau=".1"> </OrientationDamper>
+<!--цвет-->
+				<TimeSensor id="TimerColor" DEF="TimerColor" cycleInterval="3" loop="true" enabled="false"> </TimeSensor>
+				<ColorInterpolator DEF="ColorInt" key="0, .15, .3, .45, .6, .75, .9, 1"
+												  keyValue="0 0.29 0.13, 1 1 1, 1 0 1, 0.25 0 0, 0 0.25 1, 1 1 0, 1 0 1, 0 0 1">
+				</ColorInterpolator>
+			
+				<Transform DEF="TextGr" id="TextGr" onmousemove="tgl_col();">
+					<Transform translation="0 6 -5">
+						<Shape>
+							<Appearance id="TextApp" DEF="TextApp">
+								<Material id="TextMat" DEF="TextMat" ambientIntensity="0.1" diffuseColor="blue" shininess="0.51" specularColor=".24 .24 .24">
+								</Material>
+							</Appearance>
+							<Text string="Результат выполнения работы" solid="false">
+								<FontStyle DEF="FontStyle_1" family="TimesNewRoman" size="1"> </FontStyle>
+							</Text>
+						</Shape>
+					</Transform>
+					
+				</Transform>
+<!--объекты-->
+				<Group id="object" DEF="object">
+					<Transform id="zemlya" DEF="zemlya">
+						<Shape>
+							<Appearance>
+								<ImageTexture url="https://pp.userapi.com/c844618/v844618851/4d6ee/-Dk8KIYgrHQ.jpg"> </ImageTexture>
+							</Appearance>
+							<Sphere radius="1"></Sphere>
+						</Shape>
+					</Transform>
+					<Transform id="oko" DEF="oko" onClick="toggle('oko');">
+						<Shape>
+							<Appearance>
+								<ImageTexture url="https://pp.userapi.com/c824602/v824602279/13351c/qNFOBxOjI2E.jpg"> </ImageTexture>
+							</Appearance>
+							<Sphere radius="1"></Sphere>
+						</Shape>
+					</Transform>
+					<Transform id="golova" DEF="golova" onClick="toggle('golova');">
+						<Shape>
+							<Appearance>
+								<ImageTexture url="https://pp.userapi.com/c824602/v824602723/12cb0b/JACgp5_fd-A.jpg"> </ImageTexture>
+							</Appearance>
+							<Sphere radius="1"></Sphere>
+						</Shape>
+					</Transform>
+				</Group>
+
+<!--земля-->					
+				<ROUTE fromNode="TimerY" fromField="fraction_changed"
+					   toNode="PosIntY" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="PosIntY" fromField="value_changed"
+					   toNode="PosChY" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="PosChY" fromField="value_changed"
+					   toNode="zemlya" toField="set_translation">
+				</ROUTE>
+				<ROUTE fromNode="TimerY" fromField="fraction_changed"
+					   toNode="OrIntY" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="OrIntY" fromField="value_changed"
+					   toNode="OrDpY" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="OrDpY" fromField="value_changed"
+					   toNode="zemlya" toField="set_rotation">
+				</ROUTE>
+<!--око-->					
+				<ROUTE fromNode="TimerA" fromField="fraction_changed"
+					   toNode="PosIntA" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="PosIntA" fromField="value_changed"
+					   toNode="PosChA" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="PosChA" fromField="value_changed"
+					   toNode="oko" toField="set_translation">
+				</ROUTE>
+				<ROUTE fromNode="TimerA" fromField="fraction_changed"
+					   toNode="OrIntA" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="OrIntA" fromField="value_changed"
+					   toNode="OrDpA" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="OrDpA" fromField="value_changed"
+					   toNode="oko" toField="set_rotation">
+				</ROUTE>
+<!--голова-->					
+				<ROUTE fromNode="TimerI" fromField="fraction_changed"
+					   toNode="PosIntI" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="PosIntI" fromField="value_changed"
+					   toNode="PosChI" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="PosChI" fromField="value_changed"
+					   toNode="golova" toField="set_translation">
+				</ROUTE>
+				<ROUTE fromNode="TimerI" fromField="fraction_changed"
+					   toNode="OrIntI" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="OrIntI" fromField="value_changed"
+					   toNode="OrDpI" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="OrDpI" fromField="value_changed"
+					   toNode="golova" toField="set_rotation">
+				</ROUTE>
+<!--цвет-->
+				<ROUTE fromNode="TimerColor" fromField="fraction_changed"
+					   toNode="ColorInt" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="ColorInt" fromField="value_changed"
+					   toNode="TextMat" toField="set_diffuseColor">
+				</ROUTE>
+<!----------------------------------------------------------------------->
+ 
+			</Scene>
+		</x3d>
+	<div style="position: relative; left:10px">
+			<p>Цвет текста:
+			<input type="text" id="inp" size="3"/>
+			<input type="button" id="but_col" value="применить" onClick="change();"/>
+			<input type="button" id="but_ctgl" value="анимация" onClick="tgl_col();"/>
+			</p>
+			</div>
+		<div style="position: relative; left:10px; top:10px">
+			<input type="button" id="but_y" value="Остановить Землю" onClick="toggle('oko');"/>
+			<input type="button" id="but_a" value="Остановить Око" onClick="toggle('zemlya');"/>
+			<p>
+			<input type="button" id="but_s" value="Остановить перемещение объектов" onClick="toggle_all();"/>
+			</p>
+		 
+		</div>
+	</body>
 </html>
