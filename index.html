@@ -1158,43 +1158,43 @@
           <route fromnode="GrPosInt" fromfield="value_changed" tonode="GrPosCh" tofield="set_destination"></route>
           <route fromnode="GrPosCh" fromfield="value_changed" tonode="Atom" tofield="set_translation"></route>  
 		  
-<script type="text/javascript">
+				<script type="text/javascript">
 
-	function switch1()
-		{ var ti1 = document.getElementById("Time1");
-		  var ti1_en = ti1.getAttribute("enabled");
-		  if (ti1_en == "true"){ ti1.setAttribute ("enabled", 'false') }
-		  else { ti1.setAttribute ("enabled", 'true') }
-		} 
-	function switch2()
-		{ var ti2 = document.getElementById("Time2");
-		  var ti2_en = ti2.getAttribute("enabled");
-		  if (ti2_en == "true"){ ti2.setAttribute ("enabled", 'false') }
-		  else { ti2.setAttribute ("enabled", 'true') }
-		}
-	{
-		document.onload = function() {
-		  var yellow = false;
-		  var yellow2 = false;
-		  var yellow3 = false;
-		  document.getElementById('Sphere1').onclick = function() {
-			document.getElementById('Sphere_Cvet1').setAttribute('diffuseColor', yellow?'1 1 1':'1 1 0');
-			yellow = !yellow;
-		  }
-		  document.getElementById('Sphere2').onclick = function() {
-			document.getElementById('Sphere_Cvet2').setAttribute('diffuseColor', yellow2?'1 1 1':'1 1 0');
-			yellow2 = !yellow2;
-		  }
-		  document.getElementById('Sphere3').onclick = function() {
-			document.getElementById('Sphere_Cvet3').setAttribute('diffuseColor', yellow3?'1 1 1':'1 1 0');
-			yellow3 = !yellow3;
-		  }
-		}
-	}
-</script>
-  <input type="button" value="Rotation" onclick="switch1()"/>
-  <input type="button" value="Moving" onclick="switch2()"/>
+					function switch1()
+						{ var ti1 = document.getElementById("Time1");
+						  var ti1_en = ti1.getAttribute("enabled");
+						  if (ti1_en == "true"){ ti1.setAttribute ("enabled", 'false') }
+						  else { ti1.setAttribute ("enabled", 'true') }
+						} 
+					function switch2()
+						{ var ti2 = document.getElementById("Time2");
+						  var ti2_en = ti2.getAttribute("enabled");
+						  if (ti2_en == "true"){ ti2.setAttribute ("enabled", 'false') }
+						  else { ti2.setAttribute ("enabled", 'true') }
+						}
+					{
+						document.onload = function() {
+						  var yellow = false;
+						  var yellow2 = false;
+						  var yellow3 = false;
+						  document.getElementById('Sphere1').onclick = function() {
+							document.getElementById('Sphere_Cvet1').setAttribute('diffuseColor', yellow?'1 1 1':'1 1 0');
+							yellow = !yellow;
+						  }
+						  document.getElementById('Sphere2').onclick = function() {
+							document.getElementById('Sphere_Cvet2').setAttribute('diffuseColor', yellow2?'1 1 1':'1 1 0');
+							yellow2 = !yellow2;
+						  }
+						  document.getElementById('Sphere3').onclick = function() {
+							document.getElementById('Sphere_Cvet3').setAttribute('diffuseColor', yellow3?'1 1 1':'1 1 0');
+							yellow3 = !yellow3;
+						  }
+						}
+					}
+				</script>
+				<input type="button" value="Rotation" onclick="switch1()"/>
+				<input type="button" value="Moving" onclick="switch2()"/>
+			</scene>
 		</x3d>
-      </scene>
 	</body>
 </html>
