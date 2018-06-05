@@ -1,13 +1,99 @@
-<!DOCTYPE html>
 <html lang="ru">
-  <head>  
+  <head>
     <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 6</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
+    <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
+    <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css">
+  
+    <script>
+         document.onload = function() {
+           var col = false;
+           item = false;
+           document.getElementById('myPlane').onclick = function() {
+           document.getElementById('myMat').setAttribute('diffuseColor', col?'1 1 0':'1 0 1');
+             col = !col;
+          };
+         }
+
+         function move(point) {
+           if (item) {document.getElementById(item).setAttribute('set_destination', point[0]+' '+parseFloat(point[1]+1)+' '+point[2])};
+         }
+         function select(item2) {
+           item = item2;
+           document.getElementById('BoxMat').setAttribute('emissiveColor', (item=='BoxCh')?'0.5 0.5 0.5':'0 0 0');
+         }
+         var col = '1 1 0';
+           function ff()
+           {
+
+             document.getElementById('myMat').setAttribute('diffuseColor', col);
+             if(col=='1 1 0') col = '1 0 1'; else col = '1 1 0';
+           }
+
+    </script>
   </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+ <body>
+<X3D id="x3d" xmlns="http://www.x3dom.org/x3dom" width='600px' height='500px'>
+<Scene>
+<Transform translation='3 0 3'>
+  <Shape>
+    <Plane id='myPlane'></Plane>
+    <Appearance>
+      <Material id='myMat' diffuseColor='1 1 0'></Material>
+    </Appearance>
+  </Shape>
+</Transform>
+  <TimeSensor DEF='Time' cycleInterval='5' loop='true' enabled='true'></TimeSensor>
+  <PositionInterpolator DEF='PosInt' key='0 0.25 0.5 0.75 1' keyValue='-3 -3 0, -3 -2 0, -3 -1 0, 3 -2 0, -3 -1 0 '></PositionInterpolator>
+  <PositionChaser DEF='PosCh' duration='1'></PositionChaser>
+  <Shape>
+    <Appearance>
+      <Material diffuseColor = '0 1 1'></Material>
+    </Appearance>
+    <Sphere></Sphere>
+  </Shape>
+  <Transform DEF='Trans' translation='-3 -3 0' scale='0.3 0.3 0.3'>
+    <Shape>
+      <Appearance>
+        <Material diffuseColor='0.5 0.8 0'></Material>
+      </Appearance>
+      <Torus></Torus>
+    </Shape>
+  </Transform>
+  <ROUTE fromNode='Time' fromField='fraction_changed'
+         toNode='PosInt' toField='set_fraction'>
+  </ROUTE>
+  <ROUTE fromNode='PosInt' fromField='value_changed'
+         toNode='PosCh' toField='set_destination'>
+  </ROUTE>
+  <ROUTE fromNode='PosCh' fromField='value_changed'
+         toNode='Trans' toField='set_translation'>
+  </ROUTE>
+
+
+  <PositionChaser DEF='BoxCh' id='BoxCh' duration='1' initialDestination='-3 0 0'></PositionChaser>
+
+  <Transform onClick="move(event.hitPnt);" translation='0 -4 0'>
+    <Shape>
+      <Appearance>
+        <Material></Material>
+      </Appearance>
+      <Box size='10 0.1 10'></Box>
+    </Shape>
+  </Transform>
+  <Transform DEF='Box' onclick='select("BoxCh")'>
+    <Shape>
+      <Appearance>
+        <Material id='BoxMat' diffuseColor='1 0 1' emissiveColor='0 0 0'></Material>
+      </Appearance>
+      <Sphere></Sphere>
+    </Shape>
+  </Transform>
+
+  <ROUTE fromNode='BoxCh' fromField='value_changed'
+         toNode='Box' toField='set_translation'>
+  </ROUTE>
+</Scene>
+</X3D>
+<input type="button" value="Цвет" onclick="ff()" />
+</body>
 </html>
