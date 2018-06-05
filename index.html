@@ -2,21 +2,18 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<title>Zhitnikov 4541</title>
-		<p>Lab#4</p>
-		<script type='text/javascript' src='https://www.x3dom.org/download/dev/x3dom-full.js'> </script>
-		<link rel='stylesheet' type='text/css' href='https://www.x3dom.org/release/x3dom.css'/>
+		<p>Lab#6</p>
+		<script type='text/javascript' src='x3dom/x3dom-full.js'> </script>
+		<link rel='stylesheet' type='text/css' href='x3dom/x3dom.css'/>
 	</head>
 	<body>
 	
 		<form id='chCol' onsubmit='changeColor()'>
 			<p>Type color in HEX or RGB, and push button to change car color!<Br>
 			<textarea id="color" name="form" cols="10" rows="1"></textarea></p>
-			<p><input  type="submit" value="Push me">
-			<input type="reset" value="Clear form"></p>
+			<input type="button" value="Push me" onclick="changeColor();">
 		</form>	
-		
-		
-		 <x3d showStat='true' showLog='true' x='0px' y='0px' width='1280px' height='720px'> 
+		 <x3d x='0px' y='0px' width='1280px' height='720px'> 
 			<scene>
 				<transform onClick='move(event.hitPnt)' translation="0 0 0" rotation='1 0 0 3.14'>
 					<shape>
@@ -393,45 +390,35 @@
 					</transform>
 				</transform>
 				
-				<Viewpoint position="48.06834 10.22637 -20.00900" orientation="-0.10316 0.99161 0.07789 1.81161" zNear="12.71901" zFar="65.94001" description="defaultX3DViewpointNode"></Viewpoint>
-				<Viewpoint position="11.57360 8.97047 -39.70322" orientation="-0.00483 0.99021 0.13949 3.29594" zNear="12.71901" zFar="65.94001" description="defaultX3DViewpointNode"></Viewpoint>
-				<Viewpoint position="17.27547 37.10120 -17.98254" orientation="0.05171 0.71414 0.69809 3.17118" zNear="12.71901" zFar="65.94001" description="defaultX3DViewpointNode"></Viewpoint>
-				<Viewpoint position="35.51185 8.66921 -37.84252" orientation="0.03288 0.99115 0.12863 2.47942" zNear="12.71901" zFar="65.94001" description="defaultX3DViewpointNode"></Viewpoint>
-			
-				<positionchaser def="CarChaser" id="CarChaser" duration="1" initialdestination="15 0 -15" initialvalue="0,0,0" value="0,0,0" destination="0,0,0"></positionchaser>
-				
+				<positionchaser def="CarChaser" id="CarChaser" duration="1" initialdestination="15 0.5 -15" initialvalue="0,0,0" value="0,0,0" destination="15 0.5 -15"></positionchaser>
 				<route fromnode="CarChaser" fromfield="value_changed" tonode="GreenCar" tofield="set_translation"></route>
-
 			</scene> 
 		</x3d> 
 		<script type="text/javascript">
 			function changeColor(){
-				color = document.getElementById('textarea').value
+				color = document.getElementById('color').value
 				elements = ['roof','frontWind','rearWind','hood','trunk','frontSide','rearSide','leftTop','leftBot','rightTop','rightBot','bottom']
-				for(i=0, i < 13, i++){
+				for(i=0; i < 13; i++){
 					document.getElementById(elements[i]).setAttribute('diffuseColor', color)
 				}
 			}
 			var lastPoint = [0, 0, 0];
 			numClick = 0;
+	
 			function move(point) {
-				//Инкременируем клики
-				CarChaser.setAttribute('set_destination', point[0] + ' ' + parseFloat(point[1] + 0.7) + ' ' + point[2])
-				numClick++;
+							CarChaser.setAttribute('set_destination', point[0] + ' ' + parseFloat(point[1] + 0.7) + ' ' + point[2])
+							numClick++;
+							dx = point[0] - lastPoint[0];
+							dz = point[2] - lastPoint[2];
+							dz = -dz;
+							alpha = Math.atan(dz / dx);
+							if (dx < 0) {
+								alpha += 3.14;
+							}
+							Car.rotation = "0,1,0," + alpha;
 
-				//Рассчитываем поворот
-				dx = point[0] - lastPoint[0];
-				dz = point[2] - lastPoint[2];
-				dz = -dz;//Меняем оси на математические
-				alpha = Math.atan(dz / dx);
-				//alpha += 1.57;//Поправка на меш - поворачиваем на пи/2
-				if (dx < 0) {
-					alpha += 3.14;
-				}
-				Car.rotation = "0,1,0," + alpha;
-
-				lastPoint = point;
-			}
+							lastPoint = point;
+						}
 		</script>
 	</body>
 </html>
