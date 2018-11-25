@@ -7,15 +7,18 @@
     <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
     <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css">
     <style>
-       body {font-family: arial;font-family: arial;padding:0;margin:0;}
-       X3D{left:0px; top:0px; width:100%; height: 450px;border: 0;}
+     body{font-family: arial;font-family: arial;padding:0;margin:0;}
+     #tool{position:absolute;width:100%;z-index:5;display:flex;flex-direction:column;align-items:flex-start}
+     #value, #height, #start {margin:auto; margin-top: 5px;}
     </style>
   </head>
   <body>
-    <div style="text-align:center;width:100%;padding: 10px">
+    <div id="tool">
+      <span id="value">3</span>
+      <input id="height" type="range" value="3" max="25" min="1">
       <button id="start">Запустить JS анимацию</button>
     </div>
-    <X3D id="x3d" xmlns="http://www.x3dom.org/x3dom">
+    <X3D style="left:0px; top:0px; width:100%; height: 100vh;border: 0;" id="x3d" xmlns="http://www.x3dom.org/x3dom">
      <Scene>
         <PositionChaser DEF='SphereCh' id='SphereCh' duration='1'></PositionChaser>
         <Transform onClick="move(event.hitPnt);" translation='0 -1 0'>
@@ -40,6 +43,10 @@
     </X3D>
   </body>
   <script>
+    $("#height").on("propertychange change", function() {
+      $("#value").text($(this).val());
+    });
+
     function move(point) {
       $('#SphereCh').attr('duration', '1');
       $('#SphereCh').attr('set_destination', point[0]+' '+parseFloat(point[1]+1)+' '+point[2]);
@@ -69,10 +76,10 @@
       }
     }
     var bounceEaseOut = makeEaseOut(bounce);
-
     $("#start").on("click", function() {
       $('#start').attr('disabled', 'disabled');
       var str = $('#SphereCh').attr('set_destination'),
+          height = parseInt($("#height").val());
           arr_point = [];
       if(!str) arr_point = [0, 0, 0];
       else {
@@ -80,17 +87,17 @@
         arr_point = str.split(' ');
       }
       $('#SphereCh').attr('duration', '1');
-      $('#SphereCh').attr('set_destination', arr_point[0]+' 3 '+arr_point[2]);
-      setTimeout(function() {start(arr_point);}, 1000);
+      $('#SphereCh').attr('set_destination', arr_point[0]+' '+height+' '+arr_point[2]);
+      setTimeout(function() {start(arr_point, height);}, 1000);
     });
-
-    function start(arr_point){
+    function start(arr_point, height){
+      var time = (height - 1) * 100 + 800;
       $('#SphereCh').attr('duration', '0.0001');
       animate({
-        duration: 1000,
+        duration: time,
         timing: bounceEaseOut,
         draw: function(progress) {
-          translation_y = 3 - progress * 3;
+          translation_y = height - progress * height;
           $('#SphereCh').attr('set_destination', arr_point[0]+' '+translation_y+' '+arr_point[2]);
           if(translation_y == 0) $('#start').attr('disabled', false);
         }
