@@ -1,13 +1,105 @@
-<!DOCTYPE html>
+<!--DOCTYPE html-->
 <html lang="ru">
-  <head>  
+  <head>
     <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 6</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
+    <title>Лаба 5 Рябов 4642</title>
+    <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
+    <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
   </head>
   <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+    <script src="JavaScripts/myPlane.js"></script>
+    <center>
+      <button id="btn_start"><img src="images/btn_start.png" alt="Start"></button>
+      <button id="btn_stop"><img src="images/btn_stop.png" alt="Stop"></button>
+    </center>
+    <X3D style="left:0px; top:0px; width:100%; height:88%;">
+      <Scene>
+        <Background backUrl="images/background/BK.png" bottomUrl="images/background/DN.png" 
+          frontUrl="images/background/FR.png" leftUrl="images/background/LF.png" 
+          rightUrl="images/background/RT.png" topUrl="images/background/UP.png"></Background>
+          <Transform id="trans" translation="0 0 0">
+            <Transform id="trans1" rotation="1 0 0 0">
+              <Transform id="trans2" rotation="0 1 0 0">
+                <Transform id="trans3" rotation="0 0 1 0">
+                  <!--Фюзеляж и стекло-->
+                  <Transform translation="0 -0.55 -1.8">
+                    <Inline url="aircraft_details/fuselage_with_glass.x3d"></Inline>
+                  </Transform>
+                  <!--Верхнее крыло-->
+                  <Transform translation="0 1.2 -0.2">
+                    <Inline url="aircraft_details/wind.x3d"></Inline>
+                    <Transform id="flap_1" rotation="1 0 0 0">
+                      <Transform id="flap_1_left" rotation="1 0 0 0">
+                        <Inline url="aircraft_details/flap.x3d"></Inline>
+                      </Transform>
+                      <Transform id="flap_1_right" translation="5.5 0 0" rotation="1 0 0 0">
+                        <Inline url="aircraft_details/flap.x3d"></Inline>
+                      </Transform>
+                    </Transform>
+                  </Transform>
+                  <!--Нижнее крыло-->
+                  <Transform translation="0 -0.6 0">
+                    <Inline url="aircraft_details/wind.x3d"></Inline>
+                    <Transform id="flap_2" rotation="1 0 0 0">
+                      <Transform id="flap_2_left" rotation="1 0 0 0">
+                        <Inline url="aircraft_details/flap.x3d"></Inline>
+                      </Transform>
+                      <Transform id="flap_2_right" translation="5.5 0 0" rotation="1 0 0 0">
+                        <Inline url="aircraft_details/flap.x3d"></Inline>
+                      </Transform>
+                    </Transform>
+                  </Transform>
+                  <!--Заднее крыло-->
+                  <Transform translation="0 -0.55 3.9">
+                    <Inline url="aircraft_details/rear_wind.x3d"></Inline>
+                    <Transform id="rear_flap" rotation="1 0 0 0">
+                      <Inline url="aircraft_details/rear_flap.x3d"></Inline>
+                    </Transform>
+                  </Transform>
+                  <!--Хвост-->
+                  <Transform translation="0 -0.5 3.9">
+                    <Inline url="aircraft_details/tail.x3d"></Inline>
+                    <Transform DEF="trans_tail_flap" id="tail_flap" rotation="0 1 0 0">
+                      <Inline url="aircraft_details/tail_flap.x3d"></Inline>
+                    </Transform>
+                  </Transform>
+                  <!--Стойки крыльев-->
+                  <Transform translation="0 0.34 0">
+                    <Inline url="aircraft_details/rack.x3d"></Inline>
+                  </Transform>
+                  <!--Для двигателя-->
+                  <Transform translation="0 -0.55 -1.8" >
+                    <Inline url="aircraft_details/engine.x3d"></Inline>
+                  </Transform>
+                  <!--Пропеллер-->
+                  <Transform DEF="trans_propeller" id="propeller" translation="0 -0.55 -2.4" rotation="0 0 1 0.8">
+                    <Inline url="aircraft_details/propeller.x3d"></Inline>
+                  </Transform>
+                  <!--Поплавки-->
+                  <Transform translation="-2 -1.5 0">
+                    <Inline url="aircraft_details/float_with_rack.x3d"></Inline>
+                  </Transform>
+                  <Transform translation="2 -1.5 0">
+                    <Inline url="aircraft_details/float_with_rack.x3d"></Inline>
+                  </Transform>
+                </Transform>
+              </Transform>
+            </Transform>
+          </Transform>
+        <!--Вращение пропеллера-->
+        <TimeSensor DEF='time_propeller' id="id_time_propeller" cycleInterval="1" loop='true' enabled='false'></TimeSensor>
+        <OrientationInterpolator DEF='OriInt_propeller' key='0 0.25 0.5 0.75 1' keyValue='0 0 1 0.8, 0 0 1 2.3708, 0 0 1 3.9416, 0 0 1 5.5124, 0 0 1 0.8'></OrientationInterpolator>
+        <OrientationChaser DEF='OriCh_propeller' id="id_chaser_propeller" duration='1'></OrientationChaser>
+        <ROUTE fromNode='time_propeller' fromField='fraction_changed' 
+               toNode='OriInt_propeller' toField='set_fraction'>
+        </ROUTE>
+        <ROUTE fromNode='OriInt_propeller' fromField='value_changed' 
+               toNode='OriCh_propeller' toField='set_destination'>
+        </ROUTE>
+        <ROUTE fromNode='OriCh_propeller' fromField='value_changed' 
+               toNode='trans_propeller' toField='set_rotation'>
+        </ROUTE>
+      </Scene>
+    </X3D>
+  </body>
 </html>

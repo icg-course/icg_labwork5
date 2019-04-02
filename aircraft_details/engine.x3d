@@ -1,0 +1,32 @@
+<Scene>
+  <Transform translation="0 0 -0.1" rotation="1 0 0 1.5708">
+    <Shape>
+      <Appearance>
+        <Material diffuseColor='0.83 0.82 0.11'></Material>
+      </Appearance>
+      <Cylinder radius="0.5" height="0.2"></Cylinder>
+    </Shape>
+  </Transform>
+
+  <Transform translation="0 0 -0.4" rotation="1 0 0 1.5708">
+    <Shape>
+      <Appearance>
+        <Material diffuseColor='0.82 0.45 0.75'></Material>
+      </Appearance>
+      <Cone height="0.3" bottomRadius="0.1" topRadius="0.3" ></Cone>
+    </Shape>
+  </Transform>
+
+  <Transform translation="0 0 -0.2" scale="1 1 0.4">
+    <Shape DEF="dvig">
+      <Appearance>
+        <Material diffuseColor='0.83 0.82 0.11'></Material>
+      </Appearance>
+      <Sphere radius="0.5"></Sphere>
+    </Shape>
+  </Transform>
+
+  <Transform translation="0 0 0" scale="1 1 0.4">
+    <Shape USE="dvig"></Shape>
+  </Transform>
+</Scene>

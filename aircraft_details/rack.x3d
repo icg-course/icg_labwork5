@@ -1,0 +1,19 @@
+<Scene>
+  <Transform translation="-5 0 0">
+    <Shape DEF="stoika">
+      <Appearance>
+        <Material diffuseColor='0.82 0.45 0.75'></Material>
+      </Appearance>
+      <Cylinder radius="0.08" height="1.7"></Cylinder>
+    </Shape>
+  </Transform>
+  <Transform translation="-5 0 -0.9">
+    <Shape USE="stoika"></Shape>
+  </Transform>
+  <Transform translation="5 0 0">
+    <Shape USE="stoika"></Shape>
+  </Transform>
+  <Transform translation="5 0 -0.9">
+    <Shape USE="stoika"></Shape>
+  </Transform>
+</Scene>
