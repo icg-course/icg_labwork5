@@ -1,17 +1,17 @@
 {
-  "name": "labwork6",
-  "description": "labwork6",
+  "name": "icg_labwork5",
+  "description": "icg_labwork5",
   "scripts": {
     "test": "grunt"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/icg2018/labwork6.git"
+    "url": "https://github.com/icg-course/icg_labwork5.git"
   },
   "bugs": {
-    "url": "https://github.com/icg2018/labwork6/issues"
+    "url": "https://github.com/icg-course/icg_labwork5/issues"
   },
-  "homepage": "https://github.com/icg2018/labwork6",
+  "homepage": "https://github.com/icg-course/icg_labwork5",
   "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-xml-validator": "^1.1.3"
