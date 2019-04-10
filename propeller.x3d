@@ -1,0 +1,24 @@
+<Scene>
+  <Transform scale="0.3 0.3 0.2" >
+    <Shape>
+      <Appearance>
+        <Material diffuseColor='0.83 0.82 0.11'></Material>
+      </Appearance>
+      <Sphere radius="0.2"></Sphere>
+    </Shape>
+  </Transform>
+
+  <Transform translation="0 0.2 0" scale="0.3 1.1 0.1">
+    <Shape DEF="vint/2">
+      <Appearance>
+        <Material diffuseColor='0.0, 0.42, 0.57'></Material>
+      </Appearance>
+      <Sphere radius="0.2"></Sphere>
+    </Shape>
+  </Transform>
+
+  <Transform translation="0 -0.2 0" scale="0.3 1.1 0.1">
+    <Shape USE="vint/2"></Shape>
+  </Transform>
+
+</Scene>
