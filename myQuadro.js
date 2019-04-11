@@ -108,7 +108,7 @@ document.onload = function()
     var currentQuadrocopterPos = document.getElementById('quadrocopter').getAttribute("translation");
     var arr = currentQuadrocopterPos.split(' ');
     if (event.keyCode == 87)  {//летим вперед
-       arr[2] = String(parseFloat(arr[2]) - 0.1);
+       arr[2] = String(parseFloat(arr[2]) - 2);
        fly = String(arr[0] + ' ');
        fly = String(fly+ arr[1] + ' ');
        fly = String(fly + arr[2]);
@@ -141,22 +141,14 @@ document.onload = function()
       document.getElementById('quadrocopter').setAttribute("translation", fly);
     }
    }
-
-
  });
 
- addEventListener("keyup", function(event) {
-  if (event.keyCode == 38 || event.keyCode == 40 ) {
-     flagUp = false;
-   }
-  if (event.keyCode == 37 || event.keyCode == 39 ) {
-    flagUp = false;
-  }
-  if (event.keyCode == 87 || event.keyCode == 83 ) {
-    flagUp = false;
-  }
-  if (event.keyCode == 100 || event.keyCode == 102 ) {
-    flagUp = false;
-  }
- });
+ document.getElementById('button_start').onclick = function() { //старт
+   document.getElementById('id_time_propeller').setAttribute("cycleInterval","0.1");
+   document.getElementById('id_time_propeller').setAttribute("enabled", "true");
+ }
+ document.getElementById('button_stop').onclick = function() { //стоп
+   document.getElementById('id_time_propeller').setAttribute("enabled","false");
+ }
+
 }
