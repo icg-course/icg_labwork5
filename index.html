@@ -1,13 +1,364 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>  
-    <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+<head>
+  <meta charset="utf-8" />
+  <title>Качалка</title>
+  <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
+  <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
+  <link rel="stylesheet" href="../css/custom.css" />
+  <script src="../js/custom.js"></script>
+
+  <button id='BodyScale'> Покачать торс </button>
+  <button id='HandScale'> Качаем руки </button>
+  <button id='LegsScale'> Качаем ноги </button>
+  <button id='FaceScale'> Почитать книжку </button>
+
+</head>
+<body>
+    <h1>________________________Лабораторная № 5_______________________</h1>
+    <X3D style="width:1024px; height:768px" id="x3d" xmlns="https://www.x3dom.org/x3dom">
+    	<Scene>
+    		<!--фон-->
+    		<Background backUrl="качалка.jpg"></Background>
+
+    		<!--начальное положение-->
+    		<Viewpoint position="0 0 18" orientation="0 0 0 0" ></Viewpoint>
+
+    		<!--Звук-->
+    		<Sound> 
+				<AudioClip url='воттаквот.mp3' loop='true' enabled='true'> 
+				</AudioClip>
+			</Sound>
+
+    		<!--Поляна-->
+      		<Transform translation="0 -5 0">
+				<Shape>
+					<Appearance>
+						<ImageTexture url=".\пол.jpg">
+							<Material ></Material>
+						</ImageTexture>
+					</Appearance>					
+					<Box size="100 0.2 100">
+					</Box>
+				</Shape> 
+			</Transform>
+
+      		<!--лицо -->
+			<Transform id="Face" scale='1 1 1' translation='1 1 1'>
+				<Shape>
+					<Appearance>
+						<ImageTexture url=".\lico.jpg">
+							<Material></Material>
+						</ImageTexture>
+					</Appearance>
+					<Sphere  radius='0.5'></Sphere>
+				</Shape>
+			</Transform> 
+
+			<!--тело-->
+			<Transform  id="Body" scale='1 1 1' translation="1 -1 1">
+				<Shape>
+					<Appearance>
+						<ImageTexture url=".\cama.jpg">
+							<Material ></Material>
+						</ImageTexture>
+					</Appearance>
+					<Box size="2 3 0.5">
+					</Box>
+				</Shape>
+			</Transform>
+			<Transform id="Hand" scale = "1 1 1">
+				<!--рука1 -->
+				<Transform id="LHand" translation="3 0.3 1" rotation="0 0 1 1.57" scale = '1 1 1'>
+					<Shape>
+						<Appearance>
+							<ImageTexture url=".\cama.jpg">
+								<Material ></Material>
+							</ImageTexture>
+						</Appearance>
+						<Cylinder height='2' radius='0.2'></Cylinder>
+					</Shape>
+				</Transform> 
+
+				<!--рука2 -->
+				<Transform id="RHand" rotation="0 0 1 1.57" translation="-1 0.3 1" scale = '1 1 1'>
+					<Shape>
+						<Appearance>
+							<ImageTexture url=".\cama.jpg">
+								<Material ></Material>
+							</ImageTexture>
+						</Appearance>
+						<Cylinder height='2' radius='0.2'></Cylinder>
+					</Shape>
+				</Transform> 
+			</Transform>
+
+			<!--ладошка1 -->
+			<Transform id="LFist" translation="4.1 0.3 1">
+				<Shape>
+					<Appearance>
+						<ImageTexture url=".\ladogka.jpg">
+							<Material></Material>
+						</ImageTexture>
+					</Appearance>
+						<Sphere  radius='0.2'></Sphere>
+				</Shape>
+				</Transform>
+			<!--ладошка2 -->
+			<Transform id="RFist" translation="-2.1 0.3 1">
+			<Shape>
+				<Appearance>
+					<ImageTexture url=".\ladogka.jpg">
+						<Material></Material>
+					</ImageTexture>
+				</Appearance>
+					<Sphere  radius='0.2'></Sphere>
+			</Shape>
+			</Transform>
+			<Transform id="Legs" scale="1 1 1">
+				<!--нога1-->
+				<Transform id="LLeg" scale="1 1 1" translation="1.7 -3.5 1">
+					<Shape>
+						<Appearance>
+							<ImageTexture url=".\djinsy.jpg">
+								<Material ></Material>
+							</ImageTexture>
+						</Appearance>
+						<Box size="0.3 2 0.3">
+						</Box>
+					</Shape>
+				</Transform>
+				<!--нога2-->
+				<Transform id="RLeg" scale="1 1 1" translation="0.5 -3.5 1">
+					<Shape>
+						<Appearance>
+							<ImageTexture url=".\djinsy.jpg">
+								<Material ></Material>
+							</ImageTexture>
+						</Appearance>
+						<Box size="0.3 2 0.3">
+						</Box>
+					</Shape>
+				</Transform>
+			</Transform>
+
+			<!--ступня1-->
+			<Transform rotation="1 0 0 1.57" translation="1.7 -4.7 1.2">
+				<Shape>
+					<Appearance>
+						<ImageTexture url=".\boty.jpg">
+							<Material ></Material>
+						</ImageTexture>
+					</Appearance>
+					<Cylinder height='0.6' radius='0.25'></Cylinder>
+				</Shape>
+			</Transform> 
+
+			<!--ступня2-->
+			<Transform rotation="1 0 0 1.57" translation="0.5 -4.7 1.2">
+				<Shape>
+					<Appearance>
+						<ImageTexture url=".\boty.jpg">
+							<Material ></Material>
+						</ImageTexture>
+					</Appearance>
+					<Cylinder height='0.6' radius='0.25'></Cylinder>
+				</Shape>
+			</Transform> 
+    	</Scene>
+	</X3D>
+    <script>
+    	var click0=0;
+    	var click1=0;
+    	var click2=0;
+    	var click3=0;
+    	document.getElementById('FaceScale').onclick = function()
+    		{
+    			click0=1+click0;
+    			if (click0<13)
+    			{
+					var ChangeScale = document.getElementById("Face").getAttribute("scale");
+					var sc = ChangeScale.split(' ');
+					sc[0]=1.1*sc[0];
+					sc[1]=1.1*sc[1];
+					sc[2]=1.1*sc[2];
+					fmul = String(sc[0] + ' ');
+	      			fmul = String(fmul+ sc[1] + ' ');
+	      			fmul = String(fmul + sc[2]);
+	      			document.getElementById('Face').setAttribute("scale", fmul);
+
+	      			var ChangeTr = document.getElementById("Face").getAttribute("translation");
+					var tr = ChangeTr.split(' ');
+					tr[0]=1*tr[0];
+					tr[1]=1.06*tr[1];
+					tr[2]=1*tr[2];
+					tmul = String(tr[0] + ' '+ tr[1] + ' '+ tr[2]);
+	      			document.getElementById('Face').setAttribute("translation", tmul);
+	      		}
+	      		else
+	      		{
+	      			window.alert('Ты сюда учиться пришел или качаться? Займись делом!')
+	      		}
+	      		if ((click0>=13) && (click1>=10) && (click2>=10) && (click3>=12))
+	      		{
+	      			window.alert ('Ты машина')
+	      		}
+			}
+
+		document.getElementById('BodyScale').onclick = function()
+    		{
+    			click1=1+click1;
+    			if (click1<10)
+    			{
+				var ChangeScale = document.getElementById("Body").getAttribute("scale");
+				var sc = ChangeScale.split(' ');
+				sc[0]=1.1*sc[0];
+				sc[1]=1*sc[1];
+				sc[2]=1.3*sc[2];
+				fmul = String(sc[0] + ' ');
+      			fmul = String(fmul+ sc[1] + ' ');
+      			fmul = String(fmul + sc[2]);
+      			document.getElementById('Body').setAttribute("scale", fmul);
+
+      			var ChangeLHand = document.getElementById("LHand").getAttribute("translation");
+      			var tr = ChangeLHand.split(' ');
+				tr[0]=1.04*tr[0];
+				tr[1]=1*tr[1];
+				tr[2]=1*tr[2];
+				tmul = String(tr[0] + ' '+ tr[1] + ' '+ tr[2]);
+      			document.getElementById('LHand').setAttribute("translation", tmul);
+
+      			var ChangeRHand = document.getElementById("RHand").getAttribute("translation");
+      			var tr = ChangeRHand.split(' ');
+				tr[0]=1.1*tr[0];
+				tr[1]=1*tr[1];
+				tr[2]=1*tr[2];
+				tmul = String(tr[0] + ' '+ tr[1] + ' '+ tr[2]);
+      			document.getElementById('RHand').setAttribute("translation", tmul);
+
+      			var ChangeLFist = document.getElementById("LFist").getAttribute("translation");
+      			var tr = ChangeLFist.split(' ');
+				tr[0]=1.03*tr[0];
+				tr[1]=1*tr[1];
+				tr[2]=1*tr[2];
+				tmul = String(tr[0] + ' '+ tr[1] + ' '+ tr[2]);
+      			document.getElementById('LFist').setAttribute("translation", tmul);
+
+      			var ChangeRFist = document.getElementById("RFist").getAttribute("translation");
+      			var tr = ChangeRFist.split(' ');
+				tr[0]=1.055*tr[0];
+				tr[1]=1*tr[1];
+				tr[2]=1*tr[2];
+				tmul = String(tr[0] + ' '+ tr[1] + ' '+ tr[2]);
+      			document.getElementById('RFist').setAttribute("translation", tmul);
+
+      			}
+	      		else
+	      		{
+	      			window.alert('Любая девушка позавидует твоей груди, пора остановиться')
+	      		}
+	      		if ((click0>=13) && (click1>=10) && (click2>=10) && (click3>=12))
+	      		{
+	      			window.alert ('Ты машина')
+	      		}
+      		}
+
+
+      		document.getElementById('HandScale').onclick = function()
+    		{
+    			click2=1+click2;
+    			if (click2<10)
+    			{
+					var ChangeScale = document.getElementById("Hand").getAttribute("scale");
+					var sc = ChangeScale.split(' ');
+					sc[0]=1*sc[0];
+					sc[1]=1.1*sc[1];
+					sc[2]=1.1*sc[2];
+					fmul = String(sc[0] + ' '+ sc[1] + ' '+ sc[2]);
+	      			document.getElementById('Hand').setAttribute("scale", fmul);
+
+	      			var ChangeLHand = document.getElementById("LHand").getAttribute("translation");
+	      			var tr = ChangeLHand.split(' ');
+					tr[0]=1*tr[0];
+					tr[1]=0.8*tr[1];
+					tr[2]=0.9*tr[2];
+					tmul = String(tr[0] + ' '+ tr[1] + ' '+ tr[2]);
+	      			document.getElementById('LHand').setAttribute("translation", tmul);
+
+	      			var ChangeRHand = document.getElementById("RHand").getAttribute("translation");
+	      			var tr = ChangeRHand.split(' ');
+					tr[0]=1*tr[0];
+					tr[1]=0.8*tr[1];
+					tr[2]=0.9*tr[2];
+					tmul = String(tr[0] + ' '+ tr[1] + ' '+ tr[2]);
+	      			document.getElementById('RHand').setAttribute("translation", tmul);
+
+					var ChangeLFist = document.getElementById("LFist").getAttribute("translation");
+	      			var tr = ChangeLFist.split(' ');
+					tr[0]=1*tr[0];
+					tr[1]=0.9*tr[1];
+					tr[2]=1*tr[2];
+					tmul = String(tr[0] + ' '+ tr[1] + ' '+ tr[2]);
+	      			document.getElementById('LFist').setAttribute("translation", tmul);
+
+	      			var ChangeRFist = document.getElementById("RFist").getAttribute("translation");
+	      			var tr = ChangeRFist.split(' ');
+					tr[0]=1*tr[0];
+					tr[1]=0.9*tr[1];
+					tr[2]=1*tr[2];
+					tmul = String(tr[0] + ' '+ tr[1] + ' '+ tr[2]);
+	      			document.getElementById('RFist').setAttribute("translation", tmul);
+      		    }
+      			else
+	      		{
+	      			window.alert('Базуки заряжены')
+	      		}
+
+	      		if ((click0>=13) && (click1>=10) && (click2>=10) && (click3>=12))
+	      		{
+	      			window.alert ('Ты машина')
+	      		}
+      		}
+
+      		document.getElementById('LegsScale').onclick = function()
+    		{
+    			click3=1+click3;
+    			if (click3<12)
+    			{
+					var ChangeScale = document.getElementById("Legs").getAttribute("scale");
+					var sc = ChangeScale.split(' ');
+					sc[0]=1.1*sc[0];
+					sc[1]=1*sc[1];
+					sc[2]=1.1*sc[2];
+					fmul = String(sc[0] + ' '+ sc[1] + ' '+ sc[2]);
+	      			document.getElementById('Legs').setAttribute("scale", fmul);
+
+	      			var ChangeLLeg = document.getElementById("LLeg").getAttribute("translation");
+	      			var tr = ChangeLLeg.split(' ');
+					tr[0]=0.9*tr[0];
+					tr[1]=1*tr[1];
+					tr[2]=0.9*tr[2];
+					tmul = String(tr[0] + ' '+ tr[1] + ' '+ tr[2]);
+	      			document.getElementById('LLeg').setAttribute("translation", tmul);
+
+	      			var ChangeRLeg = document.getElementById("RLeg").getAttribute("translation");
+	      			var tr = ChangeRLeg.split(' ');
+					tr[0]=0.9*tr[0];
+					tr[1]=1*tr[1];
+					tr[2]=0.9*tr[2];
+					tmul = String(tr[0] + ' '+ tr[1] + ' '+ tr[2]);
+	      			document.getElementById('RLeg').setAttribute("translation", tmul);
+	      		}
+	      		else
+	      		{
+	      			window.alert('Ноги забиты по максимуму')
+	      		}
+	      		if ((click0>=13) && (click1>=10) && (click2>=10) && (click3>=12))
+	      		{
+	      			window.alert ('Ты машина')
+	      		}
+      		}
+
+    </script>
+</body>
 </html>
