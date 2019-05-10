@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>  
-    <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
-</html>
+<head>  
+	<meta charset="utf-8" />
+	<title>Лабораторная работа 5</title>
+	<link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
+	<script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
+</head>
+<body>
+	<h1> Кафедра тус </h1>
+	<X3D style="width:100%; height:100%">
+		<!--<script src="tusa.js"></script>-->
+		<Scene>
+			<Viewpoint position="0 0 12" orientation="1 0 0 0" ></Viewpoint>
+			<!--Атмосфера-->
+			<Background backUrl="club.jpg"></Background>
+			<!--Классный пол-->
+			<Transform rotation="0 1 0 -0.79" translation="0 -1.4 0"> 
+				<Shape>
+					<Appearance>
+						<ImageTexture url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3rYatqbMp1q5P67q988ik1rr7NT81b4RQbug42IK7LHX9HRus"></ImageTexture>
+					</Appearance>					
+					<Box size="15 0.1 15">
+					</Box>
+				</Shape> 
+			</Transform>
+			<!--Музыка-->
+			<Sound> 
+				<AudioClip url='тусич.mp3' loop='true' enabled='true'> 
+				</AudioClip>
+			</Sound>
+			<!--Шар-->
+			<TimeSensor DEF='Timetoroll' cycleInterval='5' loop='true'></TimeSensor>
+			<OrientationInterpolator DEF='OrInt' key='0 0.5 1' keyValue='0 1 0 0, 0 1 0 -3.14, 0 1 0 -6.28'></OrientationInterpolator>
+			<Transform DEF='Tr' translation="0 4 0">
+			<Shape>
+            <Appearance>
+              <ImageTexture url="https://st2.depositphotos.com/3008028/7430/i/950/depositphotos_74302121-stock-photo-golden-shiny-texture.jpg"></ImageTexture>
+            </Appearance>
+            <Sphere radius="0.5"></Sphere>
+          </Shape>
+        </Transform>
+      <ROUTE fromNode='Timetoroll' fromField='fraction_changed' toNode='OrInt' toField='set_fraction'></ROUTE>
+      <ROUTE fromNode='OrInt' fromField='value_changed' toNode='Tr' toField='set_rotation'></ROUTE>
+		
+		</Scene>
+	</body> 
+	</html>
