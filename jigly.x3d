@@ -1,0 +1,77 @@
+ <!DOCTYPE html>
+  <html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
+    <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
+  </head>
+  <body>
+  	<X3D>
+      <Scene>
+        <Group DEF="Jigly">
+        <Anchor url="http://poke-universe.ru/dex/bw/039-info.html" parameter="target='_self'"></Anchor>
+          <Shape>
+            <Appearance>
+              <ImageTexture url="свинка.png"></ImageTexture>
+            </Appearance>
+            <Sphere radius="4"></Sphere>
+          </Shape>
+          <Transform translation="0 4 0">
+          <Transform rotation="0 1 0 -0.79" translation="3 -1 2">
+            <Transform rotation="0 0 1 -0.79">
+          <Shape>
+        <Appearance>
+          <ImageTexture url="ухо.png"></ImageTexture>
+        </Appearance>
+        <Cone bottomradius="1" height="2"></Cone>
+      </Shape>
+        </Transform>
+      </Transform>
+      <Transform rotation="0 1 0 0.79" translation="-3 -1 2">
+            <Transform rotation="0 0 1 0.79">
+          <Shape>
+        <Appearance>
+          <ImageTexture url="ухо1.png"></ImageTexture>
+        </Appearance>
+        <Cone bottomradius="1" height="2"></Cone>
+      </Shape>
+        </Transform>
+      </Transform>
+          </Transform>
+          <Transform translation="3 -1.5 2.5">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='#f1ccd4'></Material>
+            </Appearance>
+            <Sphere radius="0.5"></Sphere>
+          </Shape>
+        </Transform>
+        <Transform translation="-3.4 -1.5 2">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='#f1ccd4'></Material>
+            </Appearance>
+            <Sphere radius="0.5"></Sphere>
+          </Shape>
+        </Transform>
+        <Transform translation="1.7 -3.6 0">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='#f1ccd4'></Material>
+            </Appearance>
+            <Sphere radius="1"></Sphere>
+          </Shape>
+        </Transform>
+        <Transform translation="-1.7 -3.6 0">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='#f1ccd4'></Material>
+            </Appearance>
+            <Sphere radius="1"></Sphere>
+          </Shape>
+        </Transform>
+      </Group>
+      </Scene>
+    </X3D>
+  </body>
+</html>

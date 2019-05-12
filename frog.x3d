@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>  
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
+	<script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
+</head> 
+<body>
+	<X3D>
+		<Scene>
+			<Group DEF="Poliwhirl">
+				<Anchor url="http://poke-universe.ru/dex/bw/061.html" parameter="target='_self'"></Anchor>
+          <Shape>
+            <Appearance>
+              <ImageTexture url="лягуха.png"></ImageTexture>
+            </Appearance>
+            <Sphere radius="4"></Sphere>
+          </Shape>
+          <Transform rotation="1 0 0 -0.79">
+          <Transform translation="0 4 0">
+          <Transform translation="2 -2 3">
+          <Shape>
+        <Appearance>
+          <ImageTexture url="глаз_лягухи.png"></ImageTexture>
+        </Appearance>
+        <Sphere radius="1"></Sphere>
+      </Shape>
+      </Transform>
+      <Transform translation="-2 -2 3">
+          <Shape>
+        <Appearance>
+          <ImageTexture url="глаз_лягухи.png"></ImageTexture>
+        </Appearance>
+        <Sphere radius="1"></Sphere>
+      </Shape>
+      </Transform>
+          </Transform>
+          <!--Руки-->
+          <Transform rotation="0 0 1 0.79" translation="3.5 0 1.8">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='#5792be'></Material>
+            </Appearance>
+            <Cylinder radius="0.5" height="3"></Cylinder>
+          </Shape>
+        </Transform>
+         <Transform rotation="0 0 1 -0.79" translation="-3.5 0 1.8">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='#5792be'></Material>
+            </Appearance>
+            <Cylinder radius="0.5" height="3"></Cylinder>
+          </Shape>
+        </Transform>
+        <Transform translation="4.5 -1 1.7">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='white'></Material>
+            </Appearance>
+            <Sphere radius="0.7"></Sphere>
+          </Shape>
+          <Transform translation="-0.6 -0.3 -0.2">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='white'></Material>
+            </Appearance>
+            <Sphere radius="0.3"></Sphere>
+          </Shape>
+        </Transform>
+        </Transform>
+        <Transform translation="-4.5 -1 1.7">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='white'></Material>
+            </Appearance>
+            <Sphere radius="0.7"></Sphere>
+          </Shape>
+          <Transform translation="0.6 -0.3 -0.2">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='white'></Material>
+            </Appearance>
+            <Sphere radius="0.3"></Sphere>
+          </Shape>
+        </Transform>
+        </Transform>
+      </Transform>
+        <!--Ноги-->
+        <Transform translation="2 -4 0">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='#5792be'></Material>
+            </Appearance>
+            <Cylinder radius="0.5" height="2.5"></Cylinder>
+          </Shape>
+          <Transform translation="0 -1.2 0">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='#5792be'></Material>
+            </Appearance>
+            <Sphere radius="0.7"></Sphere>
+          </Shape>
+        </Transform>
+        </Transform>
+        <Transform translation="-2 -4 0">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='#5792be'></Material>
+            </Appearance>
+            <Cylinder radius="0.5" height="2.5"></Cylinder>
+          </Shape>
+          <Transform translation="0 -1.2 0">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='#5792be'></Material>
+            </Appearance>
+            <Sphere radius="0.7"></Sphere>
+          </Shape>
+        </Transform>
+        </Transform>
+      </Group>
+		</Scene>
+	</X3D>
+</body>
+</html>

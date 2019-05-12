@@ -1,0 +1,23 @@
+ <!DOCTYPE html>
+  <html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
+    <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
+  </head>
+  <body>
+  	<X3D>
+      <Scene>
+        <Group DEF="Snorunt">
+        <Anchor url="http://poke-universe.ru/dex/xy/361.html" parameter="target='_self'"></Anchor>
+          <Shape>
+            <Appearance>
+              <ImageTexture url="фиг.png"></ImageTexture>
+            </Appearance>
+             <Cone bottomradius="4" height="7"></Cone>
+          </Shape>
+      </Group>
+      </Scene>
+    </X3D>
+  </body>
+</html>
