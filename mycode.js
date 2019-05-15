@@ -3,6 +3,7 @@ document.onload = function()
   var flagUp = false;
   var speed = 0.2;
 
+
   // function fly(where) {
   // var currentQuadrocopterPos = document.getElementById('BALL').getAttribute("translation");
   // var arr = currentQuadrocopterPos.split(' ');
@@ -16,6 +17,7 @@ document.onload = function()
 };
 
 addEventListener("keydown", function(event) {
+
   alert("hello");
       if(event.keyCode == 48){
         speed = 0;
