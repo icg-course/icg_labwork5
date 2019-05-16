@@ -3,23 +3,24 @@ document.onload = function()
   var flagUp = false;
   var speed = 0.2;
 
-  function fly(where) {
-  var currentQuadrocopterPos = document.getElementById('BALL').getAttribute("translation");
-  var arr = currentQuadrocopterPos.split(' ');
-  if (where == "Up") {
-    arr[1] = String(parseFloat(arr[1]) + 0.1);
-    fly = String(arr[0] + ' ');
-    fly = String(fly+ arr[1] + ' ');
-    fly = String(fly + arr[2]);
-    document.getElementById('BALL').setAttribute("translation", fly);
-  }
-};
+
+//   function fly(where) {
+//   var currentQuadrocopterPos = document.getElementById('BALL').getAttribute("translation");
+//   var arr = currentQuadrocopterPos.split(' ');
+//   if (where == "Up") {
+//     arr[1] = String(parseFloat(arr[1]) + 0.1);
+//     fly = String(arr[0] + ' ');
+//     fly = String(fly+ arr[1] + ' ');
+//     fly = String(fly + arr[2]);
+//     document.getElementById('BALL').setAttribute("translation", fly);
+//   }
+// };
 
 addEventListener("keydown", function(event) {
       if(event.keyCode == 48){
         speed = 0;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
-
+      
         var curRotation1 = document.getElementById('id_wing1').getAttribute("rotation");
         var curRotation2 = document.getElementById('id_wing2').getAttribute("rotation");
 
@@ -46,7 +47,7 @@ addEventListener("keydown", function(event) {
         fly = String(fly + arr2[3]);
         document.getElementById('id_wing2').setAttribute("rotation", fly);
 
-        document.getElementById('root').
+
       }
       if(event.keyCode == 49){
         speed = 0.1;
