@@ -1,4 +1,3 @@
-var j=-30
 	var tor=0
 	var y=1
 	var olen=0
@@ -22,7 +21,6 @@ var j=-30
 		function Flyto()
 		{
 			var objSel = document.myForm.mySelect
-			var olenname
 			if(objSel.selectedIndex==0)
 				{interval = setInterval(() => {
 				document.getElementById("group1").setAttribute("translation", "0 "+olen+" "+olen)
@@ -114,8 +112,4 @@ var j=-30
 						trav++
 				}, 30)
 			}
-		}
-		function Sol()
-		{
-			document.getElementById("Solnc").setAttribute("translation","0 0 0")
 		}
