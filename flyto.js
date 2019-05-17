@@ -101,7 +101,10 @@
 					}
 				}, 30)
 			}
-		}
+			if(numgroup==5)
+			{
+				Moonf();
+			}
 		function travel()
 		{
 			if(numgroup==0)
