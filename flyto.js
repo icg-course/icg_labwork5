@@ -105,6 +105,7 @@
 			{
 				Moonf();
 			}
+		}
 		function travel()
 		{
 			if(numgroup==0)
