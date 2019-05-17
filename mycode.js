@@ -3,11 +3,12 @@ document.onload = function()
   var flagUp = true;
   var speed = 0.2;
 
-addEventListener("keydown", function(event) {
+addEventListener("keydown", function(event) //codefactor one love
+ {
       if(event.keyCode == 48){
         speed = 0;
         flagUp = false;
-        document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
+        document.getElementById('id_time_spd').setAttribute("enabled","false");
 
         var curRotation1 = document.getElementById('id_wing1').getAttribute("rotation");
         var curRotation2 = document.getElementById('id_wing2').getAttribute("rotation");
@@ -34,6 +35,7 @@ addEventListener("keydown", function(event) {
         fly = String(fly + arr2[2]+ ' ');
         fly = String(fly + arr2[3]);
         document.getElementById('id_wing2').setAttribute("rotation", fly);
+
         var myTimer = setInterval(function() //вызов вращения самолета в зависимости от закрылок
           {
             if(flagUp==false){
@@ -58,65 +60,65 @@ addEventListener("keydown", function(event) {
       if(event.keyCode == 49){
         speed = 0.1;
         flagUp = true;
-        document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
-        document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.6");
-        document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
+        document.getElementById('id_time_spd').setAttribute("enabled","false");
+        document.getElementById('id_time_spd').setAttribute("cycleInterval","0.6");
+        document.getElementById('id_time_spd').setAttribute("enabled", "true");
       }
       if(event.keyCode == 50){
         speed = 0.2;
         flagUp = true;
-        document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
-        document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.5");
-        document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
+        document.getElementById('id_time_spd').setAttribute("enabled","false");
+        document.getElementById('id_time_spd').setAttribute("cycleInterval","0.5");
+        document.getElementById('id_time_spd').setAttribute("enabled", "true");
       }
       if(event.keyCode == 51){
         speed = 0.3;
         flagUp = true;
-        document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
-        document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.4");
-        document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
+        document.getElementById('id_time_spd').setAttribute("enabled","false");
+        document.getElementById('id_time_spd').setAttribute("cycleInterval","0.4");
+        document.getElementById('id_time_spd').setAttribute("enabled", "true");
       }
       if(event.keyCode == 52){
         speed = 0.4;
         flagUp = true;
-        document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
-        document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.3");
-        document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
+        document.getElementById('id_time_spd').setAttribute("enabled","false");
+        document.getElementById('id_time_spd').setAttribute("cycleInterval","0.3");
+        document.getElementById('id_time_spd').setAttribute("enabled", "true");
       }
       if(event.keyCode == 53){
         speed = 0.5;
         flagUp = true;
-        document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
-        document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.2");
-        document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
+        document.getElementById('id_time_spd').setAttribute("enabled","false");
+        document.getElementById('id_time_spd').setAttribute("cycleInterval","0.2");
+        document.getElementById('id_time_spd').setAttribute("enabled", "true");
       }
       if(event.keyCode == 54){
         speed = 0.6;
         flagUp = true;
-        document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
-        document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.1");
-        document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
+        document.getElementById('id_time_spd').setAttribute("enabled","false");
+        document.getElementById('id_time_spd').setAttribute("cycleInterval","0.1");
+        document.getElementById('id_time_spd').setAttribute("enabled", "true");
       }
       if(event.keyCode == 55){
         speed = 0.7;
         flagUp = true;
-        document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
-        document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.04");
-        document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
+        document.getElementById('id_time_spd').setAttribute("enabled","false");
+        document.getElementById('id_time_spd').setAttribute("cycleInterval","0.04");
+        document.getElementById('id_time_spd').setAttribute("enabled", "true");
       }
       if(event.keyCode == 56){
         speed = 0.8;
         flagUp = true;
-        document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
-        document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.035");
-        document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
+        document.getElementById('id_time_spd').setAttribute("enabled","false");
+        document.getElementById('id_time_spd').setAttribute("cycleInterval","0.035");
+        document.getElementById('id_time_spd').setAttribute("enabled", "true");
       }
       if(event.keyCode == 57){
         speed = 0.9;
         flagUp = true;
-        document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
-        document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.03");
-        document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
+        document.getElementById('id_time_spd').setAttribute("enabled","false");
+        document.getElementById('id_time_spd').setAttribute("cycleInterval","0.03");
+        document.getElementById('id_time_spd').setAttribute("enabled", "true");
       }
 
 
