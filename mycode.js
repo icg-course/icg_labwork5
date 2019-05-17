@@ -3,30 +3,12 @@ document.onload = function()
   var flagUp = true;
   var speed = 0.2;
 
-
-<<<<<<< HEAD
-//   function fly(where) {
-//   var currentQuadrocopterPos = document.getElementById('BALL').getAttribute("translation");
-//   var arr = currentQuadrocopterPos.split(' ');
-//   if (where == "Up") {
-//     arr[1] = String(parseFloat(arr[1]) + 0.1);
-//     fly = String(arr[0] + ' ');
-//     fly = String(fly+ arr[1] + ' ');
-//     fly = String(fly + arr[2]);
-//     document.getElementById('BALL').setAttribute("translation", fly);
-//   }
-// };
-=======
-
-
->>>>>>> 43f514ba5f7e2982a9848ffd5e5c0001d2730280
-
 addEventListener("keydown", function(event) {
       if(event.keyCode == 48){
         speed = 0;
         flagUp = false;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
-      
+
         var curRotation1 = document.getElementById('id_wing1').getAttribute("rotation");
         var curRotation2 = document.getElementById('id_wing2').getAttribute("rotation");
 
@@ -53,33 +35,25 @@ addEventListener("keydown", function(event) {
         fly = String(fly + arr2[3]);
         document.getElementById('id_wing2').setAttribute("rotation", fly);
 
-<<<<<<< HEAD
-=======
-        setInterval(function() //вызов вращения самолета в зависимости от закрылок
+        var myTimer = setInterval(function() //вызов вращения самолета в зависимости от закрылок
           {
             if(flagUp==false){
             var flySnitch = document.getElementById('BALL').getAttribute("translation");
             var arr = flySnitch.split(' ');
 
-            arr[1] = String(parseFloat(arr[1]) - 1);
+            arr[1] = String(parseFloat(arr[1]) - 0.1);
             flySnitch = String(arr[0] + ' ');
             flySnitch = String(flySnitch+ arr[1] + ' ');
             flySnitch = String(flySnitch + arr[2]);
             document.getElementById('BALL').setAttribute("translation", flySnitch);
 
-            if(String(parseFloat(arr[1]))<=(-10.0)){
-
-              arr[1] = String(parseFloat(arr[1]) = (-10));
-              flySnitch = String(arr[0] + ' ');
-              flySnitch = String(flySnitch+ arr[1] + ' ');
-              flySnitch = String(flySnitch + arr[2]);
-              document.getElementById('BALL').setAttribute("translation", flySnitch);
+            if(String(parseFloat(arr[1]))<=(-8.6)){
+              clearInterval(myTimer);
             }
           } else {
-            clearInterval();
+            clearInterval(myTimer);
           }
         }, 20);
->>>>>>> 43f514ba5f7e2982a9848ffd5e5c0001d2730280
 
       }
       if(event.keyCode == 49){
@@ -148,17 +122,17 @@ addEventListener("keydown", function(event) {
 
 
 
- if (event.keyCode == 90 || event.keyCode == 88 ) { //вверх/вниз
+ if (event.keyCode == 90 || event.keyCode == 88 ) {
   var currentSnitchPos = document.getElementById('BALL').getAttribute("translation");
   var arr = currentSnitchPos.split(' ');
-  if (event.keyCode == 90)  {//летим вверх
+  if (event.keyCode == 90)  {
      arr[1] = String(parseFloat(arr[1]) + speed);
      fly = String(arr[0] + ' ');
      fly = String(fly+ arr[1] + ' ');
      fly = String(fly + arr[2]);
      document.getElementById('BALL').setAttribute("translation", fly);
   }
-  if (event.keyCode == 88)  {               //летим вниз
+  if (event.keyCode == 88)  {
     arr[1] = String(parseFloat(arr[1]) - speed);
     fly = String(arr[0] + ' ');
     fly = String(fly+ arr[1] + ' ');
@@ -167,17 +141,17 @@ addEventListener("keydown", function(event) {
   }
  }
 
- if (event.keyCode == 38 || event.keyCode == 40 ) { //вперед назад
+ if (event.keyCode == 38 || event.keyCode == 40 ) {
   var currentSnitchPos = document.getElementById('BALL').getAttribute("translation");
   var arr = currentSnitchPos.split(' ');
-  if (event.keyCode == 38)  {//летим вперед
+  if (event.keyCode == 38)  {
      arr[2] = String(parseFloat(arr[2]) - speed);
      fly = String(arr[0] + ' ');
      fly = String(fly+ arr[1] + ' ');
      fly = String(fly + arr[2]);
      document.getElementById('BALL').setAttribute("translation", fly);
   }
-  if (event.keyCode == 40)  {               //летим назад
+  if (event.keyCode == 40)  {
     arr[2] = String(parseFloat(arr[2]) + speed);
     fly = String(arr[0] + ' ');
     fly = String(fly+ arr[1] + ' ');
@@ -186,17 +160,17 @@ addEventListener("keydown", function(event) {
   }
  }
 
- if (event.keyCode == 37 || event.keyCode == 39 ) { //влево вправо
+ if (event.keyCode == 37 || event.keyCode == 39 ) {
    var currentSnitchPos = document.getElementById('BALL').getAttribute("translation");
    var arr = currentSnitchPos.split(' ');
-   if (event.keyCode == 37)  {//летим влево
+   if (event.keyCode == 37)  {
      arr[0] = String(parseFloat(arr[0]) - speed);
      fly = String(arr[0] + ' ');
      fly = String(fly+ arr[1] + ' ');
      fly = String(fly + arr[2]);
      document.getElementById('BALL').setAttribute("translation", fly);
   }
-  if (event.keyCode == 39)  {               //летим вправо
+  if (event.keyCode == 39)  {       
     arr[0] = String(parseFloat(arr[0]) + speed);
     fly = String(arr[0] + ' ');
     fly = String(fly+ arr[1] + ' ');
