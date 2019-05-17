@@ -1,23 +1,16 @@
 document.onload = function()
 {
-  var flagUp = false;
+  var flagUp = true;
   var speed = 0.2;
 
-  function fly(where) {
-  var currentQuadrocopterPos = document.getElementById('BALL').getAttribute("translation");
-  var arr = currentQuadrocopterPos.split(' ');
-  if (where == "Up") {
-    arr[1] = String(parseFloat(arr[1]) + 0.1);
-    fly = String(arr[0] + ' ');
-    fly = String(fly+ arr[1] + ' ');
-    fly = String(fly + arr[2]);
-    document.getElementById('BALL').setAttribute("translation", fly);
-  }
-};
+
+
+
 
 addEventListener("keydown", function(event) {
       if(event.keyCode == 48){
         speed = 0;
+        flagUp = false;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
 
         var curRotation1 = document.getElementById('id_wing1').getAttribute("rotation");
@@ -46,58 +39,91 @@ addEventListener("keydown", function(event) {
         fly = String(fly + arr2[3]);
         document.getElementById('id_wing2').setAttribute("rotation", fly);
 
-        document.getElementById('root').
+        setInterval(function() //вызов вращения самолета в зависимости от закрылок
+          {
+            if(flagUp==false){
+            var flySnitch = document.getElementById('BALL').getAttribute("translation");
+            var arr = flySnitch.split(' ');
+
+            arr[1] = String(parseFloat(arr[1]) - 1);
+            flySnitch = String(arr[0] + ' ');
+            flySnitch = String(flySnitch+ arr[1] + ' ');
+            flySnitch = String(flySnitch + arr[2]);
+            document.getElementById('BALL').setAttribute("translation", flySnitch);
+
+            if(String(parseFloat(arr[1]))<=(-10.0)){
+
+              arr[1] = String(parseFloat(arr[1]) = (-10));
+              flySnitch = String(arr[0] + ' ');
+              flySnitch = String(flySnitch+ arr[1] + ' ');
+              flySnitch = String(flySnitch + arr[2]);
+              document.getElementById('BALL').setAttribute("translation", flySnitch);
+            }
+          } else {
+            clearInterval();
+          }
+        }, 20);
+
       }
       if(event.keyCode == 49){
         speed = 0.1;
+        flagUp = true;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
         document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.6");
         document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
       }
       if(event.keyCode == 50){
         speed = 0.2;
+        flagUp = true;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
         document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.5");
         document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
       }
       if(event.keyCode == 51){
         speed = 0.3;
+        flagUp = true;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
         document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.4");
         document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
       }
       if(event.keyCode == 52){
         speed = 0.4;
+        flagUp = true;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
         document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.3");
         document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
       }
       if(event.keyCode == 53){
         speed = 0.5;
+        flagUp = true;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
         document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.2");
         document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
       }
       if(event.keyCode == 54){
         speed = 0.6;
+        flagUp = true;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
         document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.1");
         document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
       }
       if(event.keyCode == 55){
         speed = 0.7;
+        flagUp = true;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
         document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.04");
         document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
       }
       if(event.keyCode == 56){
         speed = 0.8;
+        flagUp = true;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
         document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.035");
         document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
       }
       if(event.keyCode == 57){
         speed = 0.9;
+        flagUp = true;
         document.getElementById('id_time_wings_speed').setAttribute("enabled","false");
         document.getElementById('id_time_wings_speed').setAttribute("cycleInterval","0.03");
         document.getElementById('id_time_wings_speed').setAttribute("enabled", "true");
@@ -106,8 +132,8 @@ addEventListener("keydown", function(event) {
 
 
  if (event.keyCode == 90 || event.keyCode == 88 ) { //вверх/вниз
-  var currentQuadrocopterPos = document.getElementById('BALL').getAttribute("translation");
-  var arr = currentQuadrocopterPos.split(' ');
+  var currentSnitchPos = document.getElementById('BALL').getAttribute("translation");
+  var arr = currentSnitchPos.split(' ');
   if (event.keyCode == 90)  {//летим вверх
      arr[1] = String(parseFloat(arr[1]) + speed);
      fly = String(arr[0] + ' ');
@@ -125,8 +151,8 @@ addEventListener("keydown", function(event) {
  }
 
  if (event.keyCode == 38 || event.keyCode == 40 ) { //вперед назад
-  var currentQuadrocopterPos = document.getElementById('BALL').getAttribute("translation");
-  var arr = currentQuadrocopterPos.split(' ');
+  var currentSnitchPos = document.getElementById('BALL').getAttribute("translation");
+  var arr = currentSnitchPos.split(' ');
   if (event.keyCode == 38)  {//летим вперед
      arr[2] = String(parseFloat(arr[2]) - speed);
      fly = String(arr[0] + ' ');
@@ -144,8 +170,8 @@ addEventListener("keydown", function(event) {
  }
 
  if (event.keyCode == 37 || event.keyCode == 39 ) { //влево вправо
-   var currentQuadrocopterPos = document.getElementById('BALL').getAttribute("translation");
-   var arr = currentQuadrocopterPos.split(' ');
+   var currentSnitchPos = document.getElementById('BALL').getAttribute("translation");
+   var arr = currentSnitchPos.split(' ');
    if (event.keyCode == 37)  {//летим влево
      arr[0] = String(parseFloat(arr[0]) - speed);
      fly = String(arr[0] + ' ');
