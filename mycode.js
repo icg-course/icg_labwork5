@@ -34,7 +34,6 @@ addEventListener("keydown", function(event) {
         fly = String(fly + arr2[2]+ ' ');
         fly = String(fly + arr2[3]);
         document.getElementById('id_wing2').setAttribute("rotation", fly);
-
         var myTimer = setInterval(function() //вызов вращения самолета в зависимости от закрылок
           {
             if(flagUp==false){
@@ -170,7 +169,7 @@ addEventListener("keydown", function(event) {
      fly = String(fly + arr[2]);
      document.getElementById('BALL').setAttribute("translation", fly);
   }
-  if (event.keyCode == 39)  {       
+  if (event.keyCode == 39)  {
     arr[0] = String(parseFloat(arr[0]) + speed);
     fly = String(arr[0] + ' ');
     fly = String(fly+ arr[1] + ' ');
