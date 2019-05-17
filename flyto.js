@@ -69,6 +69,15 @@
 				document.getElementById("mymoon").setAttribute("translation", '-24 -3 4')
 				document.getElementById("mymoon").setAttribute("scale", '20 10 10')
 			}
+			if(numgroup==5)
+			{
+				Flyto();
+				Startapokal();
+				travel();
+				Moonf();
+				Reload();
+				Gotomoon();
+			}
 		}
 		function Gotomoon()
 		{
@@ -113,3 +122,4 @@
 				}, 30)
 			}
 		}
+		
