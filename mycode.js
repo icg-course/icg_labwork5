@@ -9,13 +9,10 @@ addEventListener("keydown", function(event) //codefactor one love
         speed = 0;
         flagUp = false;
         document.getElementById('id_time_spd').setAttribute("enabled","false");
-
         var curRotation1 = document.getElementById('id_wing1').getAttribute("rotation");
         var curRotation2 = document.getElementById('id_wing2').getAttribute("rotation");
-
         var arr1 = curRotation1.split(' ');
         var arr2 = curRotation2.split(' ');
-
         arr1[0] = 0;
         arr1[1] = 0;
         arr1[2] = 1;
@@ -25,7 +22,6 @@ addEventListener("keydown", function(event) //codefactor one love
         fly = String(fly + arr1[2]+ ' ');
         fly = String(fly + arr1[3]);
         document.getElementById('id_wing1').setAttribute("rotation", fly);
-
         arr2[0] = 0;
         arr2[1] = 0;
         arr2[2] = 1;
