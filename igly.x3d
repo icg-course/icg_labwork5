@@ -12,7 +12,7 @@
          <Anchor url="http://poke-universe.ru/dex/bw/174.html" parameter="target='_self'"></Anchor>
           <Shape>
             <Appearance>
-              <ImageTexture url="игла.png"></ImageTexture>
+              <ImageTexture url="игл.png"></ImageTexture>
             </Appearance>
             <Sphere radius="4"></Sphere>
           </Shape>
