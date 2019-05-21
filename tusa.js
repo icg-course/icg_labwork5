@@ -1,3 +1,4 @@
+ document.onload = function(){
  document.getElementById('b1').onclick = () => {
      document.getElementById('c1').setAttribute("transparency", "0.2");
      document.getElementById('c3').setAttribute("transparency", "0.2");
@@ -109,4 +110,5 @@ document.getElementById('b5').onclick = function(){
     document.getElementById("hit5").setAttribute("keyValue", "0 0 0, 0 0 0, 0 0 0, 0 0 0");
     document.getElementById("hit6").setAttribute("keyValue", "0 0 0, 0 0 0, 0 0 0, 0 0 0");
     document.getElementById("hit7").setAttribute("keyValue", "0 0 0, 0 0 0, 0 0 0, 0 0 0");
+}
 }
