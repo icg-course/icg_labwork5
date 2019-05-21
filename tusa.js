@@ -5,7 +5,7 @@
      document.getElementById('c5').setAttribute("transparency", "0.3");
      document.getElementById('c7').setAttribute("transparency", "0.2");
      document.getElementById('c9').setAttribute("transparency", "0.3");
-     var interval = setInterval(() => {
+     interval = setInterval(() => {
         i = Math.floor(Math.random() * 45);
         switch(i) {
             case 1: translation = document.getElementById('c').setAttribute("translation", "-5 0.01 5"); break;
