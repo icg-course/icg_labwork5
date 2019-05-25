@@ -162,7 +162,7 @@ if (udar >= 15  && m < 1 ) {
         document.getElementById('time').setAttribute("loop","true");
         document.getElementById('molot_or').setAttribute("keyValue","1 0 0 0,1 0 0 -1.57,1 0 0 0");
         document.getElementById('molot_po').setAttribute("keyValue","0 60 20, 0 55 5, 0 60 20");
-        document.getElementById('time').setAttribute("loop","false");;
+        document.getElementById('time').setAttribute("loop","false");
   }
  
   if(event.keyCode == 104 && udar < raz ){
