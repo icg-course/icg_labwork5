@@ -3,52 +3,311 @@
   <head>  
     <meta charset="utf-8" />
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="http://www.x3dom.org/x3dom/release/x3dom.css" />
-    <script src="http://www.x3dom.org/x3dom/release/x3dom.js"></script>    
+    <title>Лабораторная работа 3</title>
+    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
+    <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
   </head>
   <body>
     <article>
-      <h1>Пока не придумал но чето крутое</h1>
+      <h1>Лабораторная работа №3</h1>
+      <p>Павлов Михаил, гр. 4642</p>
     </article>
-    <x3d id="x3d" xmlns="https://www.x3dom.org/x3dom"  style="width:100%; height:85%; border:none;">
+    <x3d id="x3d" xmlns="https://www.x3dom.org/x3dom"  style="width:85%; height:85%; border:none;">
       <scene>
-
-         <!-- ПОМЕЩЕНИЕ -->
         
-        <!-- стены -->
-        <transform translation="0 22.5 -20">
-          <Shape>
-            <Appearance>
-              <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork4/gh-pages/wall.jpg"></ImageTexture>
-              <TextureTransform  scale="2 2"></TextureTransform>
-            </Appearance>
-            <Box size="80 45 0.01"></Box>
-          </Shape>
+        <!-- ПАЛАТКА -->
+        <Collision enabled="true">
+          <transform rotation="0 1 0 -0.5">
+            <Shape>
+              <Appearance>
+                <Material diffuseColor="#4B5320"></Material>
+              </Appearance>
+              <Pyramid height="8" xbottom="13" ybottom="11" xtop="5" ytop="5"></Pyramid> 
+            </Shape>
+
+            <group DEF="kolyshki">            
+              <transform translation="-9 -3.7 9">
+                <Shape DEF="kolyshek">
+                  <Appearance>
+                    <Material diffuseColor='#c0c0c0'></Material>
+                  </Appearance>
+                  <cylinder radius="0.05" height="0.3" solid="false"></cylinder>
+                </Shape>
+              </transform>
+
+              <transform translation="8.9 -3.7 8.9">
+                <shape USE="kolyshek"></shape>
+              </transform>
+
+              <transform translation="8.9 -3.7 -9.1">
+                <shape USE="kolyshek"></shape>
+              </transform>
+
+              <transform translation="-9 -3.7 -9">
+                <shape USE="kolyshek"></shape>
+              </transform>
+            </group>
+
+            <group DEF="trosy">
+              <transform translation="-5.75 0 5.75" rotation="1 0 0 -1.1">
+                <transform rotation="0 1 0 -0.5">
+                  <transform rotation="0 0 1 -0.68">
+                    <Shape DEF="tros">
+                      <Appearance>
+                        <Material diffuseColor='black'></Material>
+                      </Appearance>
+                      <cylinder radius="0.05" height="11.8" solid="false"></cylinder>
+                    </Shape>
+                  </transform>
+                </transform>
+              </transform>
+
+              <transform translation="5.75 0 5.75" rotation="1 0 0 2">
+                <transform rotation="0 1 0 -0.605">
+                  <transform rotation="0 0 1 -0.71">
+                    <Shape USE="tros"></Shape>
+                  </transform>
+                </transform>
+              </transform>
+
+              <transform translation="5.75 0 -5.75" rotation="1 0 0 3.2">
+                <transform rotation="0 1 0 -0.8">
+                  <transform rotation="0 0 1 -0.85">
+                    <Shape USE="tros"></Shape>
+                  </transform>
+                </transform>
+              </transform>
+
+              <transform translation="-5.75 0 -5.75" rotation="1 0 0 -1.1">
+                <transform rotation="0 1 0 -0.95">
+                  <transform rotation="0 0 1 -1.8">
+                    <Shape USE="tros"></Shape>
+                  </transform>
+                </transform>
+              </transform>
+            </group>
+          </transform>
+        </Collision>
+
+        <!-- мангал -->
+        <Collision enabled="true"><!-- bboxCenter="-30 0 0" bboxSize="5 3 1.5" -->
+          <transform translation="-30 0 0">
+            <Anchor url="https://www.youtube.com/watch?v=RHyH2GRaXns">
+              <transform translation="0 -2 0">
+                <Shape>
+                  <Appearance>
+                    <Material diffuseColor='#C0C0C0'></Material>
+                  </Appearance>
+                  <Box size="5 1 0.01"></Box>
+                </Shape>
+              </transform>
+
+              <transform translation="0 -2 -1.3">
+                <Shape>
+                  <Appearance>
+                    <Material diffuseColor='#C0C0C0'></Material>
+                  </Appearance>
+                  <Box size="5 1 0.01"></Box>
+                </Shape>
+              </transform>
+
+              <transform translation="-2.5 -2 -0.7">
+                <Shape>
+                  <Appearance>
+                    <Material diffuseColor='#C0C0C0'></Material>
+                  </Appearance>
+                  <Box size="0.01 1 1.3"></Box>
+                </Shape>
+              </transform>
+
+              <transform translation="2.5 -2 -0.7">
+                <Shape>
+                  <Appearance>
+                    <Material diffuseColor='#C0C0C0'></Material>
+                  </Appearance>
+                  <Box size="0.01 1 1.3"></Box>
+                </Shape>
+              </transform>
+
+              <group DEF="nozhki">
+                <transform translation="-2.5 -3.4 -0.1">                
+                  <Shape DEF="nozhka">
+                    <Appearance>
+                      <Material diffuseColor='#C0C0C0'></Material>
+                    </Appearance>
+                    <Box size="0.01 1.8 0.1"></Box>
+                  </Shape>                 
+                </transform>
+
+                <transform translation="-2.5 -3.4 -1.3">                
+                  <Shape USE="nozhka"></Shape>                 
+                </transform>
+
+                <transform translation="2.5 -3.4 -1.3">                
+                  <Shape USE="nozhka"></Shape>                 
+                </transform>
+
+                <transform translation="2.5 -3.4 -0.1">                
+                  <Shape USE="nozhka"></Shape>                 
+                </transform>
+              </group>
+
+              <transform translation="0 -4.2 -0.7">
+                <Shape>
+                  <Appearance>
+                    <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork3/gh-pages/zola.jpg"></ImageTexture>
+                    <TextureTransform  scale="3 3"></TextureTransform>
+                  </Appearance>
+                  <Box size="4.5 0.01 1"></Box>
+                </Shape>
+              </transform>
+            </Anchor>
+          </transform>
+        </Collision>
+
+        <!-- скамейки -->
+        <group DEF="skameyki">          
+            <transform translation="-30 -0.2 4">
+              <group DEF="skameyka">
+                <transform translation="-4 -3.3 0">
+                  <Shape>
+                    <Appearance>
+                      <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork3/gh-pages/kora.jpg"></ImageTexture>
+                    </Appearance>
+                    <cylinder radius="0.5" height="1.5" solid="false"></cylinder>
+                  </Shape>
+                </transform>
+
+                <transform translation="3 -3.3 0">
+                  <Shape>
+                    <Appearance>
+                      <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork3/gh-pages/kora.jpg"></ImageTexture>
+                    </Appearance>
+                    <cylinder radius="0.5" height="1.5" solid="false"></cylinder>
+                  </Shape>
+                </transform>
+
+                <transform translation="-0.5 -2.5 0">
+                  <Shape>
+                    <Appearance>
+                      <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork3/gh-pages/derevo.jpg"></ImageTexture>
+                    </Appearance>
+                    <Box size="8 0.3 1"></Box>
+                  </Shape>
+                </transform>
+              </group>
+            </transform>
+
+            <transform translation="-34 -0.2 -5" rotation="0 1 0 0.707">
+              <group USE="skameyka"></group>
+            </transform>
+
+            <transform translation="-24 -0.2 -5" rotation="0 1 0 -0.707">
+              <group USE="skameyka"></group>
+            </transform>
+        </group>
+
+        <!-- бутылки -->
+        <transform translation="-20 -4.2 0" rotation="1 0 1 1.44">
+            <Inline url="butylka.x3d"></Inline>
         </transform>
-        <transform translation="-40 22.5 0">
-          <Shape>
-            <Appearance>
-              <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork4/gh-pages/wall.jpg"></ImageTexture>
-              <TextureTransform  scale="2 2"></TextureTransform>
-            </Appearance>
-            <Box size="0.01 45 40"></Box>
-          </Shape>
+
+        <transform translation="-35 -4.1 -5" rotation="1 0 0 1.44">
+          <transform rotation="0 0 1 -1.2">
+            <Inline url="butylka.x3d"></Inline>
+          </transform>
         </transform>
-        <transform translation="40 22.5 0">
+
+        <transform translation="-27 -4.1 -3">
+          <Inline url="butylka.x3d"></Inline>
+        </transform>  
+
+        <transform translation="-34 -2.6 4">
+          <Inline url="butylka.x3d"></Inline>
+        </transform>      
+
+        <!-- земля -->
+        <transform translation="-100 -5 50" scale="4 4 4" rotation="0 1 0 1.5">
           <Shape>
             <Appearance>
-              <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork4/gh-pages/wall.jpg"></ImageTexture>
-              <TextureTransform  scale="2 2"></TextureTransform>
+              <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork3/gh-pages/Green%20lush%20grass%20texture.jpg"></ImageTexture>
+              <TextureTransform  scale="15 15"></TextureTransform>
             </Appearance>
-            <Box size="0.01 45 40"></Box>
+            <ElevationGrid xDimension="4" zDimension="4"
+                height="0.3, 0.35, 0.5, 0.5, 0.42, 0.3, 0,                        
+                        0.45, 0.5, 0.25, 0.25, 0.5, 0.3, 0,                        
+                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                        0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
+                        0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0,
+                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                        0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
+                        0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0,
+                        0.3, 0.35, 0.5, 0.5, 0.42, 0.3, 0,                        
+                        0.45, 0.5, 0.25, 0.25, 0.5, 0.3, 0,                        
+                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                        0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
+                        0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0,
+                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                        0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
+                        0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0"                
+                xSpacing="10.0" zSpacing="15.0" solid="false">
+            </ElevationGrid>
           </Shape>
         </transform>
 
+        <!-- лес -->
+        <transform translation="-2 11.5 -63" rotation="0 1 0 -0.08">
+          <Shape>
+            <Appearance>
+              <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork3/gh-pages/forest.png"></ImageTexture>
+            </Appearance>
+            <Box size="178 30 0.01"></Box>
+          </Shape>
+        </transform>
+        <transform translation="82 10 3" rotation="0 1 0 -0.08">
+          <Shape>
+            <Appearance>
+              <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork3/gh-pages/forest.png"></ImageTexture>
+            </Appearance>
+            <Box size="0.01 30 118"></Box>
+          </Shape>
+        </transform>
+        <transform translation="-95 11.5 -11" rotation="0 1 0 -0.08">
+          <Shape>
+            <Appearance>
+              <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork3/gh-pages/forest.png"></ImageTexture>
+            </Appearance>
+            <Box size="0.01 30 118"></Box>
+          </Shape>
+        </transform>
+        <transform translation="-11 11.5 55" rotation="0 1 0 -0.08">
+          <Shape>
+            <Appearance>
+              <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork3/gh-pages/forest.png"></ImageTexture>
+            </Appearance>
+            <Box size="178 30 0.01"></Box>
+          </Shape>
+        </transform>
+
+        <!-- небо -->
+        <Background  skyColor='0.156 0.196 0.862'></Background>
+
+        <!-- Источники света -->
+        <PointLight location="20 30 40" color="1 1 1" intensity="0.1" shadowIntensity="2" shadowMapSize="1500"></PointLight>
+        <SpotLight location="10 10 -5" direction="-0.5 -1 0" color="0 1 0" intensity="2" beamWidth="0.2" cutOffAngle="0.7"></SpotLight>
+        
+        <!-- туман -->
+        <Fog visibilityRange="400"></Fog>
+
+        <!-- Камера -->
+        <Viewpoint description="Начальный вид" position="0 0 50"></Viewpoint>
+
+        <!--Навигация-->
+        <NavigationInfo avatarSize="0.4 4 0.4" type="WALK" speed="5"></NavigationInfo>
       </scene>
     </x3d>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+    <!-- <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script> -->
   </body> 
 </html>
