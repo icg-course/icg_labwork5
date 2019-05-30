@@ -3,14 +3,13 @@
   <head>  
     <meta charset="utf-8" />
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 3</title>
+    <title>Лабораторная работа 5</title>
     <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
     <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
   </head>
   <body>
     <article>
-      <h1>Лабораторная работа №3</h1>
-      <p>Павлов Михаил, гр. 4642</p>
+      <h1>Приключение в летнюю ночь</h1>
     </article>
     <x3d id="x3d" xmlns="https://www.x3dom.org/x3dom"  style="width:85%; height:85%; border:none;">
       <scene>
@@ -291,6 +290,34 @@
           </Shape>
         </transform>
 
+        <!-- грибок -->
+        <transform translation="0 -3.3 30">
+          <transform>
+            <Shape>
+              <Appearance>
+                <Material diffuseColor="red"></Material>
+              </Appearance>
+              <Dish radius="3" height="0.5"></Dish> 
+            </Shape>
+          </transform>
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='white'></Material>
+            </Appearance>
+            <cylinder radius="0.15" height="0.6" solid="false"></cylinder>
+          </Shape>
+        </transform>
+
+        <!-- стрелочка -->
+        <transform translation="0 3 30">
+          <Shape>
+            <Appearance>
+              <Material diffuseColor='#C0C0C0'></Material>
+            </Appearance>
+            <Box size="5 1 0.01"></Box>
+          </Shape>
+        </transform>
+
         <!-- небо -->
         <Background  skyColor='0.156 0.196 0.862'></Background>
 
@@ -305,9 +332,9 @@
         <Viewpoint description="Начальный вид" position="0 0 50"></Viewpoint>
 
         <!--Навигация-->
-        <NavigationInfo avatarSize="0.4 4 0.4" type="WALK" speed="5"></NavigationInfo>
+        <!-- <NavigationInfo avatarSize="0.4 4 0.4" type="WALK" speed="5"></NavigationInfo> -->
       </scene>
     </x3d>
-    <!-- <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script> -->
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
   </body> 
 </html>
