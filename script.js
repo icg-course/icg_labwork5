@@ -8,13 +8,13 @@ function prihodSound() {
 	mp3.src = 'prihod.mp3';
 	mp3.autoplay = true;
 	mp3.loop = true;
-};
+}
 
 function drinkSound() {
 	mp3.src = 'bulbul.mp3';
 	mp3.autoplay = true;
 	mp3.loop = false;
-};
+}
 
 window.onload = function() { 	
 	mp3.src = 'utro.mp3';
