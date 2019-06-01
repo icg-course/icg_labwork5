@@ -1,13 +1,297 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>  
+  <head>
     <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
+    <title>STEPANOV</title>
+  <link rel="stylesheet" href="https://www.x3dom.org/download/1.7.2/x3dom.css" />
+  <script src="https://www.x3dom.org/download/1.7.2/x3dom-full.js"></script>
+         <script>
+      document.onload = function() {
+        item = false;
+      }
+      function move(point) {
+        if (item) {document.getElementById(item).setAttribute('set_destination', point[0]+' '+parseFloat(point[1])+' '+point[2])};
+      }
+      function select(item2) {
+        item = item2;
+         (item=='BoxCh')?'0.5 0.5 0.5':'0 0 0';
+      }
+    </script>
+    <script>
+        function randomcolor()
+        {
+       var clr = document.getElementById('myLolo');
+       clr.setAttribute("color", " " + Math.random() + " " + Math.random() + " " + Math.random());
+       } 
+document.onload = function(){
+       document.getElementById('b2').onclick = () => {
+ 
+   document.getElementById("dd").setAttribute("keyValue", "1 0 0 0, 1 0 0 3.14, 1 0 0 6.28");
+
+
+}
+document.getElementById('b5').onclick = function(){
+    document.getElementById("dd").setAttribute("keyValue", "1 0 0 1.57, 1 0 0 1.57, 1 0 0 1.57, 1 0 0 1.57");
+  
+}
+       document.getElementById('b3').onclick = () => {
+ 
+   document.getElementById("pls").setAttribute("keyValue", "0 1 0 0, 0 1 0 3.14, 0 1 0 6.28")
+   document.getElementById("deerpl1").setAttribute("keyValue", "-4 0 2, 3 0 2, 3 0 5, 0 0 5 ")
+   document.getElementById("deerpl2").setAttribute("keyValue", "0 1 0 0, 0 1 0 3.14, 0 1 0 6.28");
+
+}
+document.getElementById('b4').onclick = function(){
+    document.getElementById("pls").setAttribute("keyValue", "0 1 0 0, 0 1 0 0, 0 1 0 0, 1 0 1 0 0")
+    document.getElementById("deerpl1").setAttribute("keyValue", "-4 0 2, -4 0 2, -4 0 2")
+   document.getElementById("deerpl2").setAttribute("keyValue", "0 1 0 0, 0 1 0 0, 0 1 0 0");
+  
+}}
+
+    </script>
+
+
   </head>
   <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+    <input type="button" id="bt1" value="Поменять цвет" onClick='randomcolor()'>
+    <input type="button" id="b2" value="Подкачаться"></input>
+    <input type="button" id="b5" value="Отдохнуть"></input>
+    <input type="button" id="b3" value="Пластинка ON"></input>
+    <input type="button" id="b4" value="Пластинка OFF"></input>
+    <h1>Степанов С.С. ИКГ Лаб.5</h1>
+    <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom" width='1600px' height='800px'>
+      <Scene>
+      <Background backUrl='qwert.jpg'></Background>
+
+        
+
+       
+         <Fog DEF="lolo" id='myLolo'  color="#696969" visibilityRange='25' fogType='EXPONENTIAL'></Fog>
+         
+<!--TimeSensor  DEF='Time3' cycleInterval='5' loop='true'></TimeSensor-->
+<ColorInterpolator DEF="Coll" id='myLo' diffuseColor='1 0 0' key="0 0.33 0.66 1" keyValue="1 0 0, 0 1 0, 0 0 1, 1 0 0"></ColorInterpolator>
+              
+
+                <ROUTE id='pos' fromNode="Coll" fromField="value_changed" 
+               toNode="lolo" toField="set_color">
+                </ROUTE>
+
+
+
+
+
+     
+<transform translation='8 1 0' scale="3 3 3"> 
+        <Shape def="conus">
+          <Appearance>
+            <ImageTexture url="https://pp.userapi.com/c846220/v846220379/1d1a45/2DH4kSCOd_A.jpg">
+            </ImageTexture>
+            <Material diffuseColor='red' 
+            ></Material>
+          </Appearance>
+          <cone></cone>
+        </Shape>
+        </transform>
+                                <!--ЗАБОР-->
+        <transform translation='-13 0 -12.4'> 
+           <group DEF="gr4">
+            <group DEF="gr3">
+           <group DEF="gr2">
+          <group DEF="gr1">
+         <Transform translation="0 0 0" scale='0.1 0.3 0.3'>
+          <Shape DEF="stake">
+         <Appearance> <ImageTexture url="https://pp.userapi.com/c854124/v854124403/1681f/fw8_i3P84G0.jpg">
+            </ImageTexture>
+          </Appearance>
+            <IndexedFaceSet ccw="true" colorPerVertex="false" convex="true" creaseAngle="0" normalPerVertex="false" solid="false" 
+                            coordIndex=" 0 1 3 4 2 0 -1 5 6 8 9 7 5 -1 0 5 7 2 -1 0 5 6 1 -1 1 6 8 3 -1 3 8 9 4 -1 7 2 4 9 "
+                           >
+              <Coordinate point="0 0 0,   2 0 0,   0 4 0,   2 4 0,   1 5 0
+                                 0 0 -0.5,   2 0 -0.5,   0 4 -0.5,   2 4 -0.5,   1 5 -0.5,
+                                 ">
+              </Coordinate>
+            </IndexedFaceSet>
+         
+          </Shape>
+        </Transform>
+
+         <Transform translation="0.25 0 0" scale='0.1 0.3 0.3'>
+          <Shape USE="stake">
+          </Transform>
+
+         <Transform translation="0.5 0 0" scale='0.1 0.3 0.3'>
+          <Shape USE="stake">
+          </Transform>
+
+         <Transform translation="0.75 0 0" scale='0.1 0.3 0.3'>
+          <Shape USE="stake">
+          </Transform>
+  
+          </group>
+
+<Transform translation="1 0 0">
+ <group USE="gr1">
+ </Transform>
+<Transform translation="1.25 0 0">
+ <group USE="gr1">
+ </Transform>
+<Transform translation="1.5 0 0">
+ <group USE="gr1">
+ </Transform>
+<Transform translation="1.75 0 0">
+ <group USE="gr1">
+ </Transform>
+ </group>
+
+ <Transform translation="2 0 0">
+ <group USE="gr2">
+ </Transform>
+  <Transform translation="4 0 0">
+ <group USE="gr2">
+ </Transform>
+ <Transform translation="6 0 0">
+ <group USE="gr2">
+ </Transform>
+  <Transform translation="8 0 0">
+ <group USE="gr2">
+ </Transform>
+</group>
+<Transform translation="10 0 0">
+ <group USE="gr3">
+ </Transform>
+ <Transform translation="18 0 0">
+ <group USE="gr3">
+ </Transform>
+</group>
+  </transform>
+
+
+ <Transform translation="-13 0 16">
+ <group USE="gr4">
+ </Transform>
+</group>
+  </transform>
+
+ <Transform translation="-13 0 16" rotation="0 1 0 1.57 ">
+ <group USE="gr4">
+ </Transform>
+</group>
+  </transform>
+
+ <Transform translation="15.8 0 16" rotation="0 1 0 1.57 ">
+ <group USE="gr4">
+ </Transform>
+</group>
+  </transform>
+
+
+                             <!--ОленьПластинка-->
+
+ <Transform DEF="Trans" translation="3.8 0 5" rotation="0 1 0 1.57 ">
+<inline url="Deer.x3d"></inline>
+ </transform>
+
+       <TimeSensor id="Time1" DEF='Time1' cycleInterval='5' loop='true' enabled='true'></TimeSensor>
+        <TimeSensor id="Time" DEF='Time' cycleInterval='5' loop='true' enabled='true'></TimeSensor>
+        <PositionInterpolator DEF='PosInt' id='deerpl1' key='0 0.25 0.5 0.75 1' keyValue='-4 0 2, -4 0 2, -4 0 2,-4 0 2, -4 0 2 '></PositionInterpolator>
+        <OrientationInterpolator DEF="kek" id='deerpl2' key="0 0.5 1" keyValue="0 1 0 0, 0 1 0 0, 0 1 0 0"></OrientationInterpolator>
+        <ROUTE fromNode='Time' fromField='fraction_changed' 
+               toNode='PosInt' toField='set_fraction'>
+        </ROUTE>
+        <ROUTE fromNode='PosInt' fromField='value_changed' 
+               toNode='Trans' toField='set_translation'>
+        </ROUTE>
+                <ROUTE fromNode='Time1' fromField='fraction_changed' 
+               toNode='kek' toField='set_fraction'>
+        </ROUTE>
+                <ROUTE fromNode='kek' fromField='value_changed' 
+               toNode='Trans' toField='set_rotation'>
+        </ROUTE>
+
+
+
+       
+<PositionChaser DEF='BoxCh' id='BoxCh' duration='1' initialDestination='0 0 0'></PositionChaser>
+ 
+ <Transform  DEF='Box' onclick='select("BoxCh")'>
+  <Transform id="root"></Transform> 
+ <Transform translation="0 0 0" rotation="0 1 0 1.57 ">
+<inline url="Deer.x3d"></inline>
+ </transform>
+ </transform>
+
+<ROUTE fromNode='BoxCh' fromField='value_changed'
+         toNode='Box' toField='set_translation'>
+         </ROUTE>
+
+
+
+
+
+                      !--Т-->
+
+   <OrientationChaser DEF='dro'  duration='1' ></OrientationChaser> 
+ <Transform def="deer01"  translation="5.5 3 0" rotation="1 0 0 1.57 " scale="1.5 1.5 1.5" >
+  <Transform id="Tr1"  >
+<inline url="Deer.x3d"></inline>
+ </transform>
+ </transform>
+<TimeSensor id="Time2" DEF='Time2' cycleInterval='0.5' loop='true' enabled='true'></TimeSensor>
+<OrientationInterpolator DEF="kek2" id="dd" key="0 0.5 1" keyValue="1 0 0 1.57, 1 0 0 1.57, 1 0 0 1.57"></OrientationInterpolator>
+                <ROUTE fromNode='Time2' fromField='fraction_changed' 
+               toNode='kek2' toField='set_fraction'>
+                </ROUTE>
+                <ROUTE fromNode='kek2' fromField='value_changed' 
+               toNode='dro' toField='set_destination'>
+                </ROUTE>
+                <ROUTE fromNode='dro' fromField='value_changed'
+                toNode='deer01' toField='set_rotation'>
+                </ROUTE>
+
+
+
+          <Transform DEF='ground' onClick="move(event.hitPnt);">
+        <Shape >
+          <Appearance>
+            <ImageTexture url="https://pp.userapi.com/c852224/v852224068/11fcb2/8b2I5szRwbM.jpg">
+            </ImageTexture>
+
+          </Appearance>
+          <box size="36 0.1 36"></box>
+        </Shape>
+        </transform>
+
+<Transform translation="5.5 3 0" rotation="0 0 1 1.57">
+          <Shape>
+          <Appearance>
+            <Material diffuseColor='black'></Material>
+          </Appearance>
+          <Cylinder radius="0.1" height="4.3"></Cylinder>
+        </Shape>
+   </transform>
+
+                           <!--Пластинка-->
+
+<Transform DEF="cyl" translation="0 0 2.5" >
+          <Shape>
+          <Appearance>
+            <ImageTexture url="https://pp.userapi.com/c845322/v845322015/1e4fd7/pP9FHh0XmoA.jpg">
+            </ImageTexture>
+          </Appearance>
+          <Cylinder radius="5" height="0.3"></Cylinder>
+        </Shape>
+   </transform>
+
+   <TimeSensor id="Time5" DEF='Time5' cycleInterval='5' loop='true' enabled='true'></TimeSensor>
+   <OrientationInterpolator DEF="POsp" id='pls' key="0 0.5 1" keyValue="0 1 0 0, 0 1 0 0, 0 1 0 0"></OrientationInterpolator>
+
+        <ROUTE fromNode='Time5' fromField='fraction_changed' 
+               toNode='POsp' toField='set_fraction'>
+        </ROUTE>
+        <ROUTE fromNode='POsp' fromField='value_changed' 
+               toNode='cyl' toField='set_rotation'>
+
+      </Scene>
+    </X3D>
+  </body>
 </html>
