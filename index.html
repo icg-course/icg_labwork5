@@ -6,10 +6,14 @@
     <title>Лабораторная работа 5</title>
     <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
     <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   </head>
   <body>
     <article>
-      <h1>Приключение в летнюю ночь</h1>
+      <h1>Приключение ранним летним утром</h1>
+      <p id="text" style="display: inline-block; font-size: 20px;">Какое же приятное раннее утро на природе. Пойти что ли грибочки пособирать?</p>
+      <button style="margin-left: 10px;" id="button1">Да!</button>
+      <p style="font-size: 18px;" class="second_text"></p>
     </article>
     <x3d id="x3d" xmlns="https://www.x3dom.org/x3dom"  style="width:85%; height:85%; border:none;">
       <scene>
@@ -19,7 +23,7 @@
           <transform rotation="0 1 0 -0.5">
             <Shape>
               <Appearance>
-                <Material diffuseColor="#4B5320"></Material>
+                <Material DEF="camp" diffuseColor="#4B5320"></Material>
               </Appearance>
               <Pyramid height="8" xbottom="13" ybottom="11" xtop="5" ytop="5"></Pyramid> 
             </Shape>
@@ -89,8 +93,8 @@
         </Collision>
 
         <!-- мангал -->
-        <Collision enabled="true"><!-- bboxCenter="-30 0 0" bboxSize="5 3 1.5" -->
-          <transform translation="-30 0 0">
+        <Collision enabled="true">
+          <transform DEF="mangal" id="mangal" translation="-30 0 0">
             <Anchor url="https://www.youtube.com/watch?v=RHyH2GRaXns">
               <transform translation="0 -2 0">
                 <Shape>
@@ -166,7 +170,7 @@
 
         <!-- скамейки -->
         <group DEF="skameyki">          
-            <transform translation="-30 -0.2 4">
+            <transform DEF="skameyka_1" translation="-30 -0.2 4">
               <group DEF="skameyka">
                 <transform translation="-4 -3.3 0">
                   <Shape>
@@ -197,17 +201,17 @@
               </group>
             </transform>
 
-            <transform translation="-34 -0.2 -5" rotation="0 1 0 0.707">
+            <transform DEF="skameyka_2" translation="-34 -0.2 -5" rotation="0 1 0 0.707">
               <group USE="skameyka"></group>
             </transform>
 
-            <transform translation="-24 -0.2 -5" rotation="0 1 0 -0.707">
+            <transform DEF="skameyka_3" translation="-24 -0.2 -5" rotation="0 1 0 -0.707">
               <group USE="skameyka"></group>
             </transform>
         </group>
 
         <!-- бутылки -->
-        <transform translation="-20 -4.2 0" rotation="1 0 1 1.44">
+        <transform  translation="-20 -4.2 0" rotation="1 0 1 1.44">
             <Inline url="butylka.x3d"></Inline>
         </transform>
 
@@ -218,43 +222,41 @@
         </transform>
 
         <transform translation="-27 -4.1 -3">
-          <Inline url="butylka.x3d"></Inline>
+          <Inline id="bottle" class="bottle-active" url="butylka.x3d"></Inline>
         </transform>  
-
-        <transform translation="-34 -2.6 4">
-          <Inline url="butylka.x3d"></Inline>
-        </transform>      
-
+        
         <!-- земля -->
-        <transform translation="-100 -5 50" scale="4 4 4" rotation="0 1 0 1.5">
-          <Shape>
-            <Appearance>
-              <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork3/gh-pages/Green%20lush%20grass%20texture.jpg"></ImageTexture>
-              <TextureTransform  scale="15 15"></TextureTransform>
-            </Appearance>
-            <ElevationGrid xDimension="4" zDimension="4"
-                height="0.3, 0.35, 0.5, 0.5, 0.42, 0.3, 0,                        
-                        0.45, 0.5, 0.25, 0.25, 0.5, 0.3, 0,                        
-                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
-                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
-                        0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
-                        0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0,
-                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
-                        0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
-                        0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0,
-                        0.3, 0.35, 0.5, 0.5, 0.42, 0.3, 0,                        
-                        0.45, 0.5, 0.25, 0.25, 0.5, 0.3, 0,                        
-                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
-                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
-                        0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
-                        0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0,
-                        0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
-                        0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
-                        0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0"                
-                xSpacing="10.0" zSpacing="15.0" solid="false">
-            </ElevationGrid>
-          </Shape>
-        </transform>
+        <Collision enabled="true">
+          <transform translation="-100 -5 50" scale="4 4 4" rotation="0 1 0 1.5">
+            <Shape>
+              <Appearance>
+                <ImageTexture url="https://raw.githubusercontent.com/mihalichpalich/icg_labwork3/gh-pages/Green%20lush%20grass%20texture.jpg"></ImageTexture>
+                <TextureTransform  scale="15 15"></TextureTransform>
+              </Appearance>
+              <ElevationGrid xDimension="4" zDimension="4"
+                  height="0.3, 0.35, 0.5, 0.5, 0.42, 0.3, 0,                        
+                          0.45, 0.5, 0.25, 0.25, 0.5, 0.3, 0,                        
+                          0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                          0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                          0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
+                          0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0,
+                          0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                          0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
+                          0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0,
+                          0.3, 0.35, 0.5, 0.5, 0.42, 0.3, 0,                        
+                          0.45, 0.5, 0.25, 0.25, 0.5, 0.3, 0,                        
+                          0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                          0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                          0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
+                          0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0,
+                          0.5, 0.25, 0, 0, 0.25, 0.5, 0,                        
+                          0.2, 0.5, 0.25, 0.25, 0.5, 0.35, 0,                        
+                          0.42, 0.32, 0.5, 0.5, 0.4, 0.2, 0"                
+                  xSpacing="10.0" zSpacing="15.0" solid="false">
+              </ElevationGrid>
+            </Shape>
+          </transform>
+        </Collision>
 
         <!-- лес -->
         <transform translation="-2 11.5 -63" rotation="0 1 0 -0.08">
@@ -291,35 +293,25 @@
         </transform>
 
         <!-- грибок -->
-        <transform translation="0 -3.3 30">
-          <transform>
-            <Shape>
-              <Appearance>
-                <Material diffuseColor="red"></Material>
-              </Appearance>
-              <Dish radius="3" height="0.5"></Dish> 
+        <group DEF="grib" id="grib">
+          <transform translation="0 -3.3 30">
+            <transform>
+              <Shape class="mushroom" id="golovka">
+              </Shape>
+            </transform>
+            <Shape class="mushroom" id="stvol">
             </Shape>
           </transform>
-          <Shape>
-            <Appearance>
-              <Material diffuseColor='white'></Material>
-            </Appearance>
-            <cylinder radius="0.15" height="0.6" solid="false"></cylinder>
-          </Shape>
-        </transform>
+        </group>
 
         <!-- стрелочка -->
-        <transform translation="0 3 30">
-          <Shape>
-            <Appearance>
-              <Material diffuseColor='#C0C0C0'></Material>
-            </Appearance>
-            <Box size="5 1 0.01"></Box>
+        <transform DEF="arrow" translation="0 -1 30">
+          <Shape id="arrow_id">
           </Shape>
         </transform>
 
         <!-- небо -->
-        <Background  skyColor='0.156 0.196 0.862'></Background>
+        <Background id="sky" skyColor='0.156 0.196 0.862'></Background>
 
         <!-- Источники света -->
         <PointLight location="20 30 40" color="1 1 1" intensity="0.1" shadowIntensity="2" shadowMapSize="1500"></PointLight>
@@ -332,9 +324,14 @@
         <Viewpoint description="Начальный вид" position="0 0 50"></Viewpoint>
 
         <!--Навигация-->
-        <!-- <NavigationInfo avatarSize="0.4 4 0.4" type="WALK" speed="5"></NavigationInfo> -->
+        <NavigationInfo avatarSize="0.4 4 0.4" type="WALK" speed="5"></NavigationInfo>
+
+        <transform id="animation">
+          
+        </transform>
       </scene>
     </x3d>
+    <script type="text/javascript" src="script.js"></script>
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
   </body> 
 </html>
