@@ -1,4 +1,4 @@
-    var lastpoint=[0,0,0],prompoint=[0,0,0];
+    var lastpoint=[0,0,0];
     var C=[0,0];
     var direct=[0,1,0,0];
     var AB=0,AC=0,BC=0;
