@@ -17,7 +17,7 @@
           document.getElementById('DEER').setAttribute('rotation', direct);
           document.getElementById('DeerChaser').setAttribute('set_destination', point);
           lastpoint=point;
-        };
+        }
       function create() {
         if(t==0){
           if(i>4){
@@ -43,7 +43,7 @@
             i=i+1;
           }
         }else alert("Олени теперь боятся появляться тут :(");
-        };
+        }
           function clk() {
             if(t==0){
               min=0;
@@ -56,7 +56,7 @@
               i=Math.floor(i/2)-1;
               t=t+1;
           }else alert("Танос устал:(");
-        };
+        }
         function toggle(){
           document.getElementById('ColorChaser').setAttribute('set_destination', '0');
           document.getElementById('HouseChaser').setAttribute('set_destination', '0 4 0');
