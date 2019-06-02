@@ -1,13 +1,560 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>  
+<head>
     <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
+    <title>ICG5</title>
+    <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
+    <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
+    <link rel="stylesheet" href="../css/custom.css" />
+    <script src="../js/custom.js"></script>
+</head>
   <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+    <input type="button" id="but_e" value="Остановить Землю" onclick='toggle("earth");'>
+    <input type="button" id="but_m" value="Остановить Луну" onclick='toggle("moon");'>
+    <script src="magic.js"></script>
+      <h1>lr5</h1>
+      <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">
+        <Scene id="root">
+          <Viewpoint position="0 20 100" rotation="1 0 0 2"></Viewpoint>
+          <!--<Shape onmouseover='document.getElementById("Mat").setAttribute("diffuseColor","1 0 0")'
+                  onmouseout='document.getElementById("Mat").setAttribute("diffuseColor","0 0 1")'
+                  onclick='create()'>
+            <Sphere></Sphere>
+            <Appearance>
+              <Material id="Mat" diffuseColor="1 1 1"></Material>
+            </Appearance>
+          </Shape>-->
+          <Group def="pole">
+<!--1-->
+          <Transform def="D1" translation="-10 0 0">
+            <Shape>
+              <Appearance>
+                  <Material diffuseColor="linen"></Material>
+              </Appearance>
+              <Box size="10 0.5 10"></Box>
+            </Shape>
+          </Transform>
+          <Transform def="E1" translation="0 0 0">
+            <Shape>
+              <Appearance>
+                  <Material diffuseColor="black"></Material>
+              </Appearance>
+              <Box size="10 0.5 10"></Box>
+            </Shape>
+          </Transform>
+          <Transform def="F1" translation="10 0 0">
+            <Shape>
+              <Appearance>
+                  <Material diffuseColor="linen"></Material>
+              </Appearance>
+              <Box size="10 0.5 10"></Box>
+            </Shape>
+          </Transform>
+          <Transform def="G1" translation="20 0 0">
+            <Shape>
+              <Appearance>
+                  <Material diffuseColor="black"></Material>
+              </Appearance>
+              <Box size="10 0.5 10"></Box>
+            </Shape>
+          </Transform>
+          <Transform def="H1" translation="30 0 0">
+            <Shape>
+              <Appearance>
+                  <Material diffuseColor="linen"></Material>
+              </Appearance>
+              <Box size="10 0.5 10"></Box>
+            </Shape>
+          </Transform>
+          <Transform def="C1" translation="-20 0 0">
+            <Shape>
+              <Appearance>
+                  <Material diffuseColor="black"></Material>
+              </Appearance>
+              <Box size="10 0.5 10"></Box>
+            </Shape>
+          </Transform>
+          <Transform def="B1" translation="-30 0 0">
+            <Shape>
+              <Appearance>
+                  <Material diffuseColor="linen"></Material>
+              </Appearance>
+              <Box size="10 0.5 10"></Box>
+            </Shape>
+          </Transform>
+          <Transform def="A1" translation="-40 0 0">
+            <Shape>
+              <Appearance>
+                  <Material diffuseColor="black"></Material>
+              </Appearance>
+              <Box size="10 0.5 10"></Box>
+            </Shape>
+          </Transform>
+<!--1-->
+<!--2-->
+<Transform def="A2" translation="-40 0 -10">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="B2" translation="-30 0 -10">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="C2" translation="-20 0 -10">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="D2" translation="-10 0 -10">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="E2" translation="0 0 -10">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="F2" translation="10 0 -10">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="G2" translation="20 0 -10">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="H2" translation="30 0 -10">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<!--2-->
+<!--3-->
+<Transform def="A3" translation="-40 0 -20">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="B3" translation="-30 0 -20">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="C3" translation="-20 0 -20">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="D3" translation="-10 0 -20">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="E3" translation="0 0 -20">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="F3" translation="10 0 -20">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="G3" translation="20 0 -20">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="H3" translation="30 0 -20">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<!--3-->
+<!--4-->
+<Transform def="A4" translation="-40 0 -30">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="B4" translation="-30 0 -30">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="C4" translation="-20 0 -30">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="D4" translation="-10 0 -30">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="E4" translation="0 0 -30">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="F4" translation="10 0 -30">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="G4" translation="20 0 -30">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="H4" translation="30 0 -30">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<!--4-->
+<!--5-->
+<Transform def="A5" translation="-40 0 -40">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="B5" translation="-30 0 -40">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="C5" translation="-20 0 -40">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="D5" translation="-10 0 -40">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="E5" translation="0 0 -40">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="F5" translation="10 0 -40">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="G5" translation="20 0 -40">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="H5" translation="30 0 -40">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<!--5-->
+<!--6-->
+<Transform def="A6" translation="-40 0 -50">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="B6" translation="-30 0 -50">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="C6" translation="-20 0 -50">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="D6" translation="-10 0 -50">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="E6" translation="0 0 -50">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="F6" translation="10 0 -50">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="G6" translation="20 0 -50">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="H6" translation="30 0 -50">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<!--6-->
+<!--7-->
+<Transform def="A7" translation="-40 0 -60">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="B7" translation="-30 0 -60">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="C7" translation="-20 0 -60">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="D7" translation="-10 0 -60">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="E7" translation="0 0 -60">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="F7" translation="10 0 -60">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="G7" translation="20 0 -60">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="H7" translation="30 0 -60">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<!--7-->
+<!--8-->
+<Transform def="A8" translation="-40 0 -70">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="B8" translation="-30 0 -70">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="C8" translation="-20 0 -70">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="D8" translation="-10 0 -70">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="E8" translation="0 0 -70">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="F8" translation="10 0 -70">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="G8" translation="20 0 -70">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="linen"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<Transform def="H8" translation="30 0 -70">
+  <Shape>
+    <Appearance>
+        <Material diffuseColor="black"></Material>
+    </Appearance>
+    <Box size="10 0.5 10"></Box>
+  </Shape>
+</Transform>
+<!--8-->
+</Group>
+        </Scene>
+      </X3D>
+  </body>
 </html>
