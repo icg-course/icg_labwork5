@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">
+<Scene>
+<Transform translation='0 -3.8 -5'>
+  <Transform translation='-0.5 0 0'>
+    <Shape>
+      <Appearance>
+        <ImageTexture url="road_brick_65.jpg"></ImageTexture>
+        <Texturetransform repeatS="True" repeatT="True" scale="4 1"></Texturetransform>
+      </Appearance>
+      <Box size="20 .3 5"></Box>
+    </Shape>
+  </Transform>
+  <Transform translation='0 0 -7.0'>
+    <Shape>
+      <Appearance>
+        <ImageTexture url="road_brick_65.jpg"></ImageTexture>
+        <Texturetransform repeatS="True" repeatT="True" scale="1.5 1.5"></Texturetransform>
+      </Appearance>
+      <Box size="11 .3 9"></Box>
+    </Shape>
+  </Transform>
+  <Transform translation='0 0 -7.5'>
+    <Shape>
+      <Appearance>
+        <ImageTexture url="A135A_wood-siding_021914-1160x773.jpg"></ImageTexture>
+        <Texturetransform repeatS="True" repeatT="True" scale="1.5 1.5"></Texturetransform>
+      </Appearance>
+      <Box size="10 1 7.5"></Box>
+    </Shape>
+  </Transform>
+</Transform>
+</Scene>
+</X3D>
+</html>

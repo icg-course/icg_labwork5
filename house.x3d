@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">
+<Scene>
+<Transform translation='0 -1.5 -15'>
+  <!--<Бабушкин ковер>-->
+  <Transform translation='0 0.5 0'>
+    <Shape>
+      <Appearance>
+        <ImageTexture url="cap.jpg"></ImageTexture>
+        <Texturetransform repeatS="True" repeatT="True"
+                          scale="1 1"></Texturetransform>
+      </Appearance>
+      <Box size="8 3.5 0.2"></Box>
+    </Shape>
+  </Transform>
+  <!--</Бабушкин ковер>-->
+  <!--<ДВЕРЬ>-->
+  <Anchor url="https://ru.wikipedia.org/wiki/%D0%A2%D0%B0%D0%B2%D0%B5%D1%80%D0%BD%D0%B0"
+          parameter="target='_self'">
+    <Transform translation='-1 -0.5 6'>
+      <Shape>
+        <Appearance>
+          <ImageTexture url="brownoakdoors-p.jpg"></ImageTexture>
+          <Texturetransform repeatS="True" repeatT="True"
+                            scale="1 1"></Texturetransform>
+        </Appearance>
+        <Box size="2 3 0.3"></Box>
+      </Shape>
+    </Transform>
+    <Transform translation='1 -0.5 6'>
+      <Shape>
+        <Appearance>
+          <ImageTexture url="brownoakdoors-l.jpg"></ImageTexture>
+          <Texturetransform repeatS="True" repeatT="True"
+                            scale="1 1"></Texturetransform>
+        </Appearance>
+        <Box size="2 3 0.3"></Box>
+      </Shape>
+    </Transform>
+  </Anchor>
+  <!--</ДВЕРЬ>-->
+  <!--<КРЫША>-->
+  <Transform translation='0 3.7 3'>
+    <Shape>
+      <Appearance>
+        <ImageTexture url="A135A_wood-siding_021914-1160x773.jpg"></ImageTexture>
+        <Texturetransform repeatS="True" repeatT="True" scale="1 1"></Texturetransform>
+      </Appearance>
+      <Pyramid height="2.5" xbottom="10.5" ybottom="7" xtop="4" ytop="2"></Pyramid>
+    </Shape>
+  </Transform>
+  <!--</КРЫША>-->
+  <!--<СТЕНЫ>-->
+  <Transform translation='-4.5 -2.2 0' scale="1.8 1 1.2">
+    <Shape>
+      <Appearance>
+        <ImageTexture url="1558314.jpg"></ImageTexture>
+        <Texturetransform repeatS="True" repeatT="True" scale="5 5"></Texturetransform>
+      </Appearance>
+      <IndexedFaceSet ccw="true" convex="true" creaseAngle="0"
+                      normalPerVertex="true" solid="false"
+                      coordIndex="0 1 2 3 -1 4 5 6 7 -1 8 9 10 11 -1 12 13 14 15">
+        <Coordinate point="0 0 5, 0 5 5, 1.5 5 5, 1.5 0 5, 1.5 5 5,
+                           3.5 5 5, 3.5 3 5, 1.5 3 5, 3.5 0 5,
+                           3.5 5 5, 5 5 5, 5 0 5, 5 5 0, 5 0 0, 0 0 0, 0 5 0"></Coordinate>
+      </IndexedFaceSet>
+    </Shape>
+    <Transform>
+      <Shape DEF="WALL">
+        <Appearance>
+          <ImageTexture url="1558314.jpg"></ImageTexture>
+          <Texturetransform repeatS="True" repeatT="True"
+                            rotation="1.57" scale="5 5"></Texturetransform>
+        </Appearance>
+        <IndexedFaceSet ccw="true" convex="true" creaseAngle="0"
+                        normalPerVertex="true" solid="false"
+                        coordIndex="0 1 2 3 -1 4 5 6 7 -1 8 9 10 11 -1 12 13 14 15">
+          <Coordinate point="5 5 5, 5 5 0, 5 3.5 0, 5 3.5 5, 5 0 5,
+                             5 1.5 5, 5 1.5 0, 5 0 0, 5 1.5 3.5, 5 3.5 3.5,
+                             5 3.5 5, 5 1.5 5,5 3.5 0, 5 1.5 0, 5 1.5 1.5, 5 3.5 1.5"></Coordinate>
+        </IndexedFaceSet>
+      </Shape>
+    </Transform>
+    <Transform translation='-5 0 0'>
+      <Shape USE="WALL"></Shape>
+    </Transform>
+  </Transform>
+  <!--</СТЕНЫ>-->
+</Transform>
+<!--<ДЫМОХОД>-->
+<Transform translation='3.5 2.5 -12'>
+  <Shape>
+    <Appearance>
+      <ImageTexture url="1558314.jpg"></ImageTexture>
+      <Texturetransform repeatS="True" repeatT="True" scale="2 2"></Texturetransform>
+    </Appearance>
+    <Extrusion beginCap='false' endCap='false' solid='false'
+               crossSection='[(1, 1), (1, -1), (-1, -1), (-1, 1), (1,1)]'
+               scale='[1 1, 0.5 0.5]'
+               spine='[0 -1 0, 0 1 0]'>
+    </Extrusion>
+  </Shape>
+</Transform>
+<!--</ДЫМОХОД>-->
+</Scene>
+</X3D>
+</html>

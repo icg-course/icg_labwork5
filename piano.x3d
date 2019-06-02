@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">
+    <Scene>
+    <Transform DEF="Piano" scale="0.5 0.5 0.5" translation="0 -1.5 -13">
+      <Transform DEF="Black1" translation="0 0 0">
+        <Shape DEF="Black_clav">
+          <Appearance>
+            <Material diffuseColor="#000000"></Material>
+          </Appearance>
+          <Box size="0.5 0.2 1"></Box>
+        </Shape>
+      </Transform>
+      <Transform translation="1 0 0">
+        <Shape USE="Black_clav"></Shape>
+      </Transform>
+      <Transform translation="-1 0 0">
+        <Shape USE="Black_clav"></Shape>
+      </Transform>
+      <Transform DEF="Black2" translation="2 0 0">
+        <Shape USE="Black_clav"></Shape>
+      </Transform>
+      <Transform DEF="Black3" translation="-2 0 0">
+        <Shape USE="Black_clav"></Shape>
+      </Transform>
+      <Transform DEF="White1" translation="0.25 -0.2 0.5">
+        <Shape DEF="White_clav">
+          <Appearance>
+            <Material diffuseColor="#FFFFFF"></Material>
+          </Appearance>
+          <Box size="0.5 0.2 2"></Box>
+        </Shape>
+      </Transform>
+      <Transform translation="0.75 -0.2 0.5">
+        <Shape USE="White_clav"></Shape>
+      </Transform>
+      <Transform DEF="White2" translation="1.25 -0.2 0.5">
+        <Shape USE="White_clav"></Shape>
+      </Transform>
+      <Transform translation="1.75 -0.2 0.5">
+        <Shape USE="White_clav"></Shape>
+      </Transform>
+      <Transform DEF="White3" translation="2.25 -0.2 0.5">
+        <Shape USE="White_clav"></Shape>
+      </Transform>
+      <Transform translation="-0.25 -0.2 0.5">
+        <Shape USE="White_clav"></Shape>
+      </Transform>
+      <Transform DEF="White4" translation="-0.75 -0.2 0.5">
+        <Shape USE="White_clav"></Shape>
+      </Transform>
+      <Transform translation="-1.25 -0.2 0.5">
+        <Shape USE="White_clav"></Shape>
+      </Transform>
+      <Transform DEF="White5" translation="-1.75 -0.2 0.5">
+        <Shape USE="White_clav"></Shape>
+      </Transform>
+      <Transform translation="-2.25 -0.2 0.5">
+        <Shape USE="White_clav"></Shape>
+      </Transform>
+      <Transform translation="0 0 -1">
+        <Shape>
+          <Appearance>
+            <ImageTexture url="For_piano.jpg"></ImageTexture>
+            <Texturetransform repeatS="True" repeatT="True" scale="0.5 0.5"></Texturetransform>
+          </Appearance>
+          <Pyramid height="0.5" xbottom="6" ybottom="1" xtop="6"
+                           ytop="0.25" xoff="0" yoff="-0.2"></Pyramid>
+        </Shape>
+      </Transform>
+      <Transform translation="0 -0.4 0">
+        <Shape>
+          <Appearance>
+            <ImageTexture url="For_piano.jpg"></ImageTexture>
+            <Texturetransform repeatS="True" repeatT="True" scale="0.5 0.5"></Texturetransform>
+          </Appearance>
+          <Box size="6 0.3 3.2"></Box>
+        </Shape>
+      </Transform>
+      <Transform translation="0 -2 0" rotation="0 0 1 0.9">
+        <Shape>
+          <Appearance>
+            <ImageTexture url="For_piano.jpg"></ImageTexture>
+            <Texturetransform repeatS="True" repeatT="True" scale="0.5 0.5"></Texturetransform>
+          </Appearance>
+          <SlopedCylinder height="5" radius="0.15" xbshear="-0.2"
+                          ybshear="0" xtshear="-0.2" ytshear="0"></SlopedCylinder>
+        </Shape>
+      </Transform>
+      <Transform translation="0 -2 0" rotation="0 0 1 -0.9">
+        <Shape>
+          <Appearance>
+            <ImageTexture url="For_piano.jpg"></ImageTexture>
+            <Texturetransform repeatS="True" repeatT="True" scale="0.5 0.5"></Texturetransform>
+          </Appearance>
+          <SlopedCylinder height="5" radius="0.15" xbshear="0.2"
+                          ybshear="0" xtshear="-0.2" ytshear="0"></SlopedCylinder>
+        </Shape>
+      </Transform>
+    </Transform>
+    <TimeSensor id="Time" DEF='Time' cycleInterval='5' loop='true' enabled='true'></TimeSensor>
+    <PositionInterpolator DEF='PosInt_Black1' key='0 0.2 0.4 0.6 0.8 1'
+                          keyValue='0 0 0, 0 -0.2 0, 0 0 0,
+                                    0 0 0, 0 -0.2 0, 0 0 0'></PositionInterpolator>
+    <ROUTE fromNode='Time' fromField='fraction_changed'
+           toNode='PosInt_Black1' toField='set_fraction'></ROUTE>
+    <ROUTE fromNode='PosInt_Black1' fromField='value_changed'
+           toNode='Black1' toField='set_translation'></ROUTE>
+    <PositionInterpolator DEF='PosInt_Black2' key='0 0.2 0.4 0.6 0.8 1'
+                          keyValue='2 -0.2 0, 2 0 0, 2 0 0,
+                                    2 -0.2 0, 2 0 0, 2 -0.2 0'></PositionInterpolator>
+    <ROUTE fromNode='Time' fromField='fraction_changed'
+           toNode='PosInt_Black2' toField='set_fraction'></ROUTE>
+    <ROUTE fromNode='PosInt_Black2' fromField='value_changed'
+           toNode='Black2' toField='set_translation'></ROUTE>
+    <PositionInterpolator DEF='PosInt_Black3' key='0 0.2 0.4 0.6 0.8 1'
+                          keyValue='-2 -0.2 0, -2 0 0, -2 -0.2 0,
+                                    -2 0 0, -2 0 0, -2 -0.2 0'></PositionInterpolator>
+    <ROUTE fromNode='Time' fromField='fraction_changed'
+           toNode='PosInt_Black3' toField='set_fraction'></ROUTE>
+    <ROUTE fromNode='PosInt_Black3' fromField='value_changed'
+           toNode='Black3' toField='set_translation'></ROUTE>
+    <PositionInterpolator DEF='PosInt_White1' key='0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1'
+                          keyValue='0.25 -0.2 0.5, 0.25 -0.2 0.5, 0.25 -0.3 0.5,
+                                    0.25 -0.2 0.5, 0.25 -0.3 0.5, 0.25 -0.2 0.5,
+                                    0.25 -0.3 0.5, 0.25 -0.2 0.5, 0.25 -0.3 0.5,
+                                    0.25 -0.2 0.5, 0.25 -0.2 0.5'></PositionInterpolator>
+    <ROUTE fromNode='Time' fromField='fraction_changed'
+           toNode='PosInt_White1' toField='set_fraction'></ROUTE>
+    <ROUTE fromNode='PosInt_White1' fromField='value_changed'
+           toNode='White1' toField='set_translation'></ROUTE>
+    <PositionInterpolator DEF='PosInt_White2' key='0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1'
+                          keyValue='1.25 -0.2 0.5, 1.25 -0.3 0.5, 1.25 -0.2 0.5,
+                                    1.25 -0.2 0.5, 1.25 -0.3 0.5, 1.25 -0.2 0.5,
+                                    1.25 -0.2 0.5, 1.25 -0.3 0.5, 1.25 -0.2 0.5,
+                                    1.25 -0.2 0.5, 1.25 -0.2 0.5'></PositionInterpolator>
+    <ROUTE fromNode='Time' fromField='fraction_changed'
+           toNode='PosInt_White2' toField='set_fraction'></ROUTE>
+    <ROUTE fromNode='PosInt_White2' fromField='value_changed'
+           toNode='White2' toField='set_translation'></ROUTE>
+    <PositionInterpolator DEF='PosInt_White3' key='0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1'
+                          keyValue='2.25 -0.2 0.5, 2.25 -0.2 0.5, 2.25 -0.2 0.5,
+                                    2.25 -0.3 0.5, 2.25 -0.2 0.5, 2.25 -0.2 0.5,
+                                    2.25 -0.3 0.5, 2.25 -0.2 0.5, 2.25 -0.2 0.5,
+                                    2.25 -0.3 0.5, 2.25 -0.2 0.5'></PositionInterpolator>
+    <ROUTE fromNode='Time' fromField='fraction_changed'
+           toNode='PosInt_White3' toField='set_fraction'></ROUTE>
+    <ROUTE fromNode='PosInt_White3' fromField='value_changed'
+           toNode='White3' toField='set_translation'></ROUTE>
+    <PositionInterpolator DEF='PosInt_White4' key='0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1'
+                          keyValue='-0.75 -0.2 0.5, -0.75 -0.3 0.5, -0.75 -0.2 0.5,
+                                    -0.75 -0.3 0.5, -0.75 -0.2 0.5, -0.75 -0.2 0.5,
+                                    -0.75 -0.2 0.5, -0.75 -0.3 0.5, -0.75 -0.2 0.5,
+                                    -0.75 -0.3 0.5, -0.75 -0.2 0.5'></PositionInterpolator>
+    <ROUTE fromNode='Time' fromField='fraction_changed'
+           toNode='PosInt_White4' toField='set_fraction'></ROUTE>
+    <ROUTE fromNode='PosInt_White4' fromField='value_changed'
+           toNode='White4' toField='set_translation'></ROUTE>
+    <PositionInterpolator DEF='PosInt_White5' key='0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1'
+                          keyValue='-1.75 -0.2 0.5, -1.75 -0.2 0.5, -1.75 -0.3 0.5,
+                                    -1.75 -0.2 0.5, -1.75 -0.2 0.5, -1.75 -0.3 0.5,
+                                    -1.75 -0.3 0.5, -1.75 -0.2 0.5'></PositionInterpolator>
+    <ROUTE fromNode='Time_for_deer' fromField='fraction_changed'
+           toNode='PosInt_White5' toField='set_fraction'></ROUTE>
+    <ROUTE fromNode='PosInt_White5' fromField='value_changed'
+           toNode='White5' toField='set_translation'></ROUTE>
+    </Scene>
+  </X3D>
+</html>
