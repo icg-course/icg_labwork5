@@ -15,22 +15,22 @@ function make() {
     if(j == 1){
       t.setAttribute("id", "2");
       coor=[-10, 0,-70];
-      d = 48;
+      d = 84;
     }
     if(j == 2){
       t.setAttribute("id", "3");
       coor=[-40, 0,-40];
-      a = 15;
+      a = 51;
     }
     if(j == 3){
       t.setAttribute("id", "4");
       coor=[30, 0, 0];
-      h = 81;
+      h = 18;
     }
     if(j == 4){
       t.setAttribute("id", "5");
       coor=[10, 0, -60];
-      f = 67;
+      f = 76;
     }
     t.setAttribute("translation", coor);
     n.setAttribute("url", "chess.x3d");
