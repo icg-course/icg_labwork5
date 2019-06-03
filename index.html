@@ -1,13 +1,328 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>  
-    <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 6</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+<head>
+  <meta charset="utf-8" />
+  <title>5laba</title>
+  <link rel="stylesheet" href="https://www.x3dom.org/download/1.7.1/x3dom.css" />
+  <script src="https://www.x3dom.org/download/1.7.1/x3dom-full.js"></script>
+</head>
+<body>
+  <input type="button" id="butt1" value="Остановка"></input>
+  <input type="button" id="butt3" value="Запуск"></input>
+  <input type="button" id="butt2" value="Ускоряемся"></input>
+  <input type="button" id="butt4" value="Че-нить удалить"></input>
+  <input type="button" id="butt5" value="Штрудировать космос"></input>
+  <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom" style="width:1600px; height:500px">
+    <script src="planeta.js"></script>
+    <Scene>
+      <Background backUrl="spice_BK.jpg" bottomUrl="spice_DN.jpg" 
+      frontUrl="spice_FR.jpg" leftUrl="spice_LF.jpg" 
+      rightUrl="spice_RT.jpg" topUrl="spice_UP.jpg"></Background>
+      <PointLight location="0 0 0" color="0 1 1" intensity="0.01" shadowIntensity="0" shadowMapSize="3000"></PointLight>
+      <NavigationInfo avatarSize="0.25 1.6 0.7" type="Any" speed="6"></NavigationInfo>
+      <Transform DEF="ufo" id="nlo123" center="5 5 5" scale="10 10 10" translation="0 0 0">
+        <Transform DEF="ufo1"  translation="6 0 0">
+          <Transform rotation="0 0 1 -1.57" scale=".2 .2 .2">
+            <Shape>
+              <Appearance>
+                <ImageTexture url="ufo.jpg">
+                </ImageTexture> 
+                <Material></Material>
+              </Appearance>
+              <SolidOfRevolution angle='7' crossSection='[0 2 0.5 4 1.5 1.5 1.5 0.5]' solid='false'></SolidOfRevolution> 
+            </Shape>
+          </Transform>
+          <Transform DEF="Tp" scale="0.2 0.2 0.2" translation="-.5 0 0">
+            <Inline DEF="tea" url="teapot.x3d"></Inline>
+          </Transform>
+          <Transform DEF="Tp1" scale="0.2 0.2 0.2" translation=".5 0 0" rotation="0 1 0 3.14">
+            <Shape USE="tea"></Shape>
+          </Transform>
+          <Transform DEF="Tp2" scale="0.2 0.2 0.2" translation="0 0 -.5" rotation="0 1 0 -1.57">
+            <Shape USE="tea"></Shape>
+          </Transform>
+          <Transform DEF="Tp3" scale="0.2 0.2 0.2" translation="0 0 .5" rotation="0 1 0 1.57">
+            <Shape USE="tea"></Shape>
+          </Transform>
+          <Transform DEF="nloo" scale="1.5 0.5 1.5">
+            <Shape>
+              <Appearance>
+                <ImageTexture url="nlo.jpg">
+                </ImageTexture> 
+                <TextureTransform scale="2 2">
+                </TextureTransform>
+                <Material></Material>
+              </Appearance>
+              <Sphere radius="0.2" >
+              </Sphere>
+            </Shape>
+          </Transform>
+        </Transform>
+      </Transform>
+      <TimeSensor DEF="TS_ufo"  id="TS_anim" cycleInterval="10" loop="true"></TimeSensor>
+      <OrientationInterpolator DEF="move" id="anim123" key="0 0.5 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+      <ROUTE fromNode="TS_ufo" fromField="fraction_changed" toNode="move" toField="set_fraction"></ROUTE>
+      <ROUTE fromNode="move" fromField="value_changed" toNode="ufo" toField="set_scale"></ROUTE>
+
+      <TimeSensor DEF="TS_ufoo" cycleInterval="10" loop="true"></TimeSensor>
+      <OrientationInterpolator DEF="OIufo" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+      <ROUTE fromNode="TS_ufoo" fromField="fraction_changed" toNode="OIufo" toField="set_fraction"></ROUTE>
+      <ROUTE fromNode="OIufo" fromField="value_changed" toNode="ufo1" toField="set_rotation"></ROUTE>
+
+      <TimeSensor DEF="TS_pi"  cycleInterval="5" loop="true"></TimeSensor>
+      <PositionInterpolator DEF='kolbasit' key='0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1' keyValue='2 1 2, 1 1 3, 1 1 2, 3 1 1, 3 1 2, 2 1 3, 2 1 1, 3 1 3, 1 1 3, 3 1 1, 2 1 2'></PositionInterpolator>
+      <ROUTE fromNode="TS_pi" fromField="fraction_changed" toNode="kolbasit" toField="set_fraction"></ROUTE>
+      <ROUTE fromNode="kolbasit" fromField="value_changed" toNode="nloo" toField="set_scale"></ROUTE>
+      <!--Солнце-->
+      <Transform id="plan0" DEF="sun"  rotation="1 0 0 0.25" onclick='alert("Экваториальный диаметр 1 39 М КМ\nМасса 1.99 х 10^30 КГ\nРасстояние до центра галактики 26 038 LY\nПериод вращения 25 дней\nПериод вращения вокруг центра галактики 225 М лет\nПоверхностная гравитация 274 M/S^2\nПоверхностная температура 5 505 C \n\nСолнце, это звезда в центре Солнечной системы. Масса солнца составляет 99,86% общей массы Солнечной системы");'>
+        <Shape>
+          <Appearance>
+            <ImageTexture url="8k_sun.jpg">
+            </ImageTexture>
+            <Material>
+            </Material>
+          </Appearance>
+          <Sphere radius="1.5">
+          </Sphere>
+        </Shape>
+      </Transform>
+      <TimeSensor DEF="TS_sun" cycleInterval="20" loop="true"></TimeSensor>
+      <OrientationInterpolator id="SUNNY" DEF="OI_sun" key='0 0.25 0.5 0.75 1' keyValue='0 1 0 0  0 1 0 1.57079  0 1 0 3.14159  0 1 0 4.71239  0 1 0 6.28317'></OrientationInterpolator>
+      <ROUTE fromNode="TS_sun" fromField="fraction_changed" toNode="OI_sun" toField="set_fraction"></ROUTE>
+      <ROUTE fromNode="OI_sun" fromField="value_changed" toNode="sun" toField="set_rotation"></ROUTE>
+      <!--Меркурия-->
+      <Transform id="plan1" DEF="mercury_sun" translation="0 0 0">
+        <Transform DEF="mercury" translation="4 0 0" center="0 0 0" 
+        onclick='alert("Экваториальный диаметр 4 879 км\nМасса 3.3 х 10^23 КГ\nРасстояние от солнца 55.8 М КМ\nПериод вращения 59 дней\nПериод вращения вокруг солнца 88 дней\nПоверхностная гравитация 3.7 M/S^2\nПоверхностная температура 167 C \nТемпература днем 473 С\nТемпература ночью -183 С\n\nМеркурий самая маленькая планета солнечной системы.\nПоскольку у него нет атмосферы, чтобы сохранять тепло,\nего поверхность испытывает самый большой перепад\nтемператур по сравнению с другими планетами.");'>
+        <Shape>
+          <Appearance>
+            <ImageTexture url="mercury.jpg">
+            </ImageTexture> 
+            <Material>
+            </Material>
+          </Appearance>
+          <Sphere radius="0.5">
+          </Sphere>
+        </Shape>
+      </Transform>
+    </Transform>
+    <TimeSensor id="TS_mer" DEF="TS_mer" cycleInterval="58" loop="true"></TimeSensor>
+    <OrientationInterpolator id="OI_mer" DEF="OI_mer" key='0 0.25 0.5 0.75 1' keyValue='0 1 0 0  0 1 0 3  0 1 0 3.14159  0 1 0 6  0 1 0 6.28317'></OrientationInterpolator>
+    <ROUTE fromNode="TS_mer" fromField="fraction_changed" toNode="OI_mer" toField="set_fraction"></ROUTE>
+    <ROUTE fromNode="OI_mer" fromField="value_changed" toNode="mercury" toField="set_rotation"></ROUTE>
+
+    <TimeSensor DEF="TS_me_s" cycleInterval="2.4" loop="true" id="id_me_s" enabled="true"></TimeSensor>
+    <OrientationInterpolator DEF="OI_me_s" key="0 0.5 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+    <ROUTE fromNode="TS_me_s" fromField="fraction_changed" toNode="OI_me_s" toField="set_fraction"></ROUTE>
+    <ROUTE fromNode="OI_me_s" fromField="value_changed" toNode="mercury_sun" toField="set_rotation"></ROUTE>
+    <!--Венера-->
+    <Transform id="plan2" DEF="venus_sun" translation="0 0 0">
+      <Transform DEF="venus" translation="7 0 0" onclick='alert("Экваториальный диаметр 12 104 км\nМасса 4.9 х 10^24 КГ\nРасстояние от солнца 108 М КМ\nПериод вращения 243 дня\nПериод вращения вокруг солнца 225 дней\nПоверхностная гравитация 8.9 M/S^2\nПоверхностная температура 462 C \n\nХотя Венера подобна по размеру и внутренней структуре Земле,\nее вулканическая поверхность, жаркая и плотная атмосфера,\nделают ее одним из самых негостеприимных мест Солнечной системы.");'>
+        <Shape>
+          <Appearance>
+            <ImageTexture url="venus.jpg">
+            </ImageTexture> 
+            <Material>
+            </Material>
+          </Appearance>
+          <Sphere radius="0.55">
+          </Sphere>
+        </Shape>
+      </Transform>
+    </Transform>
+    <TimeSensor DEF="TS_v" cycleInterval="10" loop="true"></TimeSensor>
+    <OrientationInterpolator DEF="OI_v" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 -3.14, 0 1 0 -6.28"></OrientationInterpolator>
+    <ROUTE fromNode="TS_v" fromField="fraction_changed" toNode="OI_v" toField="set_fraction"></ROUTE>
+    <ROUTE fromNode="OI_v" fromField="value_changed" toNode="venus" toField="set_rotation"></ROUTE>
+
+    <TimeSensor DEF="TS_v_s" cycleInterval="6" loop="true" id="id_v_s" enabled="true"></TimeSensor>
+    <OrientationInterpolator DEF="OI_v_s" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+    <ROUTE fromNode="TS_v_s" fromField="fraction_changed" toNode="OI_v_s" toField="set_fraction"></ROUTE>
+    <ROUTE fromNode="OI_v_s" fromField="value_changed" toNode="venus_sun" toField="set_rotation"></ROUTE>
+    <!--Земеля-->
+    <Transform id="plan3"  DEF="earth_sun" translation="0 0 0" > 
+      <Transform DEF="earth" translation="10 0 0" rotation="1 0 0 0.1" onclick='alert("Экваториальный диаметр 3 476 км\nМасса 7.3 х 10^22 КГ\nРасстояние от солнца 384 552 КМ\nПериод вращения 27 дня\nПериод обращения 27 дней\nПоверхностная гравитация 1.62 M/S^2\nПоверхностная температура -23 C \n\nНа обратной стороне Луны расположились инопланетяне.");'> 
+       <!--Луна-->
+       <Transform id="plan4" DEF="moon" translation="1.1 0 0">
+        <Shape>
+          <Appearance>
+            <ImageTexture url="moon.jpg">
+            </ImageTexture> 
+            <Material>
+            </Material>
+          </Appearance>
+          <Sphere radius="0.15">
+          </Sphere>
+        </Shape>
+      </Transform>
+      <Transform onclick='alert("Экваториальный диаметр 12 756 км\nМасса 6 х 10^24 КГ\nРасстояние от солнца 1 A.E.\nПериод вращения 234 дня\nПериод вращения вокруг солнца 365 дней\nПоверхностная гравитация 9.8 M/S^2\nПоверхностная температура 15 C \n\nОднажды здесь жили динозавры, но что-то пошло не так");'>
+        <Shape>
+          <Appearance>
+            <ImageTexture url="earth.jpg">
+            </ImageTexture> 
+            <Material>
+            </Material>
+          </Appearance>
+          <Cylinder height="0.055" radius="0.6" >
+          </Cylinder>
+        </Shape>
+      </Transform>
+    </Transform>
+  </Transform>
+
+  <TimeSensor DEF="TS_e" cycleInterval="1" loop="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_e" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_e" fromField="fraction_changed" toNode="OI_e" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_e" fromField="value_changed" toNode="earth" toField="set_rotation"></ROUTE>
+
+  <TimeSensor DEF="TS_m" cycleInterval="27.03" loop="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_m" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_m" fromField="fraction_changed" toNode="OI_m" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_m" fromField="value_changed" toNode="moon" toField="set_rotation"></ROUTE>
+
+  <TimeSensor DEF="TS_e_s" cycleInterval="10" loop="true" id="id_e_s" enabled="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_e_s" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_e_s" fromField="fraction_changed" toNode="OI_e_s" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_e_s" fromField="value_changed" toNode="earth_sun" toField="set_rotation"></ROUTE>
+  <!--Марс-->
+  <Transform id="plan5" DEF="mars_sun" translation="0 0 0">
+    <Transform DEF="mars" translation="13 0 0" onclick='alert("Экваториальный диаметр 6 792 км\nМасса 6.4 х 10^23 КГ\nРасстояние от солнца 1.53 A.E.\nПериод вращения 1.03 дня\nПериод вращения вокруг солнца 1.88 год\nПоверхностная гравитация 3.7 M/S^2\nПоверхностная температура -63 C\nТемпература летом 17 С\nТемпература зимой -140 С \n\nМарс это четвертая планета от Солнца и вторая \nсамая маленькая планета Солнечной системы.\nКрасноватая окраска поверхности Марса\nобусловлена присутствием оксида железа");'>
+      <Shape>
+        <Appearance>
+          <ImageTexture url="mars.jpg">
+          </ImageTexture> 
+          <Material>
+          </Material>
+        </Appearance>
+        <Sphere radius="0.7">
+        </Sphere>
+      </Shape>
+    </Transform>
+  </Transform>
+  <TimeSensor DEF="TS_mars" cycleInterval="1.6" loop="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_mars" key='0 0.25 0.5 0.75 1' keyValue='0 1 0 0  0 1 0 1.57079  0 1 0 3.14159  0 1 0 4.71239  0 1 0 6.28317'></OrientationInterpolator>
+  <ROUTE fromNode="TS_mars" fromField="fraction_changed" toNode="OI_mars" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_mars" fromField="value_changed" toNode="mars" toField="set_rotation"></ROUTE>
+
+  <TimeSensor DEF="TS_m_s" cycleInterval="18" loop="true" id="id_m_s" enabled="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_m_s" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_m_s" fromField="fraction_changed" toNode="OI_m_s" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_m_s" fromField="value_changed" toNode="mars_sun" toField="set_rotation"></ROUTE>
+  <!--Жупитер-->
+  <Transform id="plan6" DEF="jupiter_sun" translation="0 0 0">
+    <Transform DEF="jupiter" translation="17 0 0" onclick='alert("Экваториальный диаметр 142 984 км\nМасса 1.9 х 10^27 КГ\nРасстояние от солнца 5.21 A.E.\nПериод вращения 94.55 М\nПериод вращения вокруг солнца 11.9 лет\nПоверхностная гравитация 2.5 M/S^2\nПоверхностная температура -120 C \n\nСамая большая планета Солнечной системы с массой \nв 2,5 раза большей, чем у всех остальных вместе взятых\nпланет и составляющая всего 0,0001% массы Солнца.");'>
+      <Shape>
+        <Appearance>
+          <ImageTexture url="jupiter.jpg">
+          </ImageTexture> 
+          <Material>
+          </Material>
+        </Appearance>
+        <Sphere radius="1.1">
+        </Sphere>
+      </Shape>
+    </Transform>
+  </Transform>
+  <TimeSensor DEF="TS_j" cycleInterval="41.6" loop="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_j" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_j" fromField="fraction_changed" toNode="OI_j" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_j" fromField="value_changed" toNode="jupiter" toField="set_rotation"></ROUTE>
+
+  <TimeSensor DEF="TS_j_s" cycleInterval="12" loop="true" id="id_j_s" enabled="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_j_s" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_j_s" fromField="fraction_changed" toNode="OI_j_s" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_j_s" fromField="value_changed" toNode="jupiter_sun" toField="set_rotation"></ROUTE>
+  <!--Сотурн-->
+  <Transform id="plan7" DEF="saturn_sun" translation="0 0 0">
+    <Transform translation="22 0 0" rotation="1 0 0 0.3" onclick='alert("Экваториальный диаметр 120 536 км\nМасса 5.7 х 10^26 КГ\nРасстояние от солнца 9.56 A.E.\nПериод вращения 104.39 М\nПериод вращения вокруг солнца 29 лет\nПоверхностная гравитация 10.4 M/S^2\nПоверхностная температура -125 C \n\nЯвляется наименее плотной планетой Солнечной системы. \nЕго средняя плотность составляет 0,68 г/см3 \nпочти на треть меньше плотности воды.");'>
+      <Transform rotation="1 0 0 0.4" DEF="saturn">
+        <Shape>
+          <Appearance>
+            <ImageTexture url="saturn.jpg">
+            </ImageTexture>
+            <Material>
+            </Material>
+          </Appearance>
+          <Sphere radius="1.2">
+          </Sphere>
+        </Shape>
+      </Transform>
+      <!--Колечько Сотурна-->
+      <Transform scale="1 1 0.01" rotation="1 0 0 -1.2">
+        <Shape>
+          <Appearance>
+            <ImageTexture url="ringsaturn.png">
+            </ImageTexture> 
+            <TextureTransform translation="-1.2 0" >
+            </TextureTransform>
+            <Material>
+            </Material>
+          </Appearance>
+          <Torus innerRadius="0.5" outerRadius="2">
+          </Torus>
+        </Shape>
+      </Transform>
+    </Transform>
+  </Transform>
+  <TimeSensor DEF="TS_s" cycleInterval="0.437" loop="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_s" key="0, 0.5, 1" keyValue="0 0.7 0 0, 0 0.7 0 3.14, 0 0.7 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_s" fromField="fraction_changed" toNode="OI_s" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_s" fromField="value_changed" toNode="saturn" toField="set_rotation"></ROUTE>
+
+  <TimeSensor DEF="TS_s_s" cycleInterval="290" loop="true" id="id_s_s" enabled="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_s_s" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_s_s" fromField="fraction_changed" toNode="OI_s_s" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_s_s" fromField="value_changed" toNode="saturn_sun" toField="set_rotation"></ROUTE>
+  <!--Юранус-->
+  <Transform id="plan8" DEF="uranus_sun" translation="0 0 0">
+    <Transform DEF="uranus" translation="27 0 0" onclick='alert("Экваториальный диаметр 51 118 км\nМасса 8.7 х 10^25 КГ\nРасстояние от солнца 19.2 A.E.\nПериод вращения 17Ч 14М\nПериод вращения вокруг солнца 84 года\nПоверхностная гравитация 8.7 M/S^2\nПоверхностная температура -210 C \n\nСамая холодная планета в Солнечной системе.");'>
+      <Shape>
+        <Appearance>
+          <ImageTexture url="uranus.jpg">
+          </ImageTexture> 
+          <Material>
+          </Material>
+        </Appearance>
+        <Sphere radius="0.8">
+        </Sphere>
+      </Shape>
+    </Transform>
+  </Transform>
+  <TimeSensor DEF="TS_u" cycleInterval="0.71" loop="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_u" key="0, 0.5, 1" keyValue="0 0.7 0 0, 0 0.7 0 3.14, 0 0.7 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_u" fromField="fraction_changed" toNode="OI_u" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_u" fromField="value_changed" toNode="uranus" toField="set_rotation"></ROUTE>
+
+  <TimeSensor DEF="TS_u_s" cycleInterval="840" loop="true" id="id_u_s" enabled="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_u_s" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_u_s" fromField="fraction_changed" toNode="OI_u_s" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_u_s" fromField="value_changed" toNode="uranus_sun" toField="set_rotation"></ROUTE>
+  <!--Нетун-->
+  <Transform id="plan9" DEF="neptun_sun" translation="0 0 0">
+    <Transform DEF="neptun" translation="30 0 0" onclick='alert("Экваториальный диаметр 49 528 км\nМасса 1.02 х 10^26 КГ\nРасстояние от солнца 30.1 A.E.\nПериод вращения 16Ч 06М\nПериод вращения вокруг солнца 165 лет\nПоверхностная гравитация 11.2 M/S^2\nПоверхностная температура -200 C \n\nСамая дальняя планета от Солнца. Планета представляет собой шар \nиз газа и льда, с каменистым ядром. У него нет поверхности, как например у Марса или Земли.\nЕго могучая атмосфера постепенно переходит в жидкий океан, а затем, при увеличении плотности, в ледяную мантию.");'>
+      <Shape>
+        <Appearance>
+          <ImageTexture url="neptun.jpg">
+          </ImageTexture>
+          <Material>
+          </Material>
+        </Appearance>
+        <Sphere radius="0.8">
+        </Sphere>
+      </Shape>
+    </Transform>
+  </Transform>
+  <TimeSensor DEF="TS_n" cycleInterval="0.66" loop="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_n" key="0, 0.5, 1" keyValue="0 0.7 0 0, 0 0.7 0 3.14, 0 0.7 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_n" fromField="fraction_changed" toNode="OI_n" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_n" fromField="value_changed" toNode="neptun" toField="set_rotation"></ROUTE>
+
+  <TimeSensor DEF="TS_n_s" cycleInterval="1640" loop="true" id="id_n_s" enabled="true"></TimeSensor>
+  <OrientationInterpolator DEF="OI_n_s" key="0, 0.5, 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+  <ROUTE fromNode="TS_n_s" fromField="fraction_changed" toNode="OI_n_s" toField="set_fraction"></ROUTE>
+  <ROUTE fromNode="OI_n_s" fromField="value_changed" toNode="neptun_sun" toField="set_rotation"></ROUTE>
+</Scene>
+</X3D>
+</body>
 </html>
+
