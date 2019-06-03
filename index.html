@@ -1,13 +1,496 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>  
+﻿<html>
+<head>
     <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+    <title>Lab_ikg_2</title>
+    <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
+    <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
+    <link rel="stylesheet" href="../css/custom.css" />
+    <script src="../js/custom.js"></script>
+
+
+
+    
+
+</head>
+<body>
+<p>
+   Smolin Andrey 4643
+</p>
+<x3d width='1280px' height='720px'>
+    <scene >
+
+    <script>
+      document.onload = function() {
+        item = false;
+      }
+      function move(point) {
+        if (item) {document.getElementById(item).setAttribute('set_destination', point[0]+' '+parseFloat(point[1]+2.2)+' '+point[2])};
+      }
+      function select(item2) {
+        item = item2;
+         (item=='BoxCh')?'0.5 0.5 0.5':'0 0 0';
+      }
+    </script>
+
+    <script>
+      document.onload = function() {
+        var col = false;
+        document.getElementById('myZnak').onclick = function() {
+          document.getElementById('myMat').setAttribute('diffuseColor', col?'#600000':'#808080');
+          col = !col;
+        };
+      }
+    </script>
+    
+        <script>
+        function changeColor()
+        {
+        c0 = Math.random();
+        c1 = Math.random();
+        c2 = Math.random();
+        document.getElementById('matfara').setAttribute('diffuseColor', c0 + ' ' + c1 + ' ' + c2);
+        document.getElementById('mattfara').setAttribute('diffuseColor', c0 + ' ' + c1 + ' ' + c2);
+        };
+    </script>
+       
+        <script>
+      function addNode()
+      {
+        x = "0";
+        y = "1";
+        z =  Math.random() * 7 - 12.8;
+        var t = document.createElement('Transform');
+        t.setAttribute('scale', "1.5 1 1");
+        t.setAttribute('translation', x + ' ' + y + ' ' + z);
+        var s = document.createElement('Shape');
+        t.appendChild(s);
+        var b = document.createElement('Box');
+        s.appendChild(b);
+        var a = document.createElement('Appearance');
+        s.appendChild(a);
+        var m = document.createElement('Material');
+        m.setAttribute('diffuseColor', "#EEE8AA" );
+        a.appendChild(m);
+        var r = document.getElementById('root');
+        r.appendChild(t);
+        return false;
+
+    
+      };
+      
+      function removeNode()
+      {
+        var r = document.getElementById('root');
+        for (var i = 0; i < r.childNodes.length; i++) {
+          if (r.childNodes[i].nodeType === Node.ELEMENT_NODE) {
+            r.removeChild(r.childNodes[i]);
+            break;
+          }
+        }
+        return false;
+      };
+    </script> 
+    <input type="button" value="Добавить" onclick="addNode();" />
+    <input type="button" value="Изменить цвет" onclick="changeColor();" />
+    <input type="button" value="Удалить" onclick="removeNode();" />
+
+        <PositionChaser DEF='BoxCh' id='BoxCh' duration='1' initialDestination='0 0 0'></PositionChaser>
+
+        <transform  DEF='Box' onclick='select("BoxCh")' >
+             <Transform id="root">
+        </Transform> 
+        <transform>                                             <!---body--->
+        <shape>
+            <appearance>
+                <material  diffuseColor='#600000'></material>
+            </appearance>
+            <box size = '2.5 2.5 3.5'></box>
+        </shape>
+        </transform>
+
+        <transform translation='0 0 1.8'>                       <!---body2--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#C0C0C0'></material>
+            </appearance>
+            <box size = '2.4 2.4 0.2'></box>
+        </shape>
+        </transform>
+
+        <transform translation='0 0.35 1.81'>                       <!---body2_2_1--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#848482'></material>
+            </appearance>
+            <box size = '2 1.5 0.2'></box>
+        </shape>
+        </transform>
+
+        <transform translation='0 -1 1.8'>                       <!---body2_2--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#808080'></material>
+            </appearance>
+            <box size = '3.7 1 0.3'></box>
+        </shape>
+        </transform>
+
+        <transform translation='1.45 0 1.82'>                       <!---body2_3--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#808080'></material>
+            </appearance>
+            <box size = '0.5 0.3 0.1'></box>
+        </shape>
+        </transform>
+
+        <transform translation='1.45 0 1.83'>                       <!---body2_4--->
+        <shape>
+            <appearance>
+                <material id='matfara' diffuseColor='#FF8C00'></material>
+            </appearance>
+            <box size = '0.37 0.25 0.1'></box>
+        </shape>
+        </transform>
+
+        <transform translation='-1.45 0 1.82'>                       <!---body2_5--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#808080'></material>
+            </appearance>
+            <box size = '0.5 0.3 0.1'></box>
+        </shape>
+        </transform>
+
+        <transform  translation='-1.45 0 1.83'>                       <!---body2_6--->
+        <shape>
+            <appearance>
+                <material id='mattfara' diffuseColor='#FF8C00'></material>
+            </appearance>
+            <box size = '0.37 0.25 0.1'></box>
+        </shape>
+        </transform>
+
+        <transform translation='0 0.75 -3'>                   <!---body3--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#600000'></material>
+            </appearance>
+            <box size = '3 4 3'></box>
+        </shape>  
+        </transform>
+
+        
+
+        <transform translation='0 1.4 -1.6'>                   <!---wndws--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#8B0000'></material>
+            </appearance>
+            <box size = '3.9 0.3 0.18'></box>
+        </shape>  
+        </transform>
+
+        <transform translation='0 -0.95 -9'>                   <!---body3_1--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#696969'></material>
+            </appearance>
+            <box size = '2.52 0.5 10'></box>
+        </shape>  
+        </transform>
+
+         
+
+        <transform translation='0 2 -2.29'>                   <!---wndw1--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#008B8B'></material>
+            </appearance>
+            <box size = '2.45 1.12 1.59'></box>
+        </shape>  
+        </transform>
+
+        <transform translation='1 2 -2.5'>                   <!---wndw2--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#008B8B'></material>
+            </appearance>
+            <box size = '1.01 1.15 1.6'></box>
+        </shape>  
+        </transform>
+
+        <transform translation='-1 2 -2.5'>                   <!---wndw3--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#008B8B'></material>
+            </appearance>
+            <box size = '1.01 1.15 1.6'></box>
+        </shape>  
+        </transform>
+
+        <transform translation='1.3 -0.2 0.2'>                               <!---body4--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#600000'></material>
+            </appearance>
+            <box size = '1 0.1 1.5'></box>
+        </shape>
+        </transform>
+
+        <transform translation='1.3 -0.53 1.08' rotation='1 0 0 1.1'>                               <!---body5--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#600000'></material>
+            </appearance>
+            <box size = '1 0.1 0.8'></box>
+        </shape>
+        </transform>
+
+        <transform translation='1.3 -0.67 -0.75' rotation='-1 0 0 1.1'>                               <!---body6--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#600000'></material>
+            </appearance>
+            <box size = '1 0.1 1.1'></box>
+        </shape>
+        </transform>
+
+        <transform translation='-1.4 -0.2 0.2'>                                             <!---body7--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#600000'></material>
+            </appearance>
+            <box size = '1 0.1 1.5'></box>
+        </shape>
+        </transform>
+
+        <transform translation='-1.4 -0.53 1.08' rotation='1 0 0 1.1'>                               <!---body8--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#600000'></material>
+            </appearance>
+            <box size = '1 0.1 0.8'></box>
+        </shape>
+        </transform>
+
+        <transform translation='-1.4 -0.67 -0.75' rotation='-1 0 0 1.1'>                               <!---body9--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#600000'></material>
+            </appearance>
+            <box size = '1 0.1 1.1'></box>
+        </shape>
+        </transform>
+
+        <transform translation='1.45 -1.3 0.2' rotation='0 0 1 1.57'>          <!---wheel1--->
+                <shape >
+                    <appearance>
+                        <material diffuseColor='#000000'></material>
+                    </appearance>
+                    <cylinder height='0.4' radius='0.9'></cylinder>
+                </shape>
+                <transform>
+                    <shape >
+                    <appearance>
+                        <material diffuseColor='#C0C0C0'></material>
+                    </appearance>
+                    <cylinder height='0.41' radius='0.6'></cylinder>
+                </shape>
+        </transform>
+
+        <transform translation='0 2.9 0'>                                       <!---wheel2--->
+                <shape >
+                    <appearance>
+                        <material diffuseColor='#000000'></material>
+                    </appearance>
+                    <cylinder height='0.4' radius='0.9'></cylinder>
+                </shape>
+                <transform>
+                    <shape >
+                    <appearance>
+                        <material diffuseColor='#C0C0C0'></material>
+                    </appearance>
+                    <cylinder height='0.41' radius='0.6'></cylinder>
+                </shape>
+                </transform>
+                </transform>
+        </transform>
+
+        <transform translation='1.45 -1.3 -9.7' rotation='0 0 1 1.57'>          <!---wheel3--->
+                <shape >
+                    <appearance>
+                        <material diffuseColor='#000000'></material>
+                    </appearance>
+                    <cylinder height='0.4' radius='0.9'></cylinder>
+                </shape>
+                <transform>
+                    <shape >
+                    <appearance>
+                        <material diffuseColor='#C0C0C0'></material>
+                    </appearance>
+                    <cylinder height='0.41' radius='0.6'></cylinder>
+                </shape>
+        </transform>
+
+        <transform translation='0 2.9 0'>                                       <!---wheel4--->
+                <shape >
+                    <appearance>
+                        <material diffuseColor='#000000'></material>
+                    </appearance>
+                    <cylinder height='0.4' radius='0.9'></cylinder>
+                </shape>
+                <transform>
+                    <shape >
+                    <appearance>
+                        <material diffuseColor='#C0C0C0'></material>
+                    </appearance>
+                    <cylinder height='0.41' radius='0.6'></cylinder>
+                </shape>
+                </transform>
+                </transform>
+        </transform>
+
+        <transform translation='1.45 -1.3 -12' rotation='0 0 1 1.57'>          <!---wheel5--->
+                <shape >
+                    <appearance>
+                        <material diffuseColor='#000000'></material>
+                    </appearance>
+                    <cylinder height='0.4' radius='0.9'></cylinder>
+                </shape>
+                <transform>
+                    <shape >
+                    <appearance>
+                        <material diffuseColor='#C0C0C0'></material>
+                    </appearance>
+                    <cylinder height='0.41' radius='0.6'></cylinder>
+                </shape>
+        </transform>
+
+        <transform translation='0 2.9 0'>                                       <!---wheel6--->
+                <shape >
+                    <appearance>
+                        <material diffuseColor='#000000'></material>
+                    </appearance>
+                    <cylinder height='0.4' radius='0.9'></cylinder>
+                </shape>
+                <transform>
+                    <shape >
+                    <appearance>
+                        <material diffuseColor='#C0C0C0'></material>
+                    </appearance>
+                    <cylinder height='0.41' radius='0.6'></cylinder>
+                </shape>
+                </transform>
+                </transform>
+        </transform>
+
+                <transform translation='1.6 1.25 -3.8'>
+                    <shape >
+                    <appearance>
+                        <material diffuseColor='#000000'></material>
+                    </appearance>
+                    <cylinder height='5' radius='0.1'></cylinder>
+                </shape>
+                </transform>
+
+                <transform translation='-1.6 1.25 -3.8'>
+                    <shape >
+                    <appearance>
+                        <material diffuseColor='#000000'></material>
+                    </appearance>
+                    <cylinder height='5' radius='0.1'></cylinder>
+                </shape>
+                </transform>
+
+
+                <transform translation='0 -0.6 -9'>                   <!---body3_3--->
+        <shape>
+            <appearance>
+                <material diffuseColor='#696969'></material>
+            </appearance>
+            <box size = '1.5 0.5 10'></box>
+        </shape>  
+        </transform>
+
+
+                    <Transform rotation="-1 0 0 1.57">
+                <Transform rotation="0 0 1 1.57" scale="0.37 0.3 0.55 " translation="0 9.4 -0.35">
+          <Shape>
+                    <appearance>
+                        <material diffuseColor='#C0C0C0'></material>
+                    </appearance>
+            <IndexedFaceSet ccw="true" convex="true"
+ creaseAngle="0" solid="false"
+ coordIndex="0 1 2 3 -1 4 5 6 7 -1 0 3 4 5 -1 1 6 7 2 -1 0 1 6 5 -1 2 3 9 8 -1 8 9 11 10 -1 12 13 4 7 -1 12 13 15 14 -1 14 12 8 10  -1 7 12 8 2 -1 9 11 15 13 -1 3 4 13 9 -1">
+ <Coordinate point="-13 -6 0, -13 6 0, -13 6 6, -13 -6 6, 13 -6 6, 13 -6 0, 13 6 0, 13 6 6, -12.5 5 6, -12.5 -5 6, -12.5 5 0, -12.5 -5 0, 12.5 5 6, 12.5 -5 6, 12.5 5 0, 12.5 -5 0"></Coordinate>
+
+            </IndexedFaceSet>
+
+          </Shape>
+        </Transform>
+    </Transform >
+
+            <Transform translation="0 0.23 1.93" scale="0.2 0.2 0.2 ">
+            <shape>
+                <IndexedTriangleStripSet id='myZnak' index='0 1 2 -1 0 1 3 -1 0 2 3 -1 2 1 3 -1 0 1 5 -1 1 3 6 -1 3 0 6 -1 0 3 5 -1 4 5 1 -1 4 6 1 ' solid='false'>
+
+                    <Coordinate point='0.2 1 0, 0 0.95 0.15, 0 2.3 0, -0.2 1 0, 0 0.7 0, 1.2 0 0, -1.2 0 0'></Coordinate>
+                </IndexedTriangleStripSet>
+                <appearance>
+                        <material  id='myMat' diffuseColor='#600000'></material>
+                    </appearance>
+                </shape>
+            </Transform>
+
+            <transform rotation="1 0 0 1.57 " translation='0 0.4 1.88'>
+                    <shape >
+                    <appearance>
+                        <material diffuseColor='#FFFAFA'></material>
+                    </appearance>
+                    <cylinder height='0.1' radius='0.25'></cylinder>
+                </shape>
+                </transform>
+
+            </transform>
+
+                <transform onClick="move(event.hitPnt);"  translation='3.2 -2.25 -6' >                               <!---pol--->
+        <shape>
+            <appearance>
+                <Imagetexture url="https://pp.userapi.com/c850132/v850132160/10a109/jHHOQbtyvOI.jpg"></Imagetexture>
+            </appearance>
+            <box size = '18 0.1 20'></box>
+        </shape>
+        </transform>
+
+        <transform scale="1 1 0.6"  translation='3.2 -2.25 -22' >                               <!---pol--->
+        <shape>
+            <appearance>
+                <Imagetexture url="https://pp.userapi.com/c850132/v850132160/10a109/jHHOQbtyvOI.jpg"></Imagetexture>
+            </appearance>
+            <box size = '18 0.1 20'></box>
+        </shape>
+        </transform>
+
+        <transform scale="1 1 0.1" translation='3.2 -2.25 5' >                               <!---pol1--->
+        <shape>
+            <appearance>
+                <Imagetexture url="https://pp.userapi.com/c850132/v850132160/10a109/jHHOQbtyvOI.jpg"></Imagetexture>
+            </appearance>
+            <box size = '18 0.1 20'></box>
+        </shape>
+        </transform>
+
+        <PointLight location="2 3 3" color="1 1 1" intensity="1" shadowIntensity="0.7" shadowMapSize="512"></PointLight>
+
+         <ROUTE fromNode='BoxCh' fromField='value_changed'
+         toNode='Box' toField='set_translation'>
+         </ROUTE>   
+
+         
+
+
+    </scene>  
+</x3d>
+</body>
 </html>
