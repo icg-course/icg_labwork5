@@ -1,33 +1,63 @@
 var coor=[0,0,0];
-var j = 0;
+var j = 0, g = 0, d = 0, a = 0, h = 0, f = 0;
 function make() {
   if( j > 4){
     alert("Достаточно.");
   }else{
     var t = document.createElement("Transform");
     var n = document.createElement("Inline");
-    t.setAttribute("id", String(j));
-    j++;
-    if(j == 0)
+    //t.setAttribute("id", "1");
+    if(j == 0){
+      t.setAttribute("id", "1");
       coor=[-20, 0,-20];
-    if(j == 1)
+      g = 33;
+    }
+    if(j == 1){
+      t.setAttribute("id", "2");
       coor=[-10, 0,-70];
-    if(j == 2)
+      d = 48;
+    }
+    if(j == 2){
+      t.setAttribute("id", "3");
       coor=[-40, 0,-40];
-    if(j == 3)
+      a = 15;
+    }
+    if(j == 3){
+      t.setAttribute("id", "4");
       coor=[30, 0, 0];
-    if(j == 4)
+      h = 81;
+    }
+    if(j == 4){
+      t.setAttribute("id", "5");
       coor=[10, 0, -60];
+      f = 67;
+    }
     t.setAttribute("translation", coor);
     n.setAttribute("url", "chess.x3d");
     t.appendChild(n);
     document.getElementById("root").appendChild(t);
+    j++;
   }
 }
-function remove() {
-  
+function del() {
+  if(c == g){
+    var delNode = document.getElementById("1");
+    delNode.remove();
+  }if(c == d){
+    var delNod = document.getElementById("2");
+    delNod.remove();
+  }if(c == a){
+    var delNo = document.getElementById("3");
+    delNo.remove();
+  }if(c == h){
+    var delN = document.getElementById("4");
+    delN.remove();
+  }if(c == f){
+    var delNn = document.getElementById("5");
+    delNn.remove();
+  }
 }
-var line = 0, i = 0;
+var line = 0, i = 0, c = 0;
 function move(point){
   line = 0;
   i = 0;
@@ -57,216 +87,280 @@ function move(point){
         if(point[0] < -35){
           point = [-40,0,0];
           i++;
+          c = 11;
         }else if (point[0] < -25) {
           point = [-30,0,0];
           i++;
+          c = 12;
         }else if (point[0] < -15) {
           point = [-20,0,0];
           i++;
+          c = 13;
         }else if (point[0] < -5) {
           point = [-10,0,0];
           i++;
+          c = 14;
         }else if (point[0] < 5) {
           point = [0,0,0];
           i++;
+          c = 15;
         }else if (point[0] < 15) {
           point = [10,0,0];
           i++;
+          c = 16;
         }else if (point[0] < 25) {
           point = [20,0,0];
           i++;
+          c = 17;
         }else if (point[0] < 35) {
           point = [30,0,0];
           i++;
+          c = 18;
         }
       break;
       case 2:
         if(point[0] < -35){
           point = [-40,0,-10];
           i++;
+          c = 21;
         }else if(point[0] < -25){
           point = [-30,0,-10];
           i++;
+          c = 22;
         }else if(point[0] < -15){
           point = [-20,0,-10];
           i++;
+          c = 23;
         }else if(point[0] < -5){
           point = [-10,0,-10];
           i++;
+          c = 24;
         }else if(point[0] < 5){
           point = [0,0,-10];
           i++;
+          c = 25;
         }else if(point[0] < 15){
           point = [10,0,-10];
           i++;
+          c = 26;
         }else if(point[0] < 25){
           point = [20,0,-10];
           i++;
+          c = 27;
         }else if(point[0] < 35){
           point = [30,0,-10];
           i++;
+          c = 28;
         }
       break;
       case 3:
         if(point[0] < -35){
           point = [-40,0,-20];
           i++;
+          c = 31;
         }else if(point[0] < -25){
           point = [-30,0,-20];
           i++;
+          c = 32;
         }else if(point[0] < -15){
           point = [-20,0,-20];
           i++;
+          c = 33;
         }else if(point[0] < -5){
           point = [-10,0,-20];
           i++;
+          c = 34;
         }else if(point[0] < 5){
           point = [0,0,-20];
           i++;
+          c = 35;
         }else if(point[0] < 15){
           point = [10,0,-20];
           i++;
+          c = 36;
         }else if(point[0] < 25){
           point = [20,0,-20];
           i++;
+          c = 37;
         }else if(point[0] < 35){
           point = [30,0,-20];
           i++;
+          c = 38;
         }
       break;
       case 4:
         if(point[0] < -35){
           point = [-40,0,-30];
           i++;
+          c = 41;
         }else if(point[0] < -25){
           point = [-30,0,-30];
           i++;
+          c = 42;
         }else if(point[0] < -15){
           point = [-20,0,-30];
           i++;
+          c = 43;
         }else if(point[0] < -5){
           point = [-10,0,-30];
           i++;
+          c = 44;
         }else if(point[0] < 5){
           point = [0,0,-30];
           i++;
+          c = 45;
         }else if(point[0] < 15){
           point = [10,0,-30];
           i++;
+          c = 46;
         }else if(point[0] < 25){
           point = [20,0,-30];
           i++;
+          c = 47;
         }else if(point[0] < 35){
           point = [30,0,-30];
           i++;
+          c = 48;
         }
       break;
       case 5:
         if(point[0] < -35){
           point = [-40,0,-40];
           i++;
+          c = 51;
         }else if(point[0] < -25){
           point = [-30,0,-40];
           i++;
+          c = 52;
         }else if(point[0] < -15){
           point = [-20,0,-40];
           i++;
+          c = 53;
         }else if(point[0] < -5){
           point = [-10,0,-40];
           i++;
+          c = 54;
         }else if(point[0] < 5){
           point = [0,0,-40];
           i++;
+          c = 55;
         }else if(point[0] < 15){
           point = [10,0,-40];
           i++;
+          c = 56;
         }else if(point[0] < 25){
           point = [20,0,-40];
           i++;
+          c = 57;
         }else if(point[0] < 35){
           point = [30,0,-40];
           i++;
+          c = 57;
         }
       break;
       case 6:
       if(point[0] < -35){
         point = [-40,0,-50];
         i++;
+        c = 61;
       }else if(point[0] < -25){
         point = [-30,0,-50];
         i++;
+        c = 62;
       }else if(point[0] < -15){
         point = [-20,0,-50];
         i++;
+        c = 63;
       }else if(point[0] < -5){
         point = [-10,0,-50];
         i++;
+        c = 64;
       }else if(point[0] < 5){
         point = [0,0,-50];
         i++;
+        c = 65;
       }else if(point[0] < 15){
         point = [10,0,-50];
         i++;
+        c = 66;
       }else if(point[0] < 25){
         point = [20,0,-50];
         i++;
+        c = 67;
       }else if(point[0] < 35){
         point = [30,0,-50];
         i++;
+        c = 68;
       }
       break;
       case 7:
       if(point[0] < -35){
         point = [-40,0,-60];
         i++;
+        c = 71;
       }else if(point[0] < -25){
         point = [-30,0,-60];
         i++;
+        c = 72;
       }else if(point[0] < -15){
         point = [-20,0,-60];
         i++;
+        c = 73;
       }else if(point[0] < -5){
         point = [-10,0,-60];
         i++;
+        c = 74;
       }else if(point[0] < 5){
         point = [0,0,-60];
         i++;
+        c = 75;
       }else if(point[0] < 15){
         point = [10,0,-60];
         i++;
+        c = 76;
       }else if(point[0] < 25){
         point = [20,0,-60];
         i++;
+        c = 77;
       }else if(point[0] < 35){
         point = [30,0,-60];
         i++;
+        c = 78;
       }
       break;
       case 8:
       if(point[0] < -35){
         point = [-40,0,-70];
         i++;
+        c = 81;
       }else if(point[0] < -25){
         point = [-30,0,-70];
         i++;
+        c = 82;
       }else if(point[0] < -15){
         point = [-20,0,-70];
         i++;
+        c = 83;
       }else if(point[0] < -5){
         point = [-10,0,-70];
         i++;
+        c = 84;
       }else if(point[0] < 5){
         point = [0,0,-70];
         i++;
+        c = 85;
       }else if(point[0] < 15){
         point = [10,0,-70];
         i++;
+        c = 86;
       }else if(point[0] < 25){
         point = [20,0,-70];
         i++;
+        c = 87;
       }else if(point[0] < 35){
         point = [30,0,-70];
         i++;
+        c = 88;
       }
       break;
     default:
