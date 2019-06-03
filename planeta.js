@@ -2,7 +2,7 @@ document.onload = function(){
   var batton = true;
   var audio = new Audio();
   var inc= 0.1;
-  var stamp = document.getElementById('id_n_s').getAttribute("time");
+  //var stamp = document.getElementById('id_n_s').getAttribute("time");
   document.getElementById('butt1').onclick = () =>{
     if(audio.autoplay)
     {
@@ -117,8 +117,8 @@ document.onload = function(){
   }
 
   document.getElementById('butt5').onclick = () =>{
-      var bbbt = String(Math.floor(Math.random() * 5) + " " + Math.floor(Math.random() * 5)  + " " + Math.floor(Math.random() * 5) + " " );
-      var bbt = String(Math.floor(Math.random() * 5) + " " + Math.floor(Math.random() * 5) + " " + Math.floor(Math.random() * 5) + " " );
+      //var bbbt = String(Math.floor(Math.random() * 5) + " " + Math.floor(Math.random() * 5)  + " " + Math.floor(Math.random() * 5) + " " );
+      // var bbt = String(Math.floor(Math.random() * 5) + " " + Math.floor(Math.random() * 5) + " " + Math.floor(Math.random() * 5) + " " );
       document.getElementById('anim123').setAttribute("keyValue", "1 1 1 0 "+"1 1 1 3.14 "+"1 1 1 6.28");
       
   }
