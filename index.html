@@ -9,7 +9,7 @@
     <script src="../js/custom.js"></script>
 </head>
   <body>
-    <input type="button" id="but_e" value="Еще" onclick='toggle("born");'>
+    <input type="button" id="but_e" value="Еще" onclick='make();'>
     <script src="magic.js"></script>
       <h1>lr5</h1>
       <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">
@@ -28,6 +28,22 @@
           <CoordinateInterpolator DEF="CoordInt" key="0 0.5 1" keyValue="0 -4 0, 0 -2 0, 0 -4 0"></CoordinateInterpolator>
           <ROUTE fromNode="peskaChaser" fromField="value_changed" toNode="peska" toField="set_translation"></ROUTE>
 
+          <!--<Transform translation="0 3 0">
+            <Shape>
+              <Appearance>
+                <Material diffuseColor="1 1 1"></Material>
+              </Appearance>
+              <Cone bottomradius="2" height="5"></Cone>
+            </Shape>
+            <Transform translation="0 2 0">
+              <Shape>
+                <Appearance>
+                  <Material diffuseColor="1 1 1"></Material>
+                </Appearance>
+                <Sphere></Sphere>
+              </Shape>
+            </Transform>
+          </Transform>-->
                                                           <!--Дальше бога нет-->
 <Transform>
 <Group def="pole" onClick="move(event.hitPnt);">

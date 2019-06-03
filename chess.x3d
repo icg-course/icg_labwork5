@@ -1,0 +1,18 @@
+<Scene>
+<Transform translation="0 3 0">
+  <Shape>
+    <Appearance>
+      <Material diffuseColor="1 1 1"></Material>
+    </Appearance>
+    <Cone bottomradius="2" height="5"></Cone>
+  </Shape>
+  <Transform translation="0 2 0">
+    <Shape>
+      <Appearance>
+        <Material diffuseColor="1 1 1"></Material>
+      </Appearance>
+      <Sphere></Sphere>
+    </Shape>
+  </Transform>
+</Transform>
+</Scene>

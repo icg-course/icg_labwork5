@@ -1,3 +1,32 @@
+var coor=[0,0,0];
+var j = 0;
+function make() {
+  if( j > 4){
+    alert("Достаточно.");
+  }else{
+    var t = document.createElement("Transform");
+    var n = document.createElement("Inline");
+    t.setAttribute("id", String(j));
+    j++;
+    if(j == 0)
+      coor=[-20, 0,-20];
+    if(j == 1)
+      coor=[-10, 0,-70];
+    if(j == 2)
+      coor=[-40, 0,-40];
+    if(j == 3)
+      coor=[30, 0, 0];
+    if(j == 4)
+      coor=[10, 0, -60];
+    t.setAttribute("translation", coor);
+    n.setAttribute("url", "chess.x3d");
+    t.appendChild(n);
+    document.getElementById("root").appendChild(t);
+  }
+}
+function remove() {
+  
+}
 var line = 0, i = 0;
 function move(point){
   line = 0;
