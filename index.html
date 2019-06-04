@@ -7,10 +7,16 @@
     <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
     <script src="privetstvie.js"></script>
   </head>
+  <body style="background-color:#2D3234"></body>
   <body>
-  <h1>|Лаба 5|</h1>
-  <button id='b1'>Test</button>
-  <X3D style="left:0px; top:0px; width:100%; height:100%; border: none;">
+  <h1>|Квартирный вопрос|</h1>
+  <button id='b1'>Проверка терпения</button>
+  <button id='b2'>жми на клавиатуре для замены :: стены 1 :: картина 2 :: пол 3 :: телепуктер 4 :: ковер 5 ::</button>
+  <button id='b3'><img src="https://img.icons8.com/color/18/000000/the-sims.png"></img></button>
+  <button id='b4'><img src="https://img.icons8.com/nolan/18/000000/the-sims.png"></img></button>
+  <button id='b5'>Посмотреть телепуктер поближе - жми PgUp</button>
+  <X3D style="width:1900px; height:800px">
+  <!--<X3D style="left:0px; top:0px; width:100%; height:100%; border: none;">-->
     <Scene>
       <Background backUrl="FullMoonFront2048.png" bottomUrl="FullMoonDown2048.png" 
       frontUrl="FullMoonBack2048.png" leftUrl="FullMoonLeft2048.png" 
@@ -20,7 +26,7 @@
       <Transform rotation="0 0 1 1.57" translation="0 -1.2 0">
       <Shape>
         <Appearance>
-        <ImageTexture url="чистый-кирпич_111.jpg"></ImageTexture>
+        <ImageTexture id = "napol" url="чистый-кирпич_3.jpg"></ImageTexture>
         </Appearance>
           <Box size="0.1 5 5"></Box>
       </Shape>
@@ -29,7 +35,7 @@
       <Transform  rotation="1 0 0 1.57" translation="-2.42 0.58 0">
       <Shape>
         <Appearance>
-        <Material diffuseColor="0.5 0.7 1" transparency ="0.3"></Material>
+        <Material id = "stena1" diffuseColor="0.5 0.7 1" transparency ="0.3"></Material>
         </Appearance>
           <Box size="0.1 5 3.5"></Box>
       </Shape>
@@ -38,7 +44,7 @@
       <Transform  rotation="0 1 0  1.57" translation="0 0.58 -2.42">
       <Shape>
         <Appearance>
-        <Material diffuseColor="0.4 0.9 1" transparency ="0.3"></Material>
+        <Material id = "stena2" diffuseColor="0.4 0.9 1" transparency ="0.3"></Material>
         </Appearance>
           <Box size="0.1 3.5 5"></Box>
       </Shape>
@@ -71,22 +77,22 @@
         <transform rotation="1 0 0 2.54">
       <Shape>
         <Appearance>
-        <ImageTexture url="ковры_54.jpg"></ImageTexture>
+        <ImageTexture id = "kovri" url="ковры1.jpg"></ImageTexture>
         </Appearance>
           <Box size="0.02 3 2"></Box>
       </Shape>
         </transform>
       </Transform> 
-      <!--окно 1-->
-      <Transform  rotation="1 0 0 1.57" translation="-2.38 1 -0.7">
+      <!--картина на стене-->
+      <Transform   translation="-2.38 1 -0.7">
       <Shape>
         <Appearance>
-        <ImageTexture url="Untitled-28.jpg"></ImageTexture>
+        <ImageTexture id = "foto" url="ft1.jpg"></ImageTexture>
         </Appearance>
           <Box size="0.15 2 2"></Box>
       </Shape>
       </Transform> 
-      <!--окно 2-->
+      <!--окно-->
       <Transform  rotation="0 1 0 1.57" translation="-0.7 1 -2.42">
       <Shape>
         <Appearance>
@@ -120,8 +126,8 @@
         <transform rotation="0 1 0 2.54">
       <Shape>
         <Appearance>
-        <MovieTexture repeatS="false" repeatT="false" url="Сломанный телевизор.mp4" loop="true" speed="100"></MovieTexture>
-        <!--<ImageTexture id = "kartinka" url="kSwEJxH7ie8.jpg"></ImageTexture>-->
+        <!--<MovieTexture id = "kartinka1" repeatS="false" repeatT="false" loop="true" speed="100"></MovieTexture>-->
+        <ImageTexture id = "kartinka" url="telepuk1.jpg"></ImageTexture>
         </Appearance>
           <Box size="0.7 0.55 0.1"></Box>
       </Shape>
@@ -239,7 +245,7 @@
       <Transform DEF="Kol_tul1" scale="0.1 0.1 0.1" rotation="0 1 0 1.57" translation="0.03 1.75 -2.3">
       <Shape>
         <Appearance>
-        <ImageTexture url="чистый-кирпич_111.jpg"></ImageTexture>
+        <ImageTexture url="чистый-кирпич_3.jpg"></ImageTexture>
         </Appearance>
           <Torus innerRadius="0.1" outherRadius="0.1"></Torus>
       </Shape>
@@ -248,7 +254,7 @@
       <Transform DEF="Kol_tul2" scale="0.1 0.1 0.1" rotation="0 1 0 1.57" translation="1.1 1.75 -2.3">
       <Shape>
         <Appearance>
-        <ImageTexture url="чистый-кирпич_111.jpg"></ImageTexture>
+        <ImageTexture url="чистый-кирпич_3.jpg"></ImageTexture>
         </Appearance>
           <Torus innerRadius="0.1" outherRadius="0.1"></Torus>
       </Shape>
@@ -300,7 +306,7 @@
         <Transform scale="0.3 0.5 0.3">
           <Shape>
             <Appearance>
-            <ImageTexture url="kSwEJxH7ie8.jpg"></ImageTexture>
+            <ImageTexture id = 'goodrandom' url="kSwEJxH7ie8.jpg"></ImageTexture>
             </Appearance>
             <Sphere radius="1"></Sphere>
           </Shape>
@@ -374,7 +380,7 @@
       </Group>
       </Transform>
       <!--использование тиражирования-->
-      <Transform DEF="oni_2" translation="0 -0.55 0" rotation="0 1 0 1.57">
+      <Transform id = "oni_2" DEF="oni_2" translation="0 -0.55 0" rotation="0 1 0 1.57">
         <transform rotation="0 1 0 2.54">
         <Shape USE="Gr_1_oni"></Shape>
         </transform>
@@ -500,6 +506,29 @@
         <Box size="0.1 0.02 0.2"></Box>
       </Shape>
     	</transform>
+      </Transform>
+      <!--Анимация прыгающей овцы у стены--> 
+      <TimeSensor DEF="Time_ov1" cycleInterval="1.5" loop="true"></TimeSensor>
+          <PositionInterpolator DEF="SC_1" key="0 0.5 1"
+                              keyValue="2 -0.55 -2, 2 0 -2, 2 -0.55 -2">
+          </PositionInterpolator> 
+      <ROUTE fromNode="Time_ov1" fromField="fraction_changed"
+             toNode="SC_1" toField="set_fraction"></ROUTE>
+      <ROUTE fromNode="SC_1" fromField="value_changed"
+             toNode="oni_1" toField="set_translation"></ROUTE>
+             <Transform translation="0 0 0" rotation="0 1 0 3.14"> 
+      <!--Виды-->
+      <transform rotation="0 -1 0 2.54">
+      <Viewpoint id = 'Общий' description="ОбщийВид" fieldOfView="0.61" position="0 0 12"></Viewpoint>
+      </transform>
+      </Transform>
+      <Transform translation="0 0 0" rotation="0 1 0 3.14"> 
+      <transform rotation="0 -1 0 2.54">
+      <Viewpoint id = 'Теле' description="Телепуктер" fieldOfView="0.78" position="-0.5 -0.4 0" centerOfRotation="1 1 1"></Viewpoint>
+      </transform>
+      </Transform>
+      <Transform rotation="1 0 0 3.14"> 
+      <Viewpoint description="Поближе" position="0 1.3 1" centerOfRotation="0 0 0"></Viewpoint>
       </Transform>
     </Scene>
   </X3D>
