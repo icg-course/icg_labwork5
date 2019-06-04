@@ -40,28 +40,6 @@ document.onload = function()
       var kov_rand = String("ковры" + a + ".jpg");
         document.getElementById('kovri').setAttribute("url", kov_rand);
     }
-     if (event.keyCode == 54)  //пятерочка для ковра
-    {
-      var a = Math.floor(Math.random() * 2) + 1;
-      var kov_rand = String("ковры" + a + ".jpg");
-        document.getElementById('kovri').setAttribute("url", kov_rand);
-    }
-      if (event.keyCode == 37 || event.keyCode == 39)  //left i right
-          {
-            flag1 = false;
-            var back = document.getElementById('rear_flap').getAttribute("rotation");
-            if(event.keyCode == 38)
-            {
-              back = forFlap(back, -0.03, 0.7);
-            }
-            else
-            {
-              back = forFlap(back, 0.03, 0.7);
-            }
-            document.getElementById('rear_flap').setAttribute("rotation", back);
-            document.getElementById('flap_1').setAttribute("rotation", front);
-            document.getElementById('flap_2').setAttribute("rotation", front);
-          }
 
     var k = 0
     document.getElementById('b1').onclick = function() {
