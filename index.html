@@ -1,13 +1,1327 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>  
+
+<head>
     <meta charset="utf-8" />
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
     <title>Лабораторная работа 5</title>
     <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
     <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+    <script type="text/javascript" src="https://x3dom.org/release/x3dom-full.js"></script>
+    <link rel='stylesheet' type='text/css' href='https://x3dom.org/release/x3dom.css' />
+        <script type="text/javascript" src="https://x3dom.org/x3dom/example/x3dom.js"></script>
+    <script type="text/javascript"></script>
+    <script type="text/javascript">
+        x3dom.Viewarea.prototype.onDoubleClick = function(x, y) {
+            return;
+        }
+        function movedown(note) 
+        {
+            var textElem = document.getElementById('TEXT');
+            var outputText = document.getElementById('TEXT1');
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChQ')) {
+                document.getElementById('OrChQ').setAttribute('set_destination', '0 -0.1 6.05')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'Q');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChW')) {
+                document.getElementById('OrChW').setAttribute('set_destination', '0 -0.1 5.5')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'W');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChE')) {
+                document.getElementById('OrChE').setAttribute('set_destination', '0 -0.1 4.95')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'E');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChR')) {
+                document.getElementById('OrChR').setAttribute('set_destination', '0 -0.1 4.4')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'R');;
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChT')) {
+                document.getElementById('OrChT').setAttribute('set_destination', '0 -0.1 3.85')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'T');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChY')) {
+                document.getElementById('OrChY').setAttribute('set_destination', '0 -0.1 3.3')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'Y');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChU')) {
+                document.getElementById('OrChU').setAttribute('set_destination', '0 -0.1 2.75')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'U');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChI')) {
+                document.getElementById('OrChI').setAttribute('set_destination', '0 -0.1 2.2')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'I');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChO')) {
+                document.getElementById('OrChO').setAttribute('set_destination', '0 -0.1 1.65')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'O');   
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChP')) {
+                document.getElementById('OrChP').setAttribute('set_destination', '0 -0.1 1.1')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'P');
+            }
+
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChP1')) {
+                document.getElementById('OrChP1').setAttribute('set_destination', '0 -0.1 0.55')
+                 textElem.setAttribute('string', textElem.getAttribute('string') + '');
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChP2')) {
+                document.getElementById('OrChP2').setAttribute('set_destination', '0 -0.1 0')
+                textElem.setAttribute('string', textElem.getAttribute('string') + '');
+            }
+
+
+
+
+
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChA')) {
+                document.getElementById('OrChA').setAttribute('set_destination', '0.55 -0.1 5.8')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'A');
+
+            }
+
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChS')) {
+                document.getElementById('OrChS').setAttribute('set_destination', '0.55 -0.1 5.25')   
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'S');
+            
+            }
+
+
+
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChD')) {
+                document.getElementById('OrChD').setAttribute('set_destination', '0.55 -0.1 4.7')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'D');
+          
+            }
+
+
+
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChF'))
+
+            {
+                document.getElementById('OrChF').setAttribute('set_destination', '0.55 -0.1 4.15')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'F');
+            }
+
+
+
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChG'))
+
+            {
+                document.getElementById('OrChG').setAttribute('set_destination', '0.55 -0.1 3.6')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'G');
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChH'))
+
+            {
+                document.getElementById('OrChH').setAttribute('set_destination', '0.55 -0.1 3.05')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'H');
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChJ'))
+
+            {
+                document.getElementById('OrChJ').setAttribute('set_destination', '0.55 -0.1 2.5')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'J');
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChK'))
+
+            {
+                document.getElementById('OrChK').setAttribute('set_destination', '0.55 -0.1 1.95')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'K');
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChL')) {
+                document.getElementById('OrChL').setAttribute('set_destination', '0.55 -0.1 1.4')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'L');
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChL1')) {
+                document.getElementById('OrChL1').setAttribute('set_destination', '0.55 -0.1 0.85')
+                textElem.setAttribute('string', textElem.getAttribute('string') + ':');
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChL2')) {
+                document.getElementById('OrChL2').setAttribute('set_destination', '0.55 -0.1 0.3')
+                textElem.setAttribute('string', textElem.getAttribute('string') + "'");
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChL3')) {
+                document.getElementById('OrChL3').setAttribute('set_destination', '0.55 -0.1 -0.25')
+                textElem.setAttribute('string', textElem.getAttribute('string') + '|');
+            }
+
+
+
+
+
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChZ')) {
+                document.getElementById('OrChZ').setAttribute('set_destination', '1.1 -0.1 5.55')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'Z');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChX')) {
+                document.getElementById('OrChX').setAttribute('set_destination', '1.1 -0.1 5')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'X');;
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChC')) {
+                document.getElementById('OrChC').setAttribute('set_destination', '1.1 -0.1 4.45')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'C');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChV')) {
+                document.getElementById('OrChV').setAttribute('set_destination', '1.1 -0.1 3.9')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'V');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChB')) {
+                document.getElementById('OrChB').setAttribute('set_destination', '1.1 -0.1 3.35')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'B');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChN')) {
+                document.getElementById('OrChN').setAttribute('set_destination', '1.1 -0.1 2.8')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'N');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChM')) {
+                document.getElementById('OrChM').setAttribute('set_destination', '1.1 -0.1 2.25')
+                textElem.setAttribute('string', textElem.getAttribute('string') + 'M');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChM1')) {
+                document.getElementById('OrChM1').setAttribute('set_destination', '1.1 -0.1 1.7')
+                textElem.setAttribute('string', textElem.getAttribute('string') + '<');
+
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChM2')) {
+                document.getElementById('OrChM2').setAttribute('set_destination', '1.1 -0.1 1.15')
+                textElem.setAttribute('string', textElem.getAttribute('string') + '>');
+            }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChM3')) {
+                document.getElementById('OrChM3').setAttribute('set_destination', '1.1 -0.1 0.6')
+                textElem.setAttribute('string', textElem.getAttribute('string') + '/');
+            }
+
+
+
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChSHIFT')) {
+                document.getElementById('OrChSHIFT').setAttribute('set_destination', '1.1 -0.1 -0.4')
+                var seconds = new Date().getTime() / 1000;
+                document.getElementById("Time").setAttribute("pauseTime", seconds)
+            }
+            
+                if (document.getElementById('OrCh' + note) == document.getElementById('OrChSPACE')) {
+                document.getElementById('OrChSPACE').setAttribute('set_destination', '1.8 -0.1 2.5')
+                textElem.setAttribute('string', textElem.getAttribute('string') + ' ');
+            }
+            
+
+        
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChENTER') || document.getElementById('OrCh' + note) == document.getElementById('OrChAS')) 
+            {
+                document.getElementById('OrChENTER').setAttribute('set_destination', '0.305 -0.1 -0.8')
+                document.getElementById('OrChAS').setAttribute('value_changed', "0 0 0  0 3 0  0 0 0")
+                var div1 = document.getElementById("TEXT");
+                var cheak=div1.getAttribute('string');
+                var sad=textElem.getAttribute('string');
+                var che="yra";
+                if (sad==" COUT<<'HELLO WORLD'")
+                    {
+                        alert(che);
+                        document.getElementById('TEXT1').setAttribute('string', "HELLO WORLD")
+                        textElem.deleteAttribute('string', textElem.getAttribute('string'));
+                    }
+                else 
+                    {
+                        alert(sad);
+                    }
+            }
+
+        }
+
+        function moveup(note) 
+        {
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChA'))
+                document.getElementById('OrChA').setAttribute('set_destination', '0.55 0 5.8')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChS'))
+                document.getElementById('OrChS').setAttribute('set_destination', '0.55 0 5.25')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChD'))
+                document.getElementById('OrChD').setAttribute('set_destination', '0.55 0 4.7')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChF'))
+                document.getElementById('OrChF').setAttribute('set_destination', '0.55 0 4.15')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChG'))
+                document.getElementById('OrChG').setAttribute('set_destination', '0.55 0 3.6')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChH'))
+                document.getElementById('OrChH').setAttribute('set_destination', '0.55 0 3.05')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChJ'))
+                document.getElementById('OrChJ').setAttribute('set_destination', '0.55 0 2.5')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChK'))
+                document.getElementById('OrChK').setAttribute('set_destination', '0.55 0 1.95')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChL'))
+                document.getElementById('OrChL').setAttribute('set_destination', '0.55 0 1.4')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChL1'))
+                document.getElementById('OrChL1').setAttribute('set_destination', '0.55 0 0.85')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChL2'))
+                document.getElementById('OrChL2').setAttribute('set_destination', '0.55 0 0.3')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChL3'))
+                document.getElementById('OrChL3').setAttribute('set_destination', '0.55 0 -0.25')
+
+
+
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChQ'))
+                document.getElementById('OrChQ').setAttribute('set_destination', '0 0 6.05')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChW'))
+                document.getElementById('OrChW').setAttribute('set_destination', '0 0 5.5')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChE'))
+                document.getElementById('OrChE').setAttribute('set_destination', '0 0 4.95')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChR'))
+                document.getElementById('OrChR').setAttribute('set_destination', '0 0 4.4')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChT'))
+                document.getElementById('OrChT').setAttribute('set_destination', '0 0 3.85')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChY'))
+                document.getElementById('OrChY').setAttribute('set_destination', '0 0 3.3')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChU'))
+                document.getElementById('OrChU').setAttribute('set_destination', '0 0 2.75')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChI'))
+                document.getElementById('OrChI').setAttribute('set_destination', '0 0 2.2')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChO'))
+                document.getElementById('OrChO').setAttribute('set_destination', '0 0 1.65')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChP'))
+                document.getElementById('OrChP').setAttribute('set_destination', '0 0 1.1')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChP1'))
+                document.getElementById('OrChP1').setAttribute('set_destination', '0 0 0.55')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChP2'))
+                document.getElementById('OrChP2').setAttribute('set_destination', '0 0 0')
+
+
+
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChZ'))
+                document.getElementById('OrChZ').setAttribute('set_destination', '1.1 0 5.55')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChX'))
+                document.getElementById('OrChX').setAttribute('set_destination', '1.1 0 5')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChC'))
+                document.getElementById('OrChC').setAttribute('set_destination', '1.1 0 4.45')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChV'))
+                document.getElementById('OrChV').setAttribute('set_destination', '1.1 0 3.9')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChB'))
+                document.getElementById('OrChB').setAttribute('set_destination', '1.1 0 3.35')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChN'))
+                document.getElementById('OrChN').setAttribute('set_destination', '1.1 0 2.8')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChM'))
+                document.getElementById('OrChM').setAttribute('set_destination', '1.1 0 2.25')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChM1'))
+                document.getElementById('OrChM1').setAttribute('set_destination', '1.1 0 1.7')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChM2'))
+                document.getElementById('OrChM2').setAttribute('set_destination', '1.1 0 1.15')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChM3'))
+                document.getElementById('OrChM3').setAttribute('set_destination', '1.1 0 0.6')
+
+
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChENTER') || document.getElementById('OrCh' + note) == document.getElementById('OrChAS'))
+                document.getElementById('OrChENTER').setAttribute('set_destination', '0.305 0 -0.8')
+                document.getElementById('OrChAS').setAttribute('set_destination', '0 0 -0.6')
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChSHIFT'))
+                {
+                document.getElementById('OrChSHIFT').setAttribute('set_destination', '1.1 0 -0.4')
+                var seconds = new Date().getTime() / 1000;
+                document.getElementById("Time").setAttribute("resumeTime", seconds); 
+                }
+            if (document.getElementById('OrCh' + note) == document.getElementById('OrChSPACE'))
+                document.getElementById('OrChSPACE').setAttribute('set_destination', '1.8 0 2.5')          
+        }
+
+    </script>
+</head>
+
+
+<body>
+<h1>Голиков laba5</h1>
+    <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom" , style="width:1025px; height:768px">
+        <scene>
+            <Background groundAngle='0.9 1.5 1.57' groundColor='0.6 0.7 0.1 0.4 0.7 0.2 0.1 0.6 0.1 0 0.3 0.1' skyAngle='0.9 1.5 1.57' skyColor='0.21 0.18 0.66 0.2 0.44 0.85 0.51 0.81 0.95 0.77 0.8 0.82'></Background>
+
+                      
+            <Transform translation="0 2 -0.756" scale='0.01 0.01 0.01' >
+                <Shape>
+
+                    <Text id='TEXT' string='' solid='false'>
+                        <FontStyle family="TYPEWRITER" size='14' spacing='0.1' language='en'></FontStyle>
+                    </Text>
+                    <Appearance>
+                        <Material diffuseColor='1 .2 .2'></Material>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            
+            <Transform translation="2.8 2 -0.26" scale='0.01 0.01 0.01' rotation ="0 -1 0 0.8" >
+                <Shape>
+
+                    <Text id='TEXT1' string='' solid='false'>
+                        <FontStyle family="TYPEWRITER1" size='22' spacing='0.1' language='en'></FontStyle>
+                    </Text>
+                    <Appearance>
+                        <Material diffuseColor='1 .2 .2'></Material>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            
+            
+           <timeSensor id="Time"  DEF="time" cycleInterval='3' loop="true"></timeSensor>
+            <PositionInterpolator DEF="move" id="move" key="0 0 1" keyValue="0 0 0  0 3 0  0 0 0" initialDestination='4 4 3'></PositionInterpolator>
+            <PositionChaser DEF='OrChQ' id='OrChQ' duration='0.1' initialDestination='0 0 6.05'></PositionChaser>
+            <PositionChaser DEF='OrChW' id='OrChW' duration='0.1' initialDestination='0 0 5.5'></PositionChaser>
+            <PositionChaser DEF='OrChE' id='OrChE' duration='0.1' initialDestination='0 0 4.95'></PositionChaser>
+            <PositionChaser DEF='OrChR' id='OrChR' duration='0.1' initialDestination='0 0 4.4'></PositionChaser>
+            <PositionChaser DEF='OrChT' id='OrChT' duration='0.1' initialDestination='0 0 3.85'></PositionChaser>
+            <PositionChaser DEF='OrChY' id='OrChY' duration='0.1' initialDestination='0 0 3.3'></PositionChaser>
+            <PositionChaser DEF='OrChU' id='OrChU' duration='0.1' initialDestination='0 0 2.75'></PositionChaser>
+            <PositionChaser DEF='OrChI' id='OrChI' duration='0.1' initialDestination='0 0 2.2'></PositionChaser>
+            <PositionChaser DEF='OrChO' id='OrChO' duration='0.1' initialDestination='0 0 1.65'></PositionChaser>
+            <PositionChaser DEF='OrChP' id='OrChP' duration='0.1' initialDestination='0 0 1.1'></PositionChaser>
+            <PositionChaser DEF='OrChP1' id='OrChP' duration='0.1' initialDestination='0 0 0.55'></PositionChaser>
+            <PositionChaser DEF='OrChP2' id='OrChP' duration='0.1' initialDestination='0 0 0'></PositionChaser>
+
+
+            <PositionChaser DEF='OrChA' id='OrChA' duration='0.1' initialDestination='0.55 0 5.8' value='0.55 0 5.8'></PositionChaser>
+            <PositionChaser DEF='OrChS' id='OrChS' duration='0.1' initialDestination='0.55 0 5.25'></PositionChaser>
+            <PositionChaser DEF='OrChD' id='OrChD' duration='0.1' initialDestination='0.55 0 4.7'></PositionChaser>
+            <PositionChaser DEF='OrChF' id='OrChF' duration='0.1' initialDestination='0.55 0 4.15'></PositionChaser>
+            <PositionChaser DEF='OrChG' id='OrChG' duration='0.1' initialDestination='0.55 0 3.6'></PositionChaser>
+            <PositionChaser DEF='OrChH' id='OrChH' duration='0.1' initialDestination='0.55 0 3.05'></PositionChaser>
+            <PositionChaser DEF='OrChJ' id='OrChJ' duration='0.1' initialDestination='0.55 0 2.5'></PositionChaser>
+            <PositionChaser DEF='OrChK' id='OrChK' duration='0.1' initialDestination='0.55 0 1.95'></PositionChaser>
+            <PositionChaser DEF='OrChL' id='OrChL' duration='0.1' initialDestination='0.55 0 1.4'></PositionChaser>
+            <PositionChaser DEF='OrChL1' id='OrChL1' duration='0.1' initialDestination='0.55 0 0.85'></PositionChaser>
+            <PositionChaser DEF='OrChL2' id='OrChL2' duration='0.1' initialDestination='0.55 0 0.3'></PositionChaser>
+            <PositionChaser DEF='OrChL3' id='OrChL3' duration='0.1' initialDestination='0.55 0 -0.25'></PositionChaser>
+
+
+
+            <PositionChaser DEF='OrChZ' id='OrChZ' duration='0.1' initialDestination='1.1 0 5.55 '></PositionChaser>
+            <PositionChaser DEF='OrChX' id='OrChX' duration='0.1' initialDestination='1.1 0 5'></PositionChaser>
+            <PositionChaser DEF='OrChC' id='OrChC' duration='0.1' initialDestination='1.1 0 4.45'></PositionChaser>
+            <PositionChaser DEF='OrChV' id='OrChV' duration='0.1' initialDestination='1.1 0 3.9'></PositionChaser>
+            <PositionChaser DEF='OrChB' id='OrChB' duration='0.1' initialDestination='1.1 0 3.35'></PositionChaser>
+            <PositionChaser DEF='OrChN' id='OrChN' duration='0.1' initialDestination='1.1 0 2.8'></PositionChaser>
+            <PositionChaser DEF='OrChM' id='OrChM' duration='0.1' initialDestination='1.1 0 2.25'></PositionChaser>
+            <PositionChaser DEF='OrChM1' id='OrChM1' duration='0.1' initialDestination='1.1 0 1.7'></PositionChaser>
+            <PositionChaser DEF='OrChM2' id='OrChM2' duration='0.1' initialDestination='1.1 0 1.15'></PositionChaser>
+            <PositionChaser DEF='OrChM3' id='OrChM3' duration='0.1' initialDestination='1.1 0 0.6'></PositionChaser>
+
+            <PositionChaser DEF='OrChENTER' id='OrChENTER' duration='0.1' initialDestination='0.305 0 -0.8'></PositionChaser>
+            <PositionChaser DEF='OrChSHIFT' id='OrChSHIFT' duration='0.1' initialDestination='1.1 0 -0.4'></PositionChaser>
+            <PositionChaser DEF='OrChAS' id='OrChAS' duration='0.1' initialDestination='0 0 -0.6'></PositionChaser>
+            <PositionChaser DEF='OrChSPACE' id='OrChSPACE' duration='0.1' initialDestination='1.8 0 2.5'></PositionChaser>
+
+            <PositionChaser DEF='OrChGS' id='OrChGS' duration='0.1' initialDestination='0 0 0 0'></PositionChaser>
+            <PositionChaser DEF='OrChFS' id='OrChFS' duration='0.1' initialDestination='0 0 0 0'></PositionChaser>
+            <PositionChaser DEF='OrChDS' id='OrChDS' duration='0.1' initialDestination='0 0 0 0'></PositionChaser>
+            <PositionChaser DEF='OrChCS' id='OrChCS' duration='0.1' initialDestination='0 0 0 0'></PositionChaser>
+
+           
+           <Transform scale='0.45 0.45 0.45' rotation ="0 -1 0 1.55" translation ="0.95 0.2 -0.3" >
+           <Group DEF="Keyboard">
+           
+            <Transform translation="0.9 0.019 6.4" rotation="2 0 0 1.55">
+                <Shape>
+                    <Appearance>
+                    <Material diffuseColor='0 1 1' />
+                    </Appearance>
+                    <Box size='2.6 0.2 0.2' />
+                </Shape>
+            </Transform>
+           
+            <Transform translation="0.9 -0.139 -1.2" rotation="2 0 0 1.55">
+                <Shape>
+                    <Appearance>
+                    <Material diffuseColor='0 1 1' />
+                    </Appearance>
+                    <Box size='2.6 0.2 0.2' />
+                </Shape>
+            </Transform>
+            
+            <Transform translation="-0.4 -0.06 2.6" rotation="2 0 0 1.55">
+                <Shape>
+                    <Appearance>
+                    <Material diffuseColor='0 1 1' />
+                    </Appearance>
+                    <Box size='0.2 7.5 0.2' />
+                </Shape>
+            </Transform>
+            
+            <Transform translation="2.2 -0.06 2.6" rotation="2 0 0 1.55">
+                <Shape>
+                    <Appearance>
+                    <Material diffuseColor='0 1 1' />
+                    </Appearance>
+                    <Box size='0.15 7.5 0.2' />
+                </Shape>
+            </Transform>
+            
+            <Transform translation="1 -0.2 2.6" rotation="2 0 0 1.55">
+                <Shape>
+                    <Appearance>
+                    <Material diffuseColor='0 0 0' />
+                    </Appearance>
+                    <Box size='2.6 7.5 0.1' />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyP2" translation="0 0 0" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="P2.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('P2')" onmouseup="moveup('P2')" onmouseout="moveup('P2')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyP1" translation="0 0 0.55" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="P1.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('P1')" onmouseup="moveup('P1')" onmouseout="moveup('P1')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyP" translation="0 0 1.1" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="P.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('P')" onmouseup="moveup('P')" onmouseout="moveup('P')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyO" translation="0 0 1.65" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="O.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('O')" onmouseup="moveup('O')" onmouseout="moveup('O')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyI" translation="0 0 2.2" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="I.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('I')" onmouseup="moveup('I')" onmouseout="moveup('I')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyU" translation="0 0 2.75" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="U.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('U')" onmouseup="moveup('U')" onmouseout="moveup('U')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyY" translation="0 0 3.3" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="Y.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('Y')" onmouseup="moveup('Y')" onmouseout="moveup('Y')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyT" translation="0 0 3.85" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="T.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('T')" onmouseup="moveup('T')" onmouseout="moveup('T')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyR" translation="0 0 4.4" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="R.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('R')" onmouseup="moveup('R')" onmouseout="moveup('R')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyE" translation="0 0 4.95" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="E.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('E')" onmouseup="moveup('E')" onmouseout="moveup('E')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyW" translation="0 0 5.5" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="W.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('W')" onmouseup="moveup('W')" onmouseout="moveup('W')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyQ" translation="0 0 6.05" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="Q.PNG" repeatS="True" repeatT="True"></ImageTexture>
+
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('Q')" onmouseup="moveup('Q')" onmouseout="moveup('Q')" />
+                </Shape>
+            </Transform>
+
+
+
+
+
+
+
+
+
+
+            <Transform DEF="keyL3" translation="0.55 0 -0.25" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="L3.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('L3')" onmouseup="moveup('L3')" onmouseout="moveup('L3')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyL2" translation="0.55 0 0.3" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="L2.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('L2')" onmouseup="moveup('L2')" onmouseout="moveup('L2')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyL1" translation="0.55 0 0.85" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="L1.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('L1')" onmouseup="moveup('L1')" onmouseout="moveup('L1')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyL" translation="0.55 0 1.4" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="L.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('L')" onmouseup="moveup('L')" onmouseout="moveup('L')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyK" translation="0.55 0 1.95" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="K.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('K')" onmouseup="moveup('K')" onmouseout="moveup('K')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyJ" translation="0.55 0 2.5" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="J.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('J')" onmouseup="moveup('J')" onmouseout="moveup('J')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyH" translation="0.55 0 3.05" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="H.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('H')" onmouseup="moveup('H')" onmouseout="moveup('H')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyG" translation="0.55 0 3.6" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="G.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('G')" onmouseup="moveup('G')" onmouseout="moveup('G')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyF" translation="0.55 0 4.15" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="F.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('F')" onmouseup="moveup('F')" onmouseout="moveup('F')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyD" translation="0.55 0 4.7" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="D.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('D')" onmouseup="moveup('D')" onmouseout="moveup('D')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyS" translation="0.55 0 5.25" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="S.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('S')" onmouseup="moveup('S')" onmouseout="moveup('S')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyA" translation="0.55 0 5.8" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="A.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('A')" onmouseup="moveup('A')" onmouseout="moveup('A')" />
+                </Shape>
+            </Transform>
+
+
+
+
+
+            <Transform DEF="keyZ" translation="1.1 0 5.55" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="Z.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('Z')" onmouseup="moveup('Z')" onmouseout="moveup('Z')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyX" translation="1.1 0 5" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="X.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('X')" onmouseup="moveup('X')" onmouseout="moveup('X')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyC" translation="1.1 0 4.45" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="C.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('C')" onmouseup="moveup('C')" onmouseout="moveup('C')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyV" translation="1.1 0 3.9" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="V.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('V')" onmouseup="moveup('V')" onmouseout="moveup('V')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyB" translation="1.1 0 3.35" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="B.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('B')" onmouseup="moveup('B')" onmouseout="moveup('B')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyN" translation="1.1 0 2.8" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="N.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('N')" onmouseup="moveup('N')" onmouseout="moveup('N')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyM" translation="1.1 0 2.25" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="M.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('M')" onmouseup="moveup('M')" onmouseout="moveup('M')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyM1" translation="1.1 0 1.7" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="M1.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('M1')" onmouseup="moveup('M1')" onmouseout="moveup('M1')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyM2" translation="1.1 0 1.15" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="M2.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('M2')" onmouseup="moveup('M2')" onmouseout="moveup('M2')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyM3" translation="1.1 0 0.6" rotation="0 5 0 1.55">
+                <Shape>
+                    <Appearance>
+                        <ImageTexture url="M3.PNG" repeatS="True" repeatT="True"></ImageTexture>
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('M3')" onmouseup="moveup('M3')" onmouseout="moveup('M3')" />
+                </Shape>
+            </Transform>
+
+
+
+
+            <Transform DEF="keySHIFT" translation="1.1 0 -0.4" rotation="0 0 0 0">
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor='2 0 0' />
+                    </Appearance>
+                    <Box size='0.5 0.1 1.3' id='box' onmousedown="movedown('SHIFT')" onmouseup="moveup('SHIFT')" onmouseout="moveup('SHIFT')" />
+                </Shape>
+            </Transform>
+
+            <Transform DEF="keyAS" translation="0 0 -0.6" rotation="0 0 0 0">
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor='5 5 1' />
+                    </Appearance>
+                    <Box size='0.5 0.1 0.5' id='box' onmousedown="movedown('AS')" onmouseup="moveup('AS')" onmouseout="moveup('AS')" />
+                </Shape>
+            </Transform>
+            <Transform DEF="keyENTER" translation="0.305 0 -0.8" rotation="0 0 0 0">
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor='5 5 1' />
+                    </Appearance>
+                    <Box size='1.1 0.1 0.5' id='box' onmousedown="movedown('ENTER')" onmouseup="moveup('ENTER')" onmouseout="moveup('ENTER')" />
+                </Shape>
+            </Transform>
+            
+              <Transform DEF="keySPACE" translation="1.8 0 2.5" rotation="0 0 0 0">
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor='5 5 2' />
+                    </Appearance>
+                    <Box size='0.5 0.1 2.5' id='box' onmousedown="movedown('SPACE')" onmouseup="moveup('SPACE')" onmouseout="moveup('SPACE')" />
+                </Shape>
+            </Transform>
+            
+
+</Group>
+</Transform>
+
+
+
+
+
+            <ROUTE fromNode='OrChQ' fromField='value_changed' toNode='keyQ' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChW' fromField='value_changed' toNode='keyW' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChE' fromField='value_changed' toNode='keyE' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChR' fromField='value_changed' toNode='keyR' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChT' fromField='value_changed' toNode='keyT' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChY' fromField='value_changed' toNode='keyY' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChU' fromField='value_changed' toNode='keyU' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChI' fromField='value_changed' toNode='keyI' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChO' fromField='value_changed' toNode='keyO' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChP' fromField='value_changed' toNode='keyP' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChP1' fromField='value_changed' toNode='keyP1' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChP2' fromField='value_changed' toNode='keyP2' toField='set_translation'></ROUTE>
+
+            <ROUTE fromNode='OrChA' fromField='value_changed' toNode='keyA' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChS' fromField='value_changed' toNode='keyS' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChD' fromField='value_changed' toNode='keyD' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChF' fromField='value_changed' toNode='keyF' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChG' fromField='value_changed' toNode='keyG' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChH' fromField='value_changed' toNode='keyH' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChJ' fromField='value_changed' toNode='keyJ' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChK' fromField='value_changed' toNode='keyK' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChL' fromField='value_changed' toNode='keyL' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChL1' fromField='value_changed' toNode='keyL1' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChL2' fromField='value_changed' toNode='keyL2' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChL3' fromField='value_changed' toNode='keyL3' toField='set_translation'></ROUTE>
+
+
+            <ROUTE fromNode='OrChZ' fromField='value_changed' toNode='keyZ' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChX' fromField='value_changed' toNode='keyX' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChC' fromField='value_changed' toNode='keyC' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChV' fromField='value_changed' toNode='keyV' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChB' fromField='value_changed' toNode='keyB' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChN' fromField='value_changed' toNode='keyN' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChM' fromField='value_changed' toNode='keyM' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChM1' fromField='value_changed' toNode='keyM1' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChM2' fromField='value_changed' toNode='keyM2' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChM3' fromField='value_changed' toNode='keyM3' toField='set_translation'></ROUTE>
+
+
+
+            <ROUTE fromNode='OrChSHIFT' fromField='value_changed' toNode='keySHIFT' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChENTER' fromField='value_changed' toNode='keyENTER' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChSPACE' fromField='value_changed' toNode='keySPACE' toField='set_translation'></ROUTE>
+
+
+
+
+
+            <ROUTE fromNode='OrChAS' fromField='value_changed' toNode='keyAS' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChGS' fromField='value_changed' toNode='keyGS' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChFS' fromField='value_changed' toNode='keyFS' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChDS' fromField='value_changed' toNode='keyDS' toField='set_translation'></ROUTE>
+            <ROUTE fromNode='OrChCS' fromField='value_changed' toNode='keyCS' toField='set_translation'></ROUTE>
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+            <transform translation="0 0 0">
+                <shape>
+                    <appearance>
+                        <ImageTexture url="table.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                    </appearance>
+                    <box size="6 0.1 3"></box>
+                </shape>
+            </transform>
+
+            <Group DEF="Monitor">
+                <Transform translation="0 0.1 -0.8">
+                    <shape>
+                        <appearance>
+                            <ImageTexture url="mettalic.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                        </appearance>
+                        <box size="1.6 0.15 0.2"></box>
+                    </shape>
+                </Transform>
+
+
+                <Transform translation="0 0.18 -0.8">
+                    <shape>
+                        <appearance>
+
+                            <ImageTexture repeatS='false' repeatT='false' url='"mettalic2.jpg" ' />
+
+                        </appearance>
+                        <box size="0.1 0.4 0.1"></box>
+                    </shape>
+                </Transform>
+
+
+                <Transform translation="0 1.28 -0.8">
+                    <shape>
+                        <appearance>
+                            <ImageTexture url="Code.png" repeatS="True" repeatT="True"></ImageTexture>
+                            <TextureTransform DEF="ball" />
+                        </appearance>
+                        <box size="3 1.8 0.08"></box>
+
+                    </shape>
+
+                </Transform>
+
+              
+                
+                <Route fromNode="time" fromField="fraction_changed" toNode="move" toField="set_fraction"></Route>
+                <Route fromNode="move" fromField="value_changed" toNode="ball" toField="translation"></Route>
+                <Transform translation="0 1.28 -0.81">
+                    <shape>
+                        <appearance>
+                            <ImageTexture url="mettalic2.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                        </appearance>
+                        <box size="3.1 1.9 0.08"></box>
+                    </shape>
+                </Transform>
+            </Group>
+
+            <Transform translation="0 0.2 -0.1">
+            
+
+                <Transform translation="-1 -0.1 -0.5">
+                    <shape>
+                        <appearance>
+                            <ImageTexture url="mettalic2.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                        </appearance>
+                        <cylinder radius="0.05" height="0.3"></cylinder>
+                    </shape>
+                </Transform>
+
+                <Transform translation="1    -0.1 -0.5">
+                    <shape>
+                        <appearance>
+                            <ImageTexture url="mettalic2.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                        </appearance>
+                        <cylinder radius="0.05" height="0.3"></cylinder>
+                    </shape>
+                </Transform>
+
+                <Transform translation="-2.5 -1.5 -0.9">
+                    <shape>
+                        <appearance>
+                            <ImageTexture url="table.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                        </appearance>
+                        <cylinder radius="0.15" height="2.69"></cylinder>
+                    </shape>
+                </Transform>
+
+                <Transform translation="-2.5 -1.5 0.9">
+                    <shape>
+                        <appearance>
+                            <ImageTexture url="table.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                        </appearance>
+                        <cylinder radius="0.15" height="2.69"></cylinder>
+                    </shape>
+                </Transform>
+                <!-- ножки -->
+
+                <Transform translation="2.5 -1.5 -0.9">
+                    <shape>
+                        <appearance>
+                            <ImageTexture url="table.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                        </appearance>
+                        <cylinder radius="0.15" height="2.69"></cylinder>
+                    </shape>
+                </Transform>
+
+                <Transform translation="2.5 -1.5 0.9">
+                    <shape>
+                        <appearance>
+                            <ImageTexture url="table.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                        </appearance>
+                        <cylinder radius="0.15" height="2.69"></cylinder>
+                    </shape>
+                </Transform>
+                <!-- ножки -->
+
+                <Transform translation="-2.4 0.58 -0.45">
+                    <shape>
+                        <appearance>
+                            <ImageTexture url="mettalic.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                        </appearance>
+                        <box size="0.8 1.5 1.5"></box>
+                    </shape>
+                </Transform>
+                <!-- корпус -->
+
+
+
+                <Transform translation="2 -0.15 0.4">
+                    <Transform rotation="1 0 0 -1.2" , Transform DEF="ball">
+                        <shape>
+                            <appearance>
+                                <ImageTexture url="mettalic3.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                            </appearance>
+                            <box size="0.3 0.3 0.1"></box>
+                        </shape>
+                    </Transform>
+                </Transform>
+
+                <timeSensor DEF="time" cycleInterval="6" loop="true"></timeSensor>
+                <PositionInterpolator DEF="move" key="0 0.5 1" keyValue="0 0 0  0 0 -1  0 0 0"></PositionInterpolator>
+                <Route fromNode="time" fromField="fraction_changed" toNode="move" toField="set_fraction"></Route>
+                <Route fromNode="move" fromField="value_changed" toNode="ball" toField="translation"></Route>
+
+                <Transform translation="0 -0.16 0.1  " rotation="1 0 0 1.55">
+                    <Transform rotation="0 0 1 0.8" scale="1.1 1.1 1.1">
+
+                        <Shape>
+                            <appearance>
+                                <ImageTexture url="cloth.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                            </appearance>
+                            <IndexedFaceSet ccw="true" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="0 1 2 3 -1 3 4 5 6 -1" colorIndex="0 1 2 3 -1  0 1 2 3 4 -1">
+
+                                <Coordinate point="2 0 0, 0 -2 0, -2 0 0, 0 2 0,
+                                 0 2 1, 2 0 1, 2 0 0, 0 2 3  "></Coordinate>
+
+                                <Color color="0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                            </IndexedFaceSet>
+                        </Shape>
+                    </Transform>
+
+
+                    <Transform translation="2 0.1 -0.01  ">
+                        <Transform rotation="0 0 1 0.8" scale="0.3 0.3 0.3">
+
+                            <Shape>
+                                <appearance>
+                                    <ImageTexture url="cloth2.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                                </appearance>
+                                <IndexedFaceSet ccw="true" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="0 1 2 3 -1" colorIndex="0 1 2 3 -1">
+                                    <Coordinate point="2 0 0, 0 -2 0, -2 0 0, 0 2 0"></Coordinate>
+                                    <Color color="0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                                </IndexedFaceSet>
+                            </Shape>
+                        </Transform>
+                    </Transform>
+
+
+
+                    <!--Кубик-->
+                    <Transform translation="2.5 0 -0.2" rotation="0 0 0 0">
+                        <Shape>
+                            <Appearance>
+                                <ImageTexture url="cube.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                            </Appearance>
+
+                            <IndexedFaceSet ccw="false" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="0 1 3 2 0 -1 4 5 7 6 4 -1 0 4 6 2 0 -1 1 5 7 3 1 -1  0 4 5 1 0 -1" colorIndex="5 1 3 2 0 -1 4 5 7 6 4 -1 0 4 6 2 0 -1 1 5 7 3 1 -1 2 6 7 3 2 -1 0 4 5 1 0 -1" colorPerVertex="true">
+                                <!--2 6 7 3 2 -1-->
+                                <Color color="0 0 0, 0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                                <Coordinate point="0 0 0, 0 0 0.2, 0 0.2 0, 0 0.2 0.2, 0.2 0 0, 0.2 0 0.2, 0.2 0.2 0, 0.2 0.2 0.2"></Coordinate>
+                            </IndexedFaceSet>
+                        </Shape>
+                    </Transform>
+
+
+
+
+                    <Transform translation="2.5 0.14 -0.2" rotation="0 0 0 0">
+                        <Shape>
+                            <Appearance>
+                            </Appearance>
+                            <IndexedFaceSet ccw="false" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="2 6 7 3 2 -1 " colorIndex="1 1 1 1 1 -1 4 5 7 6 4 -1 0 4 6 2 0 -1 1 5 7 3 1 -1 2 6 7 3 2 -1 0 4 5 1 0 -1" colorPerVertex="true">
+                                <!--2 6 7 3 2 -1-->
+                                <Color color="0 0 0, 0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                                <Coordinate point="0 0 0, 0 0 0.07, 0 0.07 0, 0 0.07 0.07, 0.07 0 0, 0.07 0 0.07, 0.07 0.07 0, 0.07 0.07 0.07"></Coordinate>
+                            </IndexedFaceSet>
+                        </Shape>
+                    </Transform>
+
+                    <Transform translation="2.5 0.14 -0.13" rotation="0 0 0 0">
+                        <Shape>
+                            <Appearance>
+                            </Appearance>
+                            <IndexedFaceSet ccw="false" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="2 6 7 3 2 -1 " colorIndex="2 2 2 2 2 -1 4 5 7 6 4 -1 0 4 6 2 0 -1 1 5 7 3 1 -1 2 6 7 3 2 -1 0 4 5 1 0 -1" colorPerVertex="true">
+                                <!--2 6 7 3 2 -1-->
+                                <Color color="0 0 0, 0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                                <Coordinate point="0 0 0, 0 0 0.07, 0 0.07 0, 0 0.07 0.07, 0.07 0 0, 0.07 0 0.07, 0.07 0.07 0, 0.07 0.07 0.07"></Coordinate>
+                            </IndexedFaceSet>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="2.5 0.14 -0.06" rotation="0 0 0 0">
+                        <Shape>
+                            <Appearance>
+                            </Appearance>
+                            <IndexedFaceSet ccw="false" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="2 6 7 3 2 -1 " colorIndex="4 4 4 4 4 -1 4 5 7 6 4 -1 0 4 6 2 0 -1 1 5 7 3 1 -1 2 6 7 3 2 -1 0 4 5 1 0 -1" colorPerVertex="true">
+                                <!--2 6 7 3 2 -1-->
+                                <Color color="0 0 0, 0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                                <Coordinate point="0 0 0, 0 0 0.07, 0 0.07 0, 0 0.07 0.07, 0.07 0 0, 0.07 0 0.07, 0.07 0.07 0, 0.07 0.07 0.07"></Coordinate>
+                            </IndexedFaceSet>
+                        </Shape>
+                    </Transform>
+
+
+                    <Transform translation="2.57 0.14 -0.13" rotation="0 0 0 0">
+                        <Shape>
+                            <Appearance>
+                            </Appearance>
+                            <IndexedFaceSet ccw="false" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="2 6 7 3 2 -1 " colorIndex="1 1 1 1 1 -1 4 5 7 6 4 -1 0 4 6 2 0 -1 1 5 7 3 1 -1 2 6 7 3 2 -1 0 4 5 1 0 -1" colorPerVertex="true">
+                                <!--середина-->
+                                <Color color="0 0 0, 0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                                <Coordinate point="0 0 0, 0 0 0.07, 0 0.07 0, 0 0.07 0.07, 0.07 0 0, 0.07 0 0.07, 0.07 0.07 0, 0.07 0.07 0.07"></Coordinate>
+                            </IndexedFaceSet>
+                        </Shape>
+                    </Transform>
+
+
+                    <Transform translation="2.57 0.14 -0.06" rotation="0 0 0 0">
+                        <Shape>
+                            <Appearance>
+                            </Appearance>
+                            <IndexedFaceSet ccw="false" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="2 6 7 3 2 -1 " colorIndex="2 2 2 2 2 -1 4 5 7 6 4 -1 0 4 6 2 0 -1 1 5 7 3 1 -1 2 6 7 3 2 -1 0 4 5 1 0 -1" colorPerVertex="true">
+                                <!--низ-->
+                                <Color color="0 0 0, 0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                                <Coordinate point="0 0 0, 0 0 0.07, 0 0.07 0, 0 0.07 0.07, 0.07 0 0, 0.07 0 0.07, 0.07 0.07 0, 0.07 0.07 0.07"></Coordinate>
+                            </IndexedFaceSet>
+                        </Shape>
+                    </Transform>
+
+
+                    <Transform translation="2.57 0.14 -0.2" rotation="0 0 0 0">
+                        <Shape>
+                            <Appearance>
+                            </Appearance>
+                            <IndexedFaceSet ccw="false" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="2 6 7 3 2 -1 " colorIndex="4 4 4 4 4 -1 4 5 7 6 4 -1 0 4 6 2 0 -1 1 5 7 3 1 -1 2 6 7 3 2 -1 0 4 5 1 0 -1" colorPerVertex="true">
+                                <!--верхний-->
+                                <Color color="0 0 0, 0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                                <Coordinate point="0 0 0, 0 0 0.07, 0 0.07 0, 0 0.07 0.07, 0.07 0 0, 0.07 0 0.07, 0.07 0.07 0, 0.07 0.07 0.07"></Coordinate>
+                            </IndexedFaceSet>
+                        </Shape>
+                    </Transform>
+
+
+
+                    <Transform translation="2.64 0.14 -0.2" rotation="0 0 0 0">
+                        <Shape>
+                            <Appearance>
+                            </Appearance>
+                            <IndexedFaceSet ccw="false" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="2 6 7 3 2 -1 " colorIndex="1 1 1 1 1 -1 4 5 7 6 4 -1 0 4 6 2 0 -1 1 5 7 3 1 -1 2 6 7 3 2 -1 0 4 5 1 0 -1" colorPerVertex="true">
+                                <!--верхний-->
+                                <Color color="0 0 0, 0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                                <Coordinate point="0 0 0, 0 0 0.07, 0 0.07 0, 0 0.07 0.07, 0.07 0 0, 0.07 0 0.07, 0.07 0.07 0, 0.07 0.07 0.07"></Coordinate>
+                            </IndexedFaceSet>
+                        </Shape>
+                    </Transform>
+
+
+
+                    <Transform translation="2.64 0.14 -0.06" rotation="0 0 0 0">
+                        <Shape>
+                            <Appearance>
+                            </Appearance>
+                            <IndexedFaceSet ccw="false" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="2 6 7 3 2 -1 " colorIndex="2 2 2 2 2 -1 4 5 7 6 4 -1 0 4 6 2 0 -1 1 5 7 3 1 -1 2 6 7 3 2 -1 0 4 5 1 0 -1" colorPerVertex="true">
+                                <!--низ-->
+                                <Color color="0 0 0, 0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                                <Coordinate point="0 0 0, 0 0 0.07, 0 0.07 0, 0 0.07 0.07, 0.07 0 0, 0.07 0 0.07, 0.07 0.07 0, 0.07 0.07 0.07"></Coordinate>
+                            </IndexedFaceSet>
+                        </Shape>
+                    </Transform>
+
+
+
+                    <Transform translation="2.64 0.14 -0.13" rotation="0 0 0 0">
+                        <Shape>
+                            <Appearance>
+                            </Appearance>
+                            <IndexedFaceSet ccw="false" colorPerVertex="true" convex="true" creaseAngle="0" normalPerVertex="true" solid="false" coordIndex="2 6 7 3 2 -1 " colorIndex="4 4 4 4 4 -1 4 5 7 6 4 -1 0 4 6 2 0 -1 1 5 7 3 1 -1 2 6 7 3 2 -1 0 4 5 1 0 -1" colorPerVertex="true">
+                                <!--середина-->
+                                <Color color="0 0 0, 0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1"></Color>
+                                <Coordinate point="0 0 0, 0 0 0.07, 0 0.07 0, 0 0.07 0.07, 0.07 0 0, 0.07 0 0.07, 0.07 0.07 0, 0.07 0.07 0.07"></Coordinate>
+                            </IndexedFaceSet>
+                        </Shape>
+                    </Transform>
+
+
+                </Transform>
+            </Transform>
+
+
+            <Transform translation="0 -0 1" rotation="1 0 0 0.6" DEF="deer1">
+
+                <scene>
+                    <viewpoint position="-1.94639 1.79771 -2.89271" orientation="0.03886 0.99185 0.12133 3.75685"></viewpoint>
+                    <Inline nameSpaceName="Deer" mapDEFToID="true" onclick='redNose();' url="Deer.x3d" />
+                </scene>
+
+            </Transform>
+            <Transform translation="-1.6 0.05 0" scale='3 3 3'>
+                <Inline url="DeskLamp.x3d" />
+            </Transform>
+
+            <Transform translation="2 0 0" rotation="0 1 0 -0.8">
+                <Anchor url="https://www.qt.io/" parameter="target=" _self>
+                    <Group USE="Monitor">
+                    </Group>
+                </Anchor>
+            </Transform>
+
+            <Fog visibilityRange='40'></Fog>
+
+            <NavigationInfo headlight=false type='"EXAMINE" "WALK" "FLY" "ANY"'></NavigationInfo>
+
+            <Background groundColor='4 4 4'></Background>
+
+
+            <PointLight location="-2 4 0" color="1 0 0" intensity="0.3" shadowIntensity="0.1" shadowMapSize="512"></PointLight>
+            <PointLight location="2 4 0" color="0 0 1" intensity="0.5" shadowIntensity="0.2" shadowMapSize="512"></PointLight>
+
+            <transform translation="0 -0.8 2.1">
+                <shape>
+                    <appearance>
+                        <ImageTexture url="table.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                    </appearance>
+                    <box size="1 0.1 1"></box>
+                </shape>
+            </transform>
+            <Group DEF="Chear1">
+                <transform translation="-0.3 -1.71 1.85">
+                    <shape>
+                        <appearance>
+                            <ImageTexture url="table.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                        </appearance>
+                        <box size="0.1 1.9 0.1"></box>
+                    </shape>
+                </transform>
+            </Group>
+
+            <transform translation="0.6 0 0">
+                <Group USE="Chear1">
+                </Group>
+            </transform>
+
+            <transform translation="0.6 0 0.55">
+                <Group USE="Chear1">
+                </Group>
+            </transform>
+
+            <transform translation="0 0 0.55">
+                <Group USE="Chear1">
+                </Group>
+            </transform>
+
+
+            <transform translation="0 -1.6 2.1">
+                <shape>
+                    <appearance>
+                        <ImageTexture url="table.jpg" repeatS="True" repeatT="True"></ImageTexture>
+                    </appearance>
+                    <box size="0.6 0.1 0.6"></box>
+                </shape>
+            </transform>
+
+            <ROUTE fromNode='Clicker' fromField='touchTime' toNode='TimeSource' toField='startTime' />
+            <ROUTE fromNode='TimeSource' fromField='fraction_changed' toNode='Animation' toField='set_fraction' />
+            <ROUTE fromNode='Animation' fromField='value_changed' toNode='XForm' toField='rotation' />
+
+            <timeSensor DEF="time2" cycleInterval="2" loop="true"></timeSensor>
+            <PositionInterpolator DEF="move3" key="0 0.5 1" keyValue="0 0 0  0 3 0  0 0 0"></PositionInterpolator>
+            <Route fromNode="time2" fromField="fraction_changed" toNode="move3" toField="set_fraction"></Route>
+            <Route fromNode="move3" fromField="value_changed" toNode="Monitor" toField="translation"></Route>
+
+
+        </scene>
+    </X3D>
+</body>
+
 </html>
