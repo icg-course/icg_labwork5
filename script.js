@@ -28,7 +28,12 @@ function start(){
 	while (countTime>i){
 		switch(event.keyCode){
 			case 37: //left arrow key
-				moveLeft();
+				x=Number(x)-delta;
+				var coord =String(x)+' '+z+' '+y+',';
+				if (i==0){
+					coord = String(x)+' '+z+' '+y;
+				}
+				buffer=coord+buffer;
 				break;
 			case 38: //Up arrow key
 				y=Number(y)-delta;
@@ -39,10 +44,20 @@ function start(){
 				buffer=coord+buffer;
 				break;
 			case 39: //right arrow key
-				moveRight();
+				x=Number(x)+delta;
+				var coord =String(x)+' '+z+' '+y+',';
+				if (i==0){
+					coord = String(x)+' '+z+' '+y;
+				}
+				buffer=coord+buffer;		
 				break;
 			case 40: //down arrow key
-				moveDown();
+				y=Number(y)+delta;
+				var coord =x+' '+z+' '+String(y)+',';
+				if (i==0){
+					coord = x+' '+z+' '+String(y);
+				}
+				buffer=coord+buffer;
 				break;						
 		}
 		i++;
@@ -58,17 +73,4 @@ function start(){
 	document.getElementById("Car").setAttribute("translation",newPoint);
 	//var g=0;
 	
-}
-
-
-function movedown(x,y,speed,time) {
-    myGamePiece.speedY += 1; 
-}
-
-function moveleft(x,y,speed,time) {
-    myGamePiece.speedX -= 1; 
-}
-
-function moveright(x,y,speed,time) {
-    myGamePiece.speedX += 1; 
 }
