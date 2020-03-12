@@ -14,26 +14,29 @@
    </head>
    <body class="back" onkeypress=press()>
       <div class="back1">
+  
+
+
          <nav class="nav">
          </nav>
          <article>
             <h1 class="h1">Лабораторная работа №5</h1>
 			<a class="h1">Камеры:</a>
-			    <button onclick="document.getElementById('right').setAttribute('set_bind','true');">Вид сверху</button>
-				<button onclick="document.getElementById('front').setAttribute('set_bind','true');">Вид с конца дороги</button>
-				<button onclick="document.getElementById('near').setAttribute('set_bind','true');">Ближний вид</button>
+			    <button onclick="document.getElementById('myTune').play()">Play Music</button>
+				
             <div class="akcya">
+			
                <X3D>
                   <Scene>
 					 <!--сцена-->
                      <Background backUrl="fon.jpg"></Background>
-                     <Transform translation='20 -23 -290' >
+                     <Transform translation='20 -23 -290' id="Root" >
 					
 					
-					<TimeSensor DEF='Time1' cycleInterval='5' loop='true'></TimeSensor>
-					<TimeSensor DEF='Time2' cycleInterval='11' loop='true' ></TimeSensor>
-					<OrientationInterpolator DEF='OrientInt1' key='0 0.5 1' keyValue='0 0 1 0 0 0 1 -3.14 0 0 1 -6.28'></OrientationInterpolator>
-					<PositionInterpolator id="PosInter" DEF='PosInt' key='0 0.25 0.5 0.75' ></PositionInterpolator>
+						<TimeSensor DEF='Time1' cycleInterval='5' loop='true'></TimeSensor>
+						<TimeSensor DEF='Time2' cycleInterval='11' loop='true' ></TimeSensor>
+						<OrientationInterpolator DEF='OrientInt1' key='0 0.5 1' keyValue='0 0 1 0 0 0 1 -3.14 0 0 1 -6.28'></OrientationInterpolator>
+					
 					
                         <!--для поворота всей сцены-->
                         <!--ФУРА-->
@@ -220,5 +223,11 @@
          </nav>
       </div>
 	  <script src="script.js"></script>
+	  
+	  <audio id="myTune">
+  <source src="audio.mp3">
+ 
+</audio>
+	</audio>
    </body>
 </html>

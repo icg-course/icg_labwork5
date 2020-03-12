@@ -1,20 +1,29 @@
-//var root=document.getElementById('list');
-//var shape=document.createElement("Shape");
-//var b=document.createElement("Box");
-//b.setAttribute("size","1 2 2");
-//b.setAttribute("id","MyBox");
-//shape.appendChild(b);
-//document.getElementById("Root").appendChild(shape);
 addEventListener("keydown", function(event) {
-    var CarPosition=document.getElementById("Car").getAttribute("translation");
+	var element=document.getElementById('PosIntDom');
+	if(!element){
+		//alert('меня нет на странице');
+		start();
+		
+	} 
+	else {
+		//alert('я присутствую');
+		var delnode=document.getElementById("PosIntDom");
+		delnode.remove();
+		start();
+		//alert('удален');
+	}
+  });
+
+function start(){
+	var CarPosition=document.getElementById("Car").getAttribute("translation");
 	var SplitCarPosition=CarPosition.split(' ')
-	var speed=5; //cкорость
+	var speed=1; //cкорость
 	var countTime=4;
 	var delta=speed/countTime;
 	let i = 0;
 	var x=SplitCarPosition[0]
-	var y=SplitCarPosition[1]
-	var z=SplitCarPosition[2]
+	var z=SplitCarPosition[1]
+	var y=SplitCarPosition[2]
 	var buffer='';
 	while (countTime>i){
 		switch(event.keyCode){
@@ -22,11 +31,10 @@ addEventListener("keydown", function(event) {
 				moveLeft();
 				break;
 			case 38: //Up arrow key
-				x=Number(x)+delta;
-				y=Number(y)+delta;
-				var coord = String(x)+' '+String(y)+' '+z+',';
+				y=Number(y)-delta;
+				var coord =x+' '+z+' '+String(y)+',';
 				if (i==0){
-					coord = String(x)+' '+String(y)+' '+z;
+					coord = x+' '+z+' '+String(y);
 				}
 				buffer=coord+buffer;
 				break;
@@ -39,18 +47,18 @@ addEventListener("keydown", function(event) {
 		}
 		i++;
 	}
-	//var reverse=buffer.split(",").reverse().join(",");
-	var Position=document.getElementById("PosInter");
-	var key=Position.getAttribute("keyValue");
-	Position.setAttribute("keyValue",buffer.split(",").reverse().join(","));
-
+	var revers=CarPosition+','+("keyValue",buffer.split(",").reverse().join(","));
+	var Position=document.createElement("PositionInterpolator");
+	Position.setAttribute("keyValue",revers);
+	Position.setAttribute("key",'0 0.25 0.5 0.75');
+	Position.setAttribute("DEF",'PosInt');
+	Position.setAttribute("id",'PosIntDom');
+	document.getElementById("Root").appendChild(Position);
+	var newPoint=buffer.split(",")[0]
+	document.getElementById("Car").setAttribute("translation",newPoint);
+	//var g=0;
 	
-	
-	
-	
-	
-  });
-
+}
 
 
 function movedown(x,y,speed,time) {
