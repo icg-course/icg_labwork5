@@ -9,145 +9,150 @@
   <script src="./js/custom.js"></script>
 </head>
 
-<script>
-function start() {
-    var ts=document.getElementById("time1");
-    var check=ts.getAttribute("enabled");
-    if (check == "true")
-      ts.setAttribute("enabled", "false");
-    else
-      ts.setAttribute("enabled", "true");
-}
-function remove() {
-    var ts=document.getElementById("time2");
-    var check=ts.getAttribute("enabled");
-    if (check == "true")
-      ts.setAttribute("enabled", "false");
-    else
-      ts.setAttribute("enabled", "true");
-}
-function chng_speed() {
-    var ts1=document.getElementById("time1");
-    var ts2=document.getElementById("time2");
-    var check=ts1.getAttribute("cycleInterval");
-    if (check == "80")
-    {
-      ts1.setAttribute("cycleInterval", "16");
-      ts2.setAttribute("cycleInterval", "2");
-    }
-    else
-    {
-      ts1.setAttribute("cycleInterval", "80");
-      ts2.setAttribute("cycleInterval", "10");
-    }
-}
-</script>
 
 <body>
   <h1>Скоро космос будет наш</h1>
-  <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom" style="width:1025px; height:768px">
-  <scene>
-    <input type="button" id="but1" value="Старт" onclick="start()">
-    <input type="button" id="but2" value="Отсоединить ускорители" onclick="remove()">
-    <input type="button" id="but3" value="Ускорить" onclick="chng_speed()">
-    <group def="ground">
-      <transform translation='0 0 0'>
-        <Shape>
-          <Appearance>
-            <ImageTexture url=".\concrete.jpg"> </ImageTexture>
-          </Appearance>
-          <Box size='200 2 200' > </Box>  
-        </Shape>
-      </transform>
-      <transform translation='10 0 0'>
-        <transform translation='0 2 0'>
-          <Shape>
-            <Appearance>
-              <Material diffuseColor="brown"></Material>
-            </Appearance>
-            <Box size='20 2.25 10' > </Box>  
-          </Shape>
-        </transform>
-        <transform translation='6 12 0'>
-          <Shape>
-            <Appearance>
-              <Material diffuseColor="brown"></Material>
-            </Appearance>
-            <Box size='3 20 3' > </Box>  
-          </Shape>
-        </transform>
-      </transform>
-    </group>
 
-    <group def="rocket">
-      <transform translation='10 0 0' DEF='launch'>
-        <transform translation='0 22 0'>
+  
+
+  <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom" style="width:1025px; height:768px">
+    <scene>
+      <input type="button" id="but1" value="Старт" onclick="start()">
+      <input type="button" id="but2" value="Отсоединить ускорители" onclick="remove()">
+      <input type="button" id="but3" value="Ускорить" onclick="chng_speed()">
+      <group def="ground">
+        <transform translation='0 0 0'>
           <Shape>
             <Appearance>
-              <Material diffuseColor="white"></Material>
+              <ImageTexture url=".\concrete.jpg"> </ImageTexture>
             </Appearance>
-            <Cone size="20 40"></Cone>
+            <Box size='200 2 200' > </Box>  
           </Shape>
         </transform>
-        <transform translation='0 12.5 0'>
-          <Shape>
-            <Appearance>
-              <ImageTexture url=".\spaceshiptext.png"> </ImageTexture>
-            </Appearance>
-            <Cylinder height='17' radius='1'> </Cylinder>
-          </Shape>
+        <transform translation='10 0 0'>
+          <transform translation='0 2 0'>
+            <Shape>
+              <Appearance>
+                <Material diffuseColor="brown"></Material>
+              </Appearance>
+              <Box size='20 2.25 10' > </Box>  
+            </Shape>
+          </transform>
+          <transform translation='6 12 0'>
+            <Shape>
+              <Appearance>
+                <Material diffuseColor="brown"></Material>
+              </Appearance>
+              <Box size='3 20 3' > </Box>  
+            </Shape>
+          </transform>
         </transform>
-        <transform translation='0 4 0'>
+      </group>
+
+      <group def="rocket">
+        <transform translation='10 0 0' DEF='launch'>
+          <transform translation='0 22 0'>
+            <Shape>
+              <Appearance>
+                <Material diffuseColor="white"></Material>
+              </Appearance>
+              <Cone size="20 40"></Cone>
+            </Shape>
+          </transform>
+          <transform translation='0 12.5 0'>
+            <Shape>
+              <Appearance>
+                <ImageTexture url=".\spaceshiptext.png"> </ImageTexture>
+              </Appearance>
+              <Cylinder height='17' radius='1'> </Cylinder>
+            </Shape>
+          </transform>
+          <transform translation='0 4 0'>
+            <Shape>
+              <Appearance>
+                <Material diffuseColor="black"></Material>
+              </Appearance>
+              <Cone size="20 40"></Cone>
+            </Shape>
+          </transform>
+          <transform translation='0 18 0' rotation='1 0 0 -1.414'>
+            <Shape>
+              <Appearance>
+                <Material diffuseColor="black"></Material>
+              </Appearance>
+              <Torus innerradius='0.5' outerradius='0.6'> </Torus>
+            </Shape>
+          </transform>
+          <transform translation='0 10 0' rotation='1 0 0 -1.414'>
+            <Shape>
+              <Appearance>
+                <Material diffuseColor="black"></Material>
+              </Appearance>
+              <Torus innerradius='0.5' outerradius='0.6'> </Torus>  
+            </Shape>
+          </transform>
+          <transform translation='0 19 0'>
+            <Shape>
+              <Appearance>
+                <Material diffuseColor="yellow"></Material>
+              </Appearance>
+              <Box size='4 0.2 0.05' > </Box>  
+            </Shape>
+          </transform>
+          <!--1 ускоритель-->
+          <transform def="accelerator_1">
+            <transform translation='-1 15 0'>
+              <Shape>
+                <Appearance>
+                 <ImageTexture url=".\spaceshiptext.png"> </ImageTexture>
+               </Appearance>
+               <Cylinder height='5' radius='0.2'> </Cylinder>
+             </Shape>
+           </transform>
+           <transform translation='-1.5 17.5 0'>
+             <Shape>
+              <Appearance>
+                <Material diffuseColor="white"></Material>
+              </Appearance>
+              <Cone height='2' bottomradius='0.5'></Cone>
+            </Shape>
+          </transform>
+          <transform translation='-1.5 10 0'>
+            <Shape>
+              <Appearance>
+               <ImageTexture url=".\spaceshiptext.png"> </ImageTexture>
+             </Appearance>
+             <Cylinder height='13' radius='0.5'> </Cylinder>
+           </Shape>
+         </transform>
+         <transform translation='-1.5 4 0'>
           <Shape>
             <Appearance>
               <Material diffuseColor="black"></Material>
             </Appearance>
-            <Cone size="20 40"></Cone>
+            <Cone height='2' bottomradius='0.5'></Cone>
           </Shape>
         </transform>
-        <transform translation='0 18 0' rotation='1 0 0 -1.414'>
-          <Shape>
-            <Appearance>
-              <Material diffuseColor="black"></Material>
-            </Appearance>
-            <Torus innerradius='0.5' outerradius='0.6'> </Torus>
-          </Shape>
-        </transform>
-        <transform translation='0 10 0' rotation='1 0 0 -1.414'>
-          <Shape>
-            <Appearance>
-              <Material diffuseColor="black"></Material>
-            </Appearance>
-            <Torus innerradius='0.5' outerradius='0.6'> </Torus>  
-          </Shape>
-        </transform>
-        <transform translation='0 19 0'>
-          <Shape>
-            <Appearance>
-              <Material diffuseColor="yellow"></Material>
-            </Appearance>
-            <Box size='4 0.2 0.05' > </Box>  
-          </Shape>
-        </transform>
-        <!--1 ускоритель-->
-        <transform def="accelerator_1">
-        <transform translation='-1 15 0'>
+      </transform>
+      <!--2 ускоритель-->
+      <transform def="accelerator_2">
+        <transform translation='1 15 0'>
           <Shape>
             <Appearance>
              <ImageTexture url=".\spaceshiptext.png"> </ImageTexture>
            </Appearance>
            <Cylinder height='5' radius='0.2'> </Cylinder>
          </Shape>
-       </transform>
-       <transform translation='-1.5 17.5 0'>
-         <Shape>
+       </transform>  
+       <transform translation='1.5 17.5 0'>
+        <Shape>
           <Appearance>
             <Material diffuseColor="white"></Material>
           </Appearance>
           <Cone height='2' bottomradius='0.5'></Cone>
         </Shape>
       </transform>
-      <transform translation='-1.5 10 0'>
+      <transform translation='1.5 10 0'>
         <Shape>
           <Appearance>
            <ImageTexture url=".\spaceshiptext.png"> </ImageTexture>
@@ -155,7 +160,7 @@ function chng_speed() {
          <Cylinder height='13' radius='0.5'> </Cylinder>
        </Shape>
      </transform>
-     <transform translation='-1.5 4 0'>
+     <transform translation='1.5 4 0'>
       <Shape>
         <Appearance>
           <Material diffuseColor="black"></Material>
@@ -164,41 +169,6 @@ function chng_speed() {
       </Shape>
     </transform>
   </transform>
-    <!--2 ускоритель-->
-    <transform def="accelerator_2">
-    <transform translation='1 15 0'>
-      <Shape>
-        <Appearance>
-         <ImageTexture url=".\spaceshiptext.png"> </ImageTexture>
-       </Appearance>
-       <Cylinder height='5' radius='0.2'> </Cylinder>
-     </Shape>
-   </transform>  
-   <transform translation='1.5 17.5 0'>
-    <Shape>
-      <Appearance>
-        <Material diffuseColor="white"></Material>
-      </Appearance>
-      <Cone height='2' bottomradius='0.5'></Cone>
-    </Shape>
-  </transform>
-  <transform translation='1.5 10 0'>
-    <Shape>
-      <Appearance>
-       <ImageTexture url=".\spaceshiptext.png"> </ImageTexture>
-     </Appearance>
-     <Cylinder height='13' radius='0.5'> </Cylinder>
-   </Shape>
- </transform>
- <transform translation='1.5 4 0'>
-  <Shape>
-    <Appearance>
-      <Material diffuseColor="black"></Material>
-    </Appearance>
-    <Cone height='2' bottomradius='0.5'></Cone>
-  </Shape>
-</transform>
-</transform>
 </transform>
 </group>
 
@@ -208,52 +178,85 @@ function chng_speed() {
 </SpotLight>
 <Fog visibilityRange='200' fogType='EXPONENTIAL'></Fog>
 
-    <Viewpoint position="-10 2 100" orientation="0 1 0 0"></Viewpoint>
-    <Viewpoint def="camera"></Viewpoint>
+<Viewpoint position="-10 2 100" orientation="0 1 0 0"></Viewpoint>
+<Viewpoint def="camera"></Viewpoint>
 
 
-   <timeSensor DEF="time1" id="time1" cycleInterval="80" loop="true" enabled="false"> 
-   </timeSensor>
+<timeSensor DEF="time1" id="time1" cycleInterval="80" loop="true" enabled="false"> 
+</timeSensor>
 
-   <timeSensor DEF="time2" id="time2" cycleInterval="10" loop="true" enabled="false">
-   </timeSensor>
+<timeSensor DEF="time2" id="time2" cycleInterval="10" loop="true" enabled="false">
+</timeSensor>
 
-   <OrientationInterpolator DEF="angle"
-   key="0 0.3 0.5 0.8 1" 
-   keyValue="0 0 0 0, 0 0 0 0, 1 0 0 -0.707, 1 0 0 -1.5707963, 1 0 0 -1.5707963"
-   ></OrientationInterpolator> 
-   <PositionInterpolator DEF="force" 
-   key="0 0.05 0.1 0.3 0.5 0.7 0.9 1" 
-   keyValue="10 0 0, 10 0 0, 10 30 0, 10 125 0, 10 175 -20, 10 225 -50, 10 225 -100, 10 225 -150"> 
-   </PositionInterpolator> 
-   <PositionInterpolator DEF="view" 
-   key="0 0.05 0.1 0.3 0.5 0.7 0.9 1" 
-   keyValue="10 15 50, 10 15 50, 10 40 50, 10 135 50, 10 185 30, 10 235 0, 10 235 -50, 10 235 -100"> 
-   </PositionInterpolator> 
+<OrientationInterpolator DEF="angle"
+key="0 0.3 0.5 0.8 1" 
+keyValue="0 0 0 0, 0 0 0 0, 1 0 0 -0.707, 1 0 0 -1.5707963, 1 0 0 -1.5707963"
+></OrientationInterpolator> 
+<PositionInterpolator DEF="force" 
+key="0 0.05 0.1 0.3 0.5 0.7 0.9 1" 
+keyValue="10 0 0, 10 0 0, 10 30 0, 10 125 0, 10 175 -20, 10 225 -50, 10 225 -100, 10 225 -150"> 
+</PositionInterpolator> 
+<PositionInterpolator DEF="view" 
+key="0 0.05 0.1 0.3 0.5 0.7 0.9 1" 
+keyValue="10 15 50, 10 15 50, 10 40 50, 10 135 50, 10 185 30, 10 235 0, 10 235 -50, 10 235 -100"> 
+</PositionInterpolator> 
 
-   <PositionInterpolator DEF="remove_1" 
-   key="0 0.25 0.5 0.75 1" 
-   keyValue="0 0 0, -10 0 0, -25 0 0, -50 0 0, -75 0 0"> 
-   </PositionInterpolator> 
-   <PositionInterpolator DEF="remove_2" 
-   key="0 0.25 0.5 0.75 1" 
-   keyValue="0 0 0, 10 0 0, 25 0 0, 50 0 0, 75 0 0"> 
-   </PositionInterpolator> 
+<PositionInterpolator DEF="remove_1" 
+key="0 0.25 0.5 0.75 1" 
+keyValue="0 0 0, -10 0 0, -25 0 0, -50 0 0, -75 0 0"> 
+</PositionInterpolator> 
+<PositionInterpolator DEF="remove_2" 
+key="0 0.25 0.5 0.75 1" 
+keyValue="0 0 0, 10 0 0, 25 0 0, 50 0 0, 75 0 0"> 
+</PositionInterpolator> 
 
-   <Route fromNode="time1"  fromField ="fraction_changed" toNode="force"  toField="set_fraction"> </Route>
-   <Route fromNode="time1"  fromField ="fraction_changed" toNode="view"   toField="set_fraction"> </Route>
-   <Route fromNode="time1"  fromField ="fraction_changed" toNode="angle"  toField="set_fraction"> </Route> 
-   <Route fromNode="force"  fromField ="value_changed"    toNode="launch" toField="translation">  </Route> 
-   <Route fromNode="view"   fromField ="value_changed"    toNode="camera" toField="position">     </Route>
-   <Route fromNode="angle"  fromField ="value_changed"    toNode="launch" toField="set_rotation"> </Route> 
+<Route fromNode="time1"  fromField ="fraction_changed" toNode="force"  toField="set_fraction"> </Route>
+<Route fromNode="time1"  fromField ="fraction_changed" toNode="view"   toField="set_fraction"> </Route>
+<Route fromNode="time1"  fromField ="fraction_changed" toNode="angle"  toField="set_fraction"> </Route> 
+<Route fromNode="force"  fromField ="value_changed"    toNode="launch" toField="translation">  </Route> 
+<Route fromNode="view"   fromField ="value_changed"    toNode="camera" toField="position">     </Route>
+<Route fromNode="angle"  fromField ="value_changed"    toNode="launch" toField="set_rotation"> </Route> 
 
 
-   <Route fromNode="time2"    fromField ="fraction_changed" toNode="remove_1"       toField="set_fraction"> </Route>
-   <Route fromNode="time2"    fromField ="fraction_changed" toNode="remove_2"       toField="set_fraction"> </Route>
-   <Route fromNode="remove_1" fromField ="value_changed"    toNode="accelerator_1"  toField="translation">  </Route>
-   <Route fromNode="remove_2" fromField ="value_changed"    toNode="accelerator_2"  toField="translation">  </Route>
-   
+<Route fromNode="time2"    fromField ="fraction_changed" toNode="remove_1"       toField="set_fraction"> </Route>
+<Route fromNode="time2"    fromField ="fraction_changed" toNode="remove_2"       toField="set_fraction"> </Route>
+<Route fromNode="remove_1" fromField ="value_changed"    toNode="accelerator_1"  toField="translation">  </Route>
+<Route fromNode="remove_2" fromField ="value_changed"    toNode="accelerator_2"  toField="translation">  </Route>
+
 </scene>
 </X3D>
+<script>
+    function start() {
+      var ts=document.getElementById("time1");
+      var check=ts.getAttribute("enabled");
+      if (check == "true")
+        ts.setAttribute("enabled", "false");
+      else
+        ts.setAttribute("enabled", "true");
+    }
+    function remove() {
+      var ts=document.getElementById("time2");
+      var check=ts.getAttribute("enabled");
+      if (check == "true")
+        ts.setAttribute("enabled", "false");
+      else
+        ts.setAttribute("enabled", "true");
+    }
+    function chng_speed() {
+      var ts1=document.getElementById("time1");
+      var ts2=document.getElementById("time2");
+      var check=ts1.getAttribute("cycleInterval");
+      if (check == "80")
+      {
+        ts1.setAttribute("cycleInterval", "16");
+        ts2.setAttribute("cycleInterval", "2");
+      }
+      else
+      {
+        ts1.setAttribute("cycleInterval", "80");
+        ts2.setAttribute("cycleInterval", "10");
+      }
+    }
+  </script>
 </body> 
 </html>
