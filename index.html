@@ -3,12 +3,11 @@
 <head>  
   <meta charset="utf-8" />
   <title>Лабораторная работа 5</title>
-  <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-  <script src="https://www.x3dom.org/download/1.8.1/x3dom-full.js"></script>
+  <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
+  <script src="https://www.x3dom.org/download/dev/x3dom.js"></script>
   <link rel="stylesheet" href="./css/custom.css" />
   <script src="./js/custom.js"></script>
 </head>
-
 
 <body>
   <h1>Скоро космос будет наш</h1>
@@ -22,6 +21,8 @@
       else
         ts.setAttribute("enabled", "true");
     }
+  </script>
+  <script>
     function remove() {
       var ts=document.getElementById("time2");
       var check=ts.getAttribute("enabled");
@@ -30,6 +31,8 @@
       else
         ts.setAttribute("enabled", "true");
     }
+  </script>
+  <script>
     function chng_speed() {
       var ts1=document.getElementById("time1");
       var ts2=document.getElementById("time2");
