@@ -13,7 +13,39 @@
 <body>
   <h1>Скоро космос будет наш</h1>
 
-  
+  <script>
+    function start() {
+      var ts=document.getElementById("time1");
+      var check=ts.getAttribute("enabled");
+      if (check == "true")
+        ts.setAttribute("enabled", "false");
+      else
+        ts.setAttribute("enabled", "true");
+    }
+    function remove() {
+      var ts=document.getElementById("time2");
+      var check=ts.getAttribute("enabled");
+      if (check == "true")
+        ts.setAttribute("enabled", "false");
+      else
+        ts.setAttribute("enabled", "true");
+    }
+    function chng_speed() {
+      var ts1=document.getElementById("time1");
+      var ts2=document.getElementById("time2");
+      var check=ts1.getAttribute("cycleInterval");
+      if (check == "80")
+      {
+        ts1.setAttribute("cycleInterval", "16");
+        ts2.setAttribute("cycleInterval", "2");
+      }
+      else
+      {
+        ts1.setAttribute("cycleInterval", "80");
+        ts2.setAttribute("cycleInterval", "10");
+      }
+    }
+  </script>
 
   <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom" style="width:1025px; height:768px">
     <scene>
@@ -209,6 +241,8 @@ keyValue="0 0 0, -10 0 0, -25 0 0, -50 0 0, -75 0 0">
 key="0 0.25 0.5 0.75 1" 
 keyValue="0 0 0, 10 0 0, 25 0 0, 50 0 0, 75 0 0"> 
 </PositionInterpolator> 
+<PositionChaser DEF="PosCh1" duration="1"></PositionChaser>
+<PositionChaser DEF="PosCh2" duration="1"></PositionChaser>
 
 <Route fromNode="time1"  fromField ="fraction_changed" toNode="force"  toField="set_fraction"> </Route>
 <Route fromNode="time1"  fromField ="fraction_changed" toNode="view"   toField="set_fraction"> </Route>
@@ -220,43 +254,13 @@ keyValue="0 0 0, 10 0 0, 25 0 0, 50 0 0, 75 0 0">
 
 <Route fromNode="time2"    fromField ="fraction_changed" toNode="remove_1"       toField="set_fraction"> </Route>
 <Route fromNode="time2"    fromField ="fraction_changed" toNode="remove_2"       toField="set_fraction"> </Route>
-<Route fromNode="remove_1" fromField ="value_changed"    toNode="accelerator_1"  toField="translation">  </Route>
-<Route fromNode="remove_2" fromField ="value_changed"    toNode="accelerator_2"  toField="translation">  </Route>
+<Route fromNode="remove_1"    fromField ="value_changed" toNode="PosCh1"       toField="set_destination"> </Route>
+<Route fromNode="remove_2"    fromField ="value_changed" toNode="PosCh2"       toField="set_destination"> </Route>
+<Route fromNode="PosCh1" fromField ="value_changed"    toNode="accelerator_1"  toField="set_translation">  </Route>
+<Route fromNode="PosCh2" fromField ="value_changed"    toNode="accelerator_2"  toField="set_translation">  </Route>
 
 </scene>
 </X3D>
-<script>
-    function start() {
-      var ts=document.getElementById("time1");
-      var check=ts.getAttribute("enabled");
-      if (check == "true")
-        ts.setAttribute("enabled", "false");
-      else
-        ts.setAttribute("enabled", "true");
-    }
-    function remove() {
-      var ts=document.getElementById("time2");
-      var check=ts.getAttribute("enabled");
-      if (check == "true")
-        ts.setAttribute("enabled", "false");
-      else
-        ts.setAttribute("enabled", "true");
-    }
-    function chng_speed() {
-      var ts1=document.getElementById("time1");
-      var ts2=document.getElementById("time2");
-      var check=ts1.getAttribute("cycleInterval");
-      if (check == "80")
-      {
-        ts1.setAttribute("cycleInterval", "16");
-        ts2.setAttribute("cycleInterval", "2");
-      }
-      else
-      {
-        ts1.setAttribute("cycleInterval", "80");
-        ts2.setAttribute("cycleInterval", "10");
-      }
-    }
-  </script>
+
 </body> 
 </html>
