@@ -15,37 +15,42 @@
   <script>
     function start() {
       var ts=document.getElementById("time1");
+      var StT=Math.round(new Date().getTime()/1000);
+      var EnT=StT + ts.getAttribute("cycleInterval");
+
+      var but=document.getElementById("but1");
+
       var check=ts.getAttribute("enabled");
-      if (check == "true")
+      if (check == "true"){
         ts.setAttribute("enabled", "false");
-      else
+        but.value = ("Перезапуск");
+      }
+      else{
+        ts.setAttribute("loop", "true");
+        ts.setAttribute("startTime", StT);
+        ts.setAttribute("stopTime", EnT);
         ts.setAttribute("enabled", "true");
+        ts.setAttribute("loop", "false");
+        but.value = ("Стоп");
+        
+      }
     }
   </script>
   <script>
     function remove() {
       var ts=document.getElementById("time2");
+      var StT=Math.round(new Date().getTime()/1000);
+      var EnT=StT + ts.getAttribute("cycleInterval");
       var check=ts.getAttribute("enabled");
-      if (check == "true")
+      if (check == "true"){
         ts.setAttribute("enabled", "false");
-      else
-        ts.setAttribute("enabled", "true");
-    }
-  </script>
-  <script>
-    function chng_speed() {
-      var ts1=document.getElementById("time1");
-      var ts2=document.getElementById("time2");
-      var check=ts1.getAttribute("cycleInterval");
-      if (check == "80")
-      {
-        ts1.setAttribute("cycleInterval", "16");
-        ts2.setAttribute("cycleInterval", "2");
       }
-      else
-      {
-        ts1.setAttribute("cycleInterval", "80");
-        ts2.setAttribute("cycleInterval", "10");
+      else{
+        ts.setAttribute("loop", "true");
+        ts.setAttribute("startTime", StT);
+        ts.setAttribute("stopTime", EnT);
+        ts.setAttribute("enabled", "true");
+        ts.setAttribute("loop", "false");
       }
     }
   </script>
@@ -53,7 +58,6 @@
     <scene>
       <input type="button" id="but1" value="Старт" onclick="start()"></input>
       <input type="button" id="but2" value="Отсоединить ускорители" onclick="remove()"></input>
-      <input type="button" id="but3" value="Ускорить" onclick="chng_speed()"></input>
       <group def="ground">
         <transform translation='0 0 0'>
           <Shape>
@@ -212,14 +216,14 @@
 </SpotLight>
 <Fog visibilityRange='200' fogType='EXPONENTIAL'></Fog>
 
-<Viewpoint position="-10 2 100" orientation="0 1 0 0"></Viewpoint>
+<Viewpoint position="-10 2 500" orientation="0 1 0 0"></Viewpoint>
 <Viewpoint def="camera"></Viewpoint>
 
 
-<timeSensor DEF="time1" id="time1" cycleInterval="80" loop="true" enabled="false"> 
+<timeSensor DEF="time1" id="time1" cycleInterval="60" loop="false" enabled="false" startTime="0" stopTime="0"> 
 </timeSensor>
 
-<timeSensor DEF="time2" id="time2" cycleInterval="10" loop="true" enabled="false">
+<timeSensor DEF="time2" id="time2" cycleInterval="5" loop="true" enabled="false">
 </timeSensor>
 
 <OrientationInterpolator DEF="angle" key="0 0.3 0.5 0.8 1" keyValue="0 0 0 0, 0 0 0 0, 1 0 0 -0.707, 1 0 0 -1.5707963, 1 0 0 -1.5707963"
@@ -242,6 +246,7 @@
 <Route fromNode="force"  fromField ="value_changed"    toNode="launch" toField="translation">  </Route> 
 <Route fromNode="view"   fromField ="value_changed"    toNode="camera" toField="position">     </Route>
 <Route fromNode="angle"  fromField ="value_changed"    toNode="launch" toField="set_rotation"> </Route> 
+<Route fromNode="time1"  fromField ="fraction_changed" toNode="time1"  toField="set_startTime"> </Route>
 
 
 <Route fromNode="time2"    fromField ="fraction_changed" toNode="remove_1"       toField="set_fraction"> </Route>
