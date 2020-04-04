@@ -26,13 +26,10 @@
         but.value = ("Перезапуск");
       }
       else{
-        ts.setAttribute("loop", "true");
         ts.setAttribute("startTime", StT);
         ts.setAttribute("stopTime", EnT);
         ts.setAttribute("enabled", "true");
-        ts.setAttribute("loop", "false");
         but.value = ("Стоп");
-        
       }
     }
   </script>
@@ -46,11 +43,9 @@
         ts.setAttribute("enabled", "false");
       }
       else{
-        ts.setAttribute("loop", "true");
         ts.setAttribute("startTime", StT);
         ts.setAttribute("stopTime", EnT);
         ts.setAttribute("enabled", "true");
-        ts.setAttribute("loop", "false");
       }
     }
   </script>
@@ -86,7 +81,7 @@
           </transform>
         </transform>
       </group>
-
+      <transform translation='10 0 0'>
       <group def="rocket">
         <transform translation='10 0 0' DEF='launch'>
           <transform translation='0 22 0'>
@@ -209,6 +204,7 @@
   </transform>
 </transform>
 </group>
+</transform>
 
 
 <Background groundAngle='0.9 1.5 1.57' groundColor='0.6 0.3 0.1 0.2 0.1 0.2 0.1 0.6 0.1 0 0.3 0.1' skyAngle='0.9 1.5 1.57' skyColor='0.28 0.18 0.36 0.2 0.44 0.85 0.51 0.81 0.95 0.47 0.8 0.2'></Background>
@@ -223,12 +219,12 @@
 <timeSensor DEF="time1" id="time1" cycleInterval="60" loop="false" enabled="false" startTime="0" stopTime="0"> 
 </timeSensor>
 
-<timeSensor DEF="time2" id="time2" cycleInterval="5" loop="true" enabled="false">
+<timeSensor DEF="time2" id="time2" cycleInterval="5" loop="false" enabled="false">
 </timeSensor>
 
 <OrientationInterpolator DEF="angle" key="0 0.3 0.5 0.8 1" keyValue="0 0 0 0, 0 0 0 0, 1 0 0 -0.707, 1 0 0 -1.5707963, 1 0 0 -1.5707963"
 ></OrientationInterpolator> 
-<PositionInterpolator DEF="force" key="0 0.05 0.1 0.3 0.5 0.7 0.9 1" keyValue="10 0 0, 10 0 0, 10 30 0, 10 125 0, 10 175 -20, 10 225 -50, 10 225 -100, 10 225 -150"> 
+<PositionInterpolator DEF="force" key="0 0.05 0.1 0.3 0.5 0.7 0.9 1" keyValue="0 0 0, 0 0 0, 0 30 0, 0 125 0, 0 175 -20, 0 225 -50, 0 225 -100, 0 225 -150"> 
 </PositionInterpolator> 
 <PositionInterpolator DEF="view" key="0 0.05 0.1 0.3 0.5 0.7 0.9 1" keyValue="10 15 50, 10 15 50, 10 40 50, 10 135 50, 10 185 30, 10 235 0, 10 235 -50, 10 235 -100"> 
 </PositionInterpolator> 
@@ -237,24 +233,25 @@
 </PositionInterpolator> 
 <PositionInterpolator DEF="remove_2" key="0 0.25 0.5 0.75 1" keyValue="0 0 0, 10 0 0, 25 0 0, 50 0 0, 75 0 0"> 
 </PositionInterpolator> 
-<PositionChaser DEF="PosCh1" duration="1"></PositionChaser>
-<PositionChaser DEF="PosCh2" duration="1"></PositionChaser>
+<PositionChaser DEF="PosCh" duration="1"></PositionChaser>
+<PositionDamper DEF="PosDm" duration="1"></PositionDamper>
 
 <Route fromNode="time1"  fromField ="fraction_changed" toNode="force"  toField="set_fraction"> </Route>
 <Route fromNode="time1"  fromField ="fraction_changed" toNode="view"   toField="set_fraction"> </Route>
 <Route fromNode="time1"  fromField ="fraction_changed" toNode="angle"  toField="set_fraction"> </Route> 
-<Route fromNode="force"  fromField ="value_changed"    toNode="launch" toField="translation">  </Route> 
-<Route fromNode="view"   fromField ="value_changed"    toNode="camera" toField="position">     </Route>
+<Route fromNode="force"  fromField ="value_changed"    toNode="PosCh"  toField="set_destination"> </Route>
+<Route fromNode="view"   fromField ="value_changed"    toNode="PosDm"  toField="set_destination"> </Route>
+
+<Route fromNode="PosCh"  fromField ="value_changed"    toNode="launch" toField="translation">  </Route> 
+<Route fromNode="PosDm"  fromField ="value_changed"    toNode="camera" toField="position">     </Route>
 <Route fromNode="angle"  fromField ="value_changed"    toNode="launch" toField="set_rotation"> </Route> 
-<Route fromNode="time1"  fromField ="fraction_changed" toNode="time1"  toField="set_startTime"> </Route>
+
 
 
 <Route fromNode="time2"    fromField ="fraction_changed" toNode="remove_1"       toField="set_fraction"> </Route>
 <Route fromNode="time2"    fromField ="fraction_changed" toNode="remove_2"       toField="set_fraction"> </Route>
-<Route fromNode="remove_1"    fromField ="value_changed" toNode="PosCh1"       toField="set_destination"> </Route>
-<Route fromNode="remove_2"    fromField ="value_changed" toNode="PosCh2"       toField="set_destination"> </Route>
-<Route fromNode="PosCh1" fromField ="value_changed"    toNode="accelerator_1"  toField="set_translation">  </Route>
-<Route fromNode="PosCh2" fromField ="value_changed"    toNode="accelerator_2"  toField="set_translation">  </Route>
+<Route fromNode="remove_1" fromField ="value_changed"    toNode="accelerator_1"  toField="set_translation">  </Route>
+<Route fromNode="remove_2" fromField ="value_changed"    toNode="accelerator_2"  toField="set_translation">  </Route>
 
 </scene>
 </X3D>
