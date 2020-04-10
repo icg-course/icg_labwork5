@@ -2,17 +2,58 @@
 <html lang="ru">
   <head>  
     <meta charset="utf-8" />
-    <title>Лабораторная работа 4</title>
+    <title>Лабораторная работа 5</title>
     <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
     <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
-    <link rel="stylesheet" href="../css/custom.css" />
-    <script src="../js/custom.js"></script>
+    <script type="text/javascript">
+      function Shoot()
+      {
+            var EnableS = TimeShoot.getAttribute("enabled");
+            if (EnableS == "true") 
+              {           
+                var TS = TimeShoot.getAttribute("elapsedTime");
+                TimeShoot.setAttribute("pauseTime", TS); 
+                TimeShoot.setAttribute("enabled", "false");
+                buts.value = "Стрелять";
+              }
+            else 
+              { 
+                TimeShoot.setAttribute("pauseTime", 0);     
+                TimeShoot.setAttribute("enabled", "true");
+                buts.value = "Прекратить стрелять";
+              }            
+      }
+      function Reload()
+      { 
+          var EnableR = TimeReload.getAttribute("enabled");
+          if (EnableR == "true") 
+              {  
+                var TR = TimeReload.getAttribute("elapsedTime");
+                TimeReload.setAttribute("pauseTime", TR);         
+                TimeReload.setAttribute("enabled", "false");
+              }
+            else 
+              {      
+                TimeReload.setAttribute("pauseTime", 0);
+                TimeReload.setAttribute("enabled", "true");
+              }         
+      }
+    </script>
   </head>
   <!-- Масштаб = 1/2 --> 
   <body>
     <h1>
-    Лабораторная 4. Ермолин Павел гр. 4741.
+    Лабораторная 5. Ермолин Павел гр. 4741.
     </h1>
+    <input id="buts" type="button" 
+    style="  display: block;
+    margin-left: auto;
+    margin-right: auto;"
+    value="Стрелять" onclick="Shoot();" />
+    <input id="butr" type="button" style="  display: block;
+    margin-left: auto;
+    margin-right: auto;"
+    value="Перезарядка" onclick="Reload();" />
     <X3D>
       <Scene>
         <!-- Фон -->
@@ -61,7 +102,7 @@
               <Transform translation="-2.5 0.25 0.751">
                 <Shape>
                   <Text string='"PATENTED APR.20.1897.SEPT.9.1902   COLTS PT.F.A.MFG.CO." "DEC.19.1905.FEB.14.1911.AUG.19.1913   HARTFORD.CT.U.S.A"' solid='false' maxExtent="5">
-                    <FontStyle family="TYPEWRITER" size='.2' spacing='2' language='en'></FontStyle>
+                    <FontStyle family="Times" size='.2' spacing='2' language='en'></FontStyle>
                   </Text>
                   <Appearance>
                    <Material diffuseColor='black'></Material>
@@ -72,7 +113,7 @@
                 <Anchor url="https://en.wikipedia.org/wiki/M1911_pistol" parameter="target='_self'">
                   <Shape>
                     <Text string='"COLT AUTOMATIC" "CALIBRE 45"' solid='false' maxExtent="5">
-                      <FontStyle family="TYPEWRITER" size='.2' spacing='1' language='en'></FontStyle>
+                      <FontStyle family="Times" size='.2' spacing='1' language='en'></FontStyle>
                     </Text>
                     <Appearance>
                      <Material diffuseColor='black'></Material>
@@ -351,7 +392,7 @@
                 <Box size = "2.2 .5 .8"></Box>
             </Shape>
           </Transform>
-          <Transform DEF="Kruk" rotation="1 0 0 1.5708" >
+          <Transform DEF="Kruk" rotation="1 0 0 1.5708" translation="2.7 .2 0">
             <Shape>
               <Appearance>
                 <Material diffuseColor="#999999"></Material>
@@ -421,21 +462,23 @@
               </Transform>
             </Transform>
               <!-- Магазин -->
-              <Transform translation="0 -0.1 0">
-                <Shape>
-                <IndexedFaceSet coordIndex="2 6 7 3 -1 1 3 7 5 -1 1 5 4 0 -1 0 4 6 2 -1 7 6 4 5 -1 2 3 9 8 -1 8 9 15 14 -1 9 3 13 15 -1 2 8 14 12 -1 0 2 12 10 -1 1 0 10 11 -1 3 1 11 13 -1 11 10 12 13 -1 13 12 14 15 -1">
-                  <Coordinate 
-                  point="
-                 0.9 -2.4 0.6, 0.9 -2.4 -0.6, -0.9 -2.4 0.6, -0.9 -2.4 -0.6,
-                 0.9 2.2 0.6, 0.9 2.2 -0.6, -0.9 2.2 0.6, -0.9 2.2 -0.6,
-                 -1.5 -2.4 0.5, -1.5 -2.4 -0.5,
-                 0.9 -2.6 0.6, 0.9 -2.6 -0.6, -0.9 -2.6 0.6, -0.9 -2.6 -0.6, -1.5 -2.6 0.5, -1.5 -2.6 -0.5">
-                                    </Coordinate>
-                </IndexedFaceSet>
-                <Appearance>
-                  <Material diffuseColor="#222222"></Material>
-                </Appearance>
-              </Shape>
+              <Transform id="Mag" DEF="Magazine">
+                <Transform translation="0 -0.1 0">
+                  <Shape>
+                  <IndexedFaceSet coordIndex="2 6 7 3 -1 1 3 7 5 -1 1 5 4 0 -1 0 4 6 2 -1 7 6 4 5 -1 2 3 9 8 -1 8 9 15 14 -1 9 3 13 15 -1 2 8 14 12 -1 0 2 12 10 -1 1 0 10 11 -1 3 1 11 13 -1 11 10 12 13 -1 13 12 14 15 -1">
+                    <Coordinate 
+                    point="
+                   0.9 -2.4 0.6, 0.9 -2.4 -0.6, -0.9 -2.4 0.6, -0.9 -2.4 -0.6,
+                   0.9 2.2 0.6, 0.9 2.2 -0.6, -0.9 2.2 0.6, -0.9 2.2 -0.6,
+                   -1.5 -2.4 0.5, -1.5 -2.4 -0.5,
+                   0.9 -2.6 0.6, 0.9 -2.6 -0.6, -0.9 -2.6 0.6, -0.9 -2.6 -0.6, -1.5 -2.6 0.5, -1.5 -2.6 -0.5">
+                                      </Coordinate>
+                  </IndexedFaceSet>
+                  <Appearance>
+                    <Material diffuseColor="#222222"></Material>
+                  </Appearance>
+                </Shape>
+                </Transform>
               </Transform>
               <!-- Конец магазина -->
            </Transform> 
@@ -478,7 +521,7 @@
            <!-- Конец спускового механизма -->
         </Transform>
         <!-- Пуля-->
-        <Transform DEF="Bullet">
+        <Transform DEF="Bullet" translation="-5 2.25 0">
           <Transform rotation="0 0 1 1.5708">
             <Shape>
               <Appearance>
@@ -496,7 +539,7 @@
            </Transform>
           </Transform>
         </Transform>
-        <Transform DEF="Shell">
+        <Transform DEF="Shell" translation="1.3 2.85 0">
           <Transform rotation="0 0 1 1.5708">
               <Shape>
                 <Appearance>
@@ -507,12 +550,14 @@
           </Transform>
         </Transform>
         <!-- Конец пули-->
+
         <!-- Освещение -->
-        <PointLight DEF="Shot1" location="-6.5 2.5 0" color="#FFFF00" intensity="1" shadowIntensity=".7" shadowMapSize="512"></PointLight>  
+        <PointLight DEF="Shot1" location="-6.5 2.5 0" color="#FFFF00" intensity="0" shadowIntensity="0" shadowMapSize="512"></PointLight>  
         <PointLight location="-2 2 3" color="#FFFACD" intensity=".4" shadowIntensity=".6" shadowMapSize="1024"></PointLight>     
         <!-- Конец освещения -->
+
         <!-- Движение пистолета -->
-        <TimeSensor DEF="Time" cycleInterval='1' loop='true'></TimeSensor>
+        <TimeSensor id="TimeShoot" DEF="TimeShoot" cycleInterval='1' loop='true' enabled="false" pauseTime=".001"></TimeSensor>
         
         <ScalarInterpolator DEF='ScInt' key='0 .1 .2 .21 1' keyValue='1 1 .9 0 0'></ScalarInterpolator>
         <ScalarInterpolator DEF='ScInt2' key='0 .05 1' keyValue='.1 0 0'></ScalarInterpolator>
@@ -527,35 +572,35 @@
         <PositionInterpolator DEF='PosInt5' key='0 .3 .4 1' keyValue='1.3 2.85 0, 1.3 2.85 0, 1.3 3.1 -2, 1.3 -10 -3'></PositionInterpolator>
          <PositionInterpolator DEF='PosInt6' key='0 .1 .2 1' keyValue='2.7 .2 0, 3 .2 0, 2.7 .2 0, 2.7 .2 0'></PositionInterpolator>
 
-        <ROUTE fromNode='Time' fromField='fraction_changed' 
+        <ROUTE fromNode='TimeShoot' fromField='fraction_changed' 
                toNode='ScInt' toField='set_fraction'>
         </ROUTE>
-        <ROUTE fromNode='Time' fromField='fraction_changed' 
+        <ROUTE fromNode='TimeShoot' fromField='fraction_changed' 
                toNode='ScInt2' toField='set_fraction'>
         </ROUTE>        
 
-        <ROUTE fromNode='Time' fromField='fraction_changed' 
+        <ROUTE fromNode='TimeShoot' fromField='fraction_changed' 
                toNode='OrientInt' toField='set_fraction'>
         </ROUTE>
-        <ROUTE fromNode='Time' fromField='fraction_changed' 
+        <ROUTE fromNode='TimeShoot' fromField='fraction_changed' 
                toNode='OrientInt2' toField='set_fraction'>
         </ROUTE>
-        <ROUTE fromNode='Time' fromField='fraction_changed' 
+        <ROUTE fromNode='TimeShoot' fromField='fraction_changed' 
                toNode='PosInt' toField='set_fraction'>
         </ROUTE>
-        <ROUTE fromNode='Time' fromField='fraction_changed' 
+        <ROUTE fromNode='TimeShoot' fromField='fraction_changed' 
                toNode='PosInt2' toField='set_fraction'>
         </ROUTE>
-        <ROUTE fromNode='Time' fromField='fraction_changed' 
+        <ROUTE fromNode='TimeShoot' fromField='fraction_changed' 
                toNode='PosInt3' toField='set_fraction'>
         </ROUTE>
-        <ROUTE fromNode='Time' fromField='fraction_changed' 
+        <ROUTE fromNode='TimeShoot' fromField='fraction_changed' 
                toNode='PosInt4' toField='set_fraction'>
         </ROUTE>
-         <ROUTE fromNode='Time' fromField='fraction_changed' 
+         <ROUTE fromNode='TimeShoot' fromField='fraction_changed' 
                toNode='PosInt5' toField='set_fraction'>
         </ROUTE>
-        <ROUTE fromNode='Time' fromField='fraction_changed' 
+        <ROUTE fromNode='TimeShoot' fromField='fraction_changed' 
                toNode='PosInt6' toField='set_fraction'>
         </ROUTE>
 
@@ -590,6 +635,19 @@
         </ROUTE>
         <ROUTE fromNode='PosInt6' fromField='value_changed' 
                toNode='Kruk' toField='set_translation'>
+        </ROUTE>
+
+        <!-- Перезарядка -->
+        <TimeSensor id="TimeReload" DEF="TimeReload" cycleInterval='4' loop='true' enabled="false" pauseTime='.001'></TimeSensor>
+
+        <PositionInterpolator DEF='PosInt7' key='0 .25 .5 .75 1' keyValue='0 0 0, 0 -6 0, 0 -6 4, 0 -6 0, 0 0 0'></PositionInterpolator>
+
+        <ROUTE fromNode='TimeReload' fromField='fraction_changed' 
+                 toNode='PosInt7' toField='set_fraction'>
+        </ROUTE>
+
+        <ROUTE fromNode='PosInt7' fromField='value_changed' 
+               toNode='Magazine' toField='set_translation'>
         </ROUTE>
 
       </Scene>
