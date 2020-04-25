@@ -30,6 +30,8 @@
           }
           </script>
 
+         
+
 
            <switch whichchoice="0" id="switcher" render="true" bboxcenter="0,0,0" bboxsize="-1,-1,-1">
             <Group DEF='Peace'>
@@ -289,7 +291,7 @@
                 <Group DEF='RightHand'>
                   <transform DEF='TranRightHand' render="true" bboxcenter="0,0,0" bboxsize="-1,-1,-1" center="0,0,0" translation="0,0,0" rotation="0,0,0,0" scale="1,1,1" scaleorientation="0,0,0,0">
                     <transform translation= '2 -2.5 0.2' rotation = '0 0 1 1.0472'>
-              <shape DEF='RightHandCylinderGreen' render="true" bboxcenter="0,0,0" bboxsize="-1,-1,-1" ispickable="true">
+                <shape DEF='RightHandCylinderGreen' render="true" bboxcenter="0,0,0" bboxsize="-1,-1,-1" ispickable="true">
                 <appearance sorttype="auto" alphaclipthreshold="0.1">
                     <ImageTexture url='greenmetal.jpg'>
                     </ImageTexture>
@@ -504,12 +506,17 @@
 
               <ROUTE fromNode='TIME' fromField='fraction_changed' toNode='ORIENTWRIST2' toField='set_fraction'></ROUTE>
               <ROUTE fromNode='ORIENTWRIST2' fromField='value_changed' toNode='LeftFingersTran2' toField='set_rotation'></ROUTE>
-
-
             </transform>
           </Group>
 
-            <Transform translation="0 5 0">
+             <script>   
+              function move(point) 
+              {document.getElementById("SphereChaser").setAttribute("set_destination", point)};  
+            </script>
+
+            <PositionChaser DEF="SphereChaser" id="SphereChaser" duration="1" initialDestination="0 -3.2 1.311"></PositionChaser> 
+
+            <Transform translation="0 5 0" onClick="move(event.hitPnt);">
               <Shape>
                 <appearance>
                   <ImageTexture url='whitemetal2.jpg'></ImageTexture>
@@ -524,25 +531,27 @@
             </Transform>
 
             <transform translation='0 -4.45 0.15'>
-                    <shape>
-                      <appearance>
+              <shape>
+                <appearance>
                   <ImageTexture url='whitemetal2.jpg'></ImageTexture>
                 </appearance>
               <box size='3 0.5 2.3'>
               </box>
-                    </shape>
-                  </transform>
+              </shape>
+            </transform>
 
-                  <transform translation='0 -3.2 0.5'>
+            <transform DEF ='Sphere' translation='0 -3.2 0.5'>
               <shape>
                 <appearance>
                   <ImageTexture url='redmetal.jpg'>
                   </ImageTexture>
                 </appearance>
-                <Sphere radius="0.9">
+                <Sphere radius="0.3">
                 </Sphere>
               </shape>
             </transform>
+
+             <ROUTE fromNode="SphereChaser" fromField="value_changed" toNode="Sphere" toField="set_translation"></ROUTE>
 
             <transform translation='0 -4.95 0.15'>
                     <shape>
