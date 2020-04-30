@@ -1,0 +1,9 @@
+document.getElementById('but_on').onclick = function()
+			{
+				document.getElementById('time_prop').setAttribute("cycleInterval", "3");
+				document.getElementById('time_prop').setAttribute("enabled", "true");
+			}
+document.getElementById('but_off').onclick = function()
+			{
+				document.getElementById('time_prop').setAttribute("enabled", "false");
+			}
