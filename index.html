@@ -9,16 +9,18 @@
 		<script>
 			function move(){
 				time_propeller.setAttribute("enabled", "true");
+				time.setAttribute("enabled", "true");
 			}
 			function stop(){
 				time_propeller.setAttribute("enabled", "false");
+				time.setAttribute("enabled", "false");
 			}
 		</script>
 	</head>
 	<body>
 		<h1 align = "center"> Лабораторная работа №5</h1>
 		<X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">
-		<audio id = "track" loop = "true">
+		<audio id = "track" loop = "true" autoplay>
 			<source src = "audio.mp3"></source>
 		</audio>
 		<center>
@@ -30,7 +32,8 @@
 			<Background groundAngle='0.9 1.5 1.57' groundColor='0.21 0.18 0.66 0.2 0.44 0.85 0.51 0.81 0.95 0.77 0.8 0.82' skyAngle='0.9 1.5 1.57' 
 			skyColor='0.21 0.18 0.66 0.2 0.44 0.85 0.51 0.81 0.95 0.77 0.8 0.82'> </Background>
 			<!-- главная часть -->
-				<Transform translation = "0 0.8 0">
+			<Transform DEF = "submarine" translation = "7 0 7">
+				<Transform translation = "0 0 0">
 				<Transform rotation = "0 0 1 1.5708"> 
 				<Shape>
 				  <Appearance>
@@ -170,9 +173,10 @@
 					<Shape USE = "Blade"></Shape>
 				</transform>
 				</transform>
+			</Transform>			
 				
 				<!-- Вращение лопастей -->
-				 <TimeSensor id = "time_propeller" DEF='time_propeller' cycleInterval="3" loop='true' enabled='false'></TimeSensor>
+				 <TimeSensor id = "time_propeller" DEF='time_propeller' cycleInterval="3" loop='true' enabled='true'></TimeSensor>
 				 <OrientationInterpolator DEF='OriInt_propeller' key='0 0.25 0.5 0.75 1' keyValue='1 0 0 0.8, 1 0 0 2.3708, 1 0 0 3.9416, 1 0 0 5.5124, 1 0 0 0.8'></OrientationInterpolator>
 				<ROUTE fromNode='time_propeller' fromField='fraction_changed' 
 					   toNode='OriInt_propeller' toField='set_fraction'>
@@ -190,6 +194,40 @@
 					   toNode='propeller_4' toField='set_rotation'>
 				</ROUTE>
 				
+				<!-- Движение лодки -->
+				<timeSensor id = "time" DEF="time" cycleInterval="13" loop="true" enabled="true"></timeSensor>
+		
+				<OrientationInterpolator DEF="rotate"
+					key="0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1" 
+					keyValue="0 1 0 0, 0 1 0 0, 0 1 0 -1.57, 0 1 0 -1.57, 0 1 0 -3.14, 0 1 0 -3.14, 0 1 0 -4.71, 0 1 0 -4.71, 0 1 0 -6.28"></OrientationInterpolator> 
+				<OrientationChaser DEF="OrCh1" duration="1" ></OrientationChaser>
+				
+				<PositionInterpolator DEF="moving" 
+					key="0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1" 
+					keyValue="7 0 7, 0 0 7, -7 0 7, -7 0 0, -7 0 -7, 0 0 -7, 7 0 -7, 7 0 0, 7 0 7  "> </PositionInterpolator> 
+				<PositionChaser DEF="PosCh1" duration="1" ></PositionChaser>
+				
+				<Route fromNode="time" fromField ="fraction_changed" 
+					   toNode="rotate" toField="set_fraction">
+				</Route>
+				<Route fromNode="time" fromField ="fraction_changed" 
+					   toNode="moving" toField="set_fraction">
+				</Route>
+				
+				<Route fromNode="rotate" fromField ="value_changed"
+					   toNode="OrCh1" toField="set_destination">
+				</Route>
+				<Route fromNode="moving" fromField ="value_changed" 
+					   toNode="PosCh1" toField="set_destination">
+				</Route>
+				
+				<Route fromNode="OrCh1" fromField ="value_changed" 
+					   toNode="submarine" toField="set_rotation">
+				</Route>
+				<Route fromNode="PosCh1" fromField ="value_changed" 
+					   toNode="submarine" toField="set_translation">
+				</Route>
+						
 			
 				<!-- море -->
 				<transform translation = "0 0 0">
@@ -201,11 +239,11 @@
 					</Shape>
 				</transform>
 				<!-- название с гиперссылкой -->
-                 <transform translation="3 5 -2">
+                 <transform translation="3 5 -2" rotation = "0 1 0 -3.14">
 				 <Anchor url = "https://ru.wikipedia.org/wiki/%D0%9A-141_%C2%AB%D0%9A%D1%83%D1%80%D1%81%D0%BA%C2%BB" parameter="target='_self'">
 					<shape>
 						<appearance>
-							<material diffusecolor="green"></material>
+							<material diffusecolor="black"></material>
 						</appearance>
 						<text string="Подлодка «К-141 Курск»"></text>
 					</shape>
