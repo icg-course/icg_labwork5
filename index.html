@@ -10,9 +10,12 @@
 	<body>
 		<h1 align = "center"> Лабораторная работа №5</h1>
 		<X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">
+		<audio id = "track">
+			<source src = "audio.mp3"></source>
+		</audio>
 		<center>
-			<input id = "button_on" type = "button" value = "Включить двигатель">
-			<input id = "button_off" type = "button" value = "Выключить двигатель">
+			<input id = "button_on" type = "button" value = "Включить двигатель" onclick="document.getElementById('track').play()">
+			<input id = "button_off" type = "button" value = "Выключить двигатель" onclick="document.getElementById('track').pause()">
 		</center>
 			<Scene>
 			<DirectionalLight id="directional" direction='1 0 -1' on ="TRUE" intensity='0.4' shadowIntensity='0.2'> </DirectionalLight> 
