@@ -6,22 +6,29 @@
 		<link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
 		<script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
 		<link rel="stylesheet" href="../css/custom.css" />
+		<script>
+			function move(){
+				time_propeller.setAttribute("enabled", "true");
+			}
+			function stop(){
+				time_propeller.setAttribute("enabled", "false");
+			}
+		</script>
 	</head>
 	<body>
 		<h1 align = "center"> Лабораторная работа №5</h1>
 		<X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">
-		<audio id = "track">
+		<audio id = "track" loop = "true">
 			<source src = "audio.mp3"></source>
 		</audio>
 		<center>
-			<input id = "button_on" type = "button" value = "Включить двигатель" onclick="document.getElementById('track').play()">
-			<input id = "button_off" type = "button" value = "Выключить двигатель" onclick="document.getElementById('track').pause()">
+			<input id = "button_on" type = "button" value = "Включить двигатель" onclick="document.getElementById('track').play(); move()">
+			<input id = "button_off" type = "button" value = "Выключить двигатель" onclick="document.getElementById('track').pause(); stop()">
 		</center>
 			<Scene>
 			<DirectionalLight id="directional" direction='1 0 -1' on ="TRUE" intensity='0.4' shadowIntensity='0.2'> </DirectionalLight> 
 			<Background groundAngle='0.9 1.5 1.57' groundColor='0.21 0.18 0.66 0.2 0.44 0.85 0.51 0.81 0.95 0.77 0.8 0.82' skyAngle='0.9 1.5 1.57' 
 			skyColor='0.21 0.18 0.66 0.2 0.44 0.85 0.51 0.81 0.95 0.77 0.8 0.82'> </Background>
-			<!-- <background  backUrl = "https://img4.goodfon.ru/original/1920x1080/0/87/more-shtorm-volna-pena-bryzgi.jpg" ></background> -->
 			<!-- главная часть -->
 				<Transform translation = "0 0.8 0">
 				<Transform rotation = "0 0 1 1.5708"> 
@@ -165,7 +172,7 @@
 				</transform>
 				
 				<!-- Вращение лопастей -->
-				 <TimeSensor DEF='time_propeller' cycleInterval="3" loop='true' enabled='true'></TimeSensor>
+				 <TimeSensor id = "time_propeller" DEF='time_propeller' cycleInterval="3" loop='true' enabled='false'></TimeSensor>
 				 <OrientationInterpolator DEF='OriInt_propeller' key='0 0.25 0.5 0.75 1' keyValue='1 0 0 0.8, 1 0 0 2.3708, 1 0 0 3.9416, 1 0 0 5.5124, 1 0 0 0.8'></OrientationInterpolator>
 				<ROUTE fromNode='time_propeller' fromField='fraction_changed' 
 					   toNode='OriInt_propeller' toField='set_fraction'>
