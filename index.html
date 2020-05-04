@@ -8,7 +8,10 @@
 		<script src="https://www.x3dom.org/download/dev/x3dom.js"></script>
         <script>
             var index = 0;
+            var e = true;
+            
             function move() {
+                if (e) {
                 var point;
                 switch (index) {
                     case 0: point = "-0.52161 -0.83868 -0.15668 1.60429";
@@ -22,12 +25,19 @@
                     default: point = "0.80440 0.52183 -0.28396 1.60368";
                     break;
                 }
-				
-                    document.getElementById("OrChaser").setAttribute("set_destination", point);
-			 }
+                document.getElementById("OrChaser").setAttribute("set_destination", point);
+                setTimeout("alert('Vi priehali v tochku naznacheniya. Benzin konchilsya')", 4000);
+                document.getElementById("337").setAttribute("enabled", false);
+                    e = false;
+                 }
+            }
             function select(i) {
                 index = i; 
-            }
+                }
+            function sleep(ms) {
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                }
+            
         </script>
         
 	</head>
@@ -38,7 +48,7 @@
             <option>В Тойгу</option>
             <option>в Эфиопию</option>
         </select>
-        <button onclick = "move()">Свалить</button>
+        <button id="337" onclick = "move()">Свалить</button>
 		<x3d>
 			<scene>
 				<Viewpoint position="10.42087 19.19802 7.00361" orientation="-0.48574 0.87368 0.02715 0.79526" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></Viewpoint>
@@ -524,7 +534,7 @@
 		
 				<background  backUrl = "back.jpg" ></background>
 				<DirectionalLight direction="0 14 0" intensity="0.3"></DirectionalLight>
-                <OrientationChaser DEF="OrChaser" id="OrChaser" duration="3" initialDestination="0.17767 -0.95637 0.23192 2.07960"></OrientationChaser>
+                <OrientationChaser DEF="OrChaser" id="OrChaser" duration="3" initialDestination="0.26593 0.91370 -0.30730 1.15308"></OrientationChaser>
 				<ROUTE fromNode="OrChaser" fromField="value_changed" toNode="popup" toField="set_rotation"></ROUTE>
 			</scene>
 		</x3d>
