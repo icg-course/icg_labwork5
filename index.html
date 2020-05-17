@@ -227,7 +227,7 @@ orientation="-1 0 0 1.57">
 
 
 <!-- torus-->
-<transform DEF="torus" rotation="1 0 0 -1.57" translation="0,-11,0">
+<transform DEF="torus" rotation="1 0 0 -1.57" translation="0,10,0">
 		<Shape>
           <Torus innerRadius="2" outerRadius="4"></Torus>
           <Appearance>
@@ -550,16 +550,18 @@ orientation="-1 0 0 1.57">
 </X3D>  
 
 <div style="position: relative;">
-      <input type="button" id="but_e" value="Остановить Землю" onClick='toggle("earth");'>
+      <input type="button" id="but_e" value="Остановить Землю" onClick='toggle("earth");'></input>
 
-          <input type="button" id="but_m" value="Остановить Луну" onClick='toggle("moon");'>
+          <input type="button" id="but_m" value="Остановить Луну" onClick='toggle("moon");'></input>
 
-      <input type="button" id="but_s" value="Замедлить Землю" onClick='slowdown();'>
+      <input type="button" id="but_s" value="Замедлить Землю" onClick='slowdown();'></input>
     
-             <input type="button" id="but_f" value="Ускорить Землю" onClick='racing();'>
+             <input type="button" id="but_f" value="Ускорить Землю" onClick='racing();'></input>
    
 <input id = "button_on" type = "button" value = "Полетели" onclick='move("raketa")'></input>
-			<input id = "button_off" type = "button" value = "раз два три космическая ракета замри" onclick='stop("raketa")'></input>
+			<input id = "button_off" type = "button" value = "раз два три ракета замри" onclick='stop("raketa")'>
+				
+			</input>
 </div>
 
 
