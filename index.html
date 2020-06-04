@@ -6,14 +6,31 @@
     <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
     <link rel="stylesheet" href="../css/custom.css" />
    <script type="text/javascript" src="https://x3dom.org/release/x3dom-full.js"></script>
-     <script type='text/javascript' src='https://examples.x3dom.org/physics/x3domBulletPhysics.js'></script>
-    <script type='text/javascript' src="https://examples.x3dom.org/physics/ammo.js"></script>
-  
+  <script>
+    function jump()
+    {
+      var Enable = beeT.getAttribute("enabled");
+            if (Enable == "true") 
+              {  
+        var ET = beeT.getAttribute("elapsedTime");
+        var  time = beeT.getAttribute("elapsedTime");
+                beeT.setAttribute("pauseTime", time-ET); 
+                beeT.setAttribute("enabled", "false");
+                button.value = "Пчелки, летите!";
+              }
+            else 
+              {     
+        beeT.setAttribute("pauseTime", 0);     
+                beeT.setAttribute("enabled", "true");
+                button.value = "Пчелки, не нападайте!";
+              }
+    }
+  </script>
   </head>
   <body>
     <h1>Твити в шапочке на траве (лаба 5)</h1>
-    <h2>        <input type="button" id="nQQ_s" value="Пчелки, хватит летать!" onclick='toggle("Twittys");'> </input> </h2>
-     <h3>        <input type="button" id="nQQ_s" value="Остановить вращение Твити, чтобы у него не закружилась голова." onclick='toggle("pchelki");'> </input> </h3>
+     <h2>        <input type="button"  id="nQQ_s" value="Остановить вращение Твити, чтобы у него не закружилась голова." onclick='toggle("pchelki");'> </input> </h2>
+     <input id="button" type="button" value="Пчелки, не нападайте!" onclick="jump();" />
     <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">
       <Scene>
             <!--камера-->
@@ -74,7 +91,64 @@
   </Group>
   </Anchor>
    </transform>
-  
+
+   <!--табличка-->
+           <Transform translation = "10 0 0" rotation = "0 1 0 0.75" DEF = 'text'>
+            <Group DEF = "texts">
+              <Transform>
+               
+                <Transform translation = "0 1 0.5">
+                  
+                  <Shape>
+                    <Appearance>
+                      <ImageTexture url="https://avatanplus.com/files/resources/mid/59346a60ed57d15c74bf8acc.jpg"></ImageTexture>
+                      <Texturetransform scale="1 1"></Texturetransform>
+                    </Appearance>
+                    <Box size = "6 2 .3"></Box>
+                  </Shape>
+                </Transform>
+                <Transform translation = "0 1 0.7">
+              
+                  <Shape>
+                    <Text string = "Twitty by Olesia" maxExtent = "5"></Text>
+                  </Shape>
+                </Transform>
+              </Transform>
+            </Group>
+          </Transform>
+          
+          </Transform>
+<timeSensor DEF="time" cycleInterval="5" loop="true" enabled="true">
+    </timeSensor>
+    
+    <OrientationInterpolator DEF="rotate"
+      key="0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1" 
+      keyValue="0 1 0 0.78, 0 1 0 1.57, 0 1 0 2.35, 0 1 0 3.14, 0 1 0 3.92, 0 1 0 4.71, 0 1 0 5.49, 0 1 0 6.1, 0 1 0 6.4"
+    ></OrientationInterpolator> 
+    <OrientationChaser DEF="OrCh1" duration="1"></OrientationChaser>
+    
+    <PositionInterpolator DEF="moving" 
+      key="0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1" 
+      keyValue="0 2 -5, -2.5 2 -2.5, -5 2 0, -2.5 2 2.5, 0 2 5, 2.5 2 2.5, 5 2 0, 2.5 2 -2.5, 0 2 -5 "> 
+    </PositionInterpolator> 
+    <PositionChaser DEF="PosCh1" duration="1"></PositionChaser>
+    
+    <Route fromNode="time" fromField ="fraction_changed" toNode="rotate" toField="set_fraction">
+    </Route>
+    <Route fromNode="time" fromField ="fraction_changed" toNode="moving" toField="set_fraction">
+    </Route>
+    
+    <Route fromNode="rotate" fromField ="value_changed" toNode="OrCh1" toField="set_destination">
+    </Route>
+    <Route fromNode="moving" fromField ="value_changed" toNode="PosCh1" toField="set_destination">
+    </Route>
+    
+    <Route fromNode="OrCh1" fromField ="value_changed" toNode="text" toField="set_rotation">
+    </Route>
+    <Route fromNode="PosCh1" fromField ="value_changed" toNode="text" toField="set_translation">
+    </Route>
+
+   
 
  <Anchor url="https://ru.wikipedia.org/wiki/%D0%A2%D0%B2%D0%B8%D1%82%D0%B8">
 
@@ -384,6 +458,7 @@
 
 <timeSensor id="QQ_wt" cycleInterval='7' loop='true'></timeSensor>
     <orientationInterpolator DEF='OQ_w' key='0 0.25 0.5 0.75 1' keyValue='0 1 0 0  0 1 0 1.57079  0 1 0 3.14159  0 1 0 4.71239  0 1 0 6.28317'></orientationInterpolator>
+<PositionInterpolator DEF='OQ_wt' key='0, 0.5, 1' keyValue='23 0.15 0 , 23 -0.1 0 , 23 0.15 0 '></PositionInterpolator>
  
     <ROUTE fromnode="QQ_wt" fromField='fraction_changed' toNode='OQ_w' toField='set_fraction'></ROUTE>
     <ROUTE fromNode='OQ_w' fromField='value_changed' toNode='Twittys' toField='set_rotation'></ROUTE>
@@ -450,7 +525,7 @@
 
         </Group>
 
-  <transform DEF = 'pchelki' translation='-10 -6 -2' scale="1 1 1"> <!-- PointSet (Пчелки)  -->
+  <transform translation = "-2 -4 3" DEF="bee" id = "bee" scale="1 1 1"> <!-- PointSet (Пчелки)  -->
                             <shape def="four_box">
                                 <pointset>
                                     <coordinate point=' 
@@ -475,19 +550,36 @@
                                 </pointset>
                             </shape>
                         </transform>
-
-                <TimeSensor id="QQ_st" cycleInterval="4" loop="true"></TimeSensor>   
-
-                <OrientationInterpolator def="OQ_s"
-                key="0, 0.5, 1"                             keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28">   
-                </OrientationInterpolator>  
-
-                 <ROUTE fromnode="QQ_st" fromField="fraction_changed"           toNode="OQ_s" toField="set_fraction">   
-                 </ROUTE> 
-
-                  <ROUTE fromNode="OQ_s" fromField="value_changed"           toNode="pchelki" toField="set_rotation">   
-
-                  </ROUTE>         
+ <timeSensor DEF="beeT" id = "beeT" cycleInterval="2" loop="true" enabled="true">
+    </timeSensor>
+    
+    <PositionInterpolator DEF="beeM"
+      key="0 0.25 0.5 0.75 1" 
+      keyValue="-2 -4 3, -2 -1 4, -2 1 5, -2 -1 6, -2 -4 7"
+    ></PositionInterpolator> 
+    <PositionChaser DEF="PosCh" duration="1" set_value = "-2 -4 3"></PositionChaser>
+    
+    <OrientationInterpolator DEF="beeR" 
+      key="0 0.25 0.5 0.75 1" 
+      keyValue="1 0 0 -1.57, 1 0 0 -0.57, 1 0 0 0, 1 0 0 0.57, 1 0 0 1.57"> 
+    </OrientationInterpolator> 
+    <OrientationChaser DEF="OrCh" duration="5" set_value = "1 0 0 -1.57"></OrientationChaser>
+    
+    <Route fromNode="beeT" fromField ="fraction_changed" toNode="beeR" toField="set_fraction">
+    </Route>
+    <Route fromNode="beeT" fromField ="fraction_changed" toNode="beeM" toField="set_fraction">
+    </Route>
+    
+    <Route fromNode="beeR" fromField ="value_changed" toNode="OrCh" toField="set_destination">
+    </Route>
+    <Route fromNode="beeM" fromField ="value_changed" toNode="PosCh" toField="set_destination">
+    </Route>
+    
+    <Route fromNode="OrCh" fromField ="value_changed" toNode="bee" toField="set_rotation">
+    </Route>
+    <Route fromNode="PosCh" fromField ="value_changed" toNode="bee" toField="set_translation">
+    </Route>
+                     
 
          
 
@@ -519,12 +611,10 @@
                         if (QQ_snabled == "true")
                         {             TS.setAttribute("enabled", "false");
                             button.value = (what=="Twittys")
-                                ?"Анимировать вращение Твити"
-                                :"Анимировать вращение пчелок";         }
+                                ;         }
                         else {             TS.setAttribute("enabled", "true");
                             button.value = (what=="Twittys")
-                                ?"Остановить вращение Твити"
-                                :"Остановить вращение пчелок";         }     }
+                                ;         }     }
                 </script>
 
           </Scene>
