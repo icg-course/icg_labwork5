@@ -4,10 +4,208 @@
     <meta charset="utf-8" />
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
     <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
-</html>
+    <script type="text/javascript" src="https://x3dom.org/download/1.7.2/x3dom-full.js"></script>              
+	<link rel="stylesheet" type="text/css" href="https://x3dom.org/download/1.7.2/x3dom.css"></link>     
+	<script type="text/javascript">
+		function rotation()     
+			{      
+				var button1=document.getElementById('bt1');      
+				var t = document.getElementById("TS_1");      
+				var e = t.getAttribute("enabled");       
+				if (e == "true")        
+					{        
+						t.setAttribute ("enabled", 'false');        
+						button1.value='Инициировать вращение';
+					}
+				else 
+					{         
+						t.setAttribute ("enabled", 'true');
+						button1.value='Прекратить вращение колец';            
+					}    
+			}
+		function changeTexture(tex)     
+			{      
+				document.getElementById('Texture_1').setAttribute("url", tex);     
+			} 
+		function speedup()     
+			{      
+				var s = document.getElementById("Kf").value;
+				document.getElementById("TS_2").setAttribute("enabled", "false");
+				var lastInt = parseFloat(document.getElementById("TS_2").getAttribute("cycleInterval"));
+				document.getElementById("TS_2").setAttribute("cycleInterval", lastInt/s);
+				document.getElementById("TS_2").setAttribute("enabled", "true");
+			}   
+		function speeddown()     
+			{      
+				var s = document.getElementById("Kf").value;
+				document.getElementById("TS_2").setAttribute("enabled", "false");
+				var lastInt = ParseFloat(document.getElementById("TS_2").getAttribute("cycleInterval"));
+				document.getElementById("TS_2").setAttribute("cycleInterval",lastInt*s);
+				document.getElementById("TS_2").setAttribute("enabled", "true");
+			}  
+	</script>         
+	</head>          
+		<body>     
+            <h1>Лабораторная работа №5</h1>
+			<x3d width='600px' height='400px'> 			
+		<scene DEF='scene'>
+			<Viewpoint fieldOfView="0.78" position="0 0.8 6" orientation="0 0 0 0">
+			</Viewpoint>
+
+			<Viewpoint fieldOfView="0.78" position="-6 0.5 8" orientation="0 1 0 -0.6">
+			</Viewpoint>
+
+			<Viewpoint fieldOfView="0.78" position="6 0.5 8" orientation="0 1 0 0.6">
+			</Viewpoint>
+			
+			<TimeSensor id="TS_1" DEF="TS_1" id="TS_1" cycleInterval="8" loop="true" enabled="true">
+			</TimeSensor> 
+
+			<TimeSensor id="TS_2" DEF="TS_2" cycleInterval="6" loop="true" enabled="true">
+			</TimeSensor>
+			
+			<PositionInterpolator DEF='PosInt_Group' key='0 0.25 0.50 0.75 1' keyValue='-2 0 -3, -2 2 -3, 2 0 -3, 2 2 -3, -2 0 -3'>
+			</PositionInterpolator> 
+			
+			<OrientationInterpolator DEF='OrInt_Box' key='0, 0.5, 1' keyValue='0 1 0 0, 0 1 0 3.14, 0 1 0 6.28'>
+			</OrientationInterpolator> 
+			
+			<OrientationInterpolator DEF='OrInt_Toruses' key='0, 0.5, 1' keyValue='0 0 1 0, 0 1 1 -3.14, 1 0 1 -6.28'>
+			</OrientationInterpolator>
+			 
+			<PositionDamper DEF="PosD" order="8" tau="0.1" initialValue='0,0,-3'>
+			</PositionDamper>
+			
+			<OrientationDamper DEF="OrientD"  tau="0.2">
+			</OrientationDamper>
+			
+			<PositionChaser id='PosCh' duration="1.5" initialDestination="0 0.5 0" initialValue="0 0 0" >
+			</PositionChaser>
+
+			<ColorChaser id='ColCh' duration="1.5" initialDestination="1 1 0" initialValue="1 1 0" >
+			</ColorChaser>
+
+				<Transform DEF="Group" translation="0 0 -3" scale="0.6 0.6 0.6">
+					<Transform DEF="Box" translation="0 0 0" rotation="0 1 0 -0.525">
+						<Shape>    
+							<Appearance>    
+								<ImageTexture url="km.jpg">     
+								</ImageTexture>  
+							</Appearance>    
+							<Box size="1 1 1">    
+							</Box>   
+						</Shape>
+					</Transform>
+					<Transform DEF="Toruses">      
+						<Transform translation="0 1.8 0">     
+							<Shape DEF="Torus">   
+								<Appearance>    
+									<ImageTexture id="Texture_1" DEF="Texture_1" url="ks.jpg">     
+									</ImageTexture>     
+									<TextureTransform scale="2.5 2.5">     
+									</TextureTransform>    
+								</Appearance>     
+									<Torus innerRadius="0.1" outerRadius="0.5">     
+								</Torus>     
+							</Shape>      
+						</Transform>
+						<Transform DEF="Torus_2" translation="0 -1.8 0">
+							<Shape USE="Torus">
+							</Shape>      
+						</Transform>    
+					</Transform>  
+				</Transform> 
+				<Transform DEF="Pointer" translation="0 0 0" scale="0.18 0.18 0.18" center="0 0 0">
+					<Shape>    
+						<Appearance>
+							<Material id="mat" diffuseColor="0 1 0">
+								</Material>   
+						</Appearance > 
+							<Sphere>    
+							</Sphere>   
+					</Shape>
+				</Transform>
+				<Transform onmousemove="document.getElementById('PosCh').setAttribute('set_destination', event.hitPnt);
+				   document.getElementById('ColCh').setAttribute('set_destination', '0 1 1');">
+						<Shape>                             
+							<Appearance >    
+								<Material diffuseColor='0 1 1' >  
+								</Material>              
+							</Appearance>             
+								<IndexedFaceSet DEF='plane' solid='false' coordIndex='0 1 2 3 -1'> 
+									<Coordinate point='-1.7 -1 0, -1.7 -1 -2, -0.5 -1 -2, -0.5 -1 0'>     
+									</Coordinate>
+									<Normal vector='0 0 1 0 0 1 0 0 1 0 0 1'>    
+									</Normal>               
+								</IndexedFaceSet>        
+						</Shape>     
+				</Transform>
+				 <Transform onmousemove="document.getElementById('PosCh').setAttribute('set_destination', event.hitPnt);
+					document.getElementById('ColCh').setAttribute('set_destination', '1 0.5 0');" translation='1.2 0 0'>
+						<Shape>
+							<Appearance >
+								<Material diffuseColor='1 0.5 0' >
+								</Material>
+							</Appearance>
+								<IndexedFaceSet USE='plane'>
+								</IndexedFaceSet>
+						</Shape>
+				</Transform>
+				<Transform onmousemove="document.getElementById('PosCh').setAttribute('set_destination', event.hitPnt);
+				document.getElementById('ColCh').setAttribute('set_destination', '0.5 0 1');" translation='2.4 0 0'>
+						<Shape>
+							<Appearance >
+								<Material diffuseColor='0.5 0 1' >
+								</Material> 
+							</Appearance>
+							<IndexedFaceSet USE='plane'>
+							</IndexedFaceSet>
+						</Shape>
+				</Transform>
+				
+				<ROUTE fromNode='PosCh' fromField='value_changed' toNode='Pointer' toField='translation'>
+				</ROUTE>
+				<ROUTE fromNode='ColCh' fromField='value_changed' toNode='mat' toField='diffuseColor'>
+				</ROUTE>
+				
+				<ROUTE fromNode='TS_2' fromField='fraction_changed' toNode='PosInt_Group' toField='set_fraction'>
+				</ROUTE>
+				<ROUTE fromNode='PosInt_Group' fromField='value_changed' toNode='PosD' toField='set_destination'>
+				</ROUTE>
+				<ROUTE fromNode='PosD' fromField='value_changed' toNode='Group' toField='set_translation'>
+				</ROUTE>
+				
+				<ROUTE fromNode='TS_2' fromField='fraction_changed' toNode='OrInt_Box' toField='set_fraction'>
+				</ROUTE>
+				<ROUTE fromNode='OrInt_Box' fromField='value_changed' toNode='Box' toField='set_rotation'>
+				</ROUTE> 
+				
+				<ROUTE fromNode='TS_1' fromField='fraction_changed' toNode='OrInt_Toruses' toField='set_fraction'>
+				</ROUTE>
+				<ROUTE fromNode='OrInt_Toruses' fromField='value_changed' toNode='OrientD' toField='set_destination'>
+				</ROUTE>
+				<ROUTE fromNode='OrientD' fromField='value_changed' toNode='Toruses' toField='set_rotation'>
+				</ROUTE>
+				
+		</scene>
+	</x3d>
+</body>	
+			<div style="position: relative; left:10px">   
+				<br>Введите коэффициент изменения скорости (>0):
+				<input type="text" id="Kf" size="1">
+			</div>
+			<div style="position: relative; left:10px">
+				<input type="button" id="bt_su" value="Ускорить движение объектов" onClick="speedup();">
+				<input type="button" id="bt_sd" value="Замедлить движение объектов" onClick="speeddown();">
+			</div>
+			<div style="position: relative; left:10px; top:20px">
+				<input type="button" id="bt1" value="Прекратить вращение колец" onClick="rotation()">
+			</div>
+			<div style="position:absolute; top:500px; left:10px; z-index:1;">
+				<p>Нажмите на картинку, чтобы изменить текстуру колец:
+				</p>   
+				<img src="ks.jpg" border="1" onclick="changeTexture('ks.jpg');" style="cursor:pointer;">
+				<img src="kr.jpg" border="1" onclick="changeTexture('kr.jpg');" style="cursor:pointer;">
+				<img src="kt.jpg" border="1" onclick="changeTexture('kt.jpg');" style="cursor:pointer;">
+			</div>	
+</html>			
