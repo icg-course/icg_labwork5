@@ -55,6 +55,7 @@
                             <Material DEF="bl" diffuseColor="1 0 0"></Material>
                         </Appearance>
                         <sphere id="sp" radius='0.7'></sphere>
+                        </Shape>
                 </transform>
                 <ROUTE fromNode="Time" fromField="fraction_changed" toNode="ColInt" toField="set_fraction"></ROUTE>
                 <ROUTE fromNode="ColInt" fromField="value_changed" toNode="bl" toField="set_diffuseColor"></ROUTE>
