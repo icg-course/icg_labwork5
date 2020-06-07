@@ -6,7 +6,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) }
+            Transform: translate(-50%, -50%) }
     </style>
 <head>
   <meta charset="utf-8" />
@@ -21,7 +21,7 @@
     <Scene> 
       <Viewpoint position="0 14 27" orientation="-1 0 0 0.5"></Viewpoint>      
         <Background backurl="images/fon.jpg"></Background>
-          <transform translation='-9 -1.5 -7' onclick="move(event.hitPnt);">
+          <Transform translation='-9 -1.5 -7' onclick="move(event.hitPnt);">
             <Shape>
             <!-- Плэйн -->
             <Appearance>
@@ -42,9 +42,9 @@
             xSpacing="2" zSpacing="2" solid="false">
             </ElevationGrid>
          </Shape>
-       </transform>
-       <transform DEF="Робот" id="Робот" onclick="VoiceWalle();">
-       <transform translation='-0.8 -0.5 -0.5'>
+       </Transform>
+       <Transform DEF="Робот" id="Робот" onclick="VoiceWalle();">
+       <Transform translation='-0.8 -0.5 -0.5'>
         <Shape>
            <!-- Туловище -->
            <IndexedFaceSet solid="false" coordIndex="6 5 2 3 -1"> 
@@ -111,9 +111,9 @@
                 <ImageTexture url="images/telo1.jpg"></ImageTexture>
                 </Appearance>
                 </Shape>                                   
-            </transform>
-            <transform translation="0.1 -0.2 0.2">  
-            <transform translation="-1.1, 1, 0" rotation='0 0 1 -1.57'>
+            </Transform>
+            <Transform translation="0.1 -0.2 0.2">  
+            <Transform translation="-1.1, 1, 0" rotation='0 0 1 -1.57'>
               <Shape>
                   <!-- Рука левая (часть 1) -->
                 <Appearance>
@@ -121,9 +121,9 @@
                 </Appearance>
                 <Cylinder height='0.5' radius='0.1'></Cylinder>
                </Shape>
-              </transform>
+              </Transform>
               <Transform DEF="LRyka" center="-1.45, 1, 0">
-            <transform translation="-1.45, 0.65, 0.6" rotation='1 0 0 -1.046'>
+            <Transform translation="-1.45, 0.65, 0.6" rotation='1 0 0 -1.046'>
               <Shape>
                 <!-- Рука левая (часть 2) -->
               <Appearance>
@@ -131,8 +131,8 @@
               </Appearance>
                 <Cylinder height='1.5' radius='0.1'></Cylinder>
               </Shape>
-              </transform>
-              <transform translation="-1.45, 0.25, 1.3" rotation='1 0 0 -1.046'>
+              </Transform>
+              <Transform translation="-1.45, 0.25, 1.3" rotation='1 0 0 -1.046'>
               <Shape>
                 <!-- Рука левая круглешок -->
                   <Appearance>
@@ -140,8 +140,8 @@
                   </Appearance>
                     <Sphere radius='0.15'></Sphere>
                   </Shape>
-                    </transform>
-              <transform translation="-1.45, 0.08, 1.6" rotation='1 0 0 2.094'>
+                    </Transform>
+              <Transform translation="-1.45, 0.08, 1.6" rotation='1 0 0 2.094'>
                   <Shape>
                     <!-- Рука левая конус (пальцы) -->
                       <Appearance>
@@ -150,8 +150,8 @@
                       <Cone BottomRadius='0.1' height='0.5' ></Cone>
                   </Shape>
                   </Transform>
-                  </transform>
-                  <transform translation="1.1, 1, 0" rotation='0 0 1 -1.57'>
+                  </Transform>
+                  <Transform translation="1.1, 1, 0" rotation='0 0 1 -1.57'>
               <Shape>
                 <!-- Рука правая -->
                   <Appearance>
@@ -159,9 +159,9 @@
                   </Appearance>
                   <Cylinder height='0.5' radius='0.1'></Cylinder>
                </Shape>
-                </transform>
+                </Transform>
                <Transform DEF="RRyka" center="1.45, 1, 0">
-              <transform translation="1.45, 0.65, 0.6" rotation='1 0 0 -1.046'>
+              <Transform translation="1.45, 0.65, 0.6" rotation='1 0 0 -1.046'>
               <Shape>
                  <!-- Рука правая (часть 2) -->
                 <Appearance>
@@ -169,8 +169,8 @@
                 </Appearance>
                 <Cylinder height='1.5' radius='0.1'></Cylinder>
               </Shape>
-              </transform>
-              <transform translation="1.45, 0.25, 1.3" rotation='1 0 0 -1.046'>
+              </Transform>
+              <Transform translation="1.45, 0.25, 1.3" rotation='1 0 0 -1.046'>
                 <Shape>
                   <!-- Рука правая круглешок -->
                     <Appearance>
@@ -178,8 +178,8 @@
                     </Appearance>
                 <Sphere radius='0.15'></Sphere>
                 </Shape>
-                </transform>
-                <transform translation="1.45, 0.08, 1.6" rotation='1 0 0 2.094'>
+                </Transform>
+                <Transform translation="1.45, 0.08, 1.6" rotation='1 0 0 2.094'>
                   <Shape>
                     <!-- Рука правая конус (пальцы) -->
                       <Appearance>
@@ -187,24 +187,24 @@
                       </Appearance>
                       <Cone BottomRadius='0.1' height='0.5' ></Cone>
                    </Shape>
-                   </transform>
-                   </transform>
-                   </transform>
+                   </Transform>
+                   </Transform>
+                   </Transform>
                                      
            <!-- Голова робота -->      
-            <transform> 
+            <Transform> 
             <Inline url="boshka.x3d"/>
-          </transform>
+          </Transform>
           <!-- Колесо 1 -->
-          <transform>
+          <Transform>
             <Inline url="koleso.x3d"/> 
-          </transform>
+          </Transform>
           <!-- Колесо 2 -->
-            <transform>  
+            <Transform>  
             <Inline url="koleso1.x3d"/>
-          </transform>
-        </transform>
-        <transform translation='0 -1.45 2.4' rotation='0 0 0 0'>
+          </Transform>
+        </Transform>
+        <Transform translation='0 -1.45 2.4' rotation='0 0 0 0'>
             <Shape>
               <!-- Цветочный горшок -->
              <Appearance>
@@ -214,8 +214,8 @@
           convex="false" spine="0 0 0 0 0.5 0">
             </Extrusion>
             </Shape>
-        </transform>
-        <transform translation='0 -1.45 2.4' rotation='0 0 0 0'>
+        </Transform>
+        <Transform translation='0 -1.45 2.4' rotation='0 0 0 0'>
             <Shape>
             <!-- Земля в цветочном горшке -->
                 <Appearance>
@@ -225,20 +225,20 @@
             spine="0 0 0 0 0.5 0">
            </Extrusion>
            </Shape>
-           </transform> 
+           </Transform> 
           <!-- Цветок -->
-          <transform>  
+          <Transform>  
             <Inline url="flowers.x3d"/>
-          </transform> 
-          <transform DEF="Eva" center="-3.5, 0, 0" onclick="VoiceEva();">
-          <transform translation='-3.5 0.5 0' rotation='1 0 0 -1.5708' scale='0.35 0.35 0.35'>  
+          </Transform> 
+          <Transform DEF="Eva" center="-3.5, 0, 0" onclick="VoiceEva();">
+          <Transform translation='-3.5 0.5 0' rotation='1 0 0 -1.5708' scale='0.35 0.35 0.35'>  
             <Inline url="eva.x3d"/>
-          </transform>
-         </transform> 
+          </Transform>
+         </Transform> 
     
             <Transform translation="0, 40, 0">
             <Group DEF="Stars">
-            <transform DEF="StarsTrans" translation='5 7 2' rotation='0 1 0 3.14' scale='0.2 0.2 0.2'>
+            <Transform DEF="StarsTrans" translation='5 7 2' rotation='0 1 0 3.14' scale='0.2 0.2 0.2'>
               <Shape>
                <Appearance>
                 <ImageTexture url="images/zvezda.jpg"/></ImageTexture>
@@ -250,7 +250,7 @@
                 <TextureCoordinate point="0.49528 0.549239 0.590001 0.870561 0.59 0.4056 0.188639 0.549282 0.436739 0.350736 0.341945 0.0294398 0.59 0.228054 0.838054 0.0294393 0.743261 0.350735 0.99136 0.549281 0.684721 0.549238"/>
                </IndexedFaceSet>
               </Shape>
-              </transform>
+              </Transform>
               </Group>
               <Transform translation="0, 0, 0">
                 <group use="Stars"/>
