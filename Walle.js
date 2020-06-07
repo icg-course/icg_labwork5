@@ -1,4 +1,3 @@
-var i = 0;
 var pos = [0, 0];
 
 function VoiceWalle() {
