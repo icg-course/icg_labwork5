@@ -1,13 +1,420 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>  
-    <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
-</html>
+    <style>
+        section {
+            border: 4px double black;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) }
+    </style>
+<head>
+  <meta charset="utf-8" />
+  <title>Лабораторная работа 5</title>
+  <link rel="stylesheet" href="http://x3dom.org/release/x3dom.css" />
+  <script src="http://x3dom.org/release/x3dom-full.js"></script>
+  <script src="Walle.js"></script>
+</head>
+<body>
+  <section>
+    <X3D width='1300px' height='800px'>
+    <Scene> 
+      <Viewpoint position="0 14 27" orientation="-1 0 0 0.5"></Viewpoint>      
+        <Background backurl="images/fon.jpg"></Background>
+          <transform translation='-9 -1.5 -7' onclick="move(event.hitPnt);">
+            <Shape>
+            <!-- Плэйн -->
+            <Appearance>
+              <ImageTexture url="images/trava.jpg"> </ImageTexture>
+            </Appearance>
+            <ElevationGrid xDimension="10" zDimension="10"
+            height=" 0, 0.15, 0, 0.15, 0, 0.15, 0, 0.15, 0, 0.15,
+                     0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0,
+                     0, 0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0, 0.1
+                     0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0, 
+                     0, 0.15, 0, 0.15, 0, 0.15, 0, 0.15, 0, 0.15,
+                     0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0,
+                     0, 0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0, 0.1
+                     0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0,
+                     0, 0.15, 0, 0.15, 0, 0.15, 0, 0.15, 0, 0.15,
+                     0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0, 0.1, 0,
+                     "
+            xSpacing="2" zSpacing="2" solid="false">
+            </ElevationGrid>
+         </shape>
+       </transform>
+       <transform DEF="Робот" id="Робот" onclick="VoiceWalle();">
+       <transform translation='-0.8 -0.5 -0.5'>
+        <Shape>
+           <!-- Туловище -->
+           <IndexedFaceSet solid = false coordIndex="6 5 2 3 -1"> 
+            <Coordinate point="0 0 0, 0 1.6 0, 1.8 1.6 0, 1.8 0 0,
+                        0 1.6 1.6, 1.8 1.6 1.6, 1.8 0 1.6, 0 0 1.6">
+            </Coordinate>
+            </IndexedFaceSet>
+                      <Appearance>
+                      <ImageTexture url="images/telo.jpg"> </ImageTexture>
+                      <TextureTransform rotation='1.5707963267949'></TextureTransform>
+                      </Appearance>
+                      </Shape>
+        <Shape>
+           <!-- Туловище -->
+           <IndexedFaceSet solid = false coordIndex="7 4 5 6 -1"> 
+            <Coordinate point="0 0 0, 0 1.6 0, 1.8 1.6 0, 1.8 0 0,
+                        0 1.6 1.6, 1.8 1.6 1.6, 1.8 0 1.6, 0 0 1.6">
+            </Coordinate>
+            </IndexedFaceSet>
+                      <Appearance>
+                      <ImageTexture url="images/telo.jpg"> </ImageTexture>
+                      <TextureTransform scale = "1 1.13"></TextureTransform>
+                      </Appearance>
+                      </Shape>
+        <Shape>              
+            <IndexedFaceSet solid = false coordIndex="6 7 0 3 -1"> 
+            <Coordinate point="0 0 0, 0 1.6 0, 1.8 1.6 0, 1.8 0 0,
+                        0 1.6 1.6, 1.8 1.6 1.6, 1.8 0 1.6, 0 0 1.6">
+            </Coordinate>
+            </IndexedFaceSet>
+                      <Appearance>
+                      <ImageTexture url="images/telo1.jpg"> </ImageTexture>
+                      </Appearance>
+                      </Shape>              
+        <Shape>              
+            <IndexedFaceSet solid = false coordIndex="0 1 2 3 -1"> 
+            <Coordinate point="0 0 0, 0 1.6 0, 1.8 1.6 0, 1.8 0 0,
+                        0 1.6 1.6, 1.8 1.6 1.6, 1.8 0 1.6, 0 0 1.6">
+            </Coordinate>
+            </IndexedFaceSet>
+                      <Appearance>
+                      <ImageTexture url="images/telo.jpg"> </ImageTexture>
+                      <TextureTransform scale = "-1 1.13"></TextureTransform>
+                      </Appearance>
+                      </Shape>     
+        <Shape>              
+            <IndexedFaceSet solid = false coordIndex="7 4 1 0 -1"> 
+            <Coordinate point="0 0 0, 0 1.6 0, 1.8 1.6 0, 1.8 0 0,
+                        0 1.6 1.6, 1.8 1.6 1.6, 1.8 0 1.6, 0 0 1.6">
+            </Coordinate>
+            </IndexedFaceSet>
+                      <Appearance>
+                      <ImageTexture url="images/telo.jpg"> </ImageTexture>
+                      <TextureTransform scale = "-1 1" rotation='1.5707963267949'></TextureTransform>
+                      </Appearance>
+                      </Shape>    
+        <Shape>              
+            <IndexedFaceSet solid = false coordIndex="4 1 2 5 -1"> 
+            <Coordinate point="0 0 0, 0 1.6 0, 1.8 1.6 0, 1.8 0 0,
+                        0 1.6 1.6, 1.8 1.6 1.6, 1.8 0 1.6, 0 0 1.6">
+            </Coordinate>
+            </IndexedFaceSet>
+                <Appearance>
+                <ImageTexture url="images/telo1.jpg"> </ImageTexture>
+                </Appearance>
+                </Shape>                                   
+            </transform>
+            <transform translation="0.1 -0.2 0.2">  
+            <transform translation="-1.1, 1, 0" rotation='0 0 1 -1.57'>
+              <Shape>
+                  <!-- Рука левая (часть 1) -->
+                <Appearance>
+                  <ImageTexture url='images/telo.jpg'>  
+                </Appearance>
+                <Cylinder height='0.5' radius='0.1'></Cylinder>
+               </shape>
+              </transform>
+              <Transform DEF="LRyka" center="-1.45, 1, 0">
+            <transform translation="-1.45, 0.65, 0.6" rotation='1 0 0 -1.046'>
+              <Shape>
+                <!-- Рука левая (часть 2) -->
+              <Appearance>
+                <ImageTexture url='images/telo.jpg'>  
+              </Appearance>
+                <Cylinder height='1.5' radius='0.1'></Cylinder>
+              </shape>
+              </transform>
+              <transform translation="-1.45, 0.25, 1.3" rotation='1 0 0 -1.046'>
+              <Shape>
+                <!-- Рука левая круглешок -->
+                  <Appearance>
+                    <ImageTexture url='images/telo.jpg'>    
+                  </Appearance>
+                    <Sphere radius='0.15'></Sphere>
+                  </shape>
+                    </transform>
+              <transform translation="-1.45, 0.08, 1.6" rotation='1 0 0 2.094'>
+                  <Shape>
+                    <!-- Рука левая конус (пальцы) -->
+                      <Appearance>
+                        <ImageTexture url='images/telo.jpg'>
+                      </Appearance>
+                      <Cone BottomRadius='0.1' height='0.5' ></Cone>
+                  </shape>
+                  </Transform>
+                  </transform>
+                  <transform translation="1.1, 1, 0" rotation='0 0 1 -1.57'>
+              <Shape>
+                <!-- Рука правая -->
+                  <Appearance>
+                    <ImageTexture url='images/telo.jpg'> 
+                  </Appearance>
+                  <Cylinder height='0.5' radius='0.1'></Cylinder>
+               </shape>
+                </transform>
+               <Transform DEF="RRyka" center="1.45, 1, 0">
+              <transform translation="1.45, 0.65, 0.6" rotation='1 0 0 -1.046'>
+              <Shape>
+                 <!-- Рука правая (часть 2) -->
+                <Appearance>
+                  <ImageTexture url='images/telo.jpg'>   
+                </Appearance>
+                <Cylinder height='1.5' radius='0.1'></Cylinder>
+              </shape>
+              </transform>
+              <transform translation="1.45, 0.25, 1.3" rotation='1 0 0 -1.046'>
+                <Shape>
+                  <!-- Рука правая круглешок -->
+                    <Appearance>
+                      <ImageTexture url='images/telo.jpg'>  
+                    </Appearance>
+                <Sphere radius='0.15'></Sphere>
+                </shape>
+                </transform>
+                <transform translation="1.45, 0.08, 1.6" rotation='1 0 0 2.094'>
+                  <Shape>
+                    <!-- Рука правая конус (пальцы) -->
+                      <Appearance>
+                        <ImageTexture url='images/telo.jpg'>   
+                      </Appearance>
+                      <Cone BottomRadius='0.1' height='0.5' ></Cone>
+                   </shape>
+                   </transform>
+                   </transform>
+                   </transform>
+                                     
+           <!-- Голова робота -->      
+            <transform> 
+            <Inline url="boshka.x3d"/>
+          </transform>
+          <!-- Колесо 1 -->
+          <transform>
+            <Inline url="koleso.x3d"/> 
+          </transform>
+          <!-- Колесо 2 -->
+            <transform>  
+            <Inline url="koleso1.x3d"/>
+          </transform>
+        </transform>
+        <transform translation='0 -1.45 2.4' rotation='0 0 0 0'>
+            <shape>
+              <!-- Цветочный горшок -->
+             <Appearance>
+               <ImageTexture url='images/gorshok.jpg'>
+             </Appearance>
+            <Extrusion crossSection="-0.4 -0.4 -0.4 0.4 -0.1 0.4 -0.1 0.3 -0.3 0.3 -0.3 -0.3 0.3 -0.3 0.3 0.3 -0.1 0.3 -0.1 0.4 0.4 0.4 0.4 -0.4 -0.4 -0.4 "
+          convex="false" spine="0 0 0 0 0.5 0">
+            </Extrusion>
+            </shape>
+        </transform>
+        <transform translation='0 -1.45 2.4' rotation='0 0 0 0'>
+            <shape>
+            <!-- Земля в цветочном горшке -->
+                <Appearance>
+                    <ImageTexture url='images/Brown.jpg'>
+                </Appearance>
+                <Extrusion crossSection='-0.3 0.3 0.3 0.3 0.3 -0.3 -0.3 -0.3 -0.3 0.3'
+            spine="0 0 0 0 0.5 0">
+           </Extrusion>
+           </shape>
+           </transform> 
+          <!-- Цветок -->
+          <transform>  
+            <Inline url="flowers.x3d"/>
+          </transform> 
+          <transform DEF="Eva" center="-3.5, 0, 0" onclick="VoiceEva();">
+          <transform translation='-3.5 0.5 0' rotation='1 0 0 -1.5708' scale='0.35 0.35 0.35'>  
+            <Inline url="eva.x3d"/>
+          </transform>
+         </transform> 
+    
+            <Transform translation="0, 40, 0">
+            <Group DEF="Stars">
+            <transform DEF="StarsTrans" translation='5 7 2' rotation='0 1 0 3.14' scale='0.2 0.2 0.2'>
+              <Shape>
+               <Appearance>
+                <ImageTexture url="images/zvezda.jpg"/>
+               </Appearance>
+               <IndexedFaceSet colorPerVertex="false" solid="false" coordIndex="0 1 2 -1 0 2 3 -1 4 3 2 -1 4 2 5 -1 6 5 2 -1 6 2 7 -1 8 7 2 -1 8 2 9 -1 10 9 2 -1 10 2 1 -1 10 1 11 -1 10 11 9 -1 8 9 11 -1 8 11 7 -1 6 7 11 -1 6 11 5 -1 4 5 11 -1 4 11 3 -1 0 3 11 -1 0 11 1 -1" texCoordIndex="0 1 2 -1 0 2 3 -1 4 3 2 -1 4 2 5 -1 6 5 2 -1 6 2 7 -1 8 7 2 -1 8 2 9 -1 10 9 2 -1 10 2 1 -1 10 1 2 -1 10 2 9 -1 8 9 2 -1 8 2 7 -1 6 7 2 -1 6 2 5 -1 4 5 2 -1 4 2 3 -1 0 3 2 -1 0 2 1 -1">
+                <Coordinate point="-0.586784 0.810018 0.001 0.001005 2.61981 0.001 0.001 0.001 0.355023 -2.48963 0.81026 0.001 -0.950057 -0.308016 0.001 -1.5383 -2.11766 0.001 0.000999 -0.999 0.001 1.5403 -2.11766 0.001 0.952056 -0.308017 0.001 2.49163 0.810256 0.001 0.588787 0.810016 0.001 0.001 0.001 -0.353"/>
+                <ColorRGBA color="0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1 0.811765 0.588235 0.768627 1"/>
+                <Normal vector="0.587784 -0.809018 1.79683e-05 -1.94246e-06 -1 3.53175e-06 -3.54307e-08 8.60459e-08 -1 0.951056 -0.309019 1.94246e-06 0.951057 0.309015 1.78831e-05 0.587786 0.809016 3.53175e-06 1.91605e-07 1 1.7798e-05 -0.587785 0.809017 2.47222e-06 -0.951056 0.309017 1.80109e-05 -0.951056 -0.309018 1.94246e-06 -0.587785 -0.809017 1.80109e-05 -3.28996e-08 5.18802e-08 1"/>
+                <TextureCoordinate point="0.49528 0.549239 0.590001 0.870561 0.59 0.4056 0.188639 0.549282 0.436739 0.350736 0.341945 0.0294398 0.59 0.228054 0.838054 0.0294393 0.743261 0.350735 0.99136 0.549281 0.684721 0.549238"/>
+               </IndexedFaceSet>
+              </Shape>
+              </transform>
+              </Group>
+              <Transform translation="0, 0, 0">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="-2.5, 2, 2">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="-7, -3, -6">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="-12, 1, 3">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="-18, 4, 2">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="-22, -4, -2">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="-25,-1, 5">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="-29, 6, -3">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="-32, -7, -3">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="0, -2, -2">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="15, 3, -2">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="5, -6, -2">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="12, -3, -6">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="16, -15, -6">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="18, -5, 5">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="22, -6, -1">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="25, 3, -9">
+                <group use="Stars"/>
+            </Transform> 
+            <Transform translation="29, 9, -2">
+                <group use="Stars"/>
+            </Transform>
+            
+
+            <Transform translation="0, 10, 0">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="-3, -10, 2">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="-5, 7, -5">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="-14, -10, 3">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="-18, -15, 5">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="-22, -8, -2">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="-25, 18, -7">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="-29, -9, -3">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="-32, -7, -3">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="0, -2, -2">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="15, 3, -2">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="5, -15, 6">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="12, 12, -5">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="16, -15, -6">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="18, 18, 5">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="22, 7, -6">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="25, 5, -9">
+              <group use="Stars"/>
+          </Transform> 
+          <Transform translation="29, -7, -5">
+              <group use="Stars"/>
+          </Transform>
+          </Transform>
+
+
+        <TimeSensor id="TimeForStars" DEF='TimeForStars' cycleInterval='13' enabled="false" loop='true' first="true"/>
+        <PositionInterpolator DEF='PosStars' key='0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1' keyValue='0 40 0, 0 30 0, 1 20 0, 0 10 0, 1 0 0, 0 -10 0, 1 -20 0, 0 -30 0, 1 -40 0, 0 -50 0, 1 -60 0'/>
+        
+        <ROUTE fromNode='TimeForStars' fromField='fraction_changed' toNode='PosStars' toField='set_fraction'></ROUTE>
+        <ROUTE fromNode='PosStars' fromField='value_changed' toNode='StarsTrans' toField='set_translation'></ROUTE>
+
+
+        <TimeSensor id="TimeEva" DEF='TimeEva' cycleInterval='10' loop='true'/>
+        <OrientationInterpolator DEF='OrientEvaInt' key='0 0.25 0.5 0.75 1' keyValue='0 1 0 0, 0 1 0 0, 0 1 0 -1.57, 0 1 0 -1.57, 0 1 0 -1.57'>
+        <OrientationDamper def='OrientEvaDamper' duration=".9"/> 
+        <PositionInterpolator DEF='PosEvaInt' key='0 0.25 0.5 0.75 1' keyValue='0 0 0, 0 0 0, 0 0 0, -10 30 0, -10 30 0'/>
+        <PositionDamper DEF='PosEvaDamper' duration='.9'/>
+        
+        <ROUTE fromNode='TimeEva' fromField='fraction_changed' toNode='OrientEvaInt' toField='set_fraction'></ROUTE>
+        <ROUTE fromNode='OrientEvaInt' fromField='value_changed' toNode='OrientEvaDamper' toField='set_destination'></ROUTE>
+        <ROUTE fromNode='OrientEvaDamper' fromField='value_changed' toNode='Eva' toField='set_rotation'></ROUTE>
+
+        <ROUTE fromNode='TimeEva' fromField='fraction_changed' toNode='PosEvaInt' toField='set_fraction'></ROUTE>
+        <ROUTE fromNode='PosEvaInt' fromField='value_changed' toNode='PosEvaDamper' toField='set_destination'></ROUTE>
+        <ROUTE fromNode='PosEvaDamper' fromField='value_changed' toNode='Eva' toField='set_translation'></ROUTE>
+
+                
+        <OrientationChaser DEF="OrChaser" id="OrChaser" duration="1" initialDestination="0 0 0 0"></OrientationChaser>
+        <PositionChaser DEF="PosChaser" id="PosChaser" duration="3" initialDestination="0 0 0"></PositionChaser>
+				
+				<ROUTE fromNode="OrChaser" fromField="value_changed" toNode="Робот" toField="set_rotation"></ROUTE>
+				<ROUTE fromNode="PosChaser" fromField="value_changed" toNode="Робот" toField="set_translation"></ROUTE>
+          
+        <timesensor id="TS" def="TS" cycleinterval="3" loop="True" enabled="false" first="true"></timesensor>
+        <OrientationInterpolator DEF="LArm" key="0 0.25 0.5 0.75 1" keyValue="1 0 0 0, 1 0 0 0.45, 1 0 0 0, 1 0 0 -0.45, 1 0 0 0"></OrientationInterpolator>
+        <OrientationInterpolator DEF="RArm" key="0 0.25 0.5 0.75 1" keyValue="1 0 0 0, 1 0 0 -0.45, 1 0 0 0, 1 0 0 0.45, 1 0 0 0"></OrientationInterpolator>
+
+        <ROUTE fromNode="TS" fromField="fraction_changed" toNode="LArm" toField="set_fraction"></ROUTE>
+        <ROUTE fromNode="LArm" fromField="value_changed" toNode="LRyka" toField="set_rotation"></ROUTE>
+        
+        <ROUTE fromNode="TS" fromField="fraction_changed" toNode="RArm" toField="set_fraction"></ROUTE>
+        <ROUTE fromNode="RArm" fromField="value_changed" toNode="RRyka" toField="set_rotation"></ROUTE>
+
+        <Sound>
+					<audioclip id="Eva" url="sound/Eva.mp3" loop="false" enabled="false"></audioclip>
+					<audioclip id="Walle" url="sound/Walle.mp3" loop="false" enabled="false"></audioclip>
+				</Sound>
+          </Scene>
+        </X3D>
+        <div style="position:absolute; top:250px; left:1000px;">
+          <input type="button" id="buttonarms" value="Включить анимацию рук" onclick="arms();"></input><br>
+          </div>
+          <div style="position:absolute; top:280px; left:1000px;">
+            <input type="button" id="buttonstars" value="Включить падение звёзд" onclick="stars();"></input><br>
+            </div>
+       </section>
+      </body>
+      </html>
