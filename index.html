@@ -205,7 +205,7 @@
 					<PositionInterpolator DEF="PosInt1" key="0 0.25 0.5 0.75 1"
 						keyValue="-6 8 6, -6 8 -6, 6 8 -6, 6 8 6, -6 8 6">
 					</PositionInterpolator>
-					<PositionDamper DEF="PosDp" tau="0.5"></PositionChaser>
+					<PositionDamper DEF="PosDp" tau="0.5"></PositionDamper>
 					<ROUTE fromNode="Time2" fromField="fraction_changed"
 						toNode="PosInt1" toField="set_fraction"></ROUTE>
 					<ROUTE fromNode="PosInt1" fromField="value_changed"
