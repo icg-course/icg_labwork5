@@ -8,39 +8,7 @@
 			<link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'/>
 		</head>
 		<body>
-		<script>
-		 function lightSwitch(id){
-			 var light = document.getElementById(id);
-			 if(light.getAttribute('on')!='TRUE')
-				light.setAttribute('on','TRUE');
-			 else
-				 light.setAttribute('on','FALSE');
-		 }
-
-		 function headlight()
-		  {
-			   var h = document.getElementById("head");
-			  if(h.getAttribute('headlight')=='true')
-				h.setAttribute('headlight', 'false');
-			  else
-				  h.setAttribute('headlight', 'true');
-		  }
-		  
-		  function button(id)
-		  {
-			   var h = document.getElementById("Time");
-			if(h.getAttribute('enabled')=='true')
-			{
-				h.setAttribute('enabled', 'false');
-			}
-			else
-			{
-				h.setAttribute('enabled', 'true');
-			}
-		  }
-
-
-		</script>
+	
 		<center>
 				<button id="stop"> Stop Spheres </button>
 				<button id="play"> Play Spheres </button>
@@ -214,17 +182,5 @@
 						
 				</scene> 
 				</x3d>
-			<div id="tools" style="width: 1900x">
-			<input type="checkbox" checked="true" onclick="lightSwitch('point')">
-				<label>point light</label>
-			<input type="checkbox" checked="true" onclick="lightSwitch('spot')">
-				<label>spot light</label>
-			<input type="checkbox" checked="true" onclick="lightSwitch('directional')">
-				<label>directional light</label>
-			<input type="checkbox" checked="true" onclick="headlight()">
-				<label>headlight</label>
-			<input type="checkbox" checked="true" onclick="button(Time)">
-				<label>play/stop</label>
-			</div\>
 		</body>
 </html>
