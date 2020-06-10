@@ -193,8 +193,8 @@
 						toNode="Trans" toField="set_rotation"></ROUTE>
 						
 					<TimeSensor id="Time1" DEF="Time1" cycleInterval="7" loop="true" enabled = "true"></TimeSensor>
-					<ColorInterpolator DEF="ColInt" key="0 0.5 1"</ColorInterpolator>
-						keyValue="0.9 0.9 0.9, 0 0 0, 0.9 0.9 0.9">
+					<ColorInterpolator DEF="ColInt" key="0 0.5 1"
+						keyValue="0.9 0.9 0.9, 0 0 0, 0.9 0.9 0.9"></ColorInterpolator>
 					<ColorDamper DEF="ColDp" tau = "1"></ColorDamper>
 					<ROUTE fromNode="Time1" fromField="fraction_changed"
 						toNode="ColInt" toField="set_fraction"></ROUTE>
