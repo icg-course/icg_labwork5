@@ -1,13 +1,232 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <head>  
-    <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+<html>
+		<head>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+			<title></title>
+			<script type='text/javascript' src='https://www.x3dom.org/download/x3dom.js'> </script>
+			<script src="max.js"></script>
+			<link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'/>
+		</head>
+		<body>
+		<script>
+		 function lightSwitch(id){
+			 var light = document.getElementById(id);
+			 if(light.getAttribute('on')!='TRUE')
+				light.setAttribute('on','TRUE');
+			 else
+				 light.setAttribute('on','FALSE');
+		 }
+
+		 function headlight()
+		  {
+			   var h = document.getElementById("head");
+			  if(h.getAttribute('headlight')=='true')
+				h.setAttribute('headlight', 'false');
+			  else
+				  h.setAttribute('headlight', 'true');
+		  }
+		  
+		  function button(id)
+		  {
+			   var h = document.getElementById("Time");
+			if(h.getAttribute('enabled')=='true')
+			{
+				h.setAttribute('enabled', 'false');
+			}
+			else
+			{
+				h.setAttribute('enabled', 'true');
+			}
+		  }
+
+
+		</script>
+		<center>
+				<button id="stop"> Stop Spheres </button>
+				<button id="play"> Play Spheres </button>
+				<button id="left"> Left </button>
+				<button id="right"> Right </button>
+				<button id="forward"> Forward </button>
+				<button id="back"> Back </button>
+				<button id="up"> Up </button>
+				<button id="down"> Down </button>
+				<button id="color"> Sun/Moon </button>
+		</center>
+		<div id="content"> 		
+			<x3d width='1900px' height='900px'> 
+			<scene> 
+				<transform translation='0.5 0 0'> 
+				<shape> 
+				<Appearance>
+						<Material emissiveColor = "0 0 1"></Material>
+				</Appearance>
+				<IndexedFaceSet ccw="true" colorPerVertex="true" convex="true"
+					 creaseAngle="0" solid="false"
+					 coordIndex="0 1 2 3 4 5 6 -1 0 1 8 7 -1 1 3 10 8 -1 3 4 11 10 -1 4 5 12 11 -1 5 6 13 12 -1 6 0 7 13 -1 7 8 15 14 -1 8 10 16 15 -1 10 11 17 16 -1 11 12 18 17 -1 12 13 19 18 -1 13 7 14 19 -1 14 15 21 20 -1 15 16 22 21 -1 16 17 23 22 -1 17 18 24 23 -1 18 19 25 24 -1 19 14 20 25">
+					 <Coordinate point="2 0 0, 1 0 -2, 0 0 -2, -1 0 -2, -2 0 0, -1 0 2, 1 0 2, 2 4 0, 1 4 -2, 0 4 -2, -1 4 -2, -2 4 0, -1 4 2, 1 4 2, 1 4.5 0, 0.5 4.5 -1, -0.5 4.5 -1, -1 4.5 0, -0.5 4.5 1, 0.5 4.5 1, 0.87 5 0, 0.4 5 -0.87, -0.4 5 -0.87, -0.87 5 0, -0.4 5 0.87, 0.4 5 0.87"></Coordinate>
+				</IndexedFaceSet>
+				</shape> 
+				</transform>
+				<transform DEF = "Trans" translation='0.5 0 0'> 
+				<shape> 
+					<Appearance>
+							<Material emissiveColor = "1 0 0"></Material>
+					</Appearance>
+					<IndexedFaceSet ccw="true" convex="true"
+						 creaseAngle="0" solid="false"
+						 coordIndex="0 1 7 6 -1 1 2 8 7 -1 2 3 9 8 -1 3 4 10 9 -1 4 5 11 10 -1 5 0 6 11 -1 6 7 8 9 10 11 -1">
+						 <Coordinate point="1.1 4.6 0, 0.55 4.6 -1.05, -0.55 4.6 -1.05, -1.1 4.6 0, -0.55 4.6 1.05, 0.55 4.6 1.05, 0.9 5.1 0, 0.45 5.1 -0.87, -0.45 5.1 -0.87, -0.9 5.1 0, -0.45 5.1 0.87, 0.45 5.1 0.87"></Coordinate>
+		
+					</IndexedFaceSet>
+				</shape>
+				</transform>
+				
+				<shape> 
+					<IndexedTriangleSet index="0 1 2 3 4 5 6 7 8" solid="false">
+						 <Coordinate point="-4 0 -3, -2 2 -3, -4 2 -1.5, -4 0 -3,
+						 -4 2 -1.5, -4 0 0, -4 0 0, -4 2 -1.5, -3 2 1"></Coordinate>
+						 <ColorRGBA color="0 .8 0 1, 0 1 1 1, 1 0 0 0.7, 1 .5 0 0.2,
+						 .8 0 1 1, 1 1 0 1, 0 0 0 1, 1 0 .5 1, 0 1 .5 0.8"></ColorRGBA>
+					</IndexedTriangleSet>
+				</shape> 
+				<shape> 
+					<IndexedTriangleStripSet index='0 1 2 3 4 5 6 7 8' solid='false'>
+						 <Coordinate point='-4 0 -3, -2 2 -3, 0 0 -3, 2 2 -3,
+						 4.5 0 -3, 4.5 2 -1.5, 4.5 0 0, 4.5 2 1, 3 0 1'></Coordinate>
+						 <ColorRGBA color='0 0.8 0 1, 0 1 1 0.7, 1 0 0 0.9, 0 0 0 1,
+						 0 0 0 1, 1 1 0 0.5, 1 0.2 0 1, 1 0 0.5 0.8, 1 1 1 1'></ColorRGBA>
+					</IndexedTriangleStripSet>
+				</shape>
+				
+				<Transform id = "TransSp" DEF = "TransSp" translation='-6 8 6' scale = '1 1 1'>
+						<Shape>
+							<Appearance><Material id = "MatSp" DEF = "MatSp" diffuseColor="1 1 0"></Material></Appearance>
+							<sphere radius = "1" solid="false"></sphere>
+						</Shape>
+				</Transform>
+
+				<navigationInfo id="head" headlight='false' type="EXEMINE" speed="4"></navigationInfo>
+				<background   skyColor="0 0 0" ></background>
+				<!--<Fog id="fog" color='1 1 1' fogType='"EXPONENTIAL"' visibilityRange='100'></Fog>-->
+				<Viewpoint position="-1 10 20" orientation="-0.99104 -0.13344 -0.00551 0.46917"></Viewpoint> 
+				<directionalLight id="directional" direction='0 -1 -1' on ="TRUE" intensity='0.8' shadowIntensity='0.5'>
+				</directionalLight>
+				<PointLight id='point' on='TRUE' intensity='1' ambientIntensity='0' color='0 0 1' location='0.5 1 0 '  attenuation='0 0 0' radius='3'> </PointLight>
+				<SpotLight id='spot' on ="TRUE"  intensity ='0.35' beamWidth='0.9' color='0 1 0' cutOffAngle='0.78' location='1 10 0' radius='20' direction='-0.1 -1 0'></SpotLight>
+				<Collision DEF="MyCollisionNode" enabled="true">
+				<Group DEF="Spheres">
+					<Anchor url="file:///C:/Users/%D0%9C%D0%B0%D0%BA%D1%81%D0%B8%D0%BC/Desktop/lab2.html" parameter="target='_self'">
+						<Transform translation="-4 2 4">
+							<Shape DEF="MySp">
+								<Appearance><Material DEF = "Mat" diffuseColor="0.2 0.2 0.9"></Material></Appearance>
+								<sphere radius = "1" solid="false"></sphere>
+							</Shape>
+						</Transform>
+					</Anchor>
+					<Transform translation="4 2 4">
+						<Shape USE="MySp">
+						<Material DEF ="Mat1" diffuseColor = " 0 0 0"></Material>
+						</Shape>
+					</Transform>
+					<Transform translation="-4 2 -5">
+						<Shape>
+								<Appearance >
+									<Material diffuseColor ="0.2 0.2 0.9"></Material>
+									<ImageTexture  url="https://avatars.mds.yandex.net/get-pdb/1857214/912b0f2f-cf0b-401e-a280-4506c3976c9c/s1200"></ImageTexture/>
+								</Appearance>
+								<sphere radius = "1" solid="false"></sphere>
+						</Shape>
+					</Transform>
+					<Transform translation="4 2 -5">
+						<Shape USE="MySp"></Shape>
+					</Transform>
+				</Group>
+
+				<Group DEF="Boxes">
+						<Transform translation="-4 0.5 -5">
+							<shape  DEF="BoxTex"> 
+								<Appearance>
+									<Material diffusecolor="0.45 0.26 0.99"></material>
+								</Appearance>
+									<box size = " 2 1 2"></box> 
+							</shape>
+						</Transform>
+						<Transform id= "Box1" DEF = "Box1" translation="-4 0.5 4">
+							<shape  USE="BoxTex"> </shape>
+						</Transform>
+						<Transform translation="4 0.5 4">
+							<shape  USE="BoxTex"> </shape>
+						</Transform>
+						<Anchor url="https://vk.com/makxsimm" parameter="target='_self'">
+							<Transform translation="4 0.5 -5">
+								<shape  USE="BoxTex"> </shape>
+							</Transform>
+						</Anchor>
+				</Group>
+					<Transform translation="0 0 0" rotation="1 0 0 -1.57">
+						<Shape>
+							<Appearance><Material diffuseColor="0.82 0.8, 0.85"></Material></Appearance>
+							<plane solid="false" size="20 20"></plane>
+						</Shape>
+					</Transform>
+					</Collision>
+					
+
+					<TimeSensor id="Time" DEF="Time" cycleInterval="10" loop="true" enabled = "true"></TimeSensor>
+					 <PositionInterpolator DEF="PosInt" key="0 0.1 0.2 0.3 0.5 0.7 0.8 0.9 1"
+						keyValue="0.5 0 0, 0.5 0.5 0,0.5 0.5 2, 0.5 -0.25 3, 0.5 -4.6 4.8, 0.5 -0.25 3, 0.5 0.5 2, 0.5 0.5 0, 0.5 0 0">
+					</PositionInterpolator>
+					<PositionChaser DEF="PosCh" duration="0.1"></PositionChaser>
+					<ROUTE fromNode="Time" fromField="fraction_changed"
+						toNode="PosInt" toField="set_fraction"></ROUTE>
+					<ROUTE fromNode="PosInt" fromField="value_changed"
+						toNode="PosCh" toField="set_destination"></ROUTE>
+					<ROUTE fromNode="PosCh" fromField="value_changed"
+						toNode="Trans" toField="set_translation"></ROUTE>
+
+					<OrientationInterpolator DEF="OrientInt" key="0.1 0.5 0.9"
+						keyValue="0 1 0 0, 0 1 0 -3.14, 0 1 0 -6.28">
+					</OrientationInterpolator>
+					<ROUTE fromNode="Time" fromField="fraction_changed"
+						toNode="OrientInt" toField="set_fraction"></ROUTE>
+					 <ROUTE fromNode="OrientInt" fromField="value_changed"
+						toNode="Trans" toField="set_rotation"></ROUTE>
+						
+					<TimeSensor id="Time1" DEF="Time1" cycleInterval="7" loop="true" enabled = "true"></TimeSensor>
+					<ColorInterpolator DEF="ColInt" key="0 0.5 1"
+						keyValue="0.9 0.9 0.9, 0 0 0, 0.9 0.9 0.9">
+					<ColorDamper DEF="ColDp" tau = "1">
+					<ROUTE fromNode="Time1" fromField="fraction_changed"
+						toNode="ColInt" toField="set_fraction"></ROUTE>
+					<ROUTE fromNode="ColInt" fromField="value_changed"
+						toNode="Mat" toField="set_diffuseColor"></ROUTE>
+						
+					<TimeSensor id="Time2" DEF="Time2" cycleInterval="10" loop="true" enabled = "true"></TimeSensor>
+					<PositionInterpolator DEF="PosInt1" key="0 0.25 0.5 0.75 1"
+						keyValue="-6 8 6, -6 8 -6, 6 8 -6, 6 8 6, -6 8 6">
+					</PositionInterpolator>
+					<PositionDamper DEF="PosDp" tau="0.5"></PositionChaser>
+					<ROUTE fromNode="Time2" fromField="fraction_changed"
+						toNode="PosInt1" toField="set_fraction"></ROUTE>
+					<ROUTE fromNode="PosInt1" fromField="value_changed"
+						toNode="PosDp" toField="set_destination"></ROUTE>
+					<ROUTE fromNode="PosDp" fromField="value_changed"
+						toNode="TransSp" toField="set_translation"></ROUTE>
+						
+				</scene> 
+				</x3d>
+			<div id="tools" style="width: 1280px;">
+			<input type="checkbox" checked="true" onclick="lightSwitch('point')">
+				<label>point light</label>
+			<input type="checkbox" checked="true" onclick="lightSwitch('spot')">
+				<label>spot light</label>
+			<input type="checkbox" checked="true" onclick="lightSwitch('directional')">
+				<label>directional light</label>
+			<input type="checkbox" checked="true" onclick="headlight()">
+				<label>headlight</label>
+			<input type="checkbox" checked="true" onclick="button(Time)">
+				<label>play/stop</label>
+			</div>
+		</div>
+		</body>
 </html>
