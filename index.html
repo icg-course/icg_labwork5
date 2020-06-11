@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
     <title>Лабораторная работа 5</title>
-			<script src="scripts.js"></script>
+	<script src="scripts.js"></script>
     <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
     <script src="https://www.x3dom.org/download/x3dom.js"></script>
   </head>
   <body>
-    <h1>Welcome</h1>
+		<h1>Welcome</h1>
 		<center>
 			<button id="left"> Left </button>
 			<button id="right"> Right </button>
@@ -22,7 +22,7 @@
 				<transform id= "Box" translation='5 0.665 5'>
 					<shape>
 						<Appearance>
-							<Material diffuseColor="1 1 0">
+							<Material diffuseColor="1 1 0"></Material>
 						</Appearance>
 						<Box size="1 1 1"></Box>
 					</shape>
@@ -33,8 +33,7 @@
 					</Appearance>
 					<IndexedFaceSet ccw="true" colorPerVertex="true" convex="true"
 						creaseAngle="0" solid="false"
-						coordIndex="0 3 2 1 -1 0 4 5 1 -1 1 5 6 2 -1 2 6 7 3 -1 0 3 7 4 -1 4 5 6 7 -1"
-						<!---->
+						coordIndex="0 3 2 1 -1 0 4 5 1 -1 1 5 6 2 -1 2 6 7 3 -1 0 3 7 4 -1 4 5 6 7 -1">
 						<Coordinate point="-2 0 -2, -2 0 2, 2 0 2, 2 0 -2, -2 4 -2, -2 4 2, 2 4 2, 2 4 -2"></Coordinate>
 					</IndexedFaceSet>
 				</shape>
@@ -45,8 +44,7 @@
 						</Appearance>
 						<IndexedFaceSet ccw="true" convex="true"
 							creaseAngle="0" solid="false"
-							coordIndex="0 1 2 3 4 5 6 7 -1 8 9 10 11 12 13 14 15 -1 0 8 9 1 -1 1 9 10 2 -1 2 10 11 3 -1 4 12 13 5 -1 3 11 12 4 -1 5 13 14 6 -1 6 14 15 7 -1 7 15 8 0 -1"
-							<!---->
+							coordIndex="0 1 2 3 4 5 6 7 -1 8 9 10 11 12 13 14 15 -1 0 8 9 1 -1 1 9 10 2 -1 2 10 11 3 -1 4 12 13 5 -1 3 11 12 4 -1 5 13 14 6 -1 6 14 15 7 -1 7 15 8 0 -1">
 							<Coordinate point="0 4.01 1.25, 1 4.01 1, 1.25 4.01 0, 1 4.01 -1, 
 								0 4.01 -1.25, -1 4.01 -1, -1.25 4.01 0, -1 4.01 1,  0 5 0.75, 
 								0.5 5 0.5, 0.75 5 0, 0.5 5 -0.5, 0 5 -0.75, -0.5 5 -0.5, 
@@ -68,7 +66,7 @@
 					<Shape DEF='Plane'>
 						<Appearance>
 							<Material diffuseColor="0.5 0.5 0.5"></Material>
-							<ImageTexture  url='https://img1.akspic.ru/image/110737-tekstura-nalozhenie_tekstury-rok-kamennaya_stena-bulyzhnik-1920x1080.jpg?attachment=1'></ImageTexture/>
+							<ImageTexture  url='https://img1.akspic.ru/image/110737-tekstura-nalozhenie_tekstury-rok-kamennaya_stena-bulyzhnik-1920x1080.jpg?attachment=1'></ImageTexture>
 						</Appearance>
 						<plane solid="false" size="20 20"></plane>
 					</Shape>
@@ -93,7 +91,7 @@
 				<TimeSensor id='Time' DEF="Time" cycleInterval="5" loop="true" enabled = "true"></TimeSensor>
 				<PositionInterpolator DEF="PosInt" key="0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1" 
 					keyValue="5 -50 4, 3 -50 6, 0 -50 7, -3 -50 6, -5 -50 4, -3 -50 6, 0 -50 7, 3 -50 6, 5 -50 4"></PositionInterpolator>
-				<PositionDamper DEF="PosD"tau="0.5"></PositionDamper>
+				<PositionDamper DEF="PosD" tau="0.5"></PositionDamper>
 				<ROUTE fromNode="Time" fromField="fraction_changed" 
 					toNode="PosInt" toField="set_fraction"></ROUTE>
 				<ROUTE fromNode="PosInt" fromField="value_changed" 
@@ -102,7 +100,7 @@
 					toNode="light" toField="set_direction"></ROUTE>
 				<PositionInterpolator DEF="PosInt1" key="0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1" 
 					keyValue="5 3 4, 3 3 6, 0 3 7, -3 3 6, -5 3 4, -3 3 6, 0 3 7, 3 3 6, 5 3 4"></PositionInterpolator>
-				<PositionDamper DEF="PosD1"tau="0.5"></PositionDamper>	
+				<PositionDamper DEF="PosD1" tau="0.5"></PositionDamper>	
 				<ROUTE fromNode="Time" fromField="fraction_changed" 
 					toNode="PosInt1" toField="set_fraction"></ROUTE>
 				<ROUTE fromNode="PosInt1" fromField="value_changed" 
@@ -116,6 +114,5 @@
 				<ROUTE fromNode="ColCh" fromField="value_changed" toNode="Mat" toField="set_diffuseColor"></ROUTE>	
 				</scene>
 			</x3d>
-		</div>
   </body> 
 </html>
