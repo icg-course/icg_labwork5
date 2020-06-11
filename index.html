@@ -2,55 +2,57 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>5 lab</title>
+    <title>5 lab v2.0</title>
    <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
  <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
     <link rel="stylesheet" href="../../css/custom.css" />
     <script>
-      function toggle(what)
-      {
-        var button = (what=="earth")?document.getElementById("but_e"):document.getElementById("but_m");
-        var TS = (what=="earth")?document.getElementById("TS_earth"):document.getElementById("TS_moon_construction");
-        var TS_enabled = TS.getAttribute("enabled");
-        if (TS_enabled == "true") {
-            TS.setAttribute("enabled", "false");
-            button.value = (what=="earth")?"Анимировать Землю":"Анимировать Луну";
+      
+
+
+     
+
+function move()
+       {
+        var botton_r = rocket_mov.getAttribute("enabled");
+        if (botton_r == "false"){
+
+          rocket_mov.setAttribute("enabled", "true");
+          button_on_rocket.value = "Остановочка";
         }
-        else {
-            TS.setAttribute("enabled", "true");
-            button.value = (what=="earth")?"Остановить Землю":"Остановить Луну";
+        else{
+          rocket_mov.setAttribute("enabled", "false");
+          button_on_rocket.value = "Полетели";
         }
       }
-      function slowdown()
-      {
-        document.getElementById("TS_earth").setAttribute("enabled", "false");
-        var oldInterval = parseFloat(document.getElementById("TS_earth").getAttribute("cycleInterval"));
-        document.getElementById("TS_earth").setAttribute("cycleInterval", oldInterval*2);
-        document.getElementById("TS_earth").setAttribute("enabled", "true");
+
+
+
+			function move_alarm()
+       {
+        var botton = alarm_8.getAttribute("enabled");
+        if (botton == "false"){
+
+          alarm_8.setAttribute("enabled", "true");
+          button_on_alarm.value = "Выбрать время";
+        }
+        else{
+          alarm_8.setAttribute("enabled", "false");
+          button_on_alarm.value = "Переставить будильник";
+        }
       }
-
-
-     function racing()
-      {
-        document.getElementById("TS_earth").setAttribute("enabled", "false");
-        var oldInterval = parseFloat(document.getElementById("TS_earth").getAttribute("cycleInterval"));
-        document.getElementById("TS_earth").setAttribute("cycleInterval", oldInterval/2);
-        document.getElementById("TS_earth").setAttribute("enabled", "true");
-      }
-
-function move(){
-				rocket_mov.setAttribute("enabled", "true");
-			}
-			function stop(){
-				rocket_mov.setAttribute("enabled", "false");
-			}
-
     </script>
    <body>
 
 <p align="center">Лабораторная работа №5 Брылев Евгений </p> 
 
+<div style="position: relative;">
+        
+<input id = "button_on_rocket" type = "button" value = "Полетели" onclick='move("raketa")'></input>
+			
 
+			<input id="button_on_alarm" type = "button" value = "Поставить будильник" onclick='move_alarm("alarm")'></input>
+</div>
 <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">
 
 <scene>
@@ -145,6 +147,21 @@ orientation="-1 0 0 1.57">
 	</Shape> 
 </transform>
 
+
+
+
+
+<transform DEF="alarm" translation="0 0 0"> 
+	<Shape> 
+		<Appearance> 
+  <!-- Земля -->
+			<ImageTexture url='https://sun9-53.userapi.com/tiKFiHeANQ7M-w-gfAf6jAgtwsJb5w6Zt1Nr7g/HHiXK0Ej-1A.jpg'> </ImageTexture>
+				<TextureProperties>
+				</TextureProperties> 
+		</Appearance> 
+					<Sphere radius="2.1"></Sphere> 
+	</Shape> 
+</transform>
 
 
 <!---- label----->
@@ -539,30 +556,25 @@ orientation="-1 0 0 1.57">
 				</Route>
 
 
+<!-- Alarm -->
 
-
-
-
-
-
+<timeSensor id="alarm_8" DEF="alarm_8" cycleInterval="12" loop="true"  enabled="false"></timeSensor>
+							
+				<PositionInterpolator DEF="alarm_place_8" 
+					key="0 0.08 0.16 0.24 0.32 0.4 0.48 0.56 0.64 0.72 0.8 0.88  1" 
+					keyValue=" 18 -10 -30, 30 -10 -18, 35 -10 0, 30 -10 18, 18 -10 30, 0 -10 35, -18 -10 30, -30 -10 18, -35 -10 0, -30 -10 -18, -18 -10 -30, 0 -10 -35, 18 -10 -30"> </PositionInterpolator> 
+<PositionChaser DEF="PC_1" duration="1" ></PositionChaser>
+				<Route fromNode="alarm_8" fromField ="fraction_changed" 
+					   toNode="alarm_place_8" toField="set_fraction">
+				</Route>
+				<Route fromNode="alarm_place_8" fromField ="value_changed" 
+					   toNode="PC_1" toField="set_destination">
+				</Route>
+				<Route fromNode="PC_1" fromField ="value_changed" 
+					   toNode="alarm" toField="set_translation">
+				</Route>
 
 </scene>
 </X3D>  
-
-<div style="position: relative;">
-      <input type="button" id="but_e" value="Остановить Землю" onClick='toggle("earth");'></input>
-
-          <input type="button" id="but_m" value="Остановить Луну" onClick='toggle("moon");'></input>
-
-      <input type="button" id="but_s" value="Замедлить Землю" onClick='slowdown();'></input>
-    
-             <input type="button" id="but_f" value="Ускорить Землю" onClick='racing();'></input>
-   
-<input id = "button_on" type = "button" value = "Полетели" onclick='move("raketa")'></input>
-			<input id = "button_off" type = "button" value = "раз два три ракета замри" onclick='stop("raketa")'>
-				
-			</input>
-</div>
 </body>
-</head>
 </html>
