@@ -11,8 +11,8 @@
     <head>
         <meta charset="utf-8"></meta>
         <title>LR�2_P.A.Spririn_4743</title>
-        <link rel="stylesheet" href="http://x3dom.org/release/x3dom.css" />
-        <script src="http://x3dom.org/release/x3dom-full.js"></script>
+        <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
+        <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
         <script src="train.js"></script>
     </head>
     <body style='width:100%; height:100%; border:0; margin:0; padding:0; background: linear-gradient(#ADD8E6 1%,#4682B4 50%, White);'>
@@ -154,10 +154,10 @@
                                 <Material DEF="bl" diffuseColor="1 0 0"></Material>
                             </Appearance>
                             <sphere id="sp" radius='0.7'></sphere>
-                        </Shape>   
-                        <ROUTE fromNode="Time" fromField="fraction_changed" toNode="ColInt" toField="set_fraction"></ROUTE>
-                        <ROUTE fromNode="ColInt" fromField="value_changed" toNode="bl" toField="set_diffuseColor"></ROUTE>
+                        </Shape>
                     </transform>
+                    <ROUTE fromNode="Time" fromField="fraction_changed" toNode="ColInt" toField="set_fraction"></ROUTE>
+                    <ROUTE fromNode="ColInt" fromField="value_changed" toNode="bl" toField="set_diffuseColor"></ROUTE>
                 </scene>
                 <scene>
                     <transform def="ball" translation='0.5 -9.3 -26.3' rotation='3 0 0 0'>
@@ -171,13 +171,13 @@
                                 <PositionInterpolator DEF="move" key="0 0.5 1" keyValue="'0.5 -9.3 -26.3  '0.5 -3 -26.3  '0.5 -9.3 -26.3">
                                 </PositionInterpolator>
                                 <PositionChaser DEF="PosCh" duration="8"></PositionChaser>
-                                <Route fromNode="time" fromField="fraction_changed" toNode="move" toField="set_fraction"></Route>
-                                <ROUTE fromNode="move" fromField="value_changed" toNode="PosCh" toField="set_destination"></ROUTE>
-                                <Route fromNode="move" fromField="value_changed" toNode="ball" toField="translation"></Route>
                             </appearance>
                             <sphere radius='0.7'></sphere>
                         </shape>
-                    </transform>
+                    </transform> 
+                    <Route fromNode="time" fromField="fraction_changed" toNode="move" toField="set_fraction"></Route>
+                    <ROUTE fromNode="move" fromField="value_changed" toNode="PosCh" toField="set_destination"></ROUTE>
+                    <Route fromNode="move" fromField="value_changed" toNode="ball" toField="translation"></Route>
                 </scene>
                 <scene>
                     <transform translation='29.6 -7 -23.1' rotation='0 0 0 -1.57'>
@@ -270,7 +270,7 @@
                 <transform translation='-10 -10.5 -50' rotation='1.57 0 0 1.57'>
                     <shape>
                         <appearance>
-                            <ImageTexture url='qw.jpg'></ImageTexture>w
+                            <ImageTexture url='qw.jpg'></ImageTexture>
                         </appearance>
                         <plane solid='false' size='300 300'></plane>
                         <TextureTransform scale="4 1">
