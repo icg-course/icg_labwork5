@@ -1,13 +1,294 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
   <head>  
     <meta charset="utf-8" />
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
     <title>Лабораторная работа 5</title>
     <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
+    <script src="https://www.x3dom.org/download/x3dom.js">
+<!----------------------------------------------------------------------->
+			function toggle(what)
+				{
+					var button =(what=="yandex")?document.getElementById("but_y"):(what=="amigo")?
+					document.getElementById("but_a"):document.getElementById("but_i");
+					var TS =(what=="yandex")?document.getElementById("TimerY"):(what=="amigo")?
+					document.getElementById("TimerA"):document.getElementById("TimerI");
+					var TS_enabled = TS.getAttribute("enabled");
+					if (TS_enabled == "true") {
+						TS.setAttribute("enabled", "false");
+						button.value = (what=="yandex")?"Запустить Яндекс.":(what=="amigo")?
+						"Запустить Амиго.":"Запустить Интернет.";
+					}
+					else {
+						TS.setAttribute("enabled", "true");
+						button.value = (what=="yandex")?"Остановить Яндекс.":(what=="amigo")?
+						"Остановить Амиго.":"Остановить Интернет.";
+					}
+				} 
+<!----------------------------------------------------------------------->
+			function toggle_all()
+				{
+					var button = document.getElementById("but_s");
+					var TS_Y_enabled = document.getElementById("TimerY").getAttribute("enabled");
+					var TS_A_enabled = document.getElementById("TimerA").getAttribute("enabled");
+					var TS_I_enabled = document.getElementById("TimerI").getAttribute("enabled");
+					if ((TS_Y_enabled == "false")&&(TS_A_enabled == "false")&&(TS_I_enabled == "false")){ 
+						toggle("yandex");
+						toggle("amigo");
+						toggle("internet");
+						button.value="Прекратить спамить.";
+						}
+					else {
+						if (TS_Y_enabled == "true") toggle("yandex");
+						if (TS_A_enabled == "true") toggle("amigo");
+						if (TS_I_enabled == "true") toggle("internet");
+						button.value="Начать спамить.";
+					}
+				}
+<!----------------------------------------------------------------------->				
+			function change()
+				{
+					var col = document.getElementById("inp").value;
+					document.getElementById("TextMat").setAttribute("diffuseColor", col);
+				}
+<!----------------------------------------------------------------------->	
+			function tgl_col()
+				{
+					var button = document.getElementById("but_ctgl");
+					var TS = document.getElementById("TimerColor");
+					var TS_enabled= TS.getAttribute("enabled");
+					if (TS_enabled == "true") {
+						TS.setAttribute("enabled", "false");
+						button.value = "Запустить анимацию цвета.";
+					}
+					else {
+						TS.setAttribute("enabled", "true");
+						button.value = "Остановить анимацию цвета.";
+					}
+				}
+		</script>
+
   </head>
   <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
+   <p> Интерактивность и нелинейная анимация </p> 
+		<x3d width='800px' height='600px'>
+			<Scene>
+				<Viewpoint fieldOfView=".78" position="0 2 15" orientation="1 0 0 -.1"> </Viewpoint>
+				<Viewpoint fieldOfView=".78" position="-10 .5 13" orientation="0 1 0 -.6"> </Viewpoint>
+				<Viewpoint fieldOfView=".78" position="10 .5 13" orientation="0 1 0 .6"> </Viewpoint>
+<!----------------------------------------------------------------------->
+				<TimeSensor id="TimerY" DEF="TimerY" cycleInterval="3" loop="true" enabled="true"> </TimeSensor>
+				<PositionInterpolator DEF="PosIntY" key="0, .125, .25, .375, .5, .625, .75, .875, 1"
+													keyValue="-7.5 0 2, -3.5 4 1, 0 6 0 , 3.5 4 -1, 7.5 0 -2, 
+															  3.5 -4 -1, 0 -6 0, -3.5 -4 1 , -7.5 0 2">
+				</PositionInterpolator>
+				<PositionChaser id="PosChY" duration="1.5" initialValue="-3 0 0">
+				</PositionChaser>
+				<OrientationInterpolator DEF="OrIntY" key="0, .5, 1" 
+													  keyValue="1 1 0 0, 1 1 0 3.14, 1 1 0 6.28">
+				</OrientationInterpolator>
+				<OrientationDamper DEF="OrDpY"  tau=".5"> </OrientationDamper>
+<!----------------------------------------------------------------------->
+				<TimeSensor id="TimerA" DEF="TimerA" cycleInterval="4" loop="true" enabled="true"> </TimeSensor>
+				<PositionInterpolator DEF="PosIntA" key="0, .125, .25, .375, .5, .625, .75, .875, 1"
+													keyValue="5 0 2, 3 2 1, 0 3 0 , -3 2 -1, -5 0 -2, 
+															  -3 -2 -1, 0 -3 0, 3 -2 1 , 5 0 2">
+				</PositionInterpolator>
+				<PositionChaser id="PosChA" duration="2" initialValue="2 0 0">
+				</PositionChaser>
+				<OrientationInterpolator DEF="OrIntA" key="0, .5, 1" 
+													  keyValue="1 0 1 0, 1 0 1 3.14, 1 0 1 6.28">
+				</OrientationInterpolator>
+				<OrientationDamper DEF="OrDpA"  tau=".375"> </OrientationDamper>
+<!----------------------------------------------------------------------->
+				<TimeSensor id="TimerI" DEF="TimerI" cycleInterval="1.5" loop="true" enabled="true"> </TimeSensor>
+				<PositionInterpolator DEF="PosIntI" key="0, .25, .5, .75, 1"
+													keyValue="-3 0 0, 0 1.5 0, 3 0 0, 0 -1.5 0, -3 0 0">
+				</PositionInterpolator>
+				<PositionChaser id="PosChI" duration=".8" initialValue="0 0 0">
+				</PositionChaser>
+				<OrientationInterpolator DEF="OrIntI" key="0, .5, 1" 
+													  keyValue="-1 0 1 0, -1 0 1 3.14, -1 0 1 6.28">
+				</OrientationInterpolator>
+				<OrientationDamper DEF="OrDpI"  tau=".1"> </OrientationDamper>
+<!----------------------------------------------------------------------->
+				<TimeSensor id="TimerColor" DEF="TimerColor" cycleInterval="0.5" loop="true" enabled="false"> </TimeSensor>
+				<ColorInterpolator DEF="ColorInt" key="0, .15, .3, .45, .6, .75, .9, 1"
+												  keyValue="0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 0 1, 0 0 1">
+				</ColorInterpolator>
+<!----------------------------------------------------------------------->
+				<PositionChaser id="PosCh" duration=".2" initialDestination="0 0 0" initialValue="0 0 0">
+				</PositionChaser>
+				<Transform DEF="Plakat" translation="0 0 -5">
+					<Transform onmousemove="document.getElementById('PosCh').setAttribute('set_destination', '0 0 0');">
+						<Shape>
+							<IndexedFaceSet DEF="plane"
+											ccw="true" 
+											solid="false"
+											convex="true"
+											coordIndex="0 1 2 3 -1">
+								<Coordinate point="5 -5 0, 5 5 0, -5 5 0, -5 -5 0"> </Coordinate>
+							</IndexedFaceSet>
+							<Appearance>
+								<ImageTexture url="t2.jpg"> </ImageTexture>
+							</Appearance>
+						</Shape>
+					</Transform>
+					<Transform id="Censored" onmousemove="document.getElementById('PosCh').setAttribute('set_destination', '0 0 0');
+														  translation="0 0 .03">
+						<Shape>
+							<IndexedFaceSet USE="plane"> </IndexedFaceSet>
+							<Appearance>
+								<ImageTexture url="t1.jpg"> </ImageTexture>
+							</Appearance>
+						</Shape>
+					</Transform>
+					<Transform onmousemove="document.getElementById('PosCh').setAttribute('set_destination', '0 0 -.5');"
+							   scale=".06 .06 .06" translation="0 0 .05">
+						<Shape>
+							<IndexedFaceSet USE="plane"> </IndexedFaceSet>
+							<Appearance>
+								<Material diffuseColor="red" transparency="1"> </Material>
+							</Appearance>
+						</Shape>
+					</Transform>
+				</Transform>
+<!----------------------------------------------------------------------->
+				<Transform DEF="TextGr" id="TextGr" onmousemove="tgl_col();">
+					<Transform translation="0 6 -5">
+						<Shape>
+							<Appearance id="TextApp" DEF="TextApp"">
+								<Material id="TextMat" DEF="TextMat" ambientIntensity="0.1" diffuseColor="blue" shininess="0.51" specularColor=".24 .24 .24">
+								</Material>
+							</Appearance>
+							<Text string="Результат выполнения работы" solid="false">
+								<FontStyle DEF="FontStyle_1" family="TimesNewRoman" size="1"> </FontStyle>
+							</Text>
+						</Shape>
+					</Transform>
+					<Transform translation="0 -6 -5" onClick="toggle_all();">
+							<Shape>
+								<Appearance USE="TextApp""> </Appearance>
+								<Text string="-->Остановить безобразие!!!<--" solid="false">
+									<FontStyle USE="FontStyle_1"> </FontStyle>
+								</Text>
+							</Shape>
+					</Transform>
+				</Transform>
+<!----------------------------------------------------------------------->
+				<Group id="SPAM" DEF="SPAM">
+					<Transform id="yandex" DEF="yandex" onClick="toggle('yandex');">
+						<Shape>
+							<Appearance>
+								<ImageTexture url="t3.jpg"> </ImageTexture>
+							</Appearance >
+							<Sphere radius=".6"></Sphere>
+						</Shape>
+					</Transform>
+					<Transform id="amigo" DEF="amigo" onClick="toggle('amigo');">
+						<Shape>
+							<Appearance>
+								<ImageTexture url="t4.jpg"> </ImageTexture>
+							</Appearance >
+							<Sphere radius=".6"></Sphere>
+						</Shape>
+					</Transform>
+					<Transform id="internet" DEF="internet" onClick="toggle('internet');">
+						<Shape>
+							<Appearance>
+								<ImageTexture url="t5.jpg"> </ImageTexture>
+							</Appearance >
+							<Sphere radius=".6"></Sphere>
+						</Shape>
+					</Transform>
+				</Group>
+<!----------------------------------------------------------------------->
+				<ROUTE fromNode="PosCh" fromField="value_changed" 
+					   toNode="Censored" toField="set_translation">
+				</ROUTE>
+<!----------------------------------------------------------------------->					
+				<ROUTE fromNode="TimerY" fromField="fraction_changed"
+					   toNode="PosIntY" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="PosIntY" fromField="value_changed"
+					   toNode="PosChY" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="PosChY" fromField="value_changed"
+					   toNode="yandex" toField="set_translation">
+				</ROUTE>
+				<ROUTE fromNode="TimerY" fromField="fraction_changed"
+					   toNode="OrIntY" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="OrIntY" fromField="value_changed"
+					   toNode="OrDpY" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="OrDpY" fromField="value_changed"
+					   toNode="yandex" toField="set_rotation">
+				</ROUTE>
+<!----------------------------------------------------------------------->					
+				<ROUTE fromNode="TimerA" fromField="fraction_changed"
+					   toNode="PosIntA" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="PosIntA" fromField="value_changed"
+					   toNode="PosChA" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="PosChA" fromField="value_changed"
+					   toNode="amigo" toField="set_translation">
+				</ROUTE>
+				<ROUTE fromNode="TimerA" fromField="fraction_changed"
+					   toNode="OrIntA" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="OrIntA" fromField="value_changed"
+					   toNode="OrDpA" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="OrDpA" fromField="value_changed"
+					   toNode="amigo" toField="set_rotation">
+				</ROUTE>
+<!----------------------------------------------------------------------->					
+				<ROUTE fromNode="TimerI" fromField="fraction_changed"
+					   toNode="PosIntI" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="PosIntI" fromField="value_changed"
+					   toNode="PosChI" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="PosChI" fromField="value_changed"
+					   toNode="internet" toField="set_translation">
+				</ROUTE>
+				<ROUTE fromNode="TimerI" fromField="fraction_changed"
+					   toNode="OrIntI" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="OrIntI" fromField="value_changed"
+					   toNode="OrDpI" toField="set_destination">
+				</ROUTE>
+				<ROUTE fromNode="OrDpI" fromField="value_changed"
+					   toNode="internet" toField="set_rotation">
+				</ROUTE>
+<!----------------------------------------------------------------------->
+				<ROUTE fromNode="TimerColor" fromField="fraction_changed"
+					   toNode="ColorInt" toField="set_fraction">
+				</ROUTE>
+				<ROUTE fromNode="ColorInt" fromField="value_changed"
+					   toNode="TextMat" toField="set_diffuseColor">
+				</ROUTE>
+<!----------------------------------------------------------------------->
+			</Scene>
+		</x3d>
+		<div style="position: relative; left:10px">
+			<p>Цвет текста:
+			<input type="text" id="inp" size="3">
+			<input type="button" id="but_col" value="применить" onClick="change();">
+			<input type="button" id="but_ctgl" value="анимация" onClick="tgl_col();">
+			</p>
+		</div>
+		<div style="position: relative; left:10px; top:10px">
+			<h3>Изменение анимации объектов.</h3>
+			<input type="button" id="but_y" value="Остановить Яндекс." onClick="toggle('yandex');">
+			<input type="button" id="but_a" value="Остановить Амиго." onClick="toggle('amigo');">
+			<input type="button" id="but_i" value="Остановить Интернет." onClick="toggle('internet');">
+			<p>
+			<input type="button" id="but_s" value="Прекратить спамить." onClick="toggle_all();">
+			</p>
+			<br> ----Нажмите объект, чтобы остановить его анимацию.----
+		</div>
   </body> 
 </html>
