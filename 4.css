@@ -1,0 +1,35 @@
+.container {
+	position: absolute;
+	top: 65px;
+	left: 16px;
+	font-family: Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: rgb(100, 100, 100);
+}
+
+.speedBut {
+	width: 1.5rem;
+	border: 1px solid rgb(100, 100, 100);
+	border-radius: 10px;
+	background: beige;
+	outline: none;
+	cursor: pointer;
+}
+
+.speedBut:hover {
+	background: #ffb;
+}
+
+.startBut {
+	padding: 5px 15px;
+	border: 1.5px solid rgba(0,0,0,0.6);
+	border-radius: 10px;
+	background: beige;
+	color: #111;
+	font-size: 16px;
+	font-family: Arial;
+	font-weight: bold;
+	cursor: pointer;
+	outline: none;
+}
