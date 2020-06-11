@@ -158,13 +158,13 @@
 					
 			<TimeSensor id="Time2" DEF="Time2" cycleInterval="5" loop="true" enabled = "true"></TimeSensor>
 					<ColorInterpolator DEF="ColInt" key="0 0.5 1"
-						keyValue="0.6 0.6 0, 1 0 0, 0.6 0.6 0">
+							   keyValue="0.6 0.6 0, 1 0 0, 0.6 0.6 0"></ColorInterpolator>
 						<ColorDamper DEF="ColDp" tau = "1"></ColorDamper>
 					<ROUTE fromNode="Time2" fromField="fraction_changed"
 						toNode="ColInt" toField="set_fraction"></ROUTE>
 					<ROUTE fromNode="ColInt" fromField="value_changed"
 						toNode="handle" toField="set_emissiveColor"></ROUTE>
-			
+					
 		</scene>
 	</x3d>
 	<div id="tools" style="width: 1280px;">
