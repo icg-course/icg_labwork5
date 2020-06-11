@@ -1,10 +1,11 @@
 <html> 
    <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
+     <meta http-equiv='Content-Type' content='text/html;charset=utf-8'></meta>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge"></meta>
      <title>My fourth X3DOM page</title> 
-     <script type='text/javascript' src='http://x3dom.org/release/x3dom-full.js'> </script>
-		<script src="kolevatov.js"></script>
-     <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'></link> 
+    <link rel="stylesheet" type="text/css" href="https://www.x3dom.org/release/x3dom.css" />
+    <script type="text/javascript" src="https://www.x3dom.org/release/x3dom-full.js"></script>
+	<script src="kolevatov.js"></script>
    </head> 
    <body> 
      <h1 align = center>Kolevatov4743 lab5 </h1> 
@@ -27,31 +28,11 @@
         h.setAttribute('headlight', 'false');
       else
           h.setAttribute('headlight', 'true');
-  }
-function button(id)
-		  {
-			   var h = document.getElementById("Time");
-			if(h.getAttribute('enabled')=='true')
-			{
-				h.setAttribute('enabled', 'false');
-			}
-			else
-			{
-				h.setAttribute('enabled', 'true');
-			}
-		  }
 </script>
-	<center>
-				<button id="left"> Left </button>
-				<button id="right"> Right </button>
-				<button id="forward"> Forward </button>
-				<button id="back"> Back </button>
-				<button id="up"> Up </button>
-				<button id="down"> Down </button>
-	</center>
+
 <div  id="content" align=center>
-     <x3d width='1280px' height='768px' > 
-	   <scene align=center>
+     <x3d id="boxes" width='1280px' height='768px' > 
+	   <scene DEF=scene align=center>
 	    <navigationInfo id="head" headlight='false' type='"EXAMINE"'></navigationInfo>
         <background  skyColor="0.1 0.1 0.1"></background>
         <directionalLight id="directional" direction='0 1 0' on ="TRUE" intensity='2.0' shadowIntensity='0.5'>
@@ -158,7 +139,10 @@ function button(id)
 </shape>
 </transform>
 <!--mouse-->
-<transform DEF='mouse' translation='1.4 0.1 1' scale= '0.2 0.2 0.2' rotation = '1 0 0 3.14'>
+<Transform id="box_2_id" DEF="box_2">
+<Transform translation='1.4 0.1 1' scale= '0.2 0.2 0.2' rotation = '1 0 0 3.14' id="box_2_2_id"  
+            onmouseover="document.getElementById('mouseOverEvent').innerHTML='Mouse: over - draggable';"
+            onmouseout= "document.getElementById('mouseOverEvent').innerHTML='Mouse: out';">
 <shape>
  <Appearance>
     <imagetexture url=https://avatars.mds.yandex.net/get-pdb/2990222/d7b39e7b-7b51-412e-92e7-d31ed96bbd46/s1200></imagetexture>
@@ -174,9 +158,10 @@ function button(id)
 </ElevationGrid>
 </shape>
 </transform>
-<transform DEF=Deer id=deer translation ='2.6 -0.2 0' rotation='0 1 0 3.14'>
+</Transform>
+<transform DEF=Deer id=Deer translation ='2.6 -0.2 0' rotation='0 1 0 3.14'>
 <Inline nameSpaceName="Deer" 
-                     url="Deer.x3d" />
+                     url="https://doc.x3dom.org/tutorials/models/inline/Deer.x3d" />
 					 </transform>
 					 <!--text-->
 <transform DEF=tablichka translation='2 4 0'>
@@ -193,13 +178,7 @@ function button(id)
  <shape USE='stol'>
  </shape>
  </transform>
- <timeSensor id="Time" DEF="Time"  cycleInterval="3" loop="true"></timeSensor>
-        <PositionInterpolator DEF="move" key="0 0.5 1" keyValue="1.4 0.1 1  1.8 0.1 2  1.9 0.1 2"></PositionInterpolator>
-		<PositionDamper DEF="PosDp" tau="1"></PositionDamper>
-        <Route fromNode="Time" fromField ="fraction_changed" toNode="move" toField="set_fraction"></Route>
-		<Route fromNode="move" fromField ="value_changed" toNode="PosDp" toField="set_destination"></Route>
-        <Route fromNode="PosDp" fromField ="value_changed" toNode="mouse" toField="translation"></Route>
-		<TimeSensor DEF="TS_t" cycleInterval="3" loop="true"></TimeSensor>
+<TimeSensor DEF="TS_t" cycleInterval="3" loop="true"></TimeSensor>
  <OrientationInterpolator DEF="OI_t" key="0, 0.5, 1"
  keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28">
  </OrientationInterpolator>
@@ -233,10 +212,12 @@ function button(id)
     <label>directional light</label>
 <input type="checkbox" checked="true" onclick="headlight()">
     <label>headlight</label>
-<input type="checkbox" checked="true" onclick="button(Time)">
-				<label>play/stop</label>
 </div>
 </div>
+
+  <div style="clear: both; padding: 2px; color: #00ff00; background-color: black; width: 798px;">
+      <p id="moveEvent" > ==&gt; Drag the model of mouse around with your mouse! 
+           </p>
+     </div>
    </body> 
 </html> 
-
