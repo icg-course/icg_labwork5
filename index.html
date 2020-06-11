@@ -15,13 +15,13 @@
     function LongBoy()
       {
             var EnableL = Time.getAttribute("enabled");
-            if (EnableL == "true"){
-              Time.setAttribute("enabled","false";
-              butt.value = "Short Boy";
+            if (EnableL == "true")
+            {
+              Time.setAttribute("enabled", "false");
             } 
-            else{
-              Time.setAttribute("enabled","true");
-              butt.value = "Lng Boy";
+            else
+            {
+              Time.setAttribute("enabled", "true");
             }
       }
 
@@ -29,15 +29,16 @@
   </head>
   <body>
     <h1>Такса</h1>
+
       <input id="butt" type="button" 
     style=" font-family:CENTURY GOTHIC;"
-    value="Long Boy" onclick="LongBy();"/>
-    <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">      
+    value="Long Boy" onclick="LongBoy();"/>
+    <X3D width='1400px' height='900px'>   
       <Scene>
         <PointLight location="10 1 10" color="1 1 1" intensity="0.1" shadowIntensity="0.8" shadowMapSize="512">
         </PointLight>
         <background backURL='fon.jpg'></background>
-        <viewpoint position='5 6 10' orientation='1 -1 0 -0.5'></viewpoint>
+        <viewpoint position='8 4 25' orientation='1 -1 0 -0.5'></viewpoint>
         <NavigationInfo headlight='false'></NavigationInfo> 
         <Transform def = "fronthalf">
           <Transform scale = '1 .5 1'>
@@ -354,10 +355,9 @@
          <TimeSensor DEF='Time' id = 'Time' cycleInterval='4' enabled = "false" loop='true'></TimeSensor>
             <TimeSensor DEF='Time2' cycleInterval='0.7' loop='true'></TimeSensor>
             <OrientationInterpolator DEF='wroom' key='0, 0.25, 0.5, 0.75, 1' keyValue='0 0 1 0, 0 0 1 1.3, 0 0 1 0, 0 0 1 -1.3, 0 0 1 0'></OrientationInterpolator>
-            <PositionInterpolator DEF='FrontMove' key='0, 1' keyValue='0 0 0 , 0 0 5'></PositionInterpolator>
-            <PositionInterpolator DEF='BackMove' key='0, 1' keyValue='0 0 0 , 0 0 -5'></PositionInterpolator>
+            <PositionInterpolator DEF='FrontMove' key='0, 0.5, 1' keyValue='0 0 0 , 0 0 5, 0 0 0 '></PositionInterpolator>
+            <PositionInterpolator DEF='BackMove' key='0, 0.5, 1' keyValue='0 0 0 , 0 0 -5, 0 0 0 '></PositionInterpolator>
             <PositionInterpolator DEF='BodyLong' key='0, 0.5, 1' keyValue='1 1 1 ,1 2 1,1 1 1'></PositionInterpolator>
-            <PositionInterpolator DEF='FrontMovedown' key='0, 1' keyValue='0 0 0 , 0 0 -5'></PositionInterpolator>
             <ROUTE fromNode='Time' fromField='fraction_changed'
                    toNode='FrontMove' toField='set_fraction'>
             </ROUTE>
@@ -382,6 +382,7 @@
              <ROUTE fromNode='wroom' fromField='value_changed'
                    toNode='tail' toField='set_rotation'>
             </ROUTE>
+           
       </Scene>
     </X3D>
   </body>
