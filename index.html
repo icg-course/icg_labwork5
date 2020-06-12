@@ -8,30 +8,57 @@
     <title>Лабораторная работа 5</title>
     <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
     <script src="https://www.x3dom.org/download/x3dom.js"></script>
+    
     <script>
       function Start()
       {
-            if (Time_s.getAttribute("enabled") == "true") 
+           
+            if (Time_2.getAttribute("enabled") == "true") 
               {           
-               Time_s.setAttribute("enabled", "false");
+               Time_2.setAttribute("enabled", "false");
+               Time_1.setAttribute("enabled", "false");
+               meme.setAttribute("enabled","false"); 
                start_butt.value = "Продолжить";
+                power_butt.disabled = 1;
               }
             else 
               { 
-                Time_s.setAttribute("enabled", "true");
+                Time_2.setAttribute("enabled", "true");
                 start_butt.value = "Астановитесь!";
+                power_butt.disabled = 0;
               }
-      } 
+      }
+
+      function Power()
+      {
+            meme.setAttribute("enabled","true");
+            if (Time_1.getAttribute("enabled") == "true") 
+              { 
+               meme.setAttribute("enabled","false"); 
+               Time_1.setAttribute("enabled", "false");
+               power_butt.value = "Все же добить!";
+              }
+            else 
+              { 
+                Time_1.setAttribute("enabled", "true");
+                power_butt.value = "Дать еще шанс...";
+              }
+      }  
     </script>
   </head>
 
   <body bgcolor="2D2D2D">
     <h2 style = "color: white" >Что бы тут ни было, должно ли что-то вообще быть?</h2>
-      <input id="start_butt" type="button" value="Начать экзекуцию!" onclick="Start();" />
+      <input id="start_butt" type="button" value="Начать экзекуцию!"  onclick="Start();" />
+      <input id="power_butt" type="button" value="Усилить натиск! " disabled onclick="Power();" />
 
     <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">
       <Scene> 
         
+        <sound>
+          <audioClip id="meme" url='textures/music.mp3' loop='false' enabled='false'></audioClip>
+        </sound>
+
          <DirectionalLight id="directional" direction='1 0 -1' on ="TRUE" intensity='0.4' shadowIntensity='0.2'> </DirectionalLight> 
 
         <Viewpoint id="front" position="0 0 12" orientation="0 0 0 0" description="camera"></Viewpoint>
@@ -216,10 +243,9 @@
 
 
 <!--Balls+Rope-->
-        <!--Ball_1-->
-          <Transform translation = ".8">
-            <Group DEF = "Ball+Ropes">
-              <Transform>
+        <!--Ball_right1-->
+            <Transform DEF="Ball_right1">
+              <Transform translation = ".8">
                 <Shape DEF = "ball">
                   <Appearance>
                     <ImageTexture url="textures/black.jpg"></ImageTexture>
@@ -227,51 +253,62 @@
                   <Sphere radius = ".4"></Sphere>
                 </Shape>
               </Transform>
+            </Transform>
 
-              
-              <Transform translation = "0 1.16 -.8" rotation =  "1 0 0 -0.79">
+            <Transform DEF="Ropes_right1" center = ".8 1.95 0"> 
+              <Transform translation = ".8 1.18 -.8" rotation =  "1 0 0 -0.79">
                 <Shape USE = "rope"></Shape>
               </Transform>
 
-              <Transform translation = "0 1.16 .8" rotation =  "1 0 0 0.79">
+              <Transform translation = ".8 1.18 .8" rotation =  "1 0 0 0.79">
                 <Shape USE = "rope"></Shape>
               </Transform>
-          </Group>
+            </Transform>
+
+        <!--Ball_left1-->
+          <Transform DEF = "Ball_left1">
+            <Transform translation = "-.8">
+              <Shape USE = "ball"></Shape>
+            </Transform>
           </Transform>
 
-        <!--Ball_2-->
-          <Transform translation = "-.8">
-            <Group USE = "Ball+Ropes"></Group>
+          <Transform DEF="Ropes_left1" center = "-.8 1.95 0">
+            <Transform translation = "-.8 1.18 -.8" rotation =  "1 0 0 -0.79">
+              <Shape USE = "rope"></Shape>
+            </Transform>
+            <Transform translation = "-.8 1.18 .8" rotation =  "1 0 0 0.79">
+              <Shape USE = "rope"></Shape>
+            </Transform>
           </Transform>
 
-        <!--Ball_3-->
-          <Transform DEF = "Ball_right">
+        <!--Ball_right2-->
+          <Transform DEF = "Ball_right2">
             <Transform translation = "1.6">
               <Shape USE = "ball"></Shape>
             </Transform>
           </Transform>
 
-            <Transform DEF="Ropes_right" center = "1.6 1.95 0">
-                <Transform translation = "1.6 1.16 -.8" rotation =  "1 0 0 -0.79">
+            <Transform DEF="Ropes_right2" center = "1.6 1.95 0">
+                <Transform translation = "1.6 1.18 -.8" rotation =  "1 0 0 -0.79">
                   <Shape USE = "rope"></Shape>
                 </Transform>
-                <Transform translation = "1.6 1.16 .8" rotation =  "1 0 0 0.79">
+                <Transform translation = "1.6 1.18 .8" rotation =  "1 0 0 0.79">
                   <Shape USE = "rope"></Shape>
                 </Transform>
             </Transform>
 
-        <!--Ball_4-->
-          <Transform DEF = "Ball_left">
+        <!--Ball_left2-->
+          <Transform DEF = "Ball_left2">
             <Transform translation = "-1.6">
               <Shape USE = "ball"></Shape>
             </Transform>
           </Transform>
 
-           <Transform DEF = "Ropes_left" center = "-1.6 1.95 0">
-            <Transform translation = "-1.6 1.16 -.8" rotation =  "1 0 0 -0.79">
+           <Transform DEF = "Ropes_left2" center = "-1.6 1.95 0">
+            <Transform translation = "-1.6 1.18 -.8" rotation =  "1 0 0 -0.79">
                   <Shape USE = "rope"></Shape>
                 </Transform>
-                <Transform translation = "-1.6 1.16 .8" rotation =  "1 0 0 0.79">
+                <Transform translation = "-1.6 1.18 .8" rotation =  "1 0 0 0.79">
                   <Shape USE = "rope"></Shape>
                 </Transform>
           </Transform>
@@ -330,41 +367,75 @@
          </Group>
         </Transform>
 <!--Animation-->
-    <TimeSensor id = "Time_s" DEF="Time_s" cycleInterval='1.5' loop='true' enabled = 'false'></TimeSensor>
+    <TimeSensor id = "Time_1" DEF="Time_1" cycleInterval='1.5' loop='true' enabled = 'false'></TimeSensor>
+    <TimeSensor id = "Time_2" DEF="Time_2" cycleInterval='1.5' loop='true' enabled = 'false'></TimeSensor>
   <!--Rotation-->
-    <OrientationInterpolator DEF='OrInt_right' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 1 0, 0 0 1 .23, 0 0 1 .46, 0 0 1 .72, 0 0 1 .46, 0 0 1 .23, 0 0 1 0'></OrientationInterpolator>
-    <OrientationInterpolator DEF='OrInt_left' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 1 0, 0 0 1 -.23, 0 0 1 -.46, 0 0 1 -.72, 0 0 1 -.46, 0 0 1 -.23, 0 0 1 0'></OrientationInterpolator>
-  <!--Rotation-->
-    <PositionInterpolator DEF='PosInt_Ball_right' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 0, .36 .05 0, .7 .187 0, 1 .41 0, .7 .187 0, .36 .05 0, 0 0 0'></PositionInterpolator>
-    <PositionInterpolator DEF='PosInt_Ball_left' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 0, -.36 .05 0, -.7 .187 0, -1 .41 0, -.7 .187 0, -.36 .05 0, 0 0 0'></PositionInterpolator>
+       <OrientationInterpolator DEF='OrInt_right1' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 1 0, 0 0 1 .23, 0 0 1 .46, 0 0 1 .72, 0 0 1 .46, 0 0 1 .23, 0 0 1 0'></OrientationInterpolator>
+      <OrientationInterpolator DEF='OrInt_left1' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 1 0, 0 0 1 -.23, 0 0 1 -.46, 0 0 1 -.72, 0 0 1 -.46, 0 0 1 -.23, 0 0 1 0'></OrientationInterpolator>
+      <OrientationInterpolator DEF='OrInt_right2' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 1 0, 0 0 1 .23, 0 0 1 .46, 0 0 1 .72, 0 0 1 .46, 0 0 1 .23, 0 0 1 0'></OrientationInterpolator>
+      <OrientationInterpolator DEF='OrInt_left2' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 1 0, 0 0 1 -.23, 0 0 1 -.46, 0 0 1 -.72, 0 0 1 -.46, 0 0 1 -.23, 0 0 1 0'></OrientationInterpolator>
+  <!--Position-->
+      <PositionInterpolator DEF='PosInt_Ball_right1' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 0, .36 .05 0, .7 .187 0, 1 .41 0, .7 .187 0, .36 .05 0, 0 0 0'></PositionInterpolator>
+      <PositionInterpolator DEF='PosInt_Ball_left1' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 0, -.36 .05 0, -.7 .187 0, -1 .41 0, -.7 .187 0, -.36 .05 0, 0 0 0'></PositionInterpolator>
+      <PositionInterpolator DEF='PosInt_Ball_right2' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 0, .36 .05 0, .7 .187 0, 1 .41 0, .7 .187 0, .36 .05 0, 0 0 0'></PositionInterpolator>
+      <PositionInterpolator DEF='PosInt_Ball_left2' key='0 .2 .4 .6 .8 .9 1' keyValue='0 0 0, -.36 .05 0, -.7 .187 0, -1 .41 0, -.7 .187 0, -.36 .05 0, 0 0 0'></PositionInterpolator>
 
       <!--Balls-->
-        <ROUTE fromNode='Time_s' fromField='fraction_changed' 
-                 toNode='PosInt_Ball_right' toField='set_fraction'>
+        <ROUTE fromNode='Time_1' fromField='fraction_changed' 
+                 toNode='PosInt_Ball_right1' toField='set_fraction'>
         </ROUTE>
-        <ROUTE fromNode='PosInt_Ball_right' fromField='value_changed' 
-             toNode='Ball_right' toField='set_translation'>
+        <ROUTE fromNode='PosInt_Ball_right1' fromField='value_changed' 
+             toNode='Ball_right1' toField='set_translation'>
         </ROUTE>
 
-        <ROUTE fromNode='Time_s' fromField='fraction_changed' 
-                 toNode='PosInt_Ball_left' toField='set_fraction'>
+        <ROUTE fromNode='Time_1' fromField='fraction_changed' 
+                 toNode='PosInt_Ball_left1' toField='set_fraction'>
         </ROUTE>
-        <ROUTE fromNode='PosInt_Ball_left' fromField='value_changed' 
-             toNode='Ball_left' toField='set_translation'>
+        <ROUTE fromNode='PosInt_Ball_left1' fromField='value_changed' 
+             toNode='Ball_left1' toField='set_translation'>
         </ROUTE>
+
+        <ROUTE fromNode='Time_2' fromField='fraction_changed' 
+                 toNode='PosInt_Ball_right2' toField='set_fraction'>
+        </ROUTE>
+        <ROUTE fromNode='PosInt_Ball_right2' fromField='value_changed' 
+             toNode='Ball_right2' toField='set_translation'>
+        </ROUTE>
+
+        <ROUTE fromNode='Time_2' fromField='fraction_changed' 
+                 toNode='PosInt_Ball_left2' toField='set_fraction'>
+        </ROUTE>
+        <ROUTE fromNode='PosInt_Ball_left2' fromField='value_changed' 
+             toNode='Ball_left2' toField='set_translation'>
+        </ROUTE>
+      
       <!--Ropes-->
-        <ROUTE fromNode="Time_s" fromField="fraction_changed"
-                toNode="OrInt_right" toField="set_fraction">
+        <ROUTE fromNode="Time_1" fromField="fraction_changed"
+                toNode="OrInt_right1" toField="set_fraction">
         </ROUTE>
-        <ROUTE fromNode="OrInt_right" fromField="value_changed"
-                toNode="Ropes_right" toField="set_rotation">
+        <ROUTE fromNode="OrInt_right1" fromField="value_changed"
+                toNode="Ropes_right1" toField="set_rotation">
         </ROUTE>
         
-        <ROUTE fromNode="Time_s" fromField="fraction_changed"
-                toNode="OrInt_left" toField="set_fraction">
+        <ROUTE fromNode="Time_1" fromField="fraction_changed"
+                toNode="OrInt_left1" toField="set_fraction">
         </ROUTE>
-        <ROUTE fromNode="OrInt_left" fromField="value_changed"
-                toNode="Ropes_left" toField="set_rotation">
+        <ROUTE fromNode="OrInt_left1" fromField="value_changed"
+                toNode="Ropes_left1" toField="set_rotation">
+        </ROUTE>
+
+        <ROUTE fromNode="Time_2" fromField="fraction_changed"
+                toNode="OrInt_right2" toField="set_fraction">
+        </ROUTE>
+        <ROUTE fromNode="OrInt_right2" fromField="value_changed"
+                toNode="Ropes_right2" toField="set_rotation">
+        </ROUTE>
+        
+        <ROUTE fromNode="Time_2" fromField="fraction_changed"
+                toNode="OrInt_left2" toField="set_fraction">
+        </ROUTE>
+        <ROUTE fromNode="OrInt_left2" fromField="value_changed"
+                toNode="Ropes_left2" toField="set_rotation">
         </ROUTE>
             
              
