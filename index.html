@@ -1,3 +1,4 @@
+
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
@@ -6,16 +7,36 @@
     <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
     <link rel="stylesheet" href="../css/custom.css" />
     <script src="../js/custom.js"></script>
+
+    <script>
+
+
+      function rotation_Stas()
+       {
+        var shar = TS_Stas.getAttribute("enabled");
+        if (shar == "false"){
+
+          TS_Stas.setAttribute("enabled", "true");
+          buts.value = "Остановись!";
+        }
+        else{
+          TS_Stas.setAttribute("enabled", "false");
+          buts.value = "Крутись!";
+        }
+      }
+
+
+      </script>
+   
   </head>
    <body>
     <h1>Стас Борецкий Ака Деревня Дураков Ака Голем из Minecraft</h1>
     <h2> <input id="button1" type="button" 
   
-    value="Песня из STALKER3" onclick="f_audio();"/> </h2>
-    <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">      
+    value="Песня из STALKER3" onclick="f_audio();"/> 
+<input id="buts" type="button" value="Крутись!" onclick="rotation_Stas();" />    <X3D id="x3d" xmlns="https://www.x3dom.org/x3dom">      
       <Scene> 
-        <PositionChaser DEF='BoxCh' id='BoxCh' duration='1' >
-          </PositionChaser>
+       
 <viewpoint id="cam1" position="0 0 15" fieldofview="0.75" description="camera"></viewpoint>
 <viewpoint id="cam2" position=" 5 -1 6" orientation="0 1 0 0.9" fieldofview="1.1" description="camera"></viewpoint>
 <viewpoint id="cam3" position="4.5 0.35 3.5 " orientation="0 -1 0 -1" fieldofview="0.9" description="camera"></viewpoint>
@@ -185,7 +206,10 @@
 
         <Anchor url="https://www.minecraft.net/ru-ru/">
         <Group DEF='Stas'>
-          <transform DEF='Stasik' translation="0">
+
+         <Transform translation="0 0 0">
+
+    <Transform DEF='Stasss'>
 
 <Transform translation="0 0 0" scale="1 1 1">     <!--Основная часть головы-->  
         <Shape>
@@ -383,8 +407,44 @@
         </Transform>
       </transform>
       
+       </Transform>
+
+      </Transform>
     </Group>
   </Anchor>
+
+
+  <TimeSensor DEF='TS_Stas' id = "TS_Stas" cycleInterval='2' loop='true' enabled = "false"></TimeSensor>
+
+        <OrientationInterpolator DEF='OrInt' key='0, 0.5, 1' keyValue='0 1 0 0, 0 1 0 3.14, 0 1 0 6.28'></OrientationInterpolator>
+        <OrientationChaser DEF="OrCh" duration="5"></OrientationChaser>
+
+        <PositionInterpolator DEF='PosInt' key='0 0.25 0.5 0.75 1' keyValue='0 -0.6 0, 0 1 0, 0 -0.6 0, 0 1 0, 0 0 0 '></PositionInterpolator>
+         <PositionChaser DEF="PosCh" duration="2" ></PositionChaser>
+
+ <Route fromNode="TS_Stas" fromField ="fraction_changed" toNode="OrInt" toField="set_fraction">
+    </Route>
+    <Route fromNode="TS_Stas" fromField ="fraction_changed" toNode="PosInt" toField="set_fraction">
+    </Route>
+    
+    <Route fromNode="OrInt" fromField ="value_changed" toNode="OrCh" toField="set_destination">
+    </Route>
+    <Route fromNode="PosInt" fromField ="value_changed" toNode="PosCh" toField="set_destination">
+    </Route>
+    
+    <Route fromNode="OrCh" fromField ="value_changed" toNode="Stasss" toField="set_rotation">
+    </Route>
+    <Route fromNode="PosCh" fromField ="value_changed" toNode="Stasss" toField="set_translation">
+    </Route>
+
+
+        
+
+
+
+        
+
+
     <Transform translation="5.1 0.35 4" scale="0.3 0.3 0.3" rotation="0 1 0 -1">
       <Shape USE="Stas">
 </Shape>
@@ -397,17 +457,18 @@
           <SolidOfRevolution angle='6.29' crossSection='[0 1 2 3 1 1 ]' solid='false'></SolidOfRevolution> 
         </Shape>
         </Transform>
-        <timeSensor DEF='clock1' cycleInterval='3' loop='true'></timeSensor>
-<PositionInterpolator DEF='PosInt' key='0 0.25 0.5 0.75 1' keyValue='0 0 0, -0 1 0, 0 0 0, -0 1 0, 0 0 0 '></PositionInterpolator>
-<ROUTE fromNode='clock1' fromField='fraction_changed' 
-               toNode='PosInt' toField='set_fraction'>
-        </ROUTE>
-        <ROUTE fromNode='PosInt' fromField='value_changed' 
-               toNode='Stasik' toField='set_translation'>
-             </ROUTE>
+
+
+
+
+
+
         <pointlight def='Lamp1' color='#87CEEB' location='0 2 -1' radius='20' global='true' />
         <DirectionalLight def='Lamp2' direction='0 0 -1' color='white' intensity='.5'></DirectionalLight>
+
+
   <script>
+
 function f_audio()
       {
         var au = music1.getAttribute("enabled");
