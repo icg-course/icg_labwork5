@@ -23,6 +23,11 @@
                 Button.value = "Open";
             }
         }
+
+        function StopIt() {
+            var updatedSpeed = false;
+            document.getElementById("TimeChair").setAttribute("enabled", "updatedSpeed");
+        }
     </script>
 </head>
 
@@ -351,6 +356,21 @@
                 </transform>
             </group>
             <input id="Button" type="button" value="Open" onclick="OpenPlate();" />
+            <input id="ChairButton" type="button" value="Stop It!" onclick="StopIt();" />
+            <group def="Chair" id="Chair">
+                <transform def="ChairTransform" translation="0 -0.275 1" scale="0.0625 0.0625 0.0625">
+                    <inline url="Aerocool.x3d"></inline>
+                </transform>
+            </group>
+            <TimeSensor id="TimeChair" def="TimeChair" cycleInterval="5" loop="true" enabled="true"></TimeSensor>
+            <OrientationInterpolator def="RotInter" key="0 0.5 1" keyValue="0 1 0 0, 0 1 0 3.14, 0 1 0 6.28"></OrientationInterpolator>
+            <OrientationChaser def="RotChaser" duration="1"></OrientationChaser>
+            <ROUTE fromNode='TimeChair' fromField='fraction_changed' toNode='RotInter' toField='set_fraction'>
+            </ROUTE>
+            <ROUTE fromNode='RotInter' fromField='value_changed' toNode='RotChaser' toField='set_destination'>
+            </ROUTE>
+            <ROUTE fromNode='RotChaser' fromField='value_changed' toNode='ChairTransform' toField='set_rotation'>
+            </ROUTE>
         </Scene>
     </X3D>
 </body>
