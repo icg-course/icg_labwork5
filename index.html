@@ -5,7 +5,6 @@
     <title>lab5</title>
     <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
     <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
-    <script src="../../js/custom.js"></script>
 </head>
 <body>
     <X3D width='1600px' height='900px'>
@@ -13,19 +12,15 @@
             <!------------------Точки обзора и перемещение----------------------->
             <viewpoint id="front" position="5.0 13.5 55.0" description="camera"></viewpoint>
             <viewpoint id="top" position="0.0 35 10.0" orientation="-1 0 0 1" description="camera"></viewpoint>
-            
             <NavigationInfo id="headlight" headlight='false' type='any' speed="5"></NavigationInfo>
 
             <!------------------Освещение----------------------->
 
             <!--свет от лампы-->
             <PointLight id = "lamplight" on='false' intensity='2.9' color='0.4 0.4 0.0' location='9.2 15.5 2.1 ' radius='14.0000' shadowIntensity="0.2" attenuation="0.5 0 0"> </PointLight>
-            <PointLight id = "lightninglight" def="light" on='false' intensity='2.9' color='0.5 0 1' location='0 23 0 ' radius='25.0000' shadowIntensity="0.2" attenuation="1 0.2 0"> </PointLight>
             <!--прожекторный свет-->
             <Spotlight location="0 25 0" color="1 1 1" intensity="0.5" direction="0 -1 0" cutOffAngle='0.5' beamWidth='2' shadowIntensity="0.1"></Spotlight>
-
-            <Background skyColor='0.16 0.16 0.16'>
-            </Background>
+            <Background skyColor='0.16 0.16 0.16'></Background>
 
             <!--------------------Название----------------------->
             <group def="string">
@@ -99,7 +94,7 @@
                     </shape>
                 </transform>
             </transform>
-            <transform translation="-4.5 1.8 -4.0" rotation="0 1 0 0.785398" >
+            <transform translation="-4.5 1.8 -4.0" rotation="0 1 0 0.785398">
                 <transform center="0 1 0" rotation="1 0 0 -0.2269">
                     <shape use="wall">
                     </shape>
@@ -110,7 +105,7 @@
                     <shape use="wall">
                     </shape>
                 </transform>
-                </transform>
+            </transform>
             <transform translation="4.5 1.8 -4.0" rotation="0 1 0 -0.785398">
                 <transform center="0 1 0" rotation="1 0 0 -0.2269">
                     <shape use="wall">
@@ -211,7 +206,6 @@
                     </shape>
                 </transform>
             </group>
-
 <!-------------------Стержень------------------------->  
             <group def="RodStructure">
                 <transform translation="0.0 5 0.0">
@@ -279,8 +273,7 @@
                 <transform translation="0.0 5.0 0" scale = "1.5 1 1" rotation="0 1 0 1.57">
                     <shape use="rec_connector">
                     </shape>
-                </transform>
-              
+                </transform>        
 <!-----------------------Тороид----------------------->  
                 <transform def = "rotate" onclick="change_lightning_color()" translation="0.0 12.0 0">
                     <shape def="ElectricSphere">
@@ -1551,8 +1544,7 @@
             <PositionChaser DEF="button_chaser"    id="button_chaser"    duration="0.15"></PositionChaser>
                 <ROUTE fromNode='button_chaser'     fromField='value_changed'
 					   toNode  ='button' toField  ='set_translation'>
-                </ROUTE>  
-                       
+                </ROUTE>          
         </scene>
     </X3D>
     <script>
@@ -1583,13 +1575,17 @@
               document.getElementById("TimeR").setAttribute('enabled', 'true');
           }
 
-		   b = document.getElementById("button_chaser");
+		   var b = document.getElementById("button_chaser");
 		   b.setAttribute("set_destination",[0, -0.27, 0]);
 		   window.setTimeout(function(){b.setAttribute("set_destination",[0, 0, 0])},180);
 		} 
-		//
+
+
         function change_lightning_color() {
-           let r;let g;let b;var rgb;
+           let r;
+           let g;
+           let b;
+           var rgb;
            let num = "Col1";
           for (var i = 1; i <= 6; i++) {
           	r = Math.random().toString();
@@ -1602,5 +1598,5 @@
           }   
         }  
     </script>
-</body >
-</html >
+</body>
+</html>
