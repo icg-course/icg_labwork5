@@ -1,13 +1,1606 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
-  <head>  
+<head>
     <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
-</html>
+    <title>lab5</title>
+    <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css" />
+    <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
+    <script src="../../js/custom.js"></script>
+</head>
+<body>
+    <X3D width='1600px' height='900px'>
+        <scene>
+            <!------------------Точки обзора и перемещение----------------------->
+            <viewpoint id="front" position="5.0 13.5 55.0" description="camera"></viewpoint>
+            <viewpoint id="top" position="0.0 35 10.0" orientation="-1 0 0 1" description="camera"></viewpoint>
+            
+            <NavigationInfo id="headlight" headlight='false' type='any' speed="5"></NavigationInfo>
+
+            <!------------------Освещение----------------------->
+
+            <!--свет от лампы-->
+            <PointLight id = "lamplight" on='false' intensity='2.9' color='0.4 0.4 0.0' location='9.2 15.5 2.1 ' radius='14.0000' shadowIntensity="0.2" attenuation="0.5 0 0"> </PointLight>
+            <PointLight id = "lightninglight" def="light" on='false' intensity='2.9' color='0.5 0 1' location='0 23 0 ' radius='25.0000' shadowIntensity="0.2" attenuation="1 0.2 0"> </PointLight>
+            <!--прожекторный свет-->
+            <Spotlight location="0 25 0" color="1 1 1" intensity="0.5" direction="0 -1 0" cutOffAngle='0.5' beamWidth='2' shadowIntensity="0.1"></Spotlight>
+
+            <Background skyColor='0.16 0.16 0.16'>
+            </Background>
+
+            <!--------------------Название----------------------->
+            <group def="string">
+                <transform translation="-18 9 2" rotation="0 1 0 0.785398">
+                	<anchor url="https://www.youtube.com/watch?v=Uf3ouaeB6UQ&ab_channel=FranzoliElectronics">
+                    <shape>
+                        <appearance>
+                            <material def="str" diffuseColor='1 1 1'></material>
+                        </appearance>
+                        <text string='"Катушка Теслы"' solid='false'>
+                            <fontStyle family="TYPEWRITER" size='1.5' spacing='0.1' language='ru'></fontStyle>
+                        </text>
+                    </shape>
+                    </anchor>
+                </transform>
+                <transform translation="2.2 12 0.3" rotation="0 1 0 1.57">
+                    <anchor url="https://www.youtube.com/watch?v=Uf3ouaeB6UQ&ab_channel=FranzoliElectronics">
+                        <shape>
+                            <appearance>
+                                <material diffuseColor="Red"></material>
+                            </appearance>
+                            <text string='"dont click"' solid='false'>
+                                <fontStyle family="TYPEWRITER" size='0.1 ' spacing='0.1' language='en'></fontStyle>
+                            </text>
+                        </shape>
+                    </anchor>
+                </transform>
+            </group>
+
+            <!------------------Лампа----------------------->
+            <transform translation="9.5 15 2.1" scale="10 10 10" rotation="0 0 1 0.785398">
+                <inline url="Lamp.x3d"></inline>
+            </transform>
+
+            <!---------------------Катушка------------------------->
+           <group def="Spule">
+               <group def="Foundation">
+                   <!-----------------------Основание--------------------->
+                   <transform translation="0.0 -0.28 0.0">
+                       <shape def="base">
+                           <appearance>
+                               <material diffusecolor="brown">
+                               </material>
+                               <imagetexture repeatS="false" repeatT="false" scale="true" url="iron.jpg"></imagetexture>
+                           </appearance>
+                           <Cylinder radius="6" height="0.6"></Cylinder>
+                       </shape>
+                   </transform>
+                   <transform translation="0.0 -1 0.0">
+                       <shape def="base">
+                           <appearance>
+                               <material diffusecolor="brown">
+                               </material>
+                               <imagetexture repeatS="false" repeatT="false" scale="true" url="iron.jpg"></imagetexture>
+                           </appearance>
+                           <Cylinder radius="7" height="0.8"></Cylinder>
+                       </shape>
+                   </transform>
+               </group>
+<!--------------------Перегородки----------------------->
+            <group def="Walls">
+                <transform translation ="4.5 1.8 4.0" rotation="0 1 0 0.785398">
+                    <transform center="0 1 0" rotation="1 0 0 0.2269">
+                    <shape def="wall">
+                        <appearance>
+                            <material diffusecolor="brown">
+                            </material>
+                            <imagetexture repeatS="false" repeatT="false" scale="true" url="iron.jpg"></imagetexture>
+                        </appearance>
+                        <Box size="2.2 3.6 0.3"></Box>
+                    </shape>
+                </transform>
+            </transform>
+            <transform translation="-4.5 1.8 -4.0" rotation="0 1 0 0.785398" >
+                <transform center="0 1 0" rotation="1 0 0 -0.2269">
+                    <shape use="wall">
+                    </shape>
+                </transform>
+            </transform>
+            <transform translation="-4.5 1.8 4.0" rotation="0 1 0 -0.785398">
+                <transform center="0 1 0" rotation="1 0 0 0.2269">
+                    <shape use="wall">
+                    </shape>
+                </transform>
+                </transform>
+            <transform translation="4.5 1.8 -4.0" rotation="0 1 0 -0.785398">
+                <transform center="0 1 0" rotation="1 0 0 -0.2269">
+                    <shape use="wall">
+                    </shape>
+                </transform>
+            </transform>
+            </group>
+<!----------------Соединительные тьюбы---------------------->  
+            <group def="tubes">
+                <transform translation="0.0 1.5 -3.4" >
+                    <shape def="tube">
+                        <appearance>
+                             <material diffusecolor="brown"></material>
+                             <imagetexture repeatS="true" repeatT="true" scale="true" url="cooper.jpg"></imagetexture>
+                       </appearance>
+                       <Cylinder radius="0.36" height ="3"></Cylinder>
+                    </shape>
+                </transform>
+                <transform translation="0.0 1.5 3.4">
+                    <shape use="tube">
+                    </shape>
+                </transform>
+                <transform translation="-3.4 1.5 0" rotation="0 1 0 1.57">
+                    <shape use="tube">
+                    </shape>
+                </transform>
+                <transform translation="3.4 1.5 0" rotation="0 1 0 1.57">
+                    <shape use="tube">
+                    </shape>
+                </transform>
+                <transform translation="1.6 3.48 0" rotation="0 0 1 1.57">
+                    <shape use="tube">
+                    </shape>
+                </transform>
+                 <transform translation="-1.5 3.48 0" rotation="0 0 1 1.57">
+                    <shape use="tube">
+                    </shape>
+                </transform>
+                 <transform translation="0.0 3.48 1.65" rotation="1 0 0 1.57">
+                    <shape use="tube">
+                    </shape>
+                </transform>
+                 <transform translation="0.0 3.48 -1.65" rotation="1 0 0 1.57">
+                    <shape use="tube">
+                    </shape>
+                </transform>
+            </group>  
+            <group def="connectors">
+<!--------------Соединительные сферы--------------------> 
+                <transform translation="0 3.24 3.2" scale="0.68 1 1">
+                    <shape def="connector">
+                        <appearance>
+                             <material diffusecolor="brown"></material>
+                             <imagetexture repeatS="true" repeatT="true" scale="true" url="iron.jpg"></imagetexture>
+                       </appearance>
+                        <Sphere radius="0.6"></Sphere>
+                    </shape>
+                </transform>
+                <transform translation="0.0 3.24 -3.2" scale="0.68 1 1">
+                    <shape use="connector">
+                    </shape>
+                </transform>
+                <transform translation="3.2 3.24 0.0" scale="1 1 0.68">
+                    <shape use="connector">
+                    </shape>
+                </transform>
+                <transform translation="-3.2 3.24 0.0" scale="1 1 0.68" >
+                    <shape use="connector">
+                    </shape>
+                </transform>
+                </group>
+<!----------------------Опроы тьюбов-----------------------------> 
+                <group def="bot_conectors">
+                <transform translation="0.0 0.2 3.4">
+                    <shape def="bot_connector">
+                        <appearance>
+                             <material diffusecolor="brown"></material>
+                              <imagetexture repeatS="true" repeatT="true" scale="true" url="iron.jpg"></imagetexture>
+                        </appearance>
+                        <Cone height="0.55" bottomRadius="1" topRadius="0.2"></Cone>
+                    </shape>
+                </transform>
+                <transform translation="0.0 0.2 -3.4">
+                    <shape use="bot_connector">
+                    </shape>
+                </transform>
+                <transform translation="3.4 0.2 0.0">
+                    <shape use="bot_connector">
+                    </shape>
+                </transform>
+                <transform translation="-3.4 0.2 0.0">
+                    <shape use="bot_connector">
+                    </shape>
+                </transform>
+                <!--Опора стержня-->
+                <transform translation="0.0 0.4 0.0" scale="1.8 1.8 1.8">
+                    <shape use="bot_connector">
+                    </shape>
+                </transform>
+            </group>
+
+<!-------------------Стержень------------------------->  
+            <group def="RodStructure">
+                <transform translation="0.0 5 0.0">
+                    <shape def="Rod">
+                        <appearance>
+                             <material diffusecolor="brown"></material>
+                             <imagetexture repeatS="true" repeatT="true" scale="true" url="cooper.jpg"></imagetexture>
+                       </appearance>
+                       <Cylinder radius="0.6" height ="10"></Cylinder>
+                    </shape>
+                </transform>
+<!---------------------Обмотки----------------------->  
+                <transform translation="0.0 6.2 0.0" rotation="1 0 0 1.57">
+                    <shape def="Disk">
+                        <appearance>
+                             <material diffusecolor="brown"></material>
+                             <imagetexture repeatS="true" repeatT="true" scale="true" url="cooper.jpg"></imagetexture>
+                       </appearance>
+                       <Torus innerRadius="0.3" outerRadius="1.3"></Torus>
+                    </shape>
+                </transform>
+                <transform translation="0.0 7.4 0" scale = "0.8 0.8 1" rotation="1 0 0 1.57">
+                    <shape use="Disk">
+                    </shape>
+                </transform>
+                <transform translation="0.0 8.6 0" scale = "0.6 0.6 1" rotation="1 0 0 1.57">
+                    <shape use="Disk">
+                    </shape>
+                </transform>
+                <transform translation="0.0 9.8 0" scale = "0.5 0.5 1" rotation="1 0 0 1.57">
+                    <shape use="Disk">
+                    </shape>
+                </transform>
+                <transform translation="0.0 5.0 0" scale = "1.1 1.1 1" rotation="1 0 0 1.57">
+                    <shape use="Disk">
+                    </shape>
+                </transform>
+<!---------------Соединители обмоток и стержня------------------>  
+                 <transform translation="0.0 7.4 0">
+                    <shape def="rec_connector">
+                        <appearance>
+                             <material diffusecolor="#eb9b34">
+                             </material>
+                             <imagetexture repeatS="false" repeatT="false" scale="true" url="iron.jpg"></imagetexture>
+                       </appearance>
+                       <Box size="1.65 0.25 0.3"></Box>
+                    </shape>
+                </transform>
+                <transform translation="0.0 6.2 0" scale = "1.2 1 1">
+                    <shape use="rec_connector">
+                    </shape>
+                </transform>
+                <transform translation="0.0 5.0 0" scale = "1.5 1 1">
+                    <shape use="rec_connector">
+                    </shape>
+                </transform>
+                <transform translation="0.0 7.4 0.0" rotation="0 1 0 1.57">
+                    <shape use="rec_connector">
+                    </shape>
+                </transform>
+                <transform translation="0.0 6.2 0" scale = "1.2 1 1" rotation="0 1 0 1.57">
+                    <shape use="rec_connector">
+                    </shape>
+                </transform>
+                <transform translation="0.0 5.0 0" scale = "1.5 1 1" rotation="0 1 0 1.57">
+                    <shape use="rec_connector">
+                    </shape>
+                </transform>
+              
+<!-----------------------Тороид----------------------->  
+                <transform def = "rotate" onclick="change_lightning_color()" translation="0.0 12.0 0">
+                    <shape def="ElectricSphere">
+                        <appearance>
+                             <material diffusecolor="brown"></material>
+                                <imagetexture repeatS="true" repeatT="true" scale="true" url="facets.jpg"></imagetexture>
+                                <material diffusecolor="#eb9b34"></material>
+                       </appearance>
+                       <Sphere radius="2.2"></Sphere>
+                    </shape>
+                </transform>
+            </group>    
+           </group>
+                               
+            <!---------------------------------Кнопка------------------------------------>
+            <group def="Button">
+                <transform translation="4 -1.4 6" scale="4 3 4">
+                    <shape>
+                        <appearance>
+                            <material></material>
+                        </appearance>
+                        <indexedFaceSet ccw="true" colorPerVertex="true" convex="true" solid="false"
+                                        coordIndex="0 1 5 4 -1 1 2 7 5 -1 2 3 6 7 -1 3 0 4 6 -1 0 1 2 3 -1 4 5 7 6 -1"
+                                        colorIndex="0 1 2 3 -1 4 5 6 0 -1 1 2 3 4 -1 5 6 0 1 -1 0 1 2 3 -1 0 1 2 3 -1 0 1 2 3 -1">
+                            <coordinate point="0 0 0, 1 0 0, 1 0 1, 0 0 1, 0.3 0.5 0.3, 0.7 0.5 0.3, 0.3 0.5 0.7, 0.7 0.5 0.7">
+                            </coordinate>
+                            <color color="0.67 0.59 0.5, 0.67 0.59 0.5, 0.67 0.59 0.5,
+              0.67 0.59 0.5, 0.67 0.59 0.5, 0.67 0.59 0.5, 0.67 0.59 0.5"></color>
+                        </indexedFaceSet>
+                    </shape>
+                </transform>
+
+
+                <transform translation='3.5 -0.5 4.4' scale="5 1 6">
+                    <transform def="button" id="button" onclick="headlight()" DEF='Trans2'>
+                        <shape>
+                            <appearance>
+                                <material></material>
+                            </appearance>
+                            <indexedTriangleStripSet index='0 1 8 2 3 -1 3 4 8 5 6 -1 6 7 8 0 -1 0 9 1 10 -1 1 10 2 11 -1 2  11 3 12 -1 3 12 4 13 -1 4 13 5 14 -1 5 14 6 15 -1 6 15 7 16 -1 7 16 0 9 -1' solid='false' colorPerVertex='false'>
+                                <coordinate point='0.5 1 0.5, 0.6 1 0.55, 0.61 1 0.6, 0.6 1 0.65, 0.5 1 0.7, 0.4 1 0.65, 0.39 1 0.6, 0.4 1 0.55, 0.5 1 0.6,
+              0.5 0.15 0.5, 0.6 0.15 0.55, 0.61 0.15 0.6, 0.6 0.15 0.65, 0.5 0.15 0.7, 0.4 0.15 0.65, 0.39 0.15 0.6, 0.4 0.15 0.55'></coordinate>
+                                <colorRGBA color='0.67 0.54 0.372 1,0.67 0.54 0.372 1,0.67 0.54 0.372 1,
+              0.67 0.54 0.372 1,0.67 0.54 0.372 1,0.67 0.54 0.372 1,0.67 0.54 0.372 1 ,0.67 0.54 0.372 1,0.67 0.54 0.372 1,0.67 0.54 0.372 1,0.67 0.54 0.372 1'></colorRGBA>
+                            </indexedTriangleStripSet>
+                        </shape>
+                    </transform>
+                </transform>
+            </group>
+
+            <transform translation="-0 -3.42 -0">
+                <shape def="table">
+                    <appearance>
+                        <material diffusecolor="0.4 0.4 0.4">
+                        </material>
+                    </appearance>
+                    <Box size="50 4 50"></Box>
+                </shape>
+            </transform>
+<!-----------------------Lightning strikes----------------------->
+            <group def="Lightning_pulses">
+                <group def="Lightning_pulses1">
+                    <transform translation="0 14 0">
+                        <shape def="lightning">
+                            <appearance>
+                                <material id = 'light1' DEF='Mat1' transparency="1"></material>
+                            </appearance>
+                            <indexedLineSet coordIndex="0 1 2 3 4 5 6 7 -1"
+                                            colorIndex="0 1 0 1 0 1 0"
+                                            colorPerVertex="false">
+                                <coordinate point="0 0 0, 1 2 1.2, 1 2.2 1.3, -2 3 -2,
+                                 -2 4 2, 2 6 2, 2 7 -2, -2 5 -3"></coordinate>
+                                <color id="Col6" color="0.5 0 1"></color>
+                            </indexedLineSet>
+                        </shape>
+                    </transform>
+                    <transform translation="0.1 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.1 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.2 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.2 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.19 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.19 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.18 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.18 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.17 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.17 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.16 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.16 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.15 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.15 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.14 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.14 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.13 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.13 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.12 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.12 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.11 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.10 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.10 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.09 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.09 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.08 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.08 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.07 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.07 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.06 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.06 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.05 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.05 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.04 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.04 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.03 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.03 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.02 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.02 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="0.01 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.01 14 0">
+                        <shape use="lightning">
+                        </shape>
+                    </transform>
+                </group>
+                <group def="Lightning_pulses2">
+                    <transform translation="0 14 0">
+                        <shape def="lightning2">
+                            <appearance>
+                                <material id = 'light2' DEF='Mat2' transparency="1"></material>
+                            </appearance>
+                            <indexedLineSet coordIndex="0 1 2 3 4 5 6 7 -1"
+                                            colorIndex="0 1 0 1 0 1 0"
+                                            colorPerVertex="false">
+                                <coordinate point="0 0 0, -1 1.5 1.2, -1.3 2.2 1.3, -2 2.4 3,
+                                 -2 2.7 3, -3 3.5 2, -3.2 4 1, -4 3.2 1.3"></coordinate>
+                                <color id="Col5" color="0.5 0 1"></color>
+                            </indexedLineSet>
+                        </shape>
+                    </transform>
+                    <transform translation="0.1 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.1 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.2 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.2 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.19 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.19 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.18 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.18 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.17 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.17 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.16 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.16 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.15 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.15 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.14 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.14 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.13 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.13 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.12 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.12 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.11 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.10 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.10 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.09 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.09 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.08 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.08 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.07 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.07 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.06 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.06 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.05 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.05 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.04 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.04 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.03 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.03 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.02 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.02 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="0.01 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.01 14 0">
+                        <shape use="lightning2">
+                        </shape>
+                    </transform>
+                </group>
+                <group def="Lightning_pulses3">
+                    <transform translation="0 14 0">
+                        <shape def="lightning3">
+                            <appearance>
+                                <material id = 'light3' DEF='Mat3' transparency="1"></material>
+                            </appearance>
+                            <indexedLineSet coordIndex="0 1 2 3 4 5 6 7 -1"
+                                            colorIndex="0 1 0 1 0 1 0"
+                                            colorPerVertex="false">
+                                <coordinate point="0 0 0, -0.4 1.1 2, -1.3 2.2 3.3, 2 2.4 2.1,
+                                 2 3.3 4.0, 2.4 5.7 5, 2 5.3 4.3, 1.2 7.2 2.3"></coordinate>
+                                <color id="Col4" color="0.5 0 1"></color>
+                            </indexedLineSet>
+                        </shape>
+                    </transform>
+
+                    <transform translation="0.1 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.1 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.2 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.2 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.19 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.19 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.18 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.18 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.17 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.17 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.16 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.16 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.15 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.15 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.14 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.14 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.13 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.13 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.12 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.12 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.11 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.10 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.10 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.09 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.09 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.08 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.08 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.07 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.07 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.06 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.06 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.05 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.05 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.04 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.04 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.03 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.03 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.02 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.02 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="0.01 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.01 14 0">
+                        <shape use="lightning3">
+                        </shape>
+                    </transform>
+                </group>
+                <group def="Lightning_pulses4">
+                    <transform translation="0 14 0">
+                        <shape def="lightning4">
+                            <appearance>
+                                <material id = 'light4' DEF='Mat4' transparency="1"></material>
+                            </appearance>
+                            <indexedLineSet coordIndex="0 1 2 3 4 5 6 7 -1"
+                                            colorIndex="0 1 0 1 0 1 0"
+                                            colorPerVertex="false">
+                                <coordinate point="0 0 0, 1 1.1 0, 2 1.2 0.8, 3 2.4 1.1,
+                                 3.1 2.3 1.0, 3.4 2.7 3, 5.6 2.8 1.3, 7.2 2.2 2.3"></coordinate>
+                                <color id="Col3" color="0.5 0 1"></color>
+                            </indexedLineSet>
+                        </shape>
+                    </transform>
+                    <transform translation="0.1 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.1 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.2 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.2 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.19 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.19 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.18 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.18 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.17 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.17 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.16 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.16 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.15 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.15 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.14 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.14 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.13 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.13 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.12 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.12 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.11 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.10 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.10 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.09 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.09 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.08 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.08 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.07 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.07 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.06 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.06 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.05 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.05 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.04 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.04 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.03 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.03 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.02 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.02 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="0.01 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.01 14 0">
+                        <shape use="lightning4">
+                        </shape>
+                    </transform>
+                </group>
+                <group def="Lightning_pulses5">
+                    <transform translation="0 14 0">
+                        <shape def="lightning5">
+                            <appearance>
+                                <material id = 'light5' DEF='Mat5' transparency="1"></material>
+                            </appearance>
+                            <indexedLineSet coordIndex="0 1 2 3 4 5 6 7 -1"
+                                            colorIndex="0 1 0 1 0 1 0"
+                                            colorPerVertex="false">
+                                <coordinate point="0 0 0, -0.8 0.4 0.2, -1.2 0.8 0.8, -3 1.4 4.1,
+                                 -3.1 1.5 4.8, -3.9 1.7 5.5, -5.6 1.8 6.2, -7.2 2.7 7.53"></coordinate>
+                                <color id="Col2" color="0.5 0 1"></color>
+                            </indexedLineSet>
+                        </shape>
+                    </transform>
+                    <transform translation="0.1 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.1 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.2 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.2 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.19 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.19 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.18 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.18 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.17 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.17 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.16 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.16 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.15 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.15 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.14 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.14 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.13 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.13 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.12 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.12 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.11 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.10 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.10 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.09 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.09 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.08 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.08 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.07 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.07 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.06 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.06 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.05 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.05 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.04 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.04 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.03 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.03 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.02 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.02 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="0.01 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.01 14 0">
+                        <shape use="lightning5">
+                        </shape>
+                    </transform>
+                </group>
+                <group def="Lightning_pulses6">
+                    <transform translation="0 14 0">
+                        <shape def="lightning6">
+                            <appearance>
+                                <material id = 'light6' DEF='Mat6' transparency="1"></material>
+                            </appearance>
+                            <indexedLineSet coordIndex="0 1 2 3 4 5 6 7 -1"
+                                            colorIndex="0 1 0 1 0 1 0"
+                                            colorPerVertex="false">
+                                <coordinate point="0 0 0, -0.8 0.4 0.2, -1.2 0.9 -1.4, -3 1.4 -2.1, -2.1 1.5 -3.8, -4.9 1.7 -5.5, -5.6 2.1 -6.2, -7.2 2.7 -7.53"></coordinate>
+                                <color id="Col1" DEF="Col" color="1 0 0"></color>
+                            </indexedLineSet>
+                        </shape>
+                    </transform>
+                    <transform translation="0.1 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.1 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.2 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.2 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.19 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.19 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.18 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.18 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.17 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.17 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.16 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.16 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.15 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.15 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.14 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.14 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.13 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.13 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.12 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.12 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.11 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.11 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.10 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.10 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.09 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.09 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.08 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.08 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.07 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.07 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.06 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.06 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.05 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.05 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.04 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.04 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.03 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.03 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.02 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.02 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="0.01 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                    <transform translation="-0.01 14 0">
+                        <shape use="lightning6">
+                        </shape>
+                    </transform>
+                </group>
+            </group>
+
+
+            <transform DEF='Trans' translation="0 14 0">
+                <shape def="lightning7">
+                    <appearance>
+                        <material transparency="1"></material>
+                    </appearance>
+                    <indexedLineSet coordIndex="0 1 2 3 4 5 6 7 -1"
+                                    colorIndex="0 1 0 1 0 1 0"
+                                    colorPerVertex="false">
+                        <coordinate point="0 0 0, -0.8 0.4 0.2, -1.2 0.9 -1.4, -3 1.4 -2.1, -2.1 1.5 -3.8, -4.9 1.7 -5.5, -5.6 2.1 -6.2, -7.2 2.7 -7.53"></coordinate>
+                        <color color="0.5 0 1"></color>
+                    </indexedLineSet>
+                </shape>
+            </transform>
+       
+<!---------------------------Анимация---------------------------->
+
+			<TimeSensor id='TimeR' DEF='TimeR' cycleInterval='1' loop='true' enabled='false'></TimeSensor>
+       			 <OrientationInterpolator DEF='OI' key='0, 0.5, 1' 
+                        keyValue='0 0 1 0, 0 0 1 3.14, 0 0 1 6.28'>
+        		</OrientationInterpolator>
+      	     <ROUTE fromNode='TimeR' fromField='fraction_changed' 
+               toNode='OI' toField='set_fraction'>
+     		   </ROUTE>
+       		 <ROUTE fromNode='OI' fromField='value_changed' 
+             	  toNode='rotate' toField='set_rotation'>
+       		 </ROUTE>
+
+
+            <TimeSensor id = 'Time' DEF='Time' cycleInterval='1' loop='true' enabled='false'></TimeSensor>
+            <ScalarInterpolator DEF='ScInt' key='0 0.25 0.5 0.75 1' keyValue='1 0.85 0.75 1 1'></ScalarInterpolator>
+            <PositionInterpolator DEF='PosInt' key='0 1' keyValue='0 20 0, 0 38 0 '></PositionInterpolator>
+
+            <!--анимация молний-->
+            <ROUTE fromNode='Time' fromField='fraction_changed'
+                   toNode='ScInt' toField='set_fraction'>
+            </ROUTE>
+            <ROUTE fromNode='ScInt' fromField='value_changed'
+                   toNode='Mat1' toField='set_transparency'>
+            </ROUTE>
+            <ROUTE fromNode='ScInt' fromField='value_changed'
+                   toNode='Mat2' toField='set_transparency'>
+            </ROUTE>
+            <ROUTE fromNode='ScInt' fromField='value_changed'
+                   toNode='Mat3' toField='set_transparency'>
+            </ROUTE>
+            <ROUTE fromNode='ScInt' fromField='value_changed'
+                   toNode='Mat4' toField='set_transparency'>
+            </ROUTE>
+            <ROUTE fromNode='ScInt' fromField='value_changed'
+                   toNode='Mat5' toField='set_transparency'>
+            </ROUTE>
+            <ROUTE fromNode='ScInt' fromField='value_changed'
+                   toNode='Mat6' toField='set_transparency'>
+            </ROUTE>
+
+            <!--анимация появления теней-->
+            <ROUTE fromNode='Time' fromField='fraction_changed'
+                   toNode='PosInt' toField='set_fraction'>
+            </ROUTE>
+            <ROUTE fromNode='PosInt' fromField='value_changed'
+                   toNode='Trans' toField='set_translation'>
+            </ROUTE>
+            
+
+            <!---------------------анимация смены цвета у надписи------------------------>
+            <TimeSensor id = 'Time2' DEF='Time2' cycleInterval='3' loop='true' enabled='true'></TimeSensor>
+            <ColorInterpolator DEF='ColInt' key='0 0.33 0.66 1' keyValue='1 0 0, 0 1 0, 0 0 1, 1 0 0'></ColorInterpolator>
+
+            <ROUTE fromNode='Time2' fromField='fraction_changed'
+                   toNode='ColInt' toField='set_fraction'>
+            </ROUTE>
+            <ROUTE fromNode='ColInt' fromField='value_changed'
+                   toNode='str' toField='set_diffuseColor'>
+            </ROUTE>
+<!---------------------------------Нажатие кнопки------------------------------------>
+            <PositionChaser DEF="button_chaser"    id="button_chaser"    duration="0.15"></PositionChaser>
+                <ROUTE fromNode='button_chaser'     fromField='value_changed'
+					   toNode  ='button' toField  ='set_translation'>
+                </ROUTE>  
+                       
+        </scene>
+    </X3D>
+    <script>
+
+    	//Нажатие кнопки - глобальное освещение сцены
+        function headlight()
+		{ 
+		  var h = document.getElementById("headlight");
+          if(h.getAttribute('headlight')=='true')
+          {
+          	document.getElementById("light1").setAttribute('transparency', 1);
+          	document.getElementById("light2").setAttribute('transparency', 1);
+          	document.getElementById("light3").setAttribute('transparency', 1);
+          	document.getElementById("light4").setAttribute('transparency', 1);
+          	document.getElementById("light5").setAttribute('transparency', 1);
+          	document.getElementById("light6").setAttribute('transparency', 1);
+            h.setAttribute('headlight', 'false');
+            document.getElementById("lamplight").setAttribute('on', 'false');
+            document.getElementById("Time").setAttribute('enabled', 'false');
+            document.getElementById("TimeR").setAttribute('enabled', 'false');
+            change_lightning_color();
+          }
+          else
+          {
+              h.setAttribute('headlight', 'true');
+              document.getElementById("lamplight").setAttribute('on', 'true');
+              document.getElementById("Time").setAttribute('enabled', 'true');
+              document.getElementById("TimeR").setAttribute('enabled', 'true');
+          }
+
+		   b = document.getElementById("button_chaser");
+		   b.setAttribute("set_destination",[0, -0.27, 0]);
+		   window.setTimeout(function(){b.setAttribute("set_destination",[0, 0, 0])},180);
+		} 
+		//
+        function change_lightning_color() {
+           let r;let g;let b;var rgb;
+           let num = "Col1";
+          for (var i = 1; i <= 6; i++) {
+          	r = Math.random().toString();
+            g = Math.random().toString();
+            b = Math.random().toString();
+          	rgb = r + " " + g + " " + b;
+          	document.getElementById(num).setAttribute("color", rgb);
+          	num = num.slice(0, -1);
+          	num += (i + 1).toString();
+          }   
+        }  
+    </script>
+</body >
+</html >
