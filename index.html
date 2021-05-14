@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="utf-8" />
@@ -7,55 +7,58 @@
     <script src="https://www.x3dom.org/download/dev/x3dom-full.js"></script>
 </head>
 <body>
+
     <X3D width='1600px' height='900px'>
-        <scene>
-            <!------------------Точки обзора и перемещение----------------------->
+        <scene>   
+<!------------------Точки обзора и перемещение----------------------->
             <viewpoint id="front" position="5.0 13.5 55.0" description="camera"></viewpoint>
-            <viewpoint id="top" position="0.0 35 10.0" orientation="-1 0 0 1" description="camera"></viewpoint>
-            <NavigationInfo id="headlight" headlight='false' type='any' speed="5"></NavigationInfo>
+            <viewpoint id="top"  position="0.0 35 10.0" orientation="-1 0 0 1" description="camera"></viewpoint>
+            <NavigationInfo id="headlight" headlight='false' type='any'  speed="5"></NavigationInfo>
 
-            <!------------------Освещение----------------------->
+<!------------------Освещение-------------------------->      
+              
+     <!--свет от лампы-->   
+        <PointLight id = "lamplight" on='false' intensity='2.9' color='0.4 0.4 0.0' location='9.2 15.5 2.1 ' radius='14.0000' shadowIntensity="0.2" attenuation = "0.5 0 0"> </PointLight> 
 
-            <!--свет от лампы-->
-            <PointLight id = "lamplight" on='false' intensity='2.9' color='0.4 0.4 0.0' location='9.2 15.5 2.1 ' radius='14.0000' shadowIntensity="0.2" attenuation="0.5 0 0"> </PointLight>
-            <!--прожекторный свет-->
-            <Spotlight location="0 25 0" color="1 1 1" intensity="0.5" direction="0 -1 0" cutOffAngle='0.5' beamWidth='2' shadowIntensity="0.1"></Spotlight>
-            <Background skyColor='0.16 0.16 0.16'></Background>
+    
+    <!--прожекторный свет--> 
+        <Spotlight location="0 25 0" color="1 1 1" intensity="0.5" direction="0 -1 0" cutOffAngle='0.5' beamWidth='2' shadowIntensity="0.1"></Spotlight>
+    <!--Окружение---->
+        <Background skyColor='0.12 0.12 0.12'></Background>
 
-            <!--------------------Название----------------------->
-            <group def="string">
-                <transform translation="-18 9 2" rotation="0 1 0 0.785398">
-                	<anchor url="https://www.youtube.com/watch?v=Uf3ouaeB6UQ&ab_channel=FranzoliElectronics">
-                    <shape>
-                        <appearance>
-                            <material def="str" diffuseColor='1 1 1'></material>
-                        </appearance>
-                        <text string='"Катушка Теслы"' solid='false'>
-                            <fontStyle family="TYPEWRITER" size='1.5' spacing='0.1' language='ru'></fontStyle>
-                        </text>
-                    </shape>
-                    </anchor>
-                </transform>
+
+<!--------------------Название----------------------->
+			<group def="string">
+				<transform translation="-18 9 2" rotation="0 1 0 0.785398">
+      			  <shape>
+          			  <appearance>
+             		      <material def="str" diffuseColor='1 1 1'></material>
+           			 </appearance>
+           		     <text string='"Катушка Теслы"' solid='false'>
+         		       <fontStyle family="TYPEWRITER" size='1.5' spacing='0.1' language='ru'></fontStyle>
+       			     </text>
+      			  </shape>
+    			</transform>
                 <transform translation="2.2 12 0.3" rotation="0 1 0 1.57">
                     <anchor url="https://www.youtube.com/watch?v=Uf3ouaeB6UQ&ab_channel=FranzoliElectronics">
-                        <shape>
-                            <appearance>
-                                <material diffuseColor="Red"></material>
-                            </appearance>
-                            <text string='"dont click"' solid='false'>
-                                <fontStyle family="TYPEWRITER" size='0.1 ' spacing='0.1' language='en'></fontStyle>
-                            </text>
-                        </shape>
-                    </anchor>
+                  <shape>
+                      <appearance>
+                          <material diffuseColor="Red"></material>
+                     </appearance>
+                     <text string='"dont click"' solid='false'>
+                       <fontStyle family="TYPEWRITER" size='0.1 ' spacing='0.1' language='en'></fontStyle>
+                     </text>
+                  </shape>
+              </anchor>
                 </transform>
-            </group>
+			</group>
 
-            <!------------------Лампа----------------------->
-            <transform translation="9.5 15 2.1" scale="10 10 10" rotation="0 0 1 0.785398">
-                <inline url="Lamp.x3d"></inline>
-            </transform>
+<!------------------Лампа----------------------->
+			 <transform translation="9.5 15 2.1" scale="10 10 10" rotation="0 0 1 0.785398">
+                    <inline url="Lamp.x3d"></inline>
+                </transform>
 
-            <!---------------------Катушка------------------------->
+<!---------------------Катушка------------------------->
            <group def="Spule">
                <group def="Foundation">
                    <!-----------------------Основание--------------------->
@@ -83,18 +86,18 @@
 <!--------------------Перегородки----------------------->
             <group def="Walls">
                 <transform translation ="4.5 1.8 4.0" rotation="0 1 0 0.785398">
-                    <transform center="0 1 0" rotation="1 0 0 0.2269">
-                    <shape def="wall">
-                        <appearance>
-                            <material diffusecolor="brown">
+                  <transform center="0 1 0" rotation="1 0 0 0.2269">
+                  <shape def="wall">
+                    <appearance>
+                      <material diffusecolor="brown">
                             </material>
                             <imagetexture repeatS="false" repeatT="false" scale="true" url="iron.jpg"></imagetexture>
                         </appearance>
                         <Box size="2.2 3.6 0.3"></Box>
-                    </shape>
+                  </shape>
                 </transform>
             </transform>
-            <transform translation="-4.5 1.8 -4.0" rotation="0 1 0 0.785398">
+            <transform translation="-4.5 1.8 -4.0" rotation="0 1 0 0.785398" >
                 <transform center="0 1 0" rotation="1 0 0 -0.2269">
                     <shape use="wall">
                     </shape>
@@ -105,7 +108,7 @@
                     <shape use="wall">
                     </shape>
                 </transform>
-            </transform>
+                </transform>
             <transform translation="4.5 1.8 -4.0" rotation="0 1 0 -0.785398">
                 <transform center="0 1 0" rotation="1 0 0 -0.2269">
                     <shape use="wall">
@@ -116,15 +119,15 @@
 <!----------------Соединительные тьюбы---------------------->  
             <group def="tubes">
                 <transform translation="0.0 1.5 -3.4" >
-                    <shape def="tube">
-                        <appearance>
-                             <material diffusecolor="brown"></material>
-                             <imagetexture repeatS="true" repeatT="true" scale="true" url="cooper.jpg"></imagetexture>
-                       </appearance>
-                       <Cylinder radius="0.36" height ="3"></Cylinder>
-                    </shape>
+                <shape def="tube">
+                  <appearance>
+                           <material diffusecolor="brown"></material>
+                           <imagetexture repeatS="true" repeatT="true" scale="true" url="cooper.jpg"></imagetexture>
+                   </appearance>
+                     <Cylinder radius="0.36" height ="3"></Cylinder>
+                  </shape>
                 </transform>
-                <transform translation="0.0 1.5 3.4">
+              <transform translation="0.0 1.5 3.4">
                     <shape use="tube">
                     </shape>
                 </transform>
@@ -155,16 +158,16 @@
             </group>  
             <group def="connectors">
 <!--------------Соединительные сферы--------------------> 
-                <transform translation="0 3.24 3.2" scale="0.68 1 1">
-                    <shape def="connector">
-                        <appearance>
-                             <material diffusecolor="brown"></material>
-                             <imagetexture repeatS="true" repeatT="true" scale="true" url="iron.jpg"></imagetexture>
-                       </appearance>
-                        <Sphere radius="0.6"></Sphere>
-                    </shape>
-                </transform>
-                <transform translation="0.0 3.24 -3.2" scale="0.68 1 1">
+              <transform translation="0 3.24 3.2" scale="0.68 1 1">
+                <shape def="connector">
+                  <appearance>
+                           <material diffusecolor="brown"></material>
+                           <imagetexture repeatS="true" repeatT="true" scale="true" url="iron.jpg"></imagetexture>
+                   </appearance>
+                  <Sphere radius="0.6"></Sphere>
+                </shape>
+              </transform>
+              <transform translation="0.0 3.24 -3.2" scale="0.68 1 1">
                     <shape use="connector">
                     </shape>
                 </transform>
@@ -180,13 +183,13 @@
 <!----------------------Опроы тьюбов-----------------------------> 
                 <group def="bot_conectors">
                 <transform translation="0.0 0.2 3.4">
-                    <shape def="bot_connector">
-                        <appearance>
-                             <material diffusecolor="brown"></material>
-                              <imagetexture repeatS="true" repeatT="true" scale="true" url="iron.jpg"></imagetexture>
-                        </appearance>
-                        <Cone height="0.55" bottomRadius="1" topRadius="0.2"></Cone>
-                    </shape>
+                  <shape def="bot_connector">
+                    <appearance>
+                           <material diffusecolor="brown"></material>
+                            <imagetexture repeatS="true" repeatT="true" scale="true" url="iron.jpg"></imagetexture>
+                    </appearance>
+                    <Cone height="0.55" bottomRadius="1" topRadius="0.2"></Cone>
+                  </shape>
                 </transform>
                 <transform translation="0.0 0.2 -3.4">
                     <shape use="bot_connector">
@@ -206,26 +209,27 @@
                     </shape>
                 </transform>
             </group>
+
 <!-------------------Стержень------------------------->  
             <group def="RodStructure">
                 <transform translation="0.0 5 0.0">
-                    <shape def="Rod">
-                        <appearance>
-                             <material diffusecolor="brown"></material>
-                             <imagetexture repeatS="true" repeatT="true" scale="true" url="cooper.jpg"></imagetexture>
-                       </appearance>
-                       <Cylinder radius="0.6" height ="10"></Cylinder>
-                    </shape>
+                <shape def="Rod">
+                  <appearance>
+                           <material diffusecolor="brown"></material>
+                           <imagetexture repeatS="true" repeatT="true" scale="true" url="cooper.jpg"></imagetexture>
+                   </appearance>
+                     <Cylinder radius="0.6" height ="10"></Cylinder>
+                  </shape>
                 </transform>
 <!---------------------Обмотки----------------------->  
                 <transform translation="0.0 6.2 0.0" rotation="1 0 0 1.57">
-                    <shape def="Disk">
-                        <appearance>
-                             <material diffusecolor="brown"></material>
-                             <imagetexture repeatS="true" repeatT="true" scale="true" url="cooper.jpg"></imagetexture>
-                       </appearance>
-                       <Torus innerRadius="0.3" outerRadius="1.3"></Torus>
-                    </shape>
+                <shape def="Disk">
+                  <appearance>
+                           <material diffusecolor="brown"></material>
+                           <imagetexture repeatS="true" repeatT="true" scale="true" url="cooper.jpg"></imagetexture>
+                   </appearance>
+                     <Torus innerRadius="0.3" outerRadius="1.3"></Torus>
+                  </shape>
                 </transform>
                 <transform translation="0.0 7.4 0" scale = "0.8 0.8 1" rotation="1 0 0 1.57">
                     <shape use="Disk">
@@ -245,14 +249,14 @@
                 </transform>
 <!---------------Соединители обмоток и стержня------------------>  
                  <transform translation="0.0 7.4 0">
-                    <shape def="rec_connector">
-                        <appearance>
-                             <material diffusecolor="#eb9b34">
-                             </material>
-                             <imagetexture repeatS="false" repeatT="false" scale="true" url="iron.jpg"></imagetexture>
-                       </appearance>
-                       <Box size="1.65 0.25 0.3"></Box>
-                    </shape>
+                <shape def="rec_connector">
+                  <appearance>
+                           <material diffusecolor="#eb9b34">
+                           </material>
+                           <imagetexture repeatS="false" repeatT="false" scale="true" url="iron.jpg"></imagetexture>
+                   </appearance>
+                     <Box size="1.65 0.25 0.3"></Box>
+                  </shape>
                 </transform>
                 <transform translation="0.0 6.2 0" scale = "1.2 1 1">
                     <shape use="rec_connector">
@@ -273,67 +277,68 @@
                 <transform translation="0.0 5.0 0" scale = "1.5 1 1" rotation="0 1 0 1.57">
                     <shape use="rec_connector">
                     </shape>
-                </transform>        
+                </transform>
+              
 <!-----------------------Тороид----------------------->  
-                <transform def = "rotate" onclick="change_lightning_color()" translation="0.0 12.0 0">
-                    <shape def="ElectricSphere">
-                        <appearance>
-                             <material diffusecolor="brown"></material>
+                <transform  def = "rotate" onclick="change_lightning_color()" translation="0.0 12.0 0">
+                <shape def="ElectricSphere">
+                  <appearance>
+                           <material diffusecolor="brown"></material>
                                 <imagetexture repeatS="true" repeatT="true" scale="true" url="facets.jpg"></imagetexture>
                                 <material diffusecolor="#eb9b34"></material>
-                       </appearance>
-                       <Sphere radius="2.2"></Sphere>
-                    </shape>
+                   </appearance>
+                     <Sphere radius="2.2"></Sphere>
+                  </shape>
                 </transform>
-            </group>    
+            </group>  
            </group>
-                               
-            <!---------------------------------Кнопка------------------------------------>
-            <group def="Button">
+           <!---------------------------------Кнопка------------------------------------>          
+     
+     <group def="Button">
                 <transform translation="4 -1.4 6" scale="4 3 4">
-                    <shape>
-                        <appearance>
-                            <material></material>
-                        </appearance>
-                        <indexedFaceSet ccw="true" colorPerVertex="true" convex="true" solid="false"
-                                        coordIndex="0 1 5 4 -1 1 2 7 5 -1 2 3 6 7 -1 3 0 4 6 -1 0 1 2 3 -1 4 5 7 6 -1"
-                                        colorIndex="0 1 2 3 -1 4 5 6 0 -1 1 2 3 4 -1 5 6 0 1 -1 0 1 2 3 -1 0 1 2 3 -1 0 1 2 3 -1">
-                            <coordinate point="0 0 0, 1 0 0, 1 0 1, 0 0 1, 0.3 0.5 0.3, 0.7 0.5 0.3, 0.3 0.5 0.7, 0.7 0.5 0.7">
-                            </coordinate>
-                            <color color="0.67 0.59 0.5, 0.67 0.59 0.5, 0.67 0.59 0.5,
+          <shape>
+            <appearance>
+              <material></material>
+            </appearance>
+            <indexedFaceSet ccw="true" colorPerVertex="true" convex="true" solid="false" 
+                            coordIndex="0 1 5 4 -1 1 2 7 5 -1 2 3 6 7 -1 3 0 4 6 -1 0 1 2 3 -1 4 5 7 6 -1" 
+                            colorIndex="0 1 2 3 -1 4 5 6 0 -1 1 2 3 4 -1 5 6 0 1 -1 0 1 2 3 -1 0 1 2 3 -1 0 1 2 3 -1">
+              <coordinate point="0 0 0, 1 0 0, 1 0 1, 0 0 1, 0.3 0.5 0.3, 0.7 0.5 0.3, 0.3 0.5 0.7, 0.7 0.5 0.7">
+              </coordinate>
+              <color color="0.67 0.59 0.5, 0.67 0.59 0.5, 0.67 0.59 0.5, 
               0.67 0.59 0.5, 0.67 0.59 0.5, 0.67 0.59 0.5, 0.67 0.59 0.5"></color>
-                        </indexedFaceSet>
-                    </shape>
-                </transform>
+             </indexedFaceSet>
+           </shape>
+        </transform>
+      
 
-
-                <transform translation='3.5 -0.5 4.4' scale="5 1 6">
-                    <transform def="button" id="button" onclick="headlight()" DEF='Trans2'>
-                        <shape>
-                            <appearance>
-                                <material></material>
-                            </appearance>
-                            <indexedTriangleStripSet index='0 1 8 2 3 -1 3 4 8 5 6 -1 6 7 8 0 -1 0 9 1 10 -1 1 10 2 11 -1 2  11 3 12 -1 3 12 4 13 -1 4 13 5 14 -1 5 14 6 15 -1 6 15 7 16 -1 7 16 0 9 -1' solid='false' colorPerVertex='false'>
-                                <coordinate point='0.5 1 0.5, 0.6 1 0.55, 0.61 1 0.6, 0.6 1 0.65, 0.5 1 0.7, 0.4 1 0.65, 0.39 1 0.6, 0.4 1 0.55, 0.5 1 0.6,
+       <transform translation='3.5 -0.5 4.4' scale="5 1 6">
+          <transform def="button" id="button" onclick="headlight()" DEF='Trans2'>
+          <shape>
+            <appearance>
+              <material></material>
+            </appearance>
+            <indexedTriangleStripSet index='0 1 8 2 3 -1 3 4 8 5 6 -1 6 7 8 0 -1 0 9 1 10 -1 1 10 2 11 -1 2  11 3 12 -1 3 12 4 13 -1 4 13 5 14 -1 5 14 6 15 -1 6 15 7 16 -1 7 16 0 9 -1' solid='false' colorPerVertex='false'>
+              <coordinate point='0.5 1 0.5, 0.6 1 0.55, 0.61 1 0.6, 0.6 1 0.65, 0.5 1 0.7, 0.4 1 0.65, 0.39 1 0.6, 0.4 1 0.55, 0.5 1 0.6, 
               0.5 0.15 0.5, 0.6 0.15 0.55, 0.61 0.15 0.6, 0.6 0.15 0.65, 0.5 0.15 0.7, 0.4 0.15 0.65, 0.39 0.15 0.6, 0.4 0.15 0.55'></coordinate>
-                                <colorRGBA color='0.67 0.54 0.372 1,0.67 0.54 0.372 1,0.67 0.54 0.372 1,
+              <colorRGBA color='0.67 0.54 0.372 1,0.67 0.54 0.372 1,0.67 0.54 0.372 1,
               0.67 0.54 0.372 1,0.67 0.54 0.372 1,0.67 0.54 0.372 1,0.67 0.54 0.372 1 ,0.67 0.54 0.372 1,0.67 0.54 0.372 1,0.67 0.54 0.372 1,0.67 0.54 0.372 1'></colorRGBA>
-                            </indexedTriangleStripSet>
-                        </shape>
-                    </transform>
-                </transform>
-            </group>
-
-            <transform translation="-0 -3.42 -0">
-                <shape def="table">
-                    <appearance>
-                        <material diffusecolor="0.4 0.4 0.4">
-                        </material>
-                    </appearance>
-                    <Box size="50 4 50"></Box>
-                </shape>
-            </transform>
-<!-----------------------Lightning strikes----------------------->
+            </indexedTriangleStripSet>
+          </shape>
+      </transform>
+        </transform>
+        </group>
+        
+        <transform translation="-0 -3.42 -0">
+            <shape def="table">
+                        <appearance>
+                            <material diffusecolor="0.1 0.1 0.1">
+                            </material>
+                        </appearance>
+                        <Box size="50 4 50"></Box>
+             </shape>
+         </transform>
+         <!-----------------------Lightning strikes----------------------->
             <group def="Lightning_pulses">
                 <group def="Lightning_pulses1">
                     <transform translation="0 14 0">
@@ -1479,19 +1484,17 @@
                     </indexedLineSet>
                 </shape>
             </transform>
-       
-<!---------------------------Анимация---------------------------->
 
-			<TimeSensor id='TimeR' DEF='TimeR' cycleInterval='1' loop='true' enabled='false'></TimeSensor>
-       			 <OrientationInterpolator DEF='OI' key='0, 0.5, 1' 
+            <TimeSensor id='TimeR' DEF='TimeR' cycleInterval='1' loop='true' enabled='false'></TimeSensor>
+             <OrientationInterpolator DEF='OI' key='0, 0.5, 1' 
                         keyValue='0 0 1 0, 0 0 1 3.14, 0 0 1 6.28'>
-        		</OrientationInterpolator>
-      	     <ROUTE fromNode='TimeR' fromField='fraction_changed' 
+            </OrientationInterpolator>
+             <ROUTE fromNode='TimeR' fromField='fraction_changed' 
                toNode='OI' toField='set_fraction'>
-     		   </ROUTE>
-       		 <ROUTE fromNode='OI' fromField='value_changed' 
-             	  toNode='rotate' toField='set_rotation'>
-       		 </ROUTE>
+           </ROUTE>
+           <ROUTE fromNode='OI' fromField='value_changed' 
+                toNode='rotate' toField='set_rotation'>
+           </ROUTE>
 
 
             <TimeSensor id = 'Time' DEF='Time' cycleInterval='1' loop='true' enabled='false'></TimeSensor>
@@ -1543,24 +1546,23 @@
 <!---------------------------------Нажатие кнопки------------------------------------>
             <PositionChaser DEF="button_chaser"    id="button_chaser"    duration="0.15"></PositionChaser>
                 <ROUTE fromNode='button_chaser'     fromField='value_changed'
-					   toNode  ='button' toField  ='set_translation'>
+             toNode  ='button' toField  ='set_translation'>
                 </ROUTE>          
-        </scene>
-    </X3D>
-    <script>
 
-    	//Нажатие кнопки - глобальное освещение сцены
-        function headlight()
-		{ 
-		  var h = document.getElementById("headlight");
+       </scene>
+    </X3D>
+<script>
+  function headlight()
+    { 
+      var h = document.getElementById("headlight");
           if(h.getAttribute('headlight')=='true')
           {
-          	document.getElementById("light1").setAttribute('transparency', 1);
-          	document.getElementById("light2").setAttribute('transparency', 1);
-          	document.getElementById("light3").setAttribute('transparency', 1);
-          	document.getElementById("light4").setAttribute('transparency', 1);
-          	document.getElementById("light5").setAttribute('transparency', 1);
-          	document.getElementById("light6").setAttribute('transparency', 1);
+            document.getElementById("light1").setAttribute('transparency', 1);
+            document.getElementById("light2").setAttribute('transparency', 1);
+            document.getElementById("light3").setAttribute('transparency', 1);
+            document.getElementById("light4").setAttribute('transparency', 1);
+            document.getElementById("light5").setAttribute('transparency', 1);
+            document.getElementById("light6").setAttribute('transparency', 1);
             h.setAttribute('headlight', 'false');
             document.getElementById("lamplight").setAttribute('on', 'false');
             document.getElementById("Time").setAttribute('enabled', 'false');
@@ -1575,10 +1577,10 @@
               document.getElementById("TimeR").setAttribute('enabled', 'true');
           }
 
-		   var b = document.getElementById("button_chaser");
-		   b.setAttribute("set_destination",[0, -0.27, 0]);
-		   window.setTimeout(function(){b.setAttribute("set_destination",[0, 0, 0])},180);
-		} 
+       var b = document.getElementById("button_chaser");
+       b.setAttribute("set_destination",[0, -0.27, 0]);
+       window.setTimeout(function(){b.setAttribute("set_destination",[0, 0, 0])},180);
+    } 
 
 
         function change_lightning_color() {
@@ -1588,15 +1590,15 @@
            var rgb;
            let num = "Col1";
           for (var i = 1; i <= 6; i++) {
-          	r = Math.random().toString();
+            r = Math.random().toString();
             g = Math.random().toString();
             b = Math.random().toString();
-          	rgb = r + " " + g + " " + b;
-          	document.getElementById(num).setAttribute("color", rgb);
-          	num = num.slice(0, -1);
-          	num += (i + 1).toString();
+            rgb = r + " " + g + " " + b;
+            document.getElementById(num).setAttribute("color", rgb);
+            num = num.slice(0, -1);
+            num += (i + 1).toString();
           }   
         }  
-    </script>
+</script>
 </body>
 </html>
