@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>laba1</title>
     <script src="http://www.x3dom.org/download/dev/x3dom.js"></script>
-    <link rel="stylesheet" href="http://www.x3dom.org/download/dev/x3dom.css">
+    <link rel="stylesheet" href="http://www.x3dom.org/download/dev/x3dom.css" />
     <script type="text/javascript">
-        function toggle(e){
-            if(earthTimeSensor.getAttribute('enabled') == 'false'){
-                earthTimeSensor.setAttribute('enabled','true')
+        function toggle(e){//передаем событие event
+            if(timeSensor.getAttribute('enabled') == 'false'){//проверяем TimeSensor
+                timeSensor.setAttribute('enabled','true')//запускаем анимацию  
                 e.target.textContent = 'Остановить'
             }else{
-                earthTimeSensor.setAttribute('enabled','false')
+                timeSensor.setAttribute('enabled','false')//останавливаем анимацию 
                 e.target.textContent = 'Закрутить '
             }
-            console.log(earthTimeSensor)
         }
-        // document.onload = function() {
-        //     const flameColor = 'not red'
-        //     document.getElementById('flame').onclick = function(){
-        //         console.log('ssss')
-        //         document.getElementById('flameMat').setAttribute('diffuseColor', flameColor == 'red'
-        //                 ? '1 1 1'
-        //                 :'1 0 0'
-        //             )
-        //             flameColor = 'red';
-        //             }
-        //     } 
+        
+        function showElem(e){//передаем событие event 
+            const elemName = document.querySelector('.elem-name')//находим елемент куда будем вставлять текст 
+            elemName.textContent = `Вы выбрали элемент с названием ${e.target.dataset.name}`//собщение которое вставляем
+        }
     </script>
 </head>
 <body>
+    <h4 class="elem-name"></h4>
     <button onclick="toggle(event)">Остановить</button>
     <x3d width="70vw" height="70vh">
         <scene>
@@ -45,7 +39,7 @@
             keyValue="0 1 0 0,0 1  0 -3.14, 0 1 0 -6.28">
             </OrientationInterpolator> 
             <OrientationChaser DEF="ea" duration="4"></OrientationChaser>
-            <TimeSensor DEF="Time" id="earthTimeSensor" cycleInterval="10" loop="true" enabled="true"></TimeSensor>
+            <TimeSensor DEF="Time" id="timeSensor" cycleInterval="10" loop="true" enabled="true"></TimeSensor>
             <PositionInterpolator DEF="PosInt" key="0 0.25 0.5 0.75 1"
                 keyValue="5 3 6, 10 1 -6, -12 2 -6, -15 4 6,5 3 6">
             </PositionInterpolator>
@@ -53,32 +47,32 @@
 
             
 
-            <transform DEF="Trans" translation="0 0 0" >
+            <transform DEF="Trans" translation="0 0 0" onclick="showElem(event)">
                 <Transform DEF="Trans2" translation="0 0 0">
-                <shape>
+                <shape data-name="Земля">
                     <appearance>
                         <imagetexture url="./2k_earth_daymap.jpg"></imagetexture>
                         <texturetransform scale="1 1"></texturetransform>
                         <material diffuseColor="#140c03"></material>
                     </appearance>
-                    <sphere radius="3.8" id="earth"> </sphere>
+                    <sphere radius="3.8" id="earth" > </sphere>
                 </shape>
             </transform>
         </Transform>
 
 
-            <transform translation="-2.7 5 2.35" rotation ="0 0 1 0" >
-                <shape>
+            <transform translation="-2.7 5 2.35" rotation ="0 0 1 0" onclick="showElem(event)">
+                <shape data-name="Ракета">
                     <appearance>
                         <imagetexture url="./e084a38fec0513346b01c0f7666ca669.jpg"></imagetexture>
                         <texturetransform scale="1 1"></texturetransform>
                     </appearance>
-                    <cylinder  height="1" Radius = "0.2"> </sphere>
+                    <cylinder  height="1" Radius = "0.2"> </cylinder>
                 </shape>
             </transform>
 
-            <transform translation="-2.7 4.4 2.35" rotation ="0 0 1 0" >
-                <shape>
+            <transform onclick="showElem(event)" translation="-2.7 4.4 2.35" rotation ="0 0 1 0" >
+                <shape data-name="Ракета">
                     <appearance>
                         <imagetexture url="./e084a38fec0513346b01c0f7666ca669.jpg"></imagetexture>
                         <texturetransform scale="1 1"></texturetransform>
@@ -87,8 +81,8 @@
                 </shape>
             </transform>
          
-            <transform DEF="Bounce" translation="0 0 0">
-                <shape>
+            <transform onclick="showElem(event)" DEF="Bounce" translation="0 0 0">
+                <shape data-name="Луна">
                     <appearance>
                         <imagetexture url="./2k_moon.jpg"></imagetexture>
                         <texturetransform scale="1 1"></texturetransform>
@@ -97,8 +91,8 @@
                     <sphere radius="1" > </sphere>
                 </shape>
             </transform>
-            <transform translation="-2.7 5.65 2.35" rotation="1 0 0 0">
-                <shape>
+            <transform onclick="showElem(event)" translation="-2.7 5.65 2.35" rotation="1 0 0 0">
+                <shape data-name="Ракета">
                     <appearance>
                         <imagetexture url="./red-texture-closeup.jpg"></imagetexture>
                         <texturetransform scale="1 1"></texturetransform>
@@ -108,8 +102,8 @@
                 </shape>
             </transform>
             <!-- огонь -->
-            <transform translation="-2.7 4.2 2.35" rotation ="1 0 0 0">
-                <shape>
+            <transform onclick="showElem(event)" translation="-2.7 4.2 2.35" rotation ="1 0 0 0">
+                <shape data-name="Ракета">
                     <appearance>
                         <material DEF="Mat" diffuseColor="1 0 0" id="flameMat"></material>
                     </appearance>
@@ -117,8 +111,8 @@
                 </shape>
             </transform>
             <!-- огонь -->
-            <transform translation="0 0 0.5" rotation ="0 4 0 0">
-                <shape>
+            <transform onclick="showElem(event)" translation="0 0 0.5" rotation ="0 4 0 0">
+                <shape data-name="Кольцо">
                     <appearance>
                         <imagetexture url="./2k_saturn.jpg"></imagetexture>
                         <texturetransform scale="1 1"></texturetransform>
@@ -142,8 +136,8 @@
                 0 0 0.542,
                 0 0 0.669'/>
 
-            <Viewpoint position="-6.06334 4.20531 6.74917" orientation="-0.51196 -0.84732 -0.14121 0.83887" 
-                centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></Viewpoint> 
+<!--             <Viewpoint position="-6.06334 4.20531 6.74917" orientation="-0.51196 -0.84732 -0.14121 0.83887" 
+                centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></Viewpoint>  -->
             <!-- огонь -->
             <ROUTE fromNode="Time" fromField="fraction_changed"
                 toNode="ColInt" toField="set_fraction"></ROUTE>
@@ -178,3 +172,4 @@
  <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 </body>
 </html>
+
