@@ -1554,7 +1554,7 @@
 <script>
   function headlight()
     { 
-      var h = document.getElementById("headlight");
+      let h = document.getElementById("headlight");
           if(h.getAttribute('headlight')=='true')
           {
             document.getElementById("light1").setAttribute('transparency', 1);
@@ -1577,23 +1577,19 @@
               document.getElementById("TimeR").setAttribute('enabled', 'true');
           }
 
-       var b = document.getElementById("button_chaser");
+       let b = document.getElementById("button_chaser");
        b.setAttribute("set_destination",[0, -0.27, 0]);
        window.setTimeout(function(){b.setAttribute("set_destination",[0, 0, 0])},180);
     } 
 
 
         function change_lightning_color() {
-           let r;
-           let g;
-           let b;
-           var rgb;
            let num = "Col1";
           for (var i = 1; i <= 6; i++) {
-            r = Math.random().toString();
-            g = Math.random().toString();
-            b = Math.random().toString();
-            rgb = r + " " + g + " " + b;
+            let r = Math.random().toString();
+            let g = Math.random().toString();
+            let b = Math.random().toString();
+            let rgb = r + " " + g + " " + b;
             document.getElementById(num).setAttribute("color", rgb);
             num = num.slice(0, -1);
             num += (i + 1).toString();
