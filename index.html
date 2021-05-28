@@ -905,51 +905,49 @@
 
 
           <!-- 25. Звездопад -->
-          <Transform DEF="Stars" translation="20 100 25" scale="2 2 2">
-            <Transform DEF="Stars" translation="0 0 0">
-              <Transform DEF="StarsTrans" translation="0 0 0" scale="0.1 0.1 0.1">
-                <Transform translation="0 3 0">
-                  <Transform DEF="Konys" translation="0 0 0">
-                    <Shape>
-                      <Appearance>
-                        <TextureTransform scale="1 1"></TextureTransform>
-                        <ImageTexture url="zv1.jpg"></ImageTexture>
-                        <Material diffuseColor="#CD5C5C"></Material>
-                      </Appearance>
-                      <Cone bottomRadius="1" height="4" solid="false"></Cone>
-                    </Shape>
-                  </Transform>
-                </Transform>
-                <Transform translation="0 -3 0" rotation="0 0 1 3.14">
-                  <Shape USE="Konys">
-                  </Shape>
-                </Transform>
-                <Transform translation="-2 0 0">
-                  <Transform DEF="Konys1" translation="0 0 0" rotation="0 0 1 1.57">
-                    <Shape>
-                      <Appearance>
-                        <TextureTransform scale="1 1"></TextureTransform>
-                        <ImageTexture url="zv1.jpg"></ImageTexture>
-                        <Material diffuseColor="#CD5C5C"></Material>
-                      </Appearance>
-                      <Cone bottomRadius="1" height="2" solid="false"></Cone>
-                    </Shape>
-                  </Transform>
-                </Transform>
-                <Transform translation="2 0 0" rotation="0 0 1 3.14">
-                  <Shape USE="Konys1">
-                  </Shape>
-                </Transform>
-                <Transform translation="0 0 0">
+          <Transform DEF="SStars" translation="20 100 25" scale="2 2 2">
+            <Transform DEF="Stars" translation="0 0 0" scale="0.1 0.1 0.1">
+              <Transform translation="0 3 0">
+                <Transform DEF="Konys" translation="0 0 0">
                   <Shape>
                     <Appearance>
                       <TextureTransform scale="1 1"></TextureTransform>
                       <ImageTexture url="zv1.jpg"></ImageTexture>
                       <Material diffuseColor="#CD5C5C"></Material>
                     </Appearance>
-                    <Sphere radius="1.5"></Sphere>
+                    <Cone bottomRadius="1" height="4" solid="false"></Cone>
                   </Shape>
                 </Transform>
+              </Transform>
+              <Transform translation="0 -3 0" rotation="0 0 1 3.14">
+                <Shape USE="Konys">
+                </Shape>
+              </Transform>
+              <Transform translation="-2 0 0">
+                <Transform DEF="Konys1" translation="0 0 0" rotation="0 0 1 1.57">
+                  <Shape>
+                    <Appearance>
+                      <TextureTransform scale="1 1"></TextureTransform>
+                      <ImageTexture url="zv1.jpg"></ImageTexture>
+                      <Material diffuseColor="#CD5C5C"></Material>
+                    </Appearance>
+                    <Cone bottomRadius="1" height="2" solid="false"></Cone>
+                  </Shape>
+                </Transform>
+              </Transform>
+              <Transform translation="2 0 0" rotation="0 0 1 3.14">
+                <Shape USE="Konys1">
+                </Shape>
+              </Transform>
+              <Transform translation="0 0 0">
+                <Shape>
+                  <Appearance>
+                    <TextureTransform scale="1 1"></TextureTransform>
+                    <ImageTexture url="zv1.jpg"></ImageTexture>
+                    <Material diffuseColor="#CD5C5C"></Material>
+                  </Appearance>
+                  <Sphere radius="1.5"></Sphere>
+                </Shape>
               </Transform>
             </Transform>
             <Transform translation="0, 0, 0">
@@ -1776,11 +1774,6 @@
           <Viewpoint DEF='camera' description="Начальный вид" position="-25 7.5 -50" orientation="0 1 0 -2.8">
           </Viewpoint>
 
-          <!-- 5. Навигация -->
-          <NavigationInfo DEF='navigation' avatarSize="15 20 2" type="LOOKAT" speed="7">
-          </NavigationInfo>
-
-
           <viewpoint id="one" position="25 10 -60" orientation="0 1 0 2.8" description="camera">
           </viewpoint>
 
@@ -1788,7 +1781,11 @@
             style="border: none; background: transparent; display: block; float: left; margin:-40px 0px 0px 10px">
             <br><img src="lup.png" width="40" height="60"> </img> </br> </button>
 
-         
+          <!-- 5. Навигация -->
+          <NavigationInfo DEF='navigation' avatarSize="15 20 2" type="LOOKAT" speed="7">
+          </NavigationInfo>
+
+
           <!-- трансформ на всю лабу 3 -->
         </Transform>
 
@@ -1797,32 +1794,42 @@
         <Transform translation="0 0 0">
 
           <!-- 1. Позишн -->
-          <!-- 1.1 Анимация на салюты -->
+          <!-- 1.1 Анимация на салюты + чейзер -->
           <TimeSensor DEF="TSSalutBolZel" cycleInterval="10" loop='true'></TimeSensor>
-          <PositionInterpolator DEF="posSalutBolZel" key="0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1" keyValue="0 0 0, 0.25 0.25 0.25, 0.5 0.5 0.5, 0.65 0.65 0.65, 0.75 0.75 0.75,
+          <PositionInterpolator DEF="PosSalutBolZel" key="0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1" keyValue="0 0 0, 0.25 0.25 0.25, 0.5 0.5 0.5, 0.65 0.65 0.65, 0.75 0.75 0.75,
                   0.85 0.85 0.85, 0.9 0.9 0.9, 0.94 0.94 0.94, 0.98 0.98 0.98, 0.99 0.99 0.99, 1 1 1">
           </PositionInterpolator>
-          <ROUTE fromNode="TSSalutBolZel" fromField="fraction_changed" toNode="posSalutBolZel" toField="set_fraction">
+          <PositionChaser DEF="PosChSalutBolZel" duration="0.5"></PositionChaser>
+          <ROUTE fromNode="TSSalutBolZel" fromField="fraction_changed" toNode="PosSalutBolZel" toField="set_fraction">
           </ROUTE>
-          <ROUTE fromNode="posSalutBolZel" fromField="value_changed" toNode="SalutBolZel" toField="set_scale">
+          <ROUTE fromNode="PosSalutBolZel" fromField="value_changed" toNode="PosChSalutBolZel"
+            toField="set_destination">
+          </ROUTE>
+          <ROUTE fromNode="PosChSalutBolZel" fromField="value_changed" toNode="SalutBolZel" toField="set_scale">
           </ROUTE>
 
           <TimeSensor DEF="TSSalutMal" cycleInterval="8" loop='true'></TimeSensor>
-          <PositionInterpolator DEF="posSalutMal" key="0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1" keyValue="0 0 0, 0.25 0.25 0.25, 0.5 0.5 0.5, 0.65 0.65 0.65, 0.75 0.75 0.75,
+          <PositionInterpolator DEF="PosSalutMal" key="0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1" keyValue="0 0 0, 0.25 0.25 0.25, 0.5 0.5 0.5, 0.65 0.65 0.65, 0.75 0.75 0.75,
                  0.85 0.85 0.85, 0.9 0.9 0.9, 0.94 0.94 0.94, 0.98 0.98 0.98, 0.99 0.99 0.99, 1 1 1">
           </PositionInterpolator>
-          <ROUTE fromNode="TSSalutMal" fromField="fraction_changed" toNode="posSalutMal" toField="set_fraction">
+          <PositionChaser DEF="PosChSalutMal" duration="0.5"></PositionChaser>
+          <ROUTE fromNode="TSSalutMal" fromField="fraction_changed" toNode="PosSalutMal" toField="set_fraction">
           </ROUTE>
-          <ROUTE fromNode="posSalutMal" fromField="value_changed" toNode="SalutMal" toField="set_scale">
+          <ROUTE fromNode="PosSalutMal" fromField="value_changed" toNode="PosChSalutMal" toField="set_destination">
+          </ROUTE>
+          <ROUTE fromNode="PosChSalutMal" fromField="value_changed" toNode="SalutMal" toField="set_scale">
           </ROUTE>
 
-          <!-- 1.2 Ворота -->
-          <TimeSensor id='QQ_Reshetka' cycleInterval='3' loop='true'></TimeSensor>
+          <!-- 1.2 Ворота + чейзер -->
+          <TimeSensor id='QQ_Reshetka' DEF="QQ_Reshetka" cycleInterval='3' loop='true'></TimeSensor>
           <positionInterpolator DEF='PosReshetka' key='0, 0.5, 1' keyValue='0 2.75 -7.48, 0 2.375 -7.48, 0 2 -7.48'>
           </positionInterpolator>
+          <PositionChaser DEF="PosChReshetka" duration="0.5"></PositionChaser>
           <ROUTE fromNode='QQ_Reshetka' fromField='fraction_changed' toNode='PosReshetka' toField='set_fraction'>
           </ROUTE>
-          <ROUTE fromNode='PosReshetka' fromField='value_changed' toNode='Reshetka' toField='set_translation'>
+          <ROUTE fromNode='PosReshetka' fromField='value_changed' toNode='PosChReshetka' toField='set_destination'>
+          </ROUTE>
+          <ROUTE fromNode='PosChReshetka' fromField='value_changed' toNode='Reshetka' toField='set_translation'>
           </ROUTE>
 
 
@@ -1843,27 +1850,36 @@
           <ColorInterpolator DEF='ColFlag1' key='0, 0.25, 0.5, 0.75, 1'
             keyValue='0.62 0.1 0.58, 0.95 0.77 0.94, 0.78 0.41 0.76, 0.26 0.01 0.24, 0.62 0.1 0.58,'>
           </ColorInterpolator>
+          <ColorDamper DEF="ColDFlag1" tau="1"></ColorDamper>
           <ROUTE fromNode='TSFlag1' fromField='fraction_changed' toNode='ColFlag1' toField='set_fraction'>
           </ROUTE>
-          <ROUTE fromNode='ColFlag1' fromField='value_changed' toNode='Flag1' toField='set_diffuseColor'>
+          <ROUTE fromNode='ColFlag1' fromField='value_changed' toNode='ColDFlag1' toField='set_destination'>
+          </ROUTE>
+          <ROUTE fromNode='ColDFlag1' fromField='value_changed' toNode='Flag1' toField='set_diffuseColor'>
           </ROUTE>
 
           <TimeSensor DEF='TSFlag2' cycleInterval='10' loop='true'></TimeSensor>
           <ColorInterpolator DEF='ColFlag2' key='0, 0.25, 0.5, 0.75, 1'
             keyValue='0.62 0.1 0.58, 0.95 0.77 0.94, 0.78 0.41 0.76, 0.26 0.01 0.24, 0.62 0.1 0.58,'>
           </ColorInterpolator>
+          <ColorDamper DEF="ColDFlag2" tau="1"></ColorDamper>
           <ROUTE fromNode='TSFlag2' fromField='fraction_changed' toNode='ColFlag2' toField='set_fraction'>
           </ROUTE>
-          <ROUTE fromNode='ColFlag2' fromField='value_changed' toNode='Flag2' toField='set_diffuseColor'>
+          <ROUTE fromNode='ColFlag2' fromField='value_changed' toNode='ColDFlag2' toField='set_destination'>
+          </ROUTE>
+          <ROUTE fromNode='ColDFlag2' fromField='value_changed' toNode='Flag2' toField='set_diffuseColor'>
           </ROUTE>
 
           <TimeSensor DEF='TSFlag3' cycleInterval='10' loop='true'></TimeSensor>
           <ColorInterpolator DEF='ColFlag3' key='0, 0.25, 0.5, 0.75, 1'
             keyValue='0.62 0.1 0.58, 0.95 0.77 0.94, 0.78 0.41 0.76, 0.26 0.01 0.24, 0.62 0.1 0.58,'>
           </ColorInterpolator>
+          <ColorDamper DEF="ColDFlag3" tau="1"></ColorDamper>
           <ROUTE fromNode='TSFlag3' fromField='fraction_changed' toNode='ColFlag3' toField='set_fraction'>
           </ROUTE>
-          <ROUTE fromNode='ColFlag3' fromField='value_changed' toNode='Flag3' toField='set_diffuseColor'>
+          <ROUTE fromNode='ColFlag3' fromField='value_changed' toNode='ColDFlag3' toField='set_destination'>
+          </ROUTE>
+          <ROUTE fromNode='ColDFlag3' fromField='value_changed' toNode='Flag3' toField='set_diffuseColor'>
           </ROUTE>
 
 
@@ -1878,26 +1894,32 @@
           <ROUTE fromNode='OrientSText' fromField='value_changed' toNode='SText' toField='set_rotation'>
           </ROUTE>
 
-          <timeSensor DEF='TSStars' cycleInterval='0.5' loop='true'></timeSensor>
-          <orientationInterpolator DEF='OrientStars' key='0, 0.25, 0.5, 0.75, 1'
+          <timeSensor DEF='TSStars' cycleInterval='1' loop='true'></timeSensor>
+          <OrientationInterpolator DEF='OrientStars' key='0, 0.25, 0.5, 0.75, 1'
             keyValue='0 1 0 0, 0 1 0 1.57079, 0 1 0 3.14159, 0 1 0 4.71239, 0 1 0 6.28317'>
-          </orientationInterpolator>
+          </OrientationInterpolator>
+          <OrientationChaser DEF="OrientChStars" duration="0.5"></OrientationChaser>
           <ROUTE fromNode='TSStars' fromField='fraction_changed' toNode='OrientStars' toField='set_fraction'>
           </ROUTE>
-          <ROUTE fromNode='OrientStars' fromField='value_changed' toNode='Stars' toField='set_rotation'>
+          <ROUTE fromNode='OrientStars' fromField='value_changed' toNode='OrientChStars' toField='set_destination'>
           </ROUTE>
+          <ROUTE fromNode='OrientChStars' fromField='value_changed' toNode='Stars' toField='set_rotation'>
+          </ROUTE>
+
 
 
 
           <!-- 5. Звездопад -->
-          <TimeSensor id="TimeForStars" DEF='TimeForStars' cycleInterval='13' enabled="false" loop='true'
+          <TimeSensor id="TimeForStars" DEF='TSTimeForStars' cycleInterval='10' enabled="false" loop='true'
             first="true" />
           <PositionInterpolator DEF='PosStars' key='0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1'
             keyValue='0 40 0, 0 30 0, 1 20 0, 0 10 0, 1 0 0, 0 -10 0, 1 -20 0, 0 -30 0, 1 -40 0, 0 -50 0, 1 -60 0' />
-
-          <ROUTE fromNode='TimeForStars' fromField='fraction_changed' toNode='PosStars' toField='set_fraction'>
+          <PositionDamper DEF="PosDStars" tau="0.5"></PositionDamper>
+          <ROUTE fromNode='TSTimeForStars' fromField='fraction_changed' toNode='PosStars' toField='set_fraction'>
           </ROUTE>
-          <ROUTE fromNode='PosStars' fromField='value_changed' toNode='StarsTrans' toField='set_translation'>
+          <ROUTE fromNode='PosStars' fromField='value_changed' toNode='PosDStars' toField='set_destination'>
+          </ROUTE>
+          <ROUTE fromNode='PosDStars' fromField='value_changed' toNode='Stars' toField='set_translation'>
           </ROUTE>
 
 
