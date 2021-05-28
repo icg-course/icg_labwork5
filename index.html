@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
     <script src="https://x3dom.org/download/dev/x3dom-full.debug.js"></script>
   </head>
+
+    <body>
+
+    <input type="button" id="nQQ_s" value="Включить / Выключить движение вазы" onclick='moveVASE();'
+    style="background: #aee8cd; border: 2px solid rgb(1, 1, 1);border-radius: 1px; margin:20px 0px 0px 80px;">
+    </input>
+
+      <input type="button" id="nQQ_s" value="Включить / Выключить движение мороженного" onclick='moveICEC();'
+    style="background: #aee8cd; border: 2px solid rgb(1, 1, 1);border-radius: 1px; margin:20px 10px 10px 80px;">
+    </input>
+
     <body style='width:100%; height:100%; border:0; margin:0; padding:0; background: url("1.jpg") no-repeat fixed;
   background-size: cover; background-position: center;'>
 
@@ -301,25 +312,76 @@
 
       
       <!-- перемещение мороженного -->
-      <TimeSensor DEF='TSICEC' cycleInterval='5' loop='true'></TimeSensor>
+      <TimeSensor id='QQ_ICEC' DEF='QQ_ICEC' cycleInterval='5' loop='true'></TimeSensor>
       <positionInterpolator DEF='PosInt' key='0, 0.2, 0.4, 0.6, 0.8, 1'
         keyValue='-0.6 0 0.1, -0.6 0 -0.6, 0.4 0 -0.6, 0.4 0 0.6, -0.6 0 0.6, -0.7 0 0.1'>
       </positionInterpolator>
-      <ROUTE fromNode='TSICEC' fromField='fraction_changed' toNode='PosInt' toField='set_fraction'>
+      <PositionChaser DEF="PosCh" duration="1"></PositionChaser>
+      <ROUTE fromNode='QQ_ICEC' fromField='fraction_changed' toNode='PosInt' toField='set_fraction'>
+      </ROUTE>
+      <ROUTE fromNode="PosInt" fromField="value_changed" toNode="PosCh" toField="set_destination">
       </ROUTE>
       <ROUTE fromNode='PosInt' fromField='value_changed' toNode='ICEC' toField='set_translation'>
       </ROUTE>
 
 
       <!-- прокрутка вазы с цветами вокруг своей оси -->
-      <TimeSensor DEF='TSVASE' cycleInterval='4' loop='true'></TimeSensor>
+      <TimeSensor id='QQ_VASE' DEF='QQ_VASE' cycleInterval='4' loop='true'></TimeSensor>
       <OrientationInterpolator DEF='OrientInt' key='0 0.5 1' keyValue='0 1 0 0, 0 1 0 -3.14, 0 1 0 -6.28'>
       </OrientationInterpolator>
-      <ROUTE fromNode='TSVASE' fromField='fraction_changed' toNode='OrientInt' toField='set_fraction'>
+      <OrientationChaser DEF="OriCh" duration="3"></OrientationChaser>
+      <ROUTE fromNode='QQ_VASE' fromField='fraction_changed' toNode='OrientInt' toField='set_fraction'>
       </ROUTE>
-      <ROUTE fromNode='OrientInt' fromField='value_changed' toNode='VASE' toField='set_rotation'>
+      <ROUTE fromNode="OrientInt" fromField="value_changed" toNode="OriCh" toField="set_destination">
+      </ROUTE>
+      <ROUTE fromNode='OriCh' fromField='value_changed' toNode='VASE' toField='set_rotation'>
       </ROUTE>
 
+  
+      <!-- скрипты на остановку/включение анимации вазы-->
+      <script>
+
+        function moveVASE(what) {
+          var button = (what == "VASE")
+            ? document.getElementById("nQQ_VASE")
+            : document.getElementById("nQQ_st");
+          var TS = (what == "VASE")
+            ? document.getElementById("QQ_st")
+            : document.getElementById("QQ_VASE");
+          var QQ_snabled = TS.getAttribute("enabled");
+          if (QQ_snabled == "true") {
+            TS.setAttribute("enabled", "false");
+            button.value = (what == "VASE")
+              ;
+          }
+          else {
+            TS.setAttribute("enabled", "true");
+            button.value = (what == "VASE")
+              ;
+          }
+        }
+
+         function moveICEC(what) {
+          var button = (what == "ICEC")
+            ? document.getElementById("nQQ_ICEC")
+            : document.getElementById("nQQ_st");
+          var TS = (what == "ICEC")
+            ? document.getElementById("QQ_st")
+            : document.getElementById("QQ_ICEC");
+          var QQ_snabled = TS.getAttribute("enabled");
+          if (QQ_snabled == "true") {
+            TS.setAttribute("enabled", "false");
+            button.value = (what == "ICEC")
+              ;
+          }
+          else {
+            TS.setAttribute("enabled", "true");
+            button.value = (what == "ICEC")
+              ;
+          }
+        }
+
+       </script>
 
       </Scene>
     </X3D>
