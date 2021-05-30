@@ -11,7 +11,7 @@
         <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'></link>
         <script type='text/javascript'>
 
-            function addNode() {
+            function addNode(){
                 x = Math.random() * 15 - 3;//Рандомная координата по x
                 y = Math.random() * 10 - 4;//Рандомная координата по y
                 z = Math.random() * 10 - 3;//Рандомная координата по z
@@ -54,10 +54,10 @@
 
                 return false;
             };
-            function removeNode() {
+            function removeNode(){
                 var ot = document.getElementById('root');
-                for (var i = 0; i < ot.childNodes.length; i++) {
-                    if (ot.childNodes[i].nodeType === Node.ELEMENT_NODE) {
+                for (var i = 0; i < ot.childNodes.length; i++){
+                    if (ot.childNodes[i].nodeType === Node.ELEMENT_NODE){
                         ot.removeChild(ot.childNodes[i]);
                         break;
                     }
