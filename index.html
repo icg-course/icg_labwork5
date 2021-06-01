@@ -7,56 +7,11 @@
     <script src="https://x3dom.org/download/dev/x3dom-full.debug.js"></script>
     
 	<script lang="javascript">
-		var valStep = 0.02;
-        function Start() { //взлет
-			let posInt = document.getElementById("PosIntRocket");
-			posInt.setAttribute("keyValue", "");
-			let kStep = 0.001;
-			let kVal = 0;
-			for (let k = 0; k <= 1.01; k += kStep) {
-				posInt.setAttribute("key", posInt.getAttribute("key") + k + ", ");
-				posInt.setAttribute("keyValue", posInt.getAttribute("keyValue") + "0 " + kVal + " 0, ");
-				kVal += valStep;
-			}
-			let ts = document.getElementById("StartTS");
-			ts.setAttribute("enabled", "true");
+		
+        function Start() {
+			
         }
 
-        function Land() { //посадка
-			//let vec = {
-			//    x: 0,
-			//    y: 0,
-			//    x: 0,
-			//    str: (0,0,0)
-			//  }
-
-			//let raketa = document.getElementById("rocketTransf");
-			//let tr = raketa.getAttribute("translation");
-			//let y = parseInt(tr.split(",")[1]);
-			//console.log(tr);
-
-			let posInt = document.getElementById("PosIntRocket");
-			posInt.setAttribute("keyValue", "");
-			for (let kVal = 20; kVal > 0; kVal -= valStep)
-				posInt.setAttribute("keyValue", posInt.getAttribute("keyValue") + "0 " + kVal + " 0, ");
-
-			let ts = document.getElementById("StartTS");
-			ts.setAttribute("enabled", "true");
-        }
-
-		function Idle() { //ожидание
-			let tts = document.getElementById("TurbTS");
-			let enRot = tts.getAttribute("enabled");
-			if (enRot == "false")
-                tts.setAttribute("enabled", "true");
-            else
-                tts.setAttribute("enabled", "false");
-
-			let sts = document.getElementById("StartTS");
-			sts.setAttribute("enabled", "false");
-			let raketa = document.getElementById("rocketTransf");
-			raketa.setAttribute("translation", "0 0 0");
-		}
     </script>
 	
     <p class="case">
