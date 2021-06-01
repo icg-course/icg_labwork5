@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
 
     <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
-    
+
     <script type='text/javascript' src='https://www.x3dom.org/download/dev/x3dom.js'></script>
     <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css' />
 
@@ -15,12 +15,8 @@
             $('#torus').click(() => {
 
                 alert('Privet')
-                
 
             })
-
-           
-            
             $('#start').click(() => {
                 console.log('sdgsdfsd')
                 $('#kupol').attr('enabled', 'true')
@@ -30,6 +26,13 @@
             $('#stop').click(() => {
                 console.log('hiihhiihih')
                 $('#kupol').attr('enabled', 'false')
+
+            })
+
+            $('#btn').click(function () {
+                var text = $('#text1').attr('value')
+                $('#color1').attr('diffusecolor', text)
+                $('#color2').attr('diffusecolor', text)
 
             })
 
@@ -47,9 +50,12 @@
     style='width:100%; height:100%; border:0; margin:0; padding:0; background: url("Chesm.png") no-repeat fixed; background-size: cover; background-position: center;'>
 
     <form action="">
-        <input id='start' type="button" value="Старт"> </input>
-        <input id ='stop' type="button" value="Cтоп"> </input>
+        <input id='start' type="button" value="Золотые купоола!!!">
+        <input id='stop' type="button" value="Cтоп машина">
+        <input id="text1" type="text" name="form-text">
     </form>
+
+    <button id="btn">Перекрасить лого</button>
 
     <X3D width="100vw" height="100vh">
 
@@ -72,7 +78,7 @@
                 <Anchor url="https://new.guap.ru/" parameter="target='_self'">
                     <Shape>
                         <Appearance>
-                            <Material diffuseColor="#0000FF"></Material>
+                            <Material id='color2' diffuseColor="#0000FF"></Material>
                         </Appearance>
                         <Text string="ГУАП" solid="false">
                             <FontStyle size="0.5" style="BOLD" family="Helvetica"> </FontStyle>
@@ -97,7 +103,7 @@
             <Transform DEF="centr" translation="0.3 2.5 0" rotation="1 0 0 1.57">
                 <Shape>
                     <Appearance>
-                        <Material DEF="centrcolor" diffuseColor="#FF7F50"></Material>
+                        <Material id='color1' DEF="centrcolor" diffuseColor="#FF7F50"></Material>
                     </Appearance>
                     <torus id='torus' innerRadius="0.15" outerRadius="1.1"></torus>
                 </Shape>
@@ -699,12 +705,9 @@
                 </DirectionalLight>
             </Group>
 
-            
+
             <!--туман-->
             <Fog DEF="tuman" fogType="EXPONENTIAL" color="#FFFFFF" visibilityRange='125'></Fog>
-
-
-
 
             <!-- анимация-->
             <!-- colorinterpolator (анимация центрального купола)-->
@@ -717,7 +720,7 @@
             <ROUTE fromNode="ColInt" fromField="value_changed" toNode="centrcolor" toField="set_diffuseColor"></ROUTE>
 
             <!-- orientationInterpolator (анимация куполов)-->
-            <timeSensor id ='kupol' DEF='TSkupol' cycleInterval='15' loop='true' enabled='false'></timeSensor>
+            <timeSensor id='kupol' DEF='TSkupol' cycleInterval='15' loop='true' enabled='false'></timeSensor>
 
             <orientationInterpolator DEF='Orient' key='0 0.25 0.5 0.75 1'
                 keyValue='0 1 0 0  0 1 0 1.57079  0 1 0 3.14159  0 1 0 4.71239  0 1 0 6.28317'>
@@ -730,11 +733,11 @@
             <ROUTE fromNode='Orient' fromField='value_changed' toNode='kupol2' toField='set_rotation'></ROUTE>
 
             <ROUTE fromNode='Orient' fromField='value_changed' toNode='kupol3' toField='set_rotation'></ROUTE>
-            
+
             <ROUTE fromNode='Orient' fromField='value_changed' toNode='kupol11' toField='set_rotation'></ROUTE>
 
             <ROUTE fromNode='Orient' fromField='value_changed' toNode='kupol22' toField='set_rotation'></ROUTE>
-            
+
             <ROUTE fromNode='Orient' fromField='value_changed' toNode='kupol33' toField='set_rotation'></ROUTE>
 
             <!-- orientationInterpolator (анимация деревьев cправа и сзади - translation)-->
@@ -754,7 +757,7 @@
             <PositionInterpolator DEF="posraketa" key="0 0.23 0.5 0.75 1"
                 keyValue="-0.3 3.1 -0.5, -1 7 -0.5, -2 10 -0.5, -1 7 -0.5, -0.3 3.1 -0.5">
             </PositionInterpolator>
-            
+
 
             <ROUTE fromNode="TSraketa" fromField="fraction_changed" toNode="posraketa" toField="set_fraction"></ROUTE>
             <ROUTE fromNode="posraketa" fromField="value_changed" toNode="raketa" toField="set_translation"></ROUTE>
