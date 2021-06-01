@@ -8,8 +8,19 @@
     
 	<script lang="javascript">
 		
-        function Start() {
-			
+        var valStep = 0.02;
+        function Start() { //взлет
+			let posInt = document.getElementById("PosIntRocket");
+			posInt.setAttribute("keyValue", "");
+			let kStep = 0.001;
+			let kVal = 0;
+			for (let k = 0; k <= 1.01; k += kStep) {
+				posInt.setAttribute("key", posInt.getAttribute("key") + k + ", ");
+				posInt.setAttribute("keyValue", posInt.getAttribute("keyValue") + "0 " + kVal + " 0, ");
+				kVal += valStep;
+			}
+			let ts = document.getElementById("StartTS");
+			ts.setAttribute("enabled", "true");
         }
 
     </script>
