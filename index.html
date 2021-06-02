@@ -32,6 +32,16 @@
             $('#timesensor, #timesensor2').attr('enabled', 'false')   
         })
 
+        $('#martina').click(() => {                    
+          $('#3').attr('rotation', '1 0 0 1.57'),
+          $('#3').attr('translation', '9 -4.5 2')
+        })
+
+        $('#martina1').click(() => {                    
+          $('#3').attr('rotation', '1 0 0 0'),
+          $('#3').attr('translation', '9 0 2')
+        })
+       
         
 
 
@@ -51,7 +61,10 @@
   <form action="">
     <input id='start' type="button" value="Вращать что-то пирамидное"/>
     <input id ='stop' type="button" value="Остановить что-то пирамидное"/>
-    
+    <input id ='martina' type="button" value="Совершить большую ошибку"/>
+    <input id ='martina1' type="button" value="Исправить большую ошибку"/>
+    <input id ='martina2' type="button" value="Сотворить чудо"/>
+
 </form>
 
   <X3D width="100vw" height="100vh">
@@ -159,7 +172,7 @@
 
       <!-- Одного бокала было мало-->
       <!-- сам бокал-->
-      <Transform translation="9 0 2">
+      <Transform id="3" translation="9 0 2" rotation = "1 0 0 0">
         <Transform rotation="1 0 0 3.14">
           <Shape>
             <Appearance>
@@ -508,9 +521,13 @@
       <!-- конец буквы-->
 
       <!--Дискошар-->
-      <Transform translation="0 30 50">
+      <Transform DEF = 'sharik' translation="0 30 50">
         <Shape>
           <Appearance>
+
+            <!-- <TextureTransform scale="1 1"></TextureTransform> -->
+                <ImageTexture url="disco.jpg"></ImageTexture>
+
               <material DEF='shar' diffusecolor='0 0 0'></material>
             
           </Appearance>
@@ -662,6 +679,8 @@
 <TimeSensor id='timesensor2' DEF="Time3" cycleInterval="3" loop="true">
 </TimeSensor>
 
+
+
 <ColorInterpolator DEF="ColInt" key="0 0.5 1"
     keyValue="1 0 0 , 0 1 0, 0 0 1">
     </ColorInterpolator>
@@ -682,6 +701,9 @@
     toNode="OrientInt" toField="set_fraction"></ROUTE>
     <ROUTE fromNode="OrientInt" fromField="value_changed"
     toNode="pyr" toField="set_rotation"></ROUTE>
+
+    <ROUTE fromNode="OrientInt" fromField="value_changed"
+    toNode="sharik" toField="set_rotation"></ROUTE>
 
     <PositionInterpolator DEF="PosInt" 
                     key="0 0.23 0.5 0.75 1"
