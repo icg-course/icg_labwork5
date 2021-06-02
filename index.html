@@ -8,7 +8,7 @@
     
 	<script lang="javascript">
 		var valStep = 0.02;
-        function Start() { //взлет
+        	function Start() { //взлет
 			let posInt = document.getElementById("PosIntRocket");
 			posInt.setAttribute("keyValue", "");
 			let kStep = 0.001;
@@ -21,9 +21,9 @@
 			}
 			let ts = document.getElementById("StartTS");
 			ts.setAttribute("enabled", "true");
-        }
+        	}
 
-        function Land() { //посадка
+        	function Land() { //посадка
 			//let vec = {
 			//    x: 0,
 			//    y: 0,
@@ -45,15 +45,15 @@
 
 			let ts = document.getElementById("StartTS");
 			ts.setAttribute("enabled", "true");
-        }
+        	}
 
 		function Idle() { //ожидание
 			let tts = document.getElementById("TurbTS");
 			let enRot = tts.getAttribute("enabled");
 			if (enRot == "false")
-                tts.setAttribute("enabled", "true");
-            else
-                tts.setAttribute("enabled", "false");
+                		tts.setAttribute("enabled", "true");
+            		else
+               			tts.setAttribute("enabled", "false");
 
 			let sts = document.getElementById("StartTS");
 			sts.setAttribute("enabled", "false");
