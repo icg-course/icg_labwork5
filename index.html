@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <input type="button" id="nQQ_st" value="Остановка закрытия ворот" onclick='moveVorota();'
+  <input type="button" id="nQQ_s" value="Остановка закрытия ворот" onclick='moveVorota();'
   style="background: #f3c7dd; border: 1px solid rgb(117, 23, 97);border-radius: 5px; margin:0px 0px 0px 80px;">
 </input>
 <input type="button" id="buttonstars" value="Звездопад" onclick="Stars();"
@@ -910,7 +910,7 @@ center;'></body>
 
         <!-- 25. Звездопад -->
         <Transform id="StarsRoot" DEF="SStars" translation="0 0 25" scale="2 2 2">
-          <Transform DEF="Stars" translation="0 40 0" scale="0.1 0.1 0.1">
+          <Transform DEF="Stars" translation="0 45 0" scale="0.1 0.1 0.1">
             <Transform translation="0 3 0">
               <Transform DEF="Konys" translation="0 0 0">
                 <Shape>
@@ -1527,7 +1527,7 @@ keyValue='0 1 0 0, 0 1 0 1.57079, 0 1 0 3.14159, 0 1 0 4.71239, 0 1 0 6.28317'>
 
 
 <!-- 5. Звездопад -->
-<TimeSensor id="TimeForStars" DEF='TSTimeForStars' cycleInterval='15' enabled="false" loop='true'
+<TimeSensor id="TimeForStars" DEF='TSTimeForStars' cycleInterval='15' enabled="true" loop='true'
 first="true" />
 <PositionInterpolator DEF='PosStars' key='0 0.2 0.4 0.6 0.8 1'
 keyValue='0 40 0, 0 20 0, 0 0 0, 0 -20 0, 0 -40 0, 0 -60 0' />
@@ -1551,6 +1551,12 @@ keyValue='0 40 0, 0 20 0, 0 0 0, 0 -20 0, 0 -40 0, 0 -60 0' />
   <!-- Cкрипты -->
   <script>
 
+    document.onload = () => {
+      var n = 250
+      for (var i = 0; i < n; i++)
+        addNode()
+    }
+
     function moveVorota(what) {
       var button = (what == "Reshetka")
       ? document.getElementById("nQQ_Reshetka")
@@ -1572,9 +1578,6 @@ keyValue='0 40 0, 0 20 0, 0 0 0, 0 -20 0, 0 -40 0, 0 -60 0' />
 
 
     function Stars() {
-      var n = 250
-      for (var i = 0; i < n; i++)
-        addNode()
       var StarsHeart = document.getElementById('TimeForStars');
       var enabled = StarsHeart.getAttribute("enabled");
       var button = document.getElementById('buttonstars');
