@@ -1,0 +1,21 @@
+#button1{
+    background-color: rgb(47, 196, 255);
+    color: yellow;
+    border: solid 2px black;
+    position: absolute;
+    left: 1%;
+    top: 90%;
+    width: 6%;
+    height: auto;
+}
+
+#button2{
+    background-color: rgb(255, 0, 170);
+    color: yellow;
+    border: solid 2px black;
+    position: absolute;
+    left: 8%;
+    top: 90%;
+    width: 6%;
+    height: auto;
+}
