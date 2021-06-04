@@ -1,13 +1,107 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>  
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
     <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
+    <title></title>
     <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+</head>
+<body>
+<script>
+    let boxId = 'BoxId';
+    let lastNode = null;
+    let chaser = "BoxChaser";
+
+    function setBoxId(i) {
+        console.log('a', i)
+        boxId = i;
+      console.log('material'+boxId)
+      oppositeBoxId = boxId[boxId.length-1]=='2'?
+        'materialBox':'materialBox2'
+      console.log(oppositeBoxId)
+      console.log(document.getElementById('material'+boxId).setAttribute('diffuseColor','#229933'))
+      console.log(document.getElementById(oppositeBoxId).setAttribute('diffuseColor','#222222'))
+        // console.log('set boxId to' , boxId)
+       if(a=="Box")
+           chaser="BoxChaser"
+        else {
+           chaser = "BoxChaser2"
+           console.log("set chaser to 2")
+       }
+      console.log('afterIf')
+           console.log('material'+chaser) 
+        console.log('set chaser to' , chaser)
+        if (lastNode) {
+            document.getElementById('scene').removeChild(lastNode);
+        }
+        let r = document.createElement('route');
+        r.setAttribute('fromField', 'value_changed');
+        r.setAttribute('fromNode', 'BoxChaser');
+        r.setAttribute('toField', 'set_translation');
+
+        //  document.getElementById("BoxChaser").setAttribute(
+        //      'initial_destination',
+        //      document.getElementById(i).getAttribute("translation"));
+        //  console.log('from',document.getElementById(i).getAttribute("translation"))
+        // r.setAttribute('toNode', i)
+        // console.log('b')
+//console.log(document.getElementById('route').getAttribute('toNode'))
+        console.log('c')
+        document.getElementById('scene').appendChild(r);
+        console.log(r)
+        lastNode = r;
+        console.log('c')
+//document.getElementById('route').setAttribute('toNode',i)
+    }
+
+    function move(point, event) {
+        console.log(event);
+        console.log(point);
+        if(boxId=="Box2")
+            chaser="BoxChaser2"
+        else
+            chaser="BoxChaser"
+        console.log("boxId", boxId, chaser);
+        console.log(document.getElementById(boxId).getAttribute('translation'))
+        document.getElementById(chaser).setAttribute("set_destination", point)
+    };
+</script>
+<X3D>
+    <Scene id="scene">
+        <PositionChaser DEF="BoxChaser" id="BoxChaser" duration="1"></PositionChaser>
+        <PositionChaser DEF="BoxChaser2" id="BoxChaser2" duration="1"></PositionChaser>
+        <Transform onClick="move(event.hitPnt,event);">
+            <Shape>
+                <Appearance>
+                    <Material></Material>
+                </Appearance><Box size="10 0.1 10"></Box>
+            </Shape>
+        </Transform>
+        <Transform DEF="Box" id="Box" onClick="setBoxId('Box');">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="#222222" id='materialBox'>
+                    </Material>
+                </Appearance>
+                <Box></Box>
+            </Shape>
+        </Transform>
+        <Transform DEF="Box2" id="Box2" onClick="setBoxId('Box2');" translation="2 0 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="#222222" id='materialBox2'></Material>
+                </Appearance>
+                <Box></Box>
+            </Shape>
+        </Transform>
+
+        <ROUTE fromNode="BoxChaser" fromField="value_changed" toNode="Box" id="route" toField="set_translation"></ROUTE>
+        <ROUTE fromNode="BoxChaser2" fromField="value_changed" toNode="Box2" id="route2" toField="set_translation"></ROUTE>
+
+    </Scene>
+</X3D>
+<style>
+    x3d, canvas {
+        width: 100%
+    }
+</style>
+</body>
 </html>
