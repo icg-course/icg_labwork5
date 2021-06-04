@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang='ru'>
 <head>
     <meta charset='utf-8' />
@@ -7,65 +7,39 @@
     <script src="https://x3dom.org/download/dev/x3dom-full.debug.js"></script>
     
 	<script lang="javascript">
-		var valStep = 0.02;
-        	function Start() { //взлет
+		var valStep = 0.05;
+		var kStep = 0.001;
+        function Start() { //взлет
 			let posInt = document.getElementById("PosIntRocket");
+			let ts = document.getElementById("StartTS");
 			posInt.setAttribute("keyValue", "");
-			let kStep = 0.001;
-			let kVal = 0;
-			var k;
+			ts.setAttribute("enabled", "true");
+			let kVal = -2.51;
+			let k;
 			for (k = 0; k <= 1.01; k += kStep) {
 				posInt.setAttribute("key", posInt.getAttribute("key") + k + ", ");
 				posInt.setAttribute("keyValue", posInt.getAttribute("keyValue") + "0 " + kVal + " 0, ");
 				kVal += valStep;
 			}
-			let ts = document.getElementById("StartTS");
-			ts.setAttribute("enabled", "true");
-        	}
-
-        	function Land() { //посадка
-			//let vec = {
-			//    x: 0,
-			//    y: 0,
-			//    x: 0,
-			//    str: (0,0,0)
-			//  }
-
-			//let raketa = document.getElementById("rocketTransf");
-			//let tr = raketa.getAttribute("translation");
-			//let y = parseInt(tr.split(",")[1]);
-			//console.log(tr);
-
-			let posInt = document.getElementById("PosIntRocket");
-			posInt.setAttribute("keyValue", "");
-			var kVal;
-			let h = 20;
-			for (kVal = h; kVal > 0; kVal -= valStep)
-				posInt.setAttribute("keyValue", posInt.getAttribute("keyValue") + "0 " + kVal + " 0, ");
-
-			let ts = document.getElementById("StartTS");
-			ts.setAttribute("enabled", "true");
-        	}
-
-		function Idle() { //ожидание
+        }
+		
+		function Rot() { //вкл/выкл вращение
 			let tts = document.getElementById("TurbTS");
 			let enRot = tts.getAttribute("enabled");
-			if (enRot == "false")
-                		tts.setAttribute("enabled", "true");
-            		else
-               			tts.setAttribute("enabled", "false");
-
-			let sts = document.getElementById("StartTS");
-			sts.setAttribute("enabled", "false");
-			let raketa = document.getElementById("rocketTransf");
-			raketa.setAttribute("translation", "0 0 0");
+			if (enRot == "false"){
+                tts.setAttribute("enabled", "true");
+				rot_b.value="Выкл. вращение";
+			}
+            else{
+                tts.setAttribute("enabled", "false");
+				rot_b.value="Вкл. вращение";
+			}
 		}
     </script>
 	
     <p class="case">
         <input id="tkf_b" type="button" value="Взлет" onClick='Start();' />
-        <input id="lnd_b" type="button" value="Посадка" onClick='Land();' />
-		<input id="idl_b" type="button" value="Ожидание" onClick='Idle();' />
+		<input id="rot_b" type="button" value="Выкл. вращение" onClick='Rot();' />
     </p>
 </head>
 <body>
@@ -475,12 +449,13 @@
 			<ROUTE fromNode='ColorSpot' fromField='value_changed' toNode='CapMat' toField='set_emissiveColor'></ROUTE>
 
 			<!--Анимация взлета ракеты-->
-			<TimeSensor id='StartTS' DEF='TS3' startTime='0' cycleInterval='10' loop='true' enabled='false'></TimeSensor>
+			<TimeSensor id='StartTS' DEF='TS3' startTime='0' cycleInterval='20' loop='true' enabled='false'></TimeSensor>
 			<PositionInterpolator id='PosIntRocket' DEF='PosInt' key='' keyValue=''></PositionInterpolator>
-			<PositionDamper DEF="PD" order='0.5' tau="1"></PositionDamper>
+			<PositionDamper DEF="PD" order='1' tau="1" initialValue='0,0,0'></PositionDamper>
+			<PositionChaser DEF="PC" duration="2" initialValue='0,0,0'></PositionChaser>
 			<ROUTE fromNode="TS3" fromField="fraction_changed" toNode="PosInt" toField="set_fraction"></ROUTE>
-            <ROUTE fromNode="PosInt" fromField="value_changed" toNode="PD" toField="set_destination"></ROUTE>
-            <ROUTE fromNode="PD" fromField="value_changed" toNode="RocketTransform" toField="set_translation"></ROUTE>
+            <ROUTE fromNode="PosInt" fromField="value_changed" toNode="PC" toField="set_destination"></ROUTE>
+            <ROUTE fromNode="PC" fromField="value_changed" toNode="RocketTransform" toField="set_translation"></ROUTE>
         </Scene>
     </X3D>
 </body>
