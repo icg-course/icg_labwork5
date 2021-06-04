@@ -1,13 +1,320 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>  
-    <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
-</html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Laba_5</title>
+  <link rel="stylesheet" href="https://www.x3dom.org/download/dev/x3dom.css"></link>
+  <script src="https://x3dom.org/release/x3dom-full.js"></script>
+  <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+</head>
+
+<body>
+  <h1 id="elem"></h1>
+<X3D width='1517px' height='707px'>
+
+  <form action="">
+ <input id='start' type="button" value="Вкл. анимацию"></input>
+ <input id='stop' type="button" value="Выкл. анимацию"></input>
+ </form>
+
+    <Scene>
+      <Viewpoint orientation="0 -1 0 0.3" position="2 0 20"></Viewpoint> 
+
+      <TimeSensor  id='tsensor' DEF="time" cycleInterval="4" loop="True" enabled="true">
+      </TimeSensor>
+     
+
+      <ColorInterpolator DEF="ColInt" key="0 0.33 0.66 1" keyValue="1 0 0, 0 1 0, 0 0 1, 1 0 0"></ColorInterpolator>
+
+      <OrientationInterpolator DEF="OrientInt" key="0 0.33 0.66 1" keyValue="1 1 0 0, 0 1 0 -0.3, 1 1 0 0.3, 0 1 0 0"> </OrientationInterpolator>
+      <OrientationDamper DEF='Damper' duration='3' tau='0.2'></OrientationDamper>
+
+      <OrientationInterpolator DEF="OrientInt1" key="0 0.25 0.5 0.75 1" keyValue="1 1 0 0, 0 1 0 -0.22, 1 1 0 0.25, 0 1 0 -0.4, 0 1 0 0"> </OrientationInterpolator>
+      <OrientationDamper DEF='Damper1' duration='6' tau='0.2'></OrientationDamper>
+
+      <PositionInterpolator DEF="PosInt" key="0 0.25 0.5 0.75 1" keyValue="0 0 0  0 -4 1  0 0 0  0 5 0  0 0 0"></PositionInterpolator>
+      <PositionChaser isActive="True" DEF='Chaser' duration='4'> </PositionChaser>
+
+      <Transform rotation="1 0 0 1.75" >
+        <Transform rotation="0 0 1 1.85">
+            <Anchor url="https://www.youtube.com/watch?v=DDU-rZs-Ic4" Children="Core">
+            
+
+              <Collision DEF='MyCollisionNode' enabled='true'>
+                
+    <Transform DEF = "Space Ship" onclick="showElem(event)" data-name="Космический корабль"> <!-- вешаешь событие на объект космический корабль -->
+      
+              <!-- даешь объекту data-name  data-атрибут для программистов  -->
+              
+              <Shape data-name="Жилой отсек">
+                <Appearance>
+                  <ImageTexture url="Текстуры/швы-болты_44.png">
+                  </ImageTexture>
+                </Appearance>
+                <Box size="5 0.4 0.4" ></Box>
+              </Shape>
+
+            <Shape DEF = "Core" data-name="Ядро">
+              <Appearance>
+                <ImageTexture url="Текстуры/eRxyb9.png">
+                </ImageTexture>
+                <TextureTransform scale="3 3" rotation="0.78"></TextureTransform>
+              </Appearance>
+              <Sphere radius="1"></Sphere>
+            </Shape>
+
+          <Transform rotation="0 1 0 1.5">
+            <Shape data-name="Балка">
+              <Appearance>
+                <ImageTexture url="Текстуры/швы-болты_44.png">
+                </ImageTexture>
+              </Appearance>
+              <Box size="5.7 0.5 0.7"></Box>
+            </Shape>
+          </Transform>   
+
+            <Transform translation="-2.8 0 0">
+              <Shape data-name="Топливный бак">
+                <Appearance>
+                  <ImageTexture url="Текстуры/ehUOQz.png">
+                  </ImageTexture>
+                </Appearance>
+                <Cylinder height='3.32' radius='0.57'></Cylinder>
+              </Shape>
+            </Transform>
+
+            <Transform translation="2.8 0 0">
+              <Shape data-name="Топливный бак">
+                <Appearance>
+                  <ImageTexture url="Текстуры/ehUOQz.png">
+                  </ImageTexture>
+                </Appearance>
+                <Cylinder height='3.32' radius='0.57'></Cylinder>
+              </Shape>
+            </Transform>
+
+            <Transform scale='1 1 1' rotation='0 1 0 1.55'>
+              <Shape data-name="Резервный обруч">
+                <Appearance>
+                  <ImageTexture url="Текстуры/10616486.png">
+                  </ImageTexture>
+                  <TextureTransform scale="3 3" rotation="0.78"></TextureTransform>
+                </Appearance>
+                <Torus innerRadius="0.7" outerRadius="2.6"></Torus>
+              </Shape>
+            </Transform>
+
+            <Transform translation="-2.8 2.68 0">
+              <Shape data-name="Выхлопы">
+                <Appearance>
+                  <ImageTexture url="Текстуры/1500x500.png">
+                  </ImageTexture>
+                  <TextureTransform rotation="0.4"></TextureTransform>
+                </Appearance>
+                <Cone bottomRadius="0.5" height="2"></Cone>
+              </Shape>
+            </Transform>
+
+            <Transform translation="2.8 2.68 0">
+              <Shape data-name="Выхлопы">
+                <Appearance>
+                  <ImageTexture url="Текстуры/1500x500.png">
+                  </ImageTexture>
+                  <TextureTransform rotation="0.4"></TextureTransform>
+                </Appearance>
+                <Cone bottomRadius="0.5" height="2"></Cone>
+              </Shape>
+            </Transform>
+            
+            <Transform translation="3.38 0.1 0" rotation="1 0 0 -1.57">
+              <Transform rotation="0 1 0 1.57">
+                <Shape data-name="Логотип">
+                  <Appearance>
+                    <Material DEF="Color" diffuseColor="1 0 0">
+                    </Material>
+                  </Appearance>
+                  <Text string="Hiraishin" maxExtent="2.2" solid="false">
+                    <FontStyle horizontal="true" leftToRight="true"></FontStyle>
+                  </Text>
+                </Shape>
+              </Transform>
+            </Transform>
+
+          </Transform>
+        </Collision>
+        </Anchor>
+
+        <Transform scale="0.5 0.5 0.5" translation="1 4 5">
+          <Shape USE="Space Ship" >
+        
+          </Shape>
+        </Transform>
+
+            <Shape>
+              <Background backUrl='Текстуры/space.png' bottomUrl='Текстуры/space.png' leftUrl='Текстуры/space.png' rightUrl='Текстуры/space.png' topUrl='Текстуры/space.png'>
+              </Background>
+            </Shape>
+
+              <Transform  DEF="Trans">
+
+              <Transform onclick="showElem(event)" data-name="Космический объект">
+            <Transform translation='0 -17 0'>
+            <Shape data-name="Индикаторы">
+              <Material diffuseColor="1 0 1">
+              </Material>
+              <PointSet>
+                <Color color="1 0 0, 1 0 0, 1 0 0, 1 0 0, 1 0 0, 1 0 0, 1 0 0, 1 0 0, 1 0 0, 1 0 0">
+                </Color>
+                <Coordinate point="2 0 2, 2 0.4 2, 2 0.8 2, 2 1.2 2, 2 1.6 2, 2 2 2, 2 2.4 2, 2 2.8 2, 2 3.2 2, 2 3.6 2"></Coordinate>
+              </PointSet>
+            </Shape>            
+          </Transform>
+
+              <Transform translation='0 -17 0'>
+                <Shape data-name="Энерго ворота">
+                  <Material diffuseColor="1 0 1">
+                  </Material>
+                  <IndexedLineSet coordIndex=' 2 5 6 1 2 –1' colorIndex='0 1 2 3 4 5 -1' colorPerVertex='true'>
+                  <Coordinate point='2 0 2, 2 0 2, 2 0 -2, -2 0 –2, -2 4 2, 2 4 2, 2 4 -2, -2 4 -2, 2 2 0, 2 2 2, 2 0 0'></Coordinate>
+                  <Color color='0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0, 1 1 1'></Color>
+                  </IndexedLineSet>
+                </Shape>
+              </Transform>
+
+            <Transform translation="0 -17 0" >
+            <Shape data-name="Корпус объекта" DEF = 'coloreCube'>
+              <appearance>
+                <ImageTexture DEF="123" url="Текстуры/rusted-metal-pole-2.png">
+                </ImageTexture>
+                <TextureTransform rotation="1"></TextureTransform>
+              </appearance>
+              <IndexedFaceSet ccw="true" convex="true" creaseAngle="0" solid="false" coordIndex="0 3 7 4 -1 4 5 6 7 -1 6 7 3 2 -1 0 1 2 3 -1 0 1 5 4" >
+                <Coordinate point="-2 0 2, 2 0 2, 2 0 -2, -2 0 -2, -2 4 2, 2 4 2, 2 4 -2, -2 4 -2, 0 0 0, 2 0 0, 2 2 0, 0 2 0"></Coordinate>
+              </IndexedFaceSet>
+            </Shape>
+            </Transform>
+
+            <Transform  translation="0 -15 0" >
+            <shape data-name="Энерго крылья">
+              <IndexedTriangleSet index="0 1 2 4 5 6" solid="false">
+                <Coordinate point="2 2 2, -2 2 2, -3 4 -3, -2 3 -5,
+                -2 -2 2, 2 -2 2, -3 -3 -2, 2 3 1.5, 6 4 2"></Coordinate>
+                <ColorRGBA color="0 .8 0 1, 0 1 1 1, 1 0 0 0, 1 .5 0 0,
+                .8 0 1 0, 1 1 0 1, .6 .3 .1 0, 1 0 .5 1, 0 1 .5 0"></ColorRGBA>
+               </IndexedTriangleSet>
+              </shape>
+              </Transform>
+              
+              <Transform translation="2 -18 -1" >
+              <shape data-name="Неустойчивая энергия">
+                <IndexedTriangleStripSet index='0 1 2 3 4 -1' solid='false'>
+                  <Coordinate point='-4 1 3, -2 2 1.5, -3 4 0.5, -2 3 1.5,
+                  0 4 0'></Coordinate>
+                  <ColorRGBA color='0 .8 0 1, 0 1 1 1, 1 0 0 1, 1 .5 0 1,
+                  .8 0 1 1'></ColorRGBA>
+                 </IndexedTriangleStripSet>
+              </shape>
+            </Transform>
+
+            <Transform translation="0 -16 -2" rotation='1 0 0 4.9'>
+              <shape data-name="Крыша">
+                <Appearance>
+                    <ImageTexture USE="123" >
+                    </ImageTexture>
+                    <TextureTransform rotation="1"></TextureTransform>
+              </Appearance>
+                <ElevationGrid xDimension="3" zDimension="3" height="1, 0.3, 1, 0.5, 1, 1.5, 0, 1, 0.5, 0.25, 0.25, 0.5, 1, 0, 0.5, 0.25" xSpacing="2.0" zSpacing="2.0" solid="false" creaseAngle="3">
+                </ElevationGrid>
+              </shape>  
+            </Transform>
+
+          </Transform>
+
+          </Transform>
+
+            </Transform>
+          </Transform>  
+
+            <shape >
+              <fog color="0 0 0" fogType="EXPONENTIAL" visibilityRange="90">
+              </fog>
+            </shape>
+
+        <NavigationInfo avatarSize='0.25 1.6 0.75' speed='2.0' type ="Fly" Headlight="FALSE">
+        </NavigationInfo>
+    
+       <!--<Route fromNode="time" fromField ="fraction_changed" toNode="move" toField="set_fraction"></Route> -->
+        <!--Из узла "Время" с поля "Фракция изменилась" к узлу в поле "Набор фракций"-->
+        <!--<Route fromNode="move" fromField ="value_changed" toNode="Space Ship" toField="translation"></Route>-->
+
+        <Route fromNode="time" fromField ="fraction_changed" toNode="ColInt" toField="set_fraction"></Route>
+        <Route fromNode="ColInt" fromField ="value_changed" toNode="Color" toField="set_diffuseColor"></Route>
+
+        <!--<ROUTE fromNode="time" fromField="fraction_changed"
+        toNode="OrientInt" toField="set_fraction"></ROUTE>
+        <ROUTE fromNode="OrientInt" fromField="value_changed"
+        toNode="Trans" toField="set_rotation"></ROUTE>-->
+       
+        <ROUTE fromNode="time" fromField="fraction_changed" toNode="PosInt" toField="set_fraction"></ROUTE>
+        <ROUTE fromNode="PosInt" fromField="value_changed" toNode="Chaser" toField="set_destination"></ROUTE>
+        <ROUTE fromNode="Chaser" fromField="value_changed" toNode="Space Ship" toField="set_translation"></ROUTE>
+
+        <ROUTE fromNode="time" fromField="fraction_changed" toNode="OrientInt" toField="set_fraction"></ROUTE>
+        <ROUTE fromNode="OrientInt" fromField="value_changed" toNode="Damper" toField="set_destination"></ROUTE>
+        <ROUTE fromNode="Damper" fromField="value_changed" toNode="Trans" toField="set_rotation"></ROUTE>
+
+        <ROUTE fromNode="time" fromField="fraction_changed" toNode="OrientInt1" toField="set_fraction"></ROUTE>
+        <ROUTE fromNode="OrientInt1" fromField="value_changed" toNode="Damper1" toField="set_destination"></ROUTE>
+        <ROUTE fromNode="Damper1" fromField="value_changed" toNode="Space Ship" toField="set_rotation"></ROUTE>
+
+        <DirectionalLight direction='0 0 -1' color='1 0 1' intensity='.5'></DirectionalLight>
+
+        <PointLight location="5 0 10" color="1 0 0" intensity="1" shadowIntensity="0.7" shadowMapSize="512"></PointLight>
+
+        <Spotlight location="7 4 -3" color="1 1 0" intensity="1" direction="0 0 -1" cutOffAngle='5' beamWidth='.7'></Spotlight>
+      
+
+      <Transform onclick="showElem(event)" data-name="Будка Доктора Кто" translation="7 0 -5" scale="0.001 .001 .001">
+      <Inline  url="test.x3d"></Inline>
+      </Transform> 
+
+
+          </Scene>
+
+          </X3D>
+          <script lang="javascript">
+            $(document).load(() => {
+            $('#start').click(() => { 
+            $('#tsensor').attr('enabled', 'true')
+            })
+            $('#stop').click(() => {
+            $('#tsensor').attr('enabled', 'false')
+            })
+            })
+            
+            function showElem(event){//создал функцию она объект события event 
+            const body = document.querySelector('body') //находи в документе куда будем отрисовывать наш текст
+            const priorH1 = document.querySelector('h1') //находим h1 который был до вызова функции
+            if(priorH1){//если до вызова функции тег h1 существовал мы его удаляем чтобы при новой вставке у нас не было 2 тегов h1
+            priorH1.remove()//удаляем
+            }
+            const h1 = document.createElement('h1')//создали тег h1
+            // случай для импортирован объектов
+            if(body.baseURI == event.target.baseURI){//сравниваем расположение основного документа и объекта на который мы тыкнули
+            // космический корабль находится в index.html и все хорошо но будка находится в text.x3d
+            h1.textContent = `Вы выбрали элемент ${event.target.dataset.name}` //добавили в него необходимый текст
+            }
+            else{
+              h1.textContent = `Вы выбрали импортированный элемент` //добавили в него необходимый текст
+              }
+              body.prepend(h1)//вставляем в начало документа(body-тело документа)нашу строку
+              }
+      
+            
+            </script>  
+        </body>
+
+          </html>
+
+
