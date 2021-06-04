@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <head>  
-    <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 4</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css"></link>
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная работа 5</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src='https://www.x3dom.org/download/dev/x3dom-full.js'> </script>
+    <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'></link>
     <script type='text/javascript'>
         function toggleMs() {
             let mus = music.getAttribute("enabled");
@@ -32,6 +34,7 @@
     </script>
     <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
     <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+</head>
 <p class="case"> &nbsp;
     Музыка
     <input id="but_m" type="button" value="Играть" onClick='toggleMs();' />
@@ -39,11 +42,9 @@
     <input id="but_an" type="button" value=" Не крутись" onClick='toggleAn();' />
 </p>
 
-<link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/x3dom.css'></link>
+<link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/x3dom.css'>
+</link>
 </head>
-
-<!-- Box, Sphere, Cylinder, Cone, Torus, Text, Transform,
-Material, ImageTexture, TextureTransform. -->
 
 <body>
     <x3d width="100vw" height="100vh">
@@ -168,22 +169,22 @@ Material, ImageTexture, TextureTransform. -->
                     <PositionChaser DEF="PC" duration="1"></PositionChaser>
                     <PositionDamper DEF="PD" tau="1"></PositionDamper>
 
-                        <!-- Orientation Chaser -->
-                        <OrientationChaser DEF="OC" duration="2"></OrientationChaser>
+                    <!-- Orientation Chaser -->
+                    <OrientationChaser DEF="OC" duration="2"></OrientationChaser>
 
-                        <!-- Руты для позиции -->
-                        <ROUTE fromNode="Time" fromField="fraction_changed" toNode="PosInt" toField="set_fraction">
-                        </ROUTE>
-                        <ROUTE fromNode="PosInt" fromField="value_changed" toNode="PD" toField="set_destination">
-                        </ROUTE>
-                        <ROUTE fromNode="PD" fromField="value_changed" toNode="Mic" toField="set_translation"></ROUTE>
+                    <!-- Руты для позиции -->
+                    <ROUTE fromNode="Time" fromField="fraction_changed" toNode="PosInt" toField="set_fraction">
+                    </ROUTE>
+                    <ROUTE fromNode="PosInt" fromField="value_changed" toNode="PD" toField="set_destination">
+                    </ROUTE>
+                    <ROUTE fromNode="PD" fromField="value_changed" toNode="Mic" toField="set_translation"></ROUTE>
 
-                        <!-- Руты для вращения -->
-                        <ROUTE fromNode="Time" fromField="fraction_changed" toNode="OrientInt" toField="set_fraction">
-                        </ROUTE>
-                        <ROUTE fromNode="OrientInt" fromField="value_changed" toNode="OC" toField="set_destination">
-                        </ROUTE>
-                        <ROUTE fromNode="OC" fromField="value_changed" toNode="Mic" toField="set_rotation"></ROUTE>
+                    <!-- Руты для вращения -->
+                    <ROUTE fromNode="Time" fromField="fraction_changed" toNode="OrientInt" toField="set_fraction">
+                    </ROUTE>
+                    <ROUTE fromNode="OrientInt" fromField="value_changed" toNode="OC" toField="set_destination">
+                    </ROUTE>
+                    <ROUTE fromNode="OC" fromField="value_changed" toNode="Mic" toField="set_rotation"></ROUTE>
 
 
                 </Group>
@@ -224,8 +225,7 @@ Material, ImageTexture, TextureTransform. -->
                 <!-- Не динамик -->
                 <Transform translation="-8 -4 -2 ">
                     <Shape>
-                        <IndexedLineSet coordIndex="0 1 2 3 0 –1 0 4 5 6 7 4 -1 7 3 -1 6 2 -
-                1 5 1 -1" colorPerVertex='true'>
+                        <IndexedLineSet coordIndex="0 1 2 3 0 –1 0 4 5 6 7 4 -1 7 3 -1 6 2 - 1 5 1 -1" colorPerVertex='true'>
                             <Coordinate point="0 0 0, 0 0 3, 3 0 3, 3 0 0,
                 0 5 0, 0 5 3, 3 5 3, 3 5 0,
                 3 5 0, 3 0 0,
