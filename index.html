@@ -384,7 +384,7 @@
             </group>
             <!--Группа анимаций для вращения стульев-->
             <group DEF = "AnimationChair">
-                <OrientationInterpolator def="OrientInt1" key="0 0.5 1" keyvalue=" 0 1 0 1.57, 0 1 0 4.71, 0 1 0 7.85" interpolation="LINEAR"></orientationinterpolator>
+                <OrientationInterpolator def="OrientInt1" key="0 0.5 1" keyvalue=" 0 1 0 1.57, 0 1 0 4.71, 0 1 0 7.85" interpolation="LINEAR"></Orientationinterpolator>
                     <ROUTE fromnode="Time1" fromfield="fraction_changed" tonode="OrientInt1" tofield="set_fraction"></ROUTE>
                     <ROUTE fromnode="OrientInt1" fromfield="value_changed" tonode="Chair" tofield="set_rotation"></ROUTE>
                     <ROUTE fromnode="ChairMoveChaser" fromfield="value_changed" tonode="Chair" tofield="set_translation"></ROUTE>
