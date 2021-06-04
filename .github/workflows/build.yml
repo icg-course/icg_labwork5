@@ -1,4 +1,4 @@
-name: Labwork 5 check
+name: Labwork 4 check
 on:
   push:
     branches: [ gh-pages ]
