@@ -8,15 +8,11 @@
         transform: translate(-50%, -50%)}
     </style>
     <head>
-         <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа №5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom-full.js"></script>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="main.js"></script>
+        <meta charset="utf-8" />
+        <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+        <title>Лабораторная работа 5</title>
+        <link rel="stylesheet" href="http://x3dom.org/release/x3dom.css" />
+        <script src="http://x3dom.org/release/x3dom-full.js"></script>
     </head>
     <body style='width:100%; height:100%; border:0; margin:0; padding:0; background: linear-gradient(#ADD8E6 1%,#4682B4 50%, White);'>
         <script src="123.js"></script>
@@ -64,22 +60,17 @@
                             </timeSensor>
                             <PositionInterpolator DEF="move" key="0 0.5 1" keyValue="'14 6 5 '14 9 5 '14 7 5">
                             </PositionInterpolator>
-				            <PositionChaser DEF="PosCh" duration="1.1"></PositionChaser>
-				
                         </appearance>
                         <sphere radius='1'></sphere>
                     </shape>
                 </transform>
-                	<Route fromNode="time" fromField="fraction_changed" toNode="move" toField="set_fraction">
+                <Route fromNode="time" fromField="fraction_changed" toNode="move" toField="set_fraction">
                 </Route>
-                	<Route fromNode="move" fromField="value_changed" toNode="PosCh" toField="set_destination">
+                <Route fromNode="move" fromField="value_changed" toNode="bl" toField="translation">
                 </Route>
-			<ROUTE fromNode='PosCh' fromField='value_changed' toNode='bl' toField='set_translation'>
-                </ROUTE>
                 <transform DEF="ball" translation='10 7 6' rotation='0 0 0 0'>
                     <TimeSensor DEF="Time" cycleInterval="5" loop="true"> </TimeSensor>
                     <ColorInterpolator DEF="ColInt" key="0 0.1 0.3 0.8" keyValue="2 0 0, 0 3 0, 0 0 5, 1 0 0"> </ColorInterpolator>
-			<ColorDamper DEF="CD" duration="1.1" tau='0.3'></ColorDamper>
                     <Shape>
                         <Appearance>
                             <Material DEF="ball" diffuseColor="1 0 0"></Material>
@@ -88,9 +79,7 @@
                     </Shape>
                 </transform>
                 <ROUTE fromNode="Time" fromField="fraction_changed" toNode="ColInt" toField="set_fraction"></ROUTE>
-		    <Route fromNode="ColInt" fromField="value_changed" toNode="CD" toField="set_destination">
-                </Route>
-                <ROUTE fromNode="CD" fromField="value_changed" toNode="ball" toField="set_diffuseColor"></ROUTE>
+                <ROUTE fromNode="ColInt" fromField="value_changed" toNode="ball" toField="set_diffuseColor"></ROUTE>
                 <transform translation="10 2 5">
                     <Shape>
                         <Appearance>
