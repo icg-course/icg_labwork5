@@ -1,13 +1,271 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <head>  
-    <meta charset="utf-8" />
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>Лабораторная работа 5</title>
-    <link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css" />
-    <script src="https://www.x3dom.org/download/x3dom.js"></script>
-  </head>
-  <body>
-    <h1>Здесь только я. А должна быть твоя лаба!</h1>
-  </body> 
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Лабораторная работа 5</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src='https://www.x3dom.org/download/dev/x3dom-full.js'></script>
+  <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'>
+  </link>
+  <script type='text/javascript'>
+
+// Функция для кнопки Музыки
+
+    function Music() {
+      let msc = Music_on.getAttribute("enabled");
+      if (msc == "false") {
+        Music_on.setAttribute("enabled", "true");
+        but_m_c.value = "Выключить";
+      }
+      else {
+        Music_on.setAttribute("enabled", "false");
+        but_m_c.value = "включи";
+      }
+    }
+
+// Функция для кнопки изменение текста 
+    function Check() {
+      let txt = document.getElementById('text')
+      txt.setAttribute("string", "ALL COOL!");
+      let clr = document.getElementById('mater')
+      clr.setAttribute("diffuseColor", "#00ff00"); 
+    }
+
+// Функция для кнопки приостановки планеты
+
+    function Stop() {
+        let tm = Time.getAttribute("enabled");
+        if (tm == "false") {
+          Time.setAttribute("enabled", "true");
+          but_stp.value = "Останови планету";
+        }
+        else {
+          Time.setAttribute("enabled", "false");
+          but_stp.value = "START!START!";
+        }
+      }
+
+  </script>
+
+  <style>
+    .case{
+      background-color: rgb(0, 19, 19);
+      width: 1920px;
+    }
+
+  </style>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+  <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
+</head>
+<!-- Изменение значений кнопок-->
+<div class="case" style="color: #9bcfff;">
+  Всё исправить!
+  <input id="but_ch" type="button" value="Repair" onClick='Check()' style="background-color: rgb(33, 33, 66); color: #9bcfff;" />
+  Музыка
+  <input id="but_m_c" type="button" value="Включить" onClick='Music()' style="background-color: rgb(33, 33, 66); color: #9bcfff;" />
+  Останови планету, если не страшно
+  <input id="but_stp" type="button" value="STOP!STOP!" onclick="window.Stop()" style="background-color: rgb(33, 33, 66); color: #9bcfff;" />
+</div>
+
+<!---фон-->
+
+<body
+    style='width:100%; height:100%; border:0; margin:0; padding:0; background: url("space.jpg") no-repeat fixed; background-size: cover; background-position: center;'>
+
+    <X3D width="1900px" height="900px">
+
+        <Scene>
+
+            <!-- Камера -->
+            <Viewpoint position="-34 24 42" orientation="-0.5 -0.82 -0.230.8" zNear="0" zFar="150" fieldOfView="0.9"
+                description="defaultX3DViewpointNode"></Viewpoint>
+
+            <!-- Навигация -->
+            <NavigationInfo avatarSize='[ 0.25, 1.6, 0.75 ]' bind='false' explorationMode='all' headlight='false'
+                isActive='false' metadata='X3DMetadataObject' reverseScroll='false' speed='1.0' transitionTime='1.0'
+                transitionType='["LINEAR"]' type='[ANY]' typeParams='[-0.4,60,0.05,2.8]' visibilityLimit='0.0'>
+            </NavigationInfo>
+
+            <collision>
+                <transform translation='-10 -35 -10'>
+                    <inline url='inline.x3d'>
+                </transform>
+
+                <!-- марс -->
+                <anchor url='https://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D1%80%D1%81'>
+                    <transform DEF="Mars">
+                        <shape>
+                            <sphere radius='15'>
+                            </sphere>
+                            <appearance>
+
+                                <imagetexture url='mars.jpg'></imagetexture>
+                            </appearance>
+                        </shape>
+                    </transform>
+                </anchor>
+
+                <!-- Тайм сенсор -->
+                <TimeSensor id="Time" DEF="Time" cycleInterval="9" loop="true"></TimeSensor>
+
+                <!-- Интерполятор вращения -->
+                <OrientationInterpolator DEF="OI" key="0 0.5 1" keyValue="0 1 0 0, 0 1 0 -3.14, 0 1 0 -6.28"></OrientationInterpolator>
+                <OrientationChaser DEF="OC" duration="2"></OrientationChaser>
+                <OrientationDamper DEF="OD" tau="1"></OrientationDamper>
+      
+                <ROUTE fromNode="Time" fromField="fraction_changed" toNode="OI" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="OI" fromField="value_changed" toNode="OC" toField="set_destination"></ROUTE>
+                <ROUTE fromNode="OC" fromField="value_changed" toNode="OD" toField="set_destination"></ROUTE>
+                <ROUTE fromNode="OD" fromField="value_changed" toNode="Mars" toField="set_rotation"></ROUTE>
+
+                <!-- Cпутник -->
+                <group>
+                    <transform DEF="spt" translation='-20 0 0' scale='0.5 0.5 0.5'>
+
+                        <transform translation='0 0 -2.5'>
+                            <shape>
+                                <IndexedTriangleSet index="1 7 2 2 8 3 3 9 4 4 10 5 5 11 6 6 12 1" solid="false">
+                                    <Coordinate
+                                        point="0 0 0, 0 2 0, 0 4 0, 2 6 0, 4 4 0, 4 2 0, 2 0 0, -2 3 0, -1 7 0, 5 7 0, 6 3 0, 5 -1 0, -1 -1 0">
+                                    </Coordinate>
+
+                                    <ColorRGBA
+                                        color=" 1 0.84 0 1, 1 0.84 0 1, 1 0.84 0 1, 1 0.84 0 1, 1 0.84 0 1, 1 0.84 0 1, 1 0.84 0 1,
+                                                       1 0.84 1 0.85, 1 0.84 1 0.85, 1 0.84 1 0.85, 1 0.84 1 0.85, 1 0.84 1 0.85, 1 0.84 1 0.85">
+                                    </ColorRGBA>
+                                </IndexedTriangleSet>
+                                <appearance>
+
+                                    <imagetexture url='sot.jpg'></imagetexture>
+                                </appearance>
+                            </shape>
+                        </transform>
+
+                        <transform>
+                            <shape DEF='front'>
+                                <appearance>
+                                    <imagetexture url='front.jpg'></imagetexture>
+                                    <texturetransform scale='1.7 1.7'></texturetransform>
+                                </appearance>
+                                <IndexedFaceSet ccw="true" colorPerVertex="true" convex="true" creaseAngle="0"
+                                    solid="false" coordIndex="2 3 4 -1 5 6 1 -1 1 2 4 5 -1"
+                                    colorIndex="0 0 0 -1 0 0 0 -1 0 0 0 0 -1">
+                                    <Coordinate point="0 0 0, 0 2 0, 0 4 0, 2 6 -1, 4 4 0, 4 2 0, 2 0 -1">
+                                    </Coordinate>
+                                    <Color color="1 0 0"></Color>
+                                </IndexedFaceSet>
+                            </shape>
+                        </transform>
+
+                        <transform translation='4 0 -12' rotation='0 1 0 3.14159'>
+                            <shape USE='front'>
+
+                            </shape>
+                        </transform>
+
+                        <transform>
+                            <shape>
+                                <appearance>
+                                    <imagetexture url='side.jpg'></imagetexture>
+                                </appearance>
+                                <IndexedFaceSet ccw="true" colorPerVertex="true" convex="true" creaseAngle="0"
+                                    solid="false"
+                                    coordIndex="1 2 8 7 -1 2 3 9 8 -1 3 4 10 9 -1 4 5 11 10 -1 5 6 12 11 -1 6 1 7 12 -1"
+                                    colorIndex="0 1 2 1 -1 0 1 2 1 -1 0 1 2 1 -1 0 1 2 1 -1 0 1 2 1 -1 0 1 2 1 -1  ">
+                                    <Coordinate
+                                        point="0 0 0, 0 2 0, 0 4 0, 2 6 -1, 4 4 0, 4 2 0, 2 0 -1, 0 2 -12, 0 4 -12, 2 6 -11, 4 4 -12, 4 2 -12, 2 0 -11">
+                                    </Coordinate>
+                                    <Color color="1 0 0, 0 1 0, 0 0 1"></Color>
+                                </IndexedFaceSet>
+                            </shape>
+                        </transform>
+
+                        <transform>
+                            <shape>
+                                <indexedlineset coordindex='1 2 -1 3 4 -1' colorindex='1 2 -1 3 4 -1'
+                                    colorpervertex='true'>
+                                    <color DEF="clr" color='0 0 0, 1 0 0, 1 1 0, 0 1 0, 0 0 1'></color>
+                                    <coordinate point='0 0 0, 1 5 -1, -3 7 1, 3 5 -1, 7 7 1'>
+                                    </coordinate>
+                                </indexedlineset>
+                            </shape>
+                        </transform>
+
+                        <transform translation='3.5 3 -5' rotation='1 0 0 -1.5708'>
+                            <shape DEF='wing'>
+                                <appearance>
+                                    <imagetexture url='bat.jpg'></imagetexture>
+                                    <material diffusecolor='0 1 0'>
+                                        <material>
+                                </appearance>
+                                <IndexedTriangleStripSet index='0 1 2 3 4 5 -1' solid='false'>
+                                    <Coordinate point='0 0 0, 1 2 0, 2 0 0, 3 2 0, 4 0 0, 5 2 0'>
+                                    </Coordinate>
+                                    <ColorRGBA color='1 0 0 1, 1 0 0 1, 1 0 0 1, 1 0 0 1 , 1 0 0 1, 1 0 0 1'>
+                                    </ColorRGBA>
+                                </IndexedTriangleStripSet>
+                            </shape>
+                        </transform>
+
+                        <transform translation='-4.5 3 -7' rotation='1 0 0 1.5708'>
+                            <shape USE='wing'></shape>
+                        </transform>
+
+                </group>
+
+                <TimeSensor DEF="Time3" cycleInterval="9" loop="true"></TimeSensor>
+
+                <!-- Интерполятор позиции -->
+                <PositionInterpolator DEF="PosInt" key="0 0.32 0.74 1"
+                    keyValue="-20 3 9, -20 0.45 9, -20 3.9 9, -20 3 9">
+                </PositionInterpolator>
+
+                <ROUTE fromNode="Time3" fromField="fraction_changed" toNode="PosInt" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="PosInt" fromField="value_changed" toNode="spt" toField="set_translation"></ROUTE>
+
+                <!-- текст предупреждения -->
+                <Transform translation="-20 8 5">
+                    <shape>
+                        <appearance>
+                            <material id ="mater" DEF="Mat" diffusecolor="#ff0000" solid="false"></material>
+                        </appearance>
+                        <text id="text" string="WARNING">
+                            <fontstyle family="Helvetica sans-serif"></fontstyle>
+                        </text>
+                    </shape>
+                </Transform>
+
+                
+            </collision>
+
+            <!-- Освещение -->
+            <Group DEF="Light">
+                <PointLight ambientIntensity='0' attenuation='1,0,0' color='1,1,1' global='true' intensity='1'
+                    location='-25, 5, 3' on='true' radius='20' shadowFilterSize='3' shadowIntensity='0.5'
+                    shadowMapSize='2048' shadowOffset='0' zFar='-1' zNear='-1'></PointLight>
+
+                <DirectionalLight ambientIntensity='0' color='1, 1, 1' direction='1, -1, -1' global='true'
+                    intensity='0.5' on='true' shadowCascades='6' shadowFilterSize='3' shadowIntensity='0.7'
+                    shadowMapSize='2048' shadowOffset='0' shadowSplitFactor='1' shadowSplitOffset='1'>
+                </DirectionalLight>
+
+                <SpotLight ambientIntensity='0' attenuation='1,0,0' beamWidth='0.78' color='1, 1, 1' cutOffAngle='3.14'
+                    direction='0, 0, -1' global='true' intensity='1' location='0, 15, 30' radius='100'
+                    shadowCascades='5' shadowFilterSize='2' shadowIntensity='0.3' shadowMapSize='2048'></SpotLight>
+            </Group>
+
+            <fog visibilityrange='350' fogType="linear" color='1 0.2 0.3' isActive='false'></fog>
+
+            <!-- фоновая музыка -->
+            <audioclip id="Music_on" url="SpMs.mp3" loop="true" enabled="false"></audioclip>
+        </Scene>
+    </X3D>
+
+</body>
+
 </html>
