@@ -64,17 +64,24 @@
                             </timeSensor>
                             <PositionInterpolator DEF="move" key="0 0.5 1" keyValue="'14 6 5 '14 9 5 '14 7 5">
                             </PositionInterpolator>
+				
+				
+				<PositionChaser DEF="PosCh" duration="1.1"></PositionChaser>
+				
                         </appearance>
                         <sphere radius='1'></sphere>
                     </shape>
                 </transform>
-                <Route fromNode="time" fromField="fraction_changed" toNode="move" toField="set_fraction">
+                	<Route fromNode="time" fromField="fraction_changed" toNode="move" toField="set_fraction">
                 </Route>
-                <Route fromNode="move" fromField="value_changed" toNode="bl" toField="translation">
+                	<Route fromNode="move" fromField="value_changed" toNode="PosCh" toField="set_destination">
                 </Route>
+			<ROUTE fromNode='PosCh' fromField='value_changed' toNode='bl' toField='set_translation'>
+                </ROUTE>
                 <transform DEF="ball" translation='10 7 6' rotation='0 0 0 0'>
                     <TimeSensor DEF="Time" cycleInterval="5" loop="true"> </TimeSensor>
                     <ColorInterpolator DEF="ColInt" key="0 0.1 0.3 0.8" keyValue="2 0 0, 0 3 0, 0 0 5, 1 0 0"> </ColorInterpolator>
+			<ColorDamper DEF="CD" duration="1.1" tau='0.3'></ColorDamper>
                     <Shape>
                         <Appearance>
                             <Material DEF="ball" diffuseColor="1 0 0"></Material>
@@ -83,7 +90,9 @@
                     </Shape>
                 </transform>
                 <ROUTE fromNode="Time" fromField="fraction_changed" toNode="ColInt" toField="set_fraction"></ROUTE>
-                <ROUTE fromNode="ColInt" fromField="value_changed" toNode="ball" toField="set_diffuseColor"></ROUTE>
+		    <Route fromNode="ColInt" fromField="value_changed" toNode="CD" toField="set_destination">
+                </Route>
+                <ROUTE fromNode="CD" fromField="value_changed" toNode="ball" toField="set_diffuseColor"></ROUTE>
                 <transform translation="10 2 5">
                     <Shape>
                         <Appearance>
