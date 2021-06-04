@@ -22,7 +22,8 @@
             dz = -dz;//Меняем оси на математические
             alpha = Math.atan(dz / dx);
             alpha += -1.57;//Поправка на меш - поворачиваем на пи/2
-            if (dx < 0) {
+            if (dx < 0) 
+            {
                 alpha += 3.14;
             }
             deer.rotation = "0,1,0," + alpha;
